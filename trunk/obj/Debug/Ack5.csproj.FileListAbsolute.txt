@@ -1,0 +1,5 @@
+F:\Personal Folders\Udovis Devoh\Programming\C Sharp\Ack5\obj\Debug\ResolveAssemblyReference.cache
+F:\Personal Folders\Udovis Devoh\Programming\C Sharp\Ack5\bin\Debug\Ack5.exe
+F:\Personal Folders\Udovis Devoh\Programming\C Sharp\Ack5\bin\Debug\Ack5.pdb
+F:\Personal Folders\Udovis Devoh\Programming\C Sharp\Ack5\obj\Debug\Ack5.exe
+F:\Personal Folders\Udovis Devoh\Programming\C Sharp\Ack5\obj\Debug\Ack5.pdb
