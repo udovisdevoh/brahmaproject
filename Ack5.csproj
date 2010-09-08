@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ai\HumanParsing\ConditionParser.cs" />
+    <Compile Include="Ai\HumanParsing\StatementParser.cs" />
+    <Compile Include="Ai\HumanParsing\StatementTreeParser.cs" />
     <Compile Include="Ai\InformationType\Concept.cs" />
     <Compile Include="Ai\HumanParsing\AbstractParser.cs" />
     <Compile Include="Ai\HumanParsing\ConceptNameManager.cs" />

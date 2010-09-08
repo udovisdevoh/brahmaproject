@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ArtificialArt.Ai
+namespace ArtificialArt.Ai.HumanParsing
 {
     /// <summary>
     /// To parse text and convert it to IStatement

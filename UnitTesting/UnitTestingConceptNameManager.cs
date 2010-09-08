@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ArtificialArt.Ai;
+using ArtificialArt.Ai.HumanParsing;
 
 namespace Ack5.UnitTesting
 {
