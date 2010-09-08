@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ArtificialArt.Ai
+namespace ArtificialArt.Ai.HumanParsing
 {
     /// <summary>
     /// To parse text and convert it to IStatement
@@ -12,18 +12,25 @@ namespace ArtificialArt.Ai
     {
         #region Parts
         /// <summary>
-        /// Converts name to concept and concept to names
+        /// Converts text to statement tres
         /// </summary>
-        private ConceptNameManager conceptNameManager;
+        private StatementTreeParser statementTreeParser;
+
+        /// <summary>
+        /// Converts text to "if" conditions
+        /// </summary>
+        private ConditionParser conditionParser;
         #endregion
 
         #region Constructors
         /// <summary>
         /// Create a parser to parse text and convert it to IStatement
         /// </summary>
-        public MainParser()
+        /// <param name="conceptNameMapper">concept name mapper</param>
+        public MainParser(ConceptNameManager conceptNameMapper)
         {
-            conceptNameManager = new ConceptNameManager();
+            statementTreeParser = new StatementTreeParser(conceptNameMapper);
+            conditionParser = new ConditionParser(statementTreeParser);
         }
         #endregion
 
@@ -40,7 +47,7 @@ namespace ArtificialArt.Ai
 
             if (text.StartsWith("if ") || text.StartsWith("!if") || text.StartsWith("not if"))
                 return conditionParser.Parse(text);
-            else if (text.Contains("&&") || text.Contains("||") || text.Contains(" and ") || text.Contains(" or "))
+            else
                 return statementTreeParser.Parse(text);
         }
         #endregion
