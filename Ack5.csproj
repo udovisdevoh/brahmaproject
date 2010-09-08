@@ -45,9 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ai\Neurons\Concept.cs" />
+    <Compile Include="Ai\InformationType\Concept.cs" />
     <Compile Include="Ai\ConceptNameManager.cs" />
-    <Compile Include="Ai\Neurons\Statement.cs" />
+    <Compile Include="Ai\InformationType\IStatement.cs" />
+    <Compile Include="Ai\InformationType\Condition.cs" />
+    <Compile Include="Ai\InformationType\Statement.cs" />
+    <Compile Include="Ai\InformationType\StatementTree.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTesting\UnitTesting.cs" />
