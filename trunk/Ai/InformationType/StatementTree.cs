@@ -8,7 +8,7 @@ namespace ArtificialArt.Ai
     /// <summary>
     /// Statement tree
     /// </summary>
-    public class StatementTree : IStatement
+    internal class StatementTree : IStatement
     {
         /// <summary>
         /// And, Or etc...
