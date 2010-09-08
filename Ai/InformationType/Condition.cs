@@ -8,7 +8,7 @@ namespace ArtificialArt.Ai
     /// <summary>
     /// Represents some kind of "IF" condition
     /// </summary>
-    public class Condition : IStatement
+    internal class Condition : IStatement
     {
         #region Fields
         /// <summary>

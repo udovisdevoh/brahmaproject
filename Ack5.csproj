@@ -46,11 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ai\InformationType\Concept.cs" />
-    <Compile Include="Ai\ConceptNameManager.cs" />
+    <Compile Include="Ai\HumanParsing\AbstractParser.cs" />
+    <Compile Include="Ai\HumanParsing\ConceptNameManager.cs" />
     <Compile Include="Ai\InformationType\IStatement.cs" />
     <Compile Include="Ai\InformationType\Condition.cs" />
     <Compile Include="Ai\InformationType\Statement.cs" />
     <Compile Include="Ai\InformationType\StatementTree.cs" />
+    <Compile Include="Ai\HumanParsing\MainParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTesting\UnitTesting.cs" />
@@ -58,9 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Instinct.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Ai\Parsing\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

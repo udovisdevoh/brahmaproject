@@ -8,7 +8,7 @@ namespace ArtificialArt.Ai
     /// <summary>
     /// Statement or statement tree
     /// </summary>
-    interface IStatement
+    internal interface IStatement
     {
     }
 }

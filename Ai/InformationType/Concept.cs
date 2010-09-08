@@ -8,7 +8,7 @@ namespace ArtificialArt.Ai
     /// <summary>
     /// Represents a concept or an operator
     /// </summary>
-    public class Concept : IStatement
+    internal class Concept : IStatement
     {
         #region Fields
         /// <summary>

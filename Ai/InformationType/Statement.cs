@@ -8,7 +8,7 @@ namespace ArtificialArt.Ai
     /// <summary>
     /// Represents a statement
     /// </summary>
-    public class Statement : IStatement
+    internal class Statement : IStatement
     {
         #region Parts
         /// <summary>
