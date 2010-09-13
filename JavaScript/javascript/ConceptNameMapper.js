@@ -6,6 +6,9 @@ function ConceptNameMapper()
 	
 	//Array: Map concept to name
 	this.mapConceptToName = Array();
+	
+	//ConnectionManager
+	this.connectionManager = new ConnectionManager();
 }
 
 //Get Y value at X point
@@ -46,7 +49,7 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	{
 		for (var complement in concept2.connections[verb])
 		{
-			concept1.connections[verb][complement] = true;
+			connectionManager.addConnection(concept1, verb, complement);
 		}
 	}
 	
@@ -75,7 +78,7 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	{
 		for (var complement in concept1.connections[verb])
 		{
-			concept2.connections[verb][complement] = true;
+			connectionManager.addConnection(concept2, verb, complement);
 		}
 	}
 	
