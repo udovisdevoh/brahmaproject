@@ -10,7 +10,10 @@ ConnectionManager.prototype.addConnection = function ConnectionManager_addConnec
 	{
 		subject.connections[verb] = Array();
 	}
-	subject.connections[verb][complement] = complement;
+	if (subject.connections[verb].indexOf(complement) == -1)
+	{
+		subject.connections[verb].push(complement);
+	}
 }
 
 //Remove a connection from subject through verb to complement
@@ -18,9 +21,10 @@ ConnectionManager.prototype.removeConnection = function ConnectionManager_remove
 {
 	if (subject.connections[verb] != null)
 	{
-		if (subject.connections[verb][complement] != null)
+		var index = subject.connections[verb].indexOf(complement);
+		if (index != -1)
 		{
-			subject.connections[verb].splice(complement, 1);
+			subject.connections[verb].splice(index, 1);
 		}
 	}
 }
@@ -34,7 +38,6 @@ ConnectionManager.prototype.testConnection = function ConnectionManager_testConn
 	}
 	else
 	{
-		var complementExistence = subject.connections[verb][complement];
-		return subject.connections[verb][complement] == complement;
+		return subject.connections[verb].indexOf(complement) != -1;
 	}
 }
