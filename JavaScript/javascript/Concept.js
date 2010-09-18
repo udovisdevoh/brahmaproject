@@ -4,6 +4,6 @@ function Concept(defaultConceptName)
 	//Default concept name (for debugging and etc)
 	this.defaultConceptName = defaultConceptName;
 	
-	//Positive concepts connections as subject.connections[verb][complementIndex]complement
-	this.connections = Array();
+	//Totology connections as subject.connections[verb][complementIndex]complement
+	this.totologyConnections = Array();
 }
