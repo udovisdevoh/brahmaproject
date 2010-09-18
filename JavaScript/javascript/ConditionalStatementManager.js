@@ -1,0 +1,1 @@
+//Manages conditional statementsfunction ConditionalStatementManager(){}
