@@ -1,9 +1,9 @@
 //Represents a client side Ai's learning and unlearning system of totology
 //The AI will learn
-function TotologyManager(connectionManager)
+function TotologyManager(conceptNameMapper)
 {
 	//Maps names to concepts
-	this.conceptNameMapper = new ConceptNameMapper();
+	this.conceptNameMapper = conceptNameMapper;
 	
 	//ConnectionManager
 	this.connectionManager = new ConnectionManager();
