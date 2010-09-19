@@ -23,6 +23,16 @@ if (!Array.prototype.indexOf && is_ie)
 	};
 }
 
+function hardTrim(text)
+{
+	text = text.trim().toLowerCase();
+	while (text.indexOf("  ") != -1)
+	{
+		text = text.replace('  ',' ');
+	}
+	return text;
+}
+
 function print_r(theObj)
 {
 	if(theObj.constructor == Array || theObj.constructor == Object)

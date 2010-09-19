@@ -17,6 +17,8 @@ TotologyManager.prototype.learnStatement = function TotologyManager_learnStateme
 		throw "Statement must not be null";
 	}
 
+	statementString = hardTrim(statementString);
+	
 	var wordList = statementString.split(' ');
 	
 	if (wordList.length < 3)
@@ -55,6 +57,8 @@ TotologyManager.prototype.testStatement = function TotologyManager_testStatement
 		throw "Statement must not be null";
 	}
 
+	statementString = hardTrim(statementString);
+	
 	var wordList = statementString.split(' ');
 	
 	if (wordList.length < 3)
