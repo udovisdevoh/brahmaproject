@@ -1,13 +1,13 @@
 ﻿//Maps concept to names and names to concepts
 function ConceptNameMapper()
 {
-	//Array: Map name to concept
+	//(Array) Map name to concept
 	this.mapNameToConcept = Array();
 	
-	//Array: Map concept to name
+	//(Array) Map concept to name
 	this.mapConceptToName = Array();
 	
-	//ConnectionManager
+	//(ConnectionManager)
 	this.connectionManager = new ConnectionManager();
 }
 

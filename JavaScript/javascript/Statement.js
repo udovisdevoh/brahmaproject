@@ -1,15 +1,15 @@
 //Statement (subject, verb, complement)
 function Statement(subject, verb, complement, isPositive)
 {
-	//Subject (concept)
+	//(Concept) Subject (concept)
 	this.subject = subject;
 	
-	//Verb (concept)
+	//(Concept) Verb (concept)
 	this.verb = verb;
 	
-	//Complement (concept)
+	//(Concept) Complement (concept)
 	this.complement = complement;
 	
-	//Whether statement is positive
+	//(Bool) Whether statement is positive
 	this.isPositive = isPositive;
 }
