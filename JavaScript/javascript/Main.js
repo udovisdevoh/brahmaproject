@@ -3,7 +3,6 @@ var is_ie = /msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAg
 
 if (!Array.prototype.indexOf && is_ie)
 {
-	alert("mofo");
 	Array.prototype.indexOf = function(elt /*, from*/)
 	{
 		var len = this.length;

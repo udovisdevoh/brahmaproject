@@ -18,7 +18,7 @@ testStatement</string>
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
      <double>490.0</double> 
-     <double>414.0</double> 
+     <double>403.0</double> 
     </void> 
    </object> 
   </void> 
@@ -112,8 +112,8 @@ effectStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>825.0</double> 
-     <double>527.0</double> 
+     <double>880.0</double> 
+     <double>525.0</double> 
     </void> 
    </object> 
   </void> 
@@ -127,8 +127,8 @@ effectStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>670.0</double> 
-     <double>527.0</double> 
+     <double>630.0</double> 
+     <double>534.0</double> 
     </void> 
    </object> 
   </void> 
@@ -227,11 +227,29 @@ effectStatement</string>
     <void property="bentStyle"> 
      <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
     </void> 
+    <void property="endLabel"> 
+     <string>1</string> 
+    </void> 
+    <void property="startArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
+    </void> 
+    <void property="startLabel"> 
+     <string>1</string> 
+    </void> 
+   </object> 
+   <object idref="ClassNode4"/> 
+   <object idref="ClassNode6"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
     <void property="startArrowHead"> 
      <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
     </void> 
    </object> 
-   <object idref="ClassNode4"/> 
+   <object idref="ClassNode5"/> 
    <object idref="ClassNode6"/> 
   </void> 
  </object> 

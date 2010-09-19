@@ -1,1 +1,1 @@
-//Conditional statementfunction ConditionalStatement(){	//Condition tree	this.condition;		//Effect statements (will be true when condition is true)	this.effectStatement;}
+//Conditional statementfunction ConditionalStatement(){	//(Condition) Condition tree	this.condition;		//(Statement) Effect statements (will be true when condition is true)	this.effectStatement;}
