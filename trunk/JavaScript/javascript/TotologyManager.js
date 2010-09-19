@@ -2,10 +2,10 @@
 //The AI will learn
 function TotologyManager(conceptNameMapper)
 {
-	//Maps names to concepts
+	//(ConceptNameMapper) Maps names to concepts
 	this.conceptNameMapper = conceptNameMapper;
 	
-	//ConnectionManager
+	//(ConnectionManager)
 	this.connectionManager = new ConnectionManager();
 }
 
