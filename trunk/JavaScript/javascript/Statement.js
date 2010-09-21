@@ -13,3 +13,9 @@ function Statement(subject, verb, complement, isPositive)
 	//(Bool) Whether statement is positive
 	this.isPositive = isPositive;
 }
+
+//Whether statements are equal
+Statement.prototype.equals = function Statement_equals(other)
+{
+	return this.subject == other.subject && this.verb == other.verb && this.complement == other.complement && this.isPositive == other.isPositive;
+}

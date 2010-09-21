@@ -11,7 +11,7 @@ function ConceptNameMapper()
 	this.connectionManager = new ConnectionManager();
 }
 
-//Get Y value at X point
+//Get concept from name
 ConceptNameMapper.prototype.getConcept = function ConceptNameMapper_getConcept(conceptName)
 {
 	conceptName = conceptName.toLowerCase();

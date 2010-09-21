@@ -32,3 +32,13 @@ function Condition(statementOrLeftChild, middleOperator, rightChild)
 		this.rightChild = rightChild;
 	}
 }
+
+//Whether conditions are equal
+Condition.prototype.equals = function Condition_equals(other)
+{
+	if (this.statement != null)
+	{
+		return this.statement.equals(other.statement);
+	}
+	return this.middleOperator == other.middleOperator && ((this.leftChild.equals(other.leftChild) && this.rightChild.equals(other.rightChild)) || (this.leftChild.equals(other.rightChild) && this.rightChild.equals(other.leftChild)));
+}
