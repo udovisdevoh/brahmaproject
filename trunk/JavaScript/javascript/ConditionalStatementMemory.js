@@ -27,3 +27,21 @@ ConditionalStatementMemory.prototype.push = function ConditionalStatementMemory_
 		
 	this.conditionalStatementList.push(conditionalStatement);
 }
+
+//Remove conditional statement from memory
+ConditionalStatementMemory.prototype.remove = function ConditionalStatementMemory_remove(conditionalStatement)
+{
+	if (conditionalStatement == null)
+		throw 'Cannot remove null conditional statement';
+		
+	for (var index in this.conditionalStatementList)
+	{
+		var currentConditionalStatement = this.conditionalStatementList[index];
+		if (conditionalStatement.equals(currentConditionalStatement))
+		{
+			this.conditionalStatementList.splice(index, 1);
+			return true;
+		}
+	}
+	return false;
+}
