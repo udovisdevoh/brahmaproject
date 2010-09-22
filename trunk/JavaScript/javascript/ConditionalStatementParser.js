@@ -1,1 +1,1 @@
-//Parses conditional statementsfunction ConditionalStatementParser(conceptNameMapper){	//(ConceptNameMapper) concept name mapper	this.conceptNameMapper = conceptNameMapper;}
+//Parses conditional statementsfunction ConditionalStatementParser(conceptNameMapper){	//(ConceptNameMapper) concept name mapper	this.conceptNameMapper = conceptNameMapper;}//Convert string to conditional statement objectConditionalStatementParser.prototype.parse = function ConditionalStatementParser_parse(stringStatement){}

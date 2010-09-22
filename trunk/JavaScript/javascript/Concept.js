@@ -7,3 +7,9 @@ function Concept(defaultConceptName)
 	//(Array) Totology connections as subject.connections[verb][complementIndex]complement
 	this.totologyConnections = Array();
 }
+
+//Whether concepts are the same
+Concept.prototype.equals = function Concept_equals(other)
+{
+	return this == other;
+}

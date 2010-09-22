@@ -1,13 +1,13 @@
 //Statement (subject, verb, complement)
 function Statement(subject, verb, complement, isPositive)
 {
-	//(Concept) Subject (concept)
+	//(Concept or GenericConcept) Subject (concept)
 	this.subject = subject;
 	
-	//(Concept) Verb (concept)
+	//(Concept or GenericConcept) Verb (concept)
 	this.verb = verb;
 	
-	//(Concept) Complement (concept)
+	//(Concept or GenericConcept) Complement (concept)
 	this.complement = complement;
 	
 	//(Bool) Whether statement is positive
@@ -17,5 +17,5 @@ function Statement(subject, verb, complement, isPositive)
 //Whether statements are equal
 Statement.prototype.equals = function Statement_equals(other)
 {
-	return this.subject == other.subject && this.verb == other.verb && this.complement == other.complement && this.isPositive == other.isPositive;
+	return this.subject.equals(other.subject) && this.verb.equals(other.verb) && this.complement.equals(other.complement) && this.isPositive.equals(other.isPositive);
 }
