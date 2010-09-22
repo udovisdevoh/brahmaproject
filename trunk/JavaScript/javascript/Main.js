@@ -23,14 +23,19 @@ if (!Array.prototype.indexOf && is_ie)
 	};
 }
 
-function hardTrim(text)
+String.prototype.hardTrim = function String_hardTrim()
 {
-	text = text.trim().toLowerCase();
+	var text = this.trim().toLowerCase();
 	while (text.indexOf("  ") != -1)
 	{
 		text = text.replace('  ',' ');
 	}
 	return text;
+}
+
+String.prototype.startsWith = function String_startsWith(str)
+{
+	return (this.match("^"+str)==str);
 }
 
 function print_r(theObj)
