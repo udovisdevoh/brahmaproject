@@ -1,4 +1,4 @@
-﻿//Maps concept to names and names to concepts
+//Maps concept to names and names to concepts
 function ConceptNameMapper()
 {
 	//(Array) Map name to concept
