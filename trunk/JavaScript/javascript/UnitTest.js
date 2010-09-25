@@ -159,6 +159,20 @@ UnitTest.prototype.testComplementaryOperatorManager = function UnitTest_testComp
 	{
 		throw "Operators shouldn't be complementary";
 	}
+	
+	complementaryOperatorManager.add("contRadict","contradicT");
+	
+	if (!complementaryOperatorManager.test("ContRadict","coNtRadict"))
+	{
+		throw "Operators should be complementary";
+	}
+	
+	complementaryOperatorManager.remove("ContRadicT","ContRAdict");
+	
+	if (complementaryOperatorManager.test("ContRadict","coNtRadict"))
+	{
+		throw "Operators shouldn't be complementary";
+	}
 }
 
 //Test Conditional Statement Parser
