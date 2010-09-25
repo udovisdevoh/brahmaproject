@@ -9,8 +9,8 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 	this.testConnectionManager();
 	this.testTotologyManager();
 	this.testComplementaryOperatorManager();
-	this.testConditionalStatementManager();
 	this.testConditionalStatementParser();
+	this.testConditionalStatementManager();
 	alert("Unit tests completed");
 }
 
