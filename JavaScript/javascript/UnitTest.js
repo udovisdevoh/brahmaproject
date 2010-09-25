@@ -178,7 +178,9 @@ UnitTest.prototype.testComplementaryOperatorManager = function UnitTest_testComp
 //Test Conditional Statement Parser
 UnitTest.prototype.testConditionalStatementParser = function UnitTest_testConditionalStatementParser()
 {
-	var conditionalStatementParser = new ConditionalStatementParser();
+	var conceptNameMapper = new ConceptNameMapper();
+
+	var conditionalStatementParser = new ConditionalStatementParser(conceptNameMapper);
 	
 	var conditionalStatement;
 
