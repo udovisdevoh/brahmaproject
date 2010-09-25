@@ -16,7 +16,7 @@ TotologyManager.prototype.learnStatement = function TotologyManager_learnStateme
 	{
 		throw "Statement must not be null";
 	}
-
+	
 	statementString = statementString.hardTrim();
 	
 	var wordList = statementString.split(' ');

@@ -23,6 +23,14 @@ if (!Array.prototype.indexOf && is_ie)
 	};
 }
 
+if (typeof String.prototype.trim !== 'function')
+{
+	String.prototype.trim = function()
+	{
+		return this.replace(/^\s+|\s+$/g, ''); 
+	}
+}
+
 String.prototype.hardTrim = function String_hardTrim()
 {
 	var text = this.trim().toLowerCase();
