@@ -1,4 +1,4 @@
-﻿//Represents a concept (subject, verb or complement)
+//Represents a concept (subject, verb or complement)
 function ConnectionManager()
 {
 }
