@@ -34,8 +34,8 @@ ConditionalStatementParser.prototype.parse = function ConditionalStatementParser
 	
 	this.anonymousConceptDictionary = this.buildAnonymousConceptDictionary(stringStatement);
 
-	var condition = this.parseCondition(stringCondition, this.anonymousConceptDictionary);
 	var effect = this.parseEffect(stringEffect, this.anonymousConceptDictionary);
+	var condition = this.parseCondition(stringCondition, this.anonymousConceptDictionary);
 	
 	var conditionalStatement = new ConditionalStatement(condition, effect);
 	
@@ -55,12 +55,53 @@ ConditionalStatementParser.prototype.buildAnonymousConceptDictionary = function 
 	for (var wordIndex in wordList)
 	{
 		var word = wordList[wordIndex];
-		if (this.anonymousConceptDictionary[word] == null)
+		
+		if (word.charAt(0) == '[' && word.charAt(word.length-1) == ']')
 		{
-			this.anonymousConceptDictionary[word] = new AnonymousConcept(uniqueId);
-			uniqueId++;
+			if (this.anonymousConceptDictionary[word] == null)
+			{
+				this.anonymousConceptDictionary[word] = new AnonymousConcept(uniqueId);
+				uniqueId++;
+			}
 		}
 	}
 	
 	return this.anonymousConceptDictionary;
+}
+
+//(Statement) Parse effect as string and return statement
+ConditionalStatementParser.prototype.parseEffect = function ConditionalStatementParser_parseEffect(stringStatement, anonymousConceptDictionary)
+{
+	var wordList = stringStatement.split(' ');
+	
+	var subject, verb, complement, isPositive;
+	
+	if (wordList.length < 3)
+	{
+		throw 'Cannot parse statement, bad word count';
+	}
+	
+	if (wordList[1].toLowerCase() != "not")
+	{
+		subject = this.conceptNameMapper.getConcept(wordList[0]);
+		verb = this.conceptNameMapper.getConcept(wordList[1]);
+		complement = this.conceptNameMapper.getConcept(wordList[2]);
+		isPositive = true;
+	}
+	else
+	{
+		if (wordList.length < 4)
+		{
+			throw 'Cannot parse statement, bad word count';
+		}
+	
+		subject = this.conceptNameMapper.getConcept(wordList[0]);
+		verb = this.conceptNameMapper.getConcept(wordList[2]);
+		complement = this.conceptNameMapper.getConcept(wordList[3]);
+		isPositive = false;
+	}
+
+	var statement = new Statement(subject, verb, complement, isPositive);
+	
+	return statement;
 }
