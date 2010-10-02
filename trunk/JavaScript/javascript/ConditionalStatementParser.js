@@ -32,7 +32,7 @@ ConditionalStatementParser.prototype.parse = function ConditionalStatementParser
 	var stringCondition = stringStatement.match(this.regExpCondition)[0].substr(3).trim();
 	var stringEffect = stringStatement.match(this.regExpEffect)[0].substr(5).trim();
 	
-	//this.anonymousConceptDictionary = this.buildAnonymousConceptDictionary(stringStatement);
+	this.anonymousConceptDictionary = this.buildAnonymousConceptDictionary(stringStatement);
 
 	var condition = this.parseCondition(stringCondition);
 	var effect = this.parseEffect(stringEffect);
