@@ -13,6 +13,11 @@ function ConditionalStatementParser(conceptNameMapper)
 	// for instance: if pine isa tree and tree isa plant then [plant isa lifeform]
 	// matches what's between []
 	this.regExpEffect = "(then).*";
+	
+	//Array of (AnonymousConcept)
+	// key: concept name (in context)
+	// value: anonymous concept
+	this.anonymousConceptDictionary = Array();
 }
 
 //Convert string to conditional statement object
@@ -27,5 +32,12 @@ ConditionalStatementParser.prototype.parse = function ConditionalStatementParser
 	var stringCondition = stringStatement.match(this.regExpCondition)[0].substr(3).trim();
 	var stringEffect = stringStatement.match(this.regExpEffect)[0].substr(5).trim();
 	
-	throw 'Implement ConditionalStatementParser.parse()';
+	//this.anonymousConceptDictionary = this.buildAnonymousConceptDictionary(stringStatement);
+
+	var condition = this.parseCondition(stringCondition);
+	var effect = this.parseEffect(stringEffect);
+	
+	var conditionalStatement = new ConditionalStatement(condition, effect);
+	
+	return conditionalStatement;
 }
