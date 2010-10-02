@@ -181,10 +181,41 @@ UnitTest.prototype.testConditionalStatementParser = function UnitTest_testCondit
 	var conceptNameMapper = new ConceptNameMapper();
 
 	var conditionalStatementParser = new ConditionalStatementParser(conceptNameMapper);
-	
-	var conditionalStatement;
 
-	conditionalStatement = conditionalStatementParser.parse("iF [pinE] isA [tRee] thEn [trEe] soMeare [Pine]");
+	if (!conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine").equals(conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine")))
+	{
+		throw "Conditional statements should be the same";
+	}
+	
+	if (conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine").equals(conditionalStatementParser.parse("iF pinE isA tREe thEn trEe soMeare mofo")))
+	{
+		throw "Conditional statements shouldn't be the same";
+	}
+	
+	if (!conditionalStatementParser.parse("iF [pinE] isA [tRee] thEn [trEe] soMeare [Pine]").equals(conditionalStatementParser.parse("iF [car] isA [veHicle] thEn [vehiCle] soMeare [caR]")))
+	{
+		throw "Conditional statements should be the same";
+	}
+	
+	if (conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine").equals(conditionalStatementParser.parse("iF [pinE] isA [tRee] thEn [trEe] soMeare [Pine]")))
+	{
+		throw "Conditional statements shouldn't be the same";
+	}
+	
+	if (!conditionalStatementParser.parse("iF (pine isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine isa plant) then plant isa lifeform")))
+	{
+		throw "Conditional statements should be the same";
+	}
+	
+	if (!conditionalStatementParser.parse("iF (pine not isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine not isa plant) then plant isa lifeform")))
+	{
+		throw "Conditional statements should be the same";
+	}
+	
+	if (conditionalStatementParser.parse("iF (pine not isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine isa plant) then plant isa lifeform")))
+	{
+		throw "Conditional statements shouldn't be the same";
+	}
 }
 
 //Test Conditional Statement Manager
