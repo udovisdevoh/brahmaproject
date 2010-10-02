@@ -34,10 +34,33 @@ ConditionalStatementParser.prototype.parse = function ConditionalStatementParser
 	
 	this.anonymousConceptDictionary = this.buildAnonymousConceptDictionary(stringStatement);
 
-	var condition = this.parseCondition(stringCondition);
-	var effect = this.parseEffect(stringEffect);
+	var condition = this.parseCondition(stringCondition, this.anonymousConceptDictionary);
+	var effect = this.parseEffect(stringEffect, this.anonymousConceptDictionary);
 	
 	var conditionalStatement = new ConditionalStatement(condition, effect);
 	
 	return conditionalStatement;
+}
+
+//Build anonymous concept dictionary
+//Array of (AnonymousConcept)
+// key: concept name (in context)
+// value: anonymous concept
+ConditionalStatementParser.prototype.buildAnonymousConceptDictionary = function ConditionalStatementParser_buildAnonymousConceptDictionary(stringStatement)
+{
+	this.anonymousConceptDictionary = [];
+	
+	var wordList = stringStatement.split(' ');
+	var uniqueId = 0;
+	for (var wordIndex in wordList)
+	{
+		var word = wordList[wordIndex];
+		if (this.anonymousConceptDictionary[word] == null)
+		{
+			this.anonymousConceptDictionary[word] = new AnonymousConcept(uniqueId);
+			uniqueId++;
+		}
+	}
+	
+	return this.anonymousConceptDictionary;
 }
