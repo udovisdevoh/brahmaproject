@@ -82,10 +82,10 @@ ConditionalStatementParser.prototype.parseEffect = function ConditionalStatement
 	}
 	
 	if (wordList[1].toLowerCase() != "not")
-	{
-		subject = this.conceptNameMapper.getConcept(wordList[0]);
-		verb = this.conceptNameMapper.getConcept(wordList[1]);
-		complement = this.conceptNameMapper.getConcept(wordList[2]);
+	{		
+		subject = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[0]);
+		verb = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[1]);
+		complement = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[2]);
 		isPositive = true;
 	}
 	else
@@ -93,15 +93,29 @@ ConditionalStatementParser.prototype.parseEffect = function ConditionalStatement
 		if (wordList.length < 4)
 		{
 			throw 'Cannot parse statement, bad word count';
-		}
-	
-		subject = this.conceptNameMapper.getConcept(wordList[0]);
-		verb = this.conceptNameMapper.getConcept(wordList[2]);
-		complement = this.conceptNameMapper.getConcept(wordList[3]);
+		}	
+		subject = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[0]);
+		verb = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[2]);
+		complement = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[3]);
 		isPositive = false;
 	}
 
 	var statement = new Statement(subject, verb, complement, isPositive);
 	
 	return statement;
+}
+
+//(Concept) or (AnonymousConcept)
+ConditionalStatementParser.prototype.getConceptOrAnonymousConcept = function ConditionalStatementParser_getConceptOrAnonymousConcept(conceptNameMapper, anonymousConceptDictionary, word)
+{
+	var concept;
+	if (anonymousConceptDictionary[word] != null)
+	{
+		concept = anonymousConceptDictionary[word];
+	}
+	else
+	{
+		concept = conceptNameMapper.getConcept(word);
+	}
+	return concept;
 }
