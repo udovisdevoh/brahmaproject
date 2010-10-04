@@ -34,7 +34,7 @@ ConditionalStatementParser.prototype.parse = function ConditionalStatementParser
 	
 	this.anonymousConceptDictionary = this.buildAnonymousConceptDictionary(stringStatement);
 
-	var effect = this.parseEffect(stringEffect, this.anonymousConceptDictionary);
+	var effect = this.parseStatement(stringEffect, this.anonymousConceptDictionary);
 	var condition = this.parseCondition(stringCondition, this.anonymousConceptDictionary);
 	
 	var conditionalStatement = new ConditionalStatement(condition, effect);
@@ -69,8 +69,14 @@ ConditionalStatementParser.prototype.buildAnonymousConceptDictionary = function 
 	return this.anonymousConceptDictionary;
 }
 
+//(Condition) Parse condition as String
+ConditionalStatementParser.prototype.parseCondition = function ConditionalStatementParser_parseCondition(stringCondition, anonymousConceptDictionary)
+{
+	throw 'Implement ConditionalStatementParser.parseCondition()';
+}
+
 //(Statement) Parse effect as string and return statement
-ConditionalStatementParser.prototype.parseEffect = function ConditionalStatementParser_parseEffect(stringStatement, anonymousConceptDictionary)
+ConditionalStatementParser.prototype.parseStatement = function ConditionalStatementParser_parseStatement(stringStatement, anonymousConceptDictionary)
 {
 	var wordList = stringStatement.split(' ');
 	
