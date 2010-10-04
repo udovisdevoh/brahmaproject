@@ -4,6 +4,10 @@ function ConditionalStatementParser(conceptNameMapper)
 	//(ConceptNameMapper) concept name mapper
 	this.conceptNameMapper = conceptNameMapper;
 	
+	//(BoolLogicSplitter) splits expression into smaller ones by taking "and" or "or" as the operator
+	//creates boolean logic binary trees
+	this.boolLogicSplitter = new BoolLogicSplitter();
+	
 	//(String) Condition RegExp
 	// for instance: if [pine isa tree and tree isa plant] then ...
 	// matches what's between []
@@ -86,7 +90,16 @@ ConditionalStatementParser.prototype.parseCondition = function ConditionalStatem
 	{
 		//There are sub conditions
 		
-		throw 'Implement ConditionalStatementParser.parseCondition() for when there are sub conditions';
+		var conditionInfo = this.boolLogicSplitter.split(stringCondition);
+		var stringCondition1 = conditionInfo[0];
+		var stringOperator = conditionInfo[1];
+		var stringCondition2 = conditionInfo[2];
+
+		var condition1 = this.parseCondition(stringCondition1, anonymousConceptDictionary);
+		var operator = (stringOperator == "and");
+		var condition2 = this.parseCondition(stringCondition2, anonymousConceptDictionary);
+		
+		return new Condition(condition1, operator, condition2);
 	}
 }
 
