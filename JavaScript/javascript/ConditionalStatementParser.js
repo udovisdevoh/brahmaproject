@@ -72,7 +72,22 @@ ConditionalStatementParser.prototype.buildAnonymousConceptDictionary = function 
 //(Condition) Parse condition as String
 ConditionalStatementParser.prototype.parseCondition = function ConditionalStatementParser_parseCondition(stringCondition, anonymousConceptDictionary)
 {
-	throw 'Implement ConditionalStatementParser.parseCondition()';
+	var wordList = stringCondition.split(' ');
+	
+	if (wordList.length <= 4)
+	{
+		//There is only one statement in condition
+		stringCondition = stringCondition.replace("(","");
+		stringCondition = stringCondition.replace(")","");
+		
+		return new Condition(this.parseStatement(stringCondition));
+	}
+	else
+	{
+		//There are sub conditions
+		
+		throw 'Implement ConditionalStatementParser.parseCondition() for when there are sub conditions';
+	}
 }
 
 //(Statement) Parse effect as string and return statement
@@ -89,9 +104,9 @@ ConditionalStatementParser.prototype.parseStatement = function ConditionalStatem
 	
 	if (wordList[1].toLowerCase() != "not")
 	{		
-		subject = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[0]);
-		verb = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[1]);
-		complement = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[2]);
+		subject = this.getConceptOrAnonymousConcept(this.conceptNameMapper, this.anonymousConceptDictionary, wordList[0]);
+		verb = this.getConceptOrAnonymousConcept(this.conceptNameMapper, this.anonymousConceptDictionary, wordList[1]);
+		complement = this.getConceptOrAnonymousConcept(this.conceptNameMapper, this.anonymousConceptDictionary, wordList[2]);
 		isPositive = true;
 	}
 	else
@@ -100,9 +115,9 @@ ConditionalStatementParser.prototype.parseStatement = function ConditionalStatem
 		{
 			throw 'Cannot parse statement, bad word count';
 		}	
-		subject = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[0]);
-		verb = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[2]);
-		complement = this.getConceptOrAnonymousConcept(this.conceptNameMapper, anonymousConceptDictionary, wordList[3]);
+		subject = this.getConceptOrAnonymousConcept(this.conceptNameMapper, this.anonymousConceptDictionary, wordList[0]);
+		verb = this.getConceptOrAnonymousConcept(this.conceptNameMapper, this.anonymousConceptDictionary, wordList[2]);
+		complement = this.getConceptOrAnonymousConcept(this.conceptNameMapper, this.anonymousConceptDictionary, wordList[3]);
 		isPositive = false;
 	}
 
