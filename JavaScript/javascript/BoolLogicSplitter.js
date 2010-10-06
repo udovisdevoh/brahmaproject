@@ -24,3 +24,27 @@ BoolLogicSplitter.prototype.split = function BoolLogicSplitter_split(stringCondi
 
 	return this.returnArray;
 }
+
+/*
+private string RemoveBracketsFromBeginingAndIfConsistencyIsKept(string expression)
+{
+	string oldExpression;
+	do
+	{
+		oldExpression = expression;
+		string newExpression = expression;
+		foreach (BracketDefinition bracketDefinition in bracketPriorityList)
+		{
+			if (expression[0] == bracketDefinition.BeginMarkup && expression[expression.Length - 1] == bracketDefinition.EndMarkup)
+			{
+				newExpression = newExpression.Substring(1, expression.Length - 2);
+				if (bracketStackConsistencyValidator.IsBracketConsistant(newExpression, bracketPriorityList))
+				{
+					expression = newExpression;
+				}
+			}
+		}
+	} while (oldExpression != expression);
+	return expression;
+}
+*/
