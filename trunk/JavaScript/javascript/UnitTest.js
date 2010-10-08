@@ -207,28 +207,17 @@ UnitTest.prototype.testConditionalStatementParser = function UnitTest_testCondit
 		throw "Conditional statements shouldn't be the same";
 	}
 	
-	var parsed1 = conditionalStatementParser.parse("iF (pine isa plant or plant isa animal) and plant madeof matter then plant isa lifeform");
-	var parsed2 = conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine isa plant) then plant isa lifeform");
-	
-	alert(parsed1.condition.leftChild.toString());
-	alert(parsed2.condition.rightChild.toString());
-	
-	alert(parsed1.condition.rightChild.toString());
-	alert(parsed2.condition.leftChild.toString());
-	
-	alert(parsed1.condition.leftChild.equals(parsed2.condition.rightChild));
-	
-	if (!parsed1.equals(parsed2))
+	if (!conditionalStatementParser.parse("iF (pine isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine isa plant) then plant isa lifeform")))
 	{
 		throw "Conditional statements should be the same";
 	}
-
-	alert("mofo tata");
 	
 	if (!conditionalStatementParser.parse("iF (pine not isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine not isa plant) then plant isa lifeform")))
 	{
 		throw "Conditional statements should be the same";
 	}
+	
+	alert("mofo tata");
 	
 	if (conditionalStatementParser.parse("iF (pine not isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine isa plant) then plant isa lifeform")))
 	{

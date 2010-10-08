@@ -19,7 +19,7 @@ BoolLogicSplitter.prototype.split = function BoolLogicSplitter_split(stringCondi
 	var shallowestOperator = this.getShallowestOperator(stringCondition, shallowestOperatorPosition);
 	
 	var stringCondition1 = stringCondition.substr(0, shallowestOperatorPosition);
-	var stringCondition2 = stringCondition.substr(shallowestOperatorPosition + shallowestOperator.length, stringCondition.length - 1);
+	var stringCondition2 = stringCondition.substr(shallowestOperatorPosition + shallowestOperator.length + 1, stringCondition.length - 1);
 	
 	this.returnArray[0] = stringCondition1;
 	this.returnArray[1] = shallowestOperator;
