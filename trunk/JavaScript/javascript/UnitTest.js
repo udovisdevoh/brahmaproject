@@ -265,7 +265,7 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	var evaluationCache = new EvaluationCache();
 	var conditionalStatementManager = new ConditionalStatementManager(conceptNameMapper, new ConditionalStatementMemory());
 	
-	var evaluator = new Evaluator(totologyManager, conditionalStatementManager, complementaryOperatorManager, evaluationCache);
+	var evaluator = new Evaluator(conceptNameMapper, totologyManager, conditionalStatementManager, complementaryOperatorManager, evaluationCache);
 	
 	complementaryOperatorManager.add("isa","someare");
 	complementaryOperatorManager.add("madeof","partof");
@@ -284,4 +284,22 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	totologyManager.learnStatement("tree madeof wood");
 	totologyManager.learnStatement("wood isa matter");
 	totologyManager.learnStatement("matter madeof energy");
+	
+	if (!evaluator.evalString("pine isa tree"))
+		throw 'Statement should be true';
+		
+	if (evaluator.evalString("pine not isa tree"))
+		throw 'Statement should be false';
+		
+	if (!evaluator.evalString("tree someare pine"))
+		throw 'Statement should be true';
+		
+	if (evaluator.evalString("tree not someare pine"))
+		throw 'Statement should be false';
+		
+	if (evaluator.evalString("tree isa pine"))
+		throw 'Statement should be false';
+		
+	if (!evaluator.evalString("tree not isa pine"))
+		throw 'Statement should be true';
 }
