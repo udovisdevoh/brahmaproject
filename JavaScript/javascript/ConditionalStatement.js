@@ -13,3 +13,9 @@ ConditionalStatement.prototype.equals = function ConditionalStatement_equals(oth
 {
 	return this.effectStatement.equals(other.effectStatement) && this.condition.equals(other.condition);
 }
+
+//(String) get string representation of conditional statement
+ConditionalStatement.prototype.toString = function ConditionalStatement_toString()
+{
+	return "if " + this.condition.toString() + " then " + this.effectStatement.toString();
+}

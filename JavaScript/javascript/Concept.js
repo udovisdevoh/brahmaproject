@@ -16,3 +16,9 @@ Concept.prototype.equals = function Concept_equals(other)
 {
 	return this == other;
 }
+
+//(String) get string representation of concept
+Concept.prototype.toString = function Concept_toString()
+{
+	return this.defaultConceptName;
+}
