@@ -76,6 +76,7 @@ ConditionalStatementParser.prototype.buildAnonymousConceptDictionary = function 
 //(Condition) Parse condition as String
 ConditionalStatementParser.prototype.parseCondition = function ConditionalStatementParser_parseCondition(stringCondition, anonymousConceptDictionary)
 {
+	stringCondition = stringCondition.trim();
 	var wordList = stringCondition.split(' ');
 	
 	if (wordList.length <= 4)
