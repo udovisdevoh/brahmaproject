@@ -14,8 +14,14 @@ function Statement(subject, verb, complement, isPositive)
 	this.isPositive = isPositive;
 }
 
-//Whether statements are equal
+//(Boolean) Whether statements are equal
 Statement.prototype.equals = function Statement_equals(other)
 {
 	return this.subject.equals(other.subject) && this.verb.equals(other.verb) && this.complement.equals(other.complement) && this.isPositive == other.isPositive;
+}
+
+//(String) get string representation of statement
+Statement.prototype.toString = function Statement_toString()
+{
+	return this.subject.defaultConceptName + ' ' + this.verb.defaultConceptName + ' ' + this.complement.defaultConceptName;
 }
