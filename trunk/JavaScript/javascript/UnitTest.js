@@ -11,6 +11,7 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 	this.testComplementaryOperatorManager();
 	this.testConditionalStatementParser();
 	this.testConditionalStatementManager();
+	this.testEvaluator();
 	alert("Unit tests completed");
 }
 
@@ -253,4 +254,15 @@ UnitTest.prototype.testConditionalStatementManager = function UnitTest_testCondi
 	{
 		throw "Conditional statement shouldn't exist";
 	}
+}
+
+//Test evaluator
+UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
+{
+	var conceptNameMapper = ConceptNameMapper();
+	var totologyManager = new TotologyManager(conceptNameMapper);
+	var evaluationCache = new EvaluationCache();
+	var conditionalStatementManager = new ConditionalStatementManager(conceptNameMapper, new ConditionalStatementMemory());
+	
+	var evaluator = new Evaluator(totologyManager, conditionalStatementManager, evaluationCache);
 }
