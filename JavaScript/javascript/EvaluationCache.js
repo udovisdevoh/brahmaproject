@@ -7,6 +7,8 @@ function EvaluationCache()
 	this.cachedData = Array();
 }
 
+//Constant as: Evaluator.resultTrue, Evaluator.resultFalse,
+//Evaluator.resultUnknown, Evaluator.resultNotInCache
 EvaluationCache.prototype.getCachedResult = function EvaluationCache_getCachedResult(subject, verb, complement, defaultNullValue)
 {
 	if (this.cachedData[subject] == null)
@@ -25,6 +27,7 @@ EvaluationCache.prototype.getCachedResult = function EvaluationCache_getCachedRe
 	}
 }
 
+//Void
 EvaluationCache.prototype.setCachedResult = function EvaluationCache_setCachedResult(subject, verb, complement, resultToSet)
 {
 	if (this.cachedData[subject] == null)
@@ -33,5 +36,5 @@ EvaluationCache.prototype.setCachedResult = function EvaluationCache_setCachedRe
 	if (this.cachedData[subject][verb] == null)
 		this.cachedData[subject][verb] = Array();
 		
-	this.cachedData[subject][verb][complement] == result;
+	this.cachedData[subject][verb][complement] == resultToSet;
 }

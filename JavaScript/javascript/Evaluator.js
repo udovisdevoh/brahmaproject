@@ -14,7 +14,12 @@ function Evaluator(conceptNameMapper, totologyManager, conditionalStatementManag
 	
 	//Unknown result
 	this.resultNotInCache = -2;
-
+	
+	//Result being currently evaluated
+	this.resultBeingCurrentlyEvaluated = -3;
+	
+	//Result not being currently evaluated
+	this.resultNotBeingCurrentlyEvaluated = -4;
 	
 	
 	//Parts
@@ -33,13 +38,20 @@ function Evaluator(conceptNameMapper, totologyManager, conditionalStatementManag
 	//(ComplementaryOperatorManager) Manages complementary operators
 	this.complementaryOperatorManager = complementaryOperatorManager;
 	
+	//(ConnectionManager) Manages connections in concepts
+	this.connectionManager = this.totologyManager.connectionManager;
+	
 	//(EvaluationCache) Stores result of evaluation of propositions to improve performances of evaluation
 	this.evaluationCache = evaluationCache;
+	
+	//(EvaluationCache) Stores statements that are currently being evaluated
+	this.circularReasoningPreventionMemory = new EvaluationCache();
 }
 
 //(Boolean) evaluate expression and return whether expression is true or false
 Evaluator.prototype.evalString = function Evaluator_evalString(statementString)
 {
+	var boolResult;
 	var isPositive;
 	if (statementString == null)
 	{
@@ -62,7 +74,7 @@ Evaluator.prototype.evalString = function Evaluator_evalString(statementString)
 		subject = this.conceptNameMapper.getConcept(wordList[0]);
 		verb = this.conceptNameMapper.getConcept(wordList[1]);
 		complement = this.conceptNameMapper.getConcept(wordList[2]);
-		isPositive = false;
+		isPositive = true;
 	}
 	else
 	{
@@ -74,18 +86,25 @@ Evaluator.prototype.evalString = function Evaluator_evalString(statementString)
 		subject = this.conceptNameMapper.getConcept(wordList[0]);
 		verb = this.conceptNameMapper.getConcept(wordList[2]);
 		complement = this.conceptNameMapper.getConcept(wordList[3]);
-		isPositive = true;
+		isPositive = false;
 	}
 	
 	if (isPositive)
-		return this.eval(subject, verb, complement) == this.resultTrue;
+		boolResult = this.eval(subject, verb, complement) == this.resultTrue;
 	else
-		return this.eval(subject, verb, complement) != this.resultTrue;
+		boolResult = this.eval(subject, verb, complement) != this.resultTrue;
+	
+	return boolResult;
 }
 
 //(Boolean) evaluate expression and return whether expression is true or false
 Evaluator.prototype.eval = function Evaluator_eval(subject, verb, complement)
-{
+{	
+	this.circularReasoningPreventionMemory.setCachedResult(subject, verb, complement, this.resultBeingCurrentlyEvaluated);
+	
+	if (this.circularReasoningPreventionMemory.getCachedResult(subject, verb, complement, this.resultNotInCache) == this.resultBeingCurrentlyEvaluated)
+		throw 'Already evaluating ' + subject + ' ' + verb + ' ' + complement;
+
 	var resultFromEvaluationCache = this.evaluationCache.getCachedResult(subject, verb, complement, this.resultNotInCache);
 	
 	if (resultFromEvaluationCache == this.resultNotInCache)
@@ -94,10 +113,33 @@ Evaluator.prototype.eval = function Evaluator_eval(subject, verb, complement)
 		this.evaluationCache.setCachedResult(subject, verb, complement, resultFromEvaluationCache);
 	}
 	
+	this.circularReasoningPreventionMemory.setCachedResult(subject, verb, complement, this.resultNotBeingCurrentlyEvaluated);
+	
 	return resultFromEvaluationCache;
 }
 
+//Constant as: Evaluator.resultTrue, Evaluator.resultFalse,
+//Evaluator.resultUnknown, Evaluator.resultNotInCache
 Evaluator.prototype.render = function Evaluator_render(subject, verb, complement)
-{
-	throw 'Implement Evaluator.render()';
+{		
+	if (this.connectionManager.testConnection(subject, verb, complement))
+	{
+		return this.resultTrue;
+	}
+	
+	for (var index in verb.complementaryOperators)
+	{
+		var complementaryVerb = verb.complementaryOperators[index];
+		
+		if (this.circularReasoningPreventionMemory.getCachedResult(complement, complementaryVerb, subject, this.resultNotInCache) != this.resultBeingCurrentlyEvaluated)
+		{
+			var complementaryResult = this.eval(complement, complementaryVerb, subject);
+			if (complementaryResult == this.resultTrue || complementaryResult == this.resultFalse)
+			{
+				return complementaryResult;
+			}
+		}
+	}
+	
+	return this.resultUnknown;
 }
