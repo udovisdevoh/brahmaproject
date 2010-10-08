@@ -217,8 +217,6 @@ UnitTest.prototype.testConditionalStatementParser = function UnitTest_testCondit
 		throw "Conditional statements should be the same";
 	}
 	
-	alert("mofo tata");
-	
 	if (conditionalStatementParser.parse("iF (pine not isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine isa plant) then plant isa lifeform")))
 	{
 		throw "Conditional statements shouldn't be the same";
