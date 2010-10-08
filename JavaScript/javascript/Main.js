@@ -34,10 +34,21 @@ if (typeof String.prototype.trim !== 'function')
 String.prototype.hardTrim = function String_hardTrim()
 {
 	var text = this.trim().toLowerCase();
+	
+	text = text.replace('(',' (');
+	text = text.replace(')',') ');
+		
+	while (text.indexOf('( ') != -1)
+		text = text.replace('( ','(');
+		
+	while (text.indexOf(' )') != -1)
+		text = text.replace(' )',')');
+		
 	while (text.indexOf("  ") != -1)
-	{
 		text = text.replace('  ',' ');
-	}
+		
+	text = text.trim();
+	
 	return text;
 }
 

@@ -33,8 +33,8 @@ ConditionalStatementParser.prototype.parse = function ConditionalStatementParser
 		stringStatement = stringStatement.substring(4);
 	}
 	
-	var stringCondition = stringStatement.match(this.regExpCondition)[0].substr(3).trim();
-	var stringEffect = stringStatement.match(this.regExpEffect)[0].substr(5).trim();
+	var stringCondition = stringStatement.match(this.regExpCondition)[0].substr(2).trim();
+	var stringEffect = stringStatement.match(this.regExpEffect)[0].substr(4).trim();
 	
 	this.anonymousConceptDictionary = this.buildAnonymousConceptDictionary(stringStatement);
 
@@ -58,8 +58,8 @@ ConditionalStatementParser.prototype.buildAnonymousConceptDictionary = function 
 	var uniqueId = 0;
 	for (var wordIndex in wordList)
 	{
-		var word = wordList[wordIndex];
-		
+		var word = String(wordList[wordIndex]);
+
 		if (word.charAt(0) == '[' && word.charAt(word.length-1) == ']')
 		{
 			if (this.anonymousConceptDictionary[word] == null)
@@ -83,7 +83,6 @@ ConditionalStatementParser.prototype.parseCondition = function ConditionalStatem
 		//There is only one statement in condition
 		stringCondition = stringCondition.replace("(","");
 		stringCondition = stringCondition.replace(")","");
-		
 		return new Condition(this.parseStatement(stringCondition));
 	}
 	else
@@ -106,6 +105,11 @@ ConditionalStatementParser.prototype.parseCondition = function ConditionalStatem
 //(Statement) Parse effect as string and return statement
 ConditionalStatementParser.prototype.parseStatement = function ConditionalStatementParser_parseStatement(stringStatement, anonymousConceptDictionary)
 {
+	if (stringStatement.charAt("0") == '(')
+		stringStatement = stringStatement.substr(1);
+	if (stringStatement.charAt(stringStatement.length - 1) == ')')
+		stringStatement = stringStatement.substr(0,stringStatement.length - 1);
+	
 	var wordList = stringStatement.split(' ');
 	
 	var subject, verb, complement, isPositive;

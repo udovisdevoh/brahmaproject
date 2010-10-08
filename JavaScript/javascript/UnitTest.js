@@ -181,7 +181,12 @@ UnitTest.prototype.testConditionalStatementParser = function UnitTest_testCondit
 	var conceptNameMapper = new ConceptNameMapper();
 
 	var conditionalStatementParser = new ConditionalStatementParser(conceptNameMapper);
-
+	
+	if (!conditionalStatementParser.parse("iF (pinE isA tRee and me isa humaN) thEn (trEe soMeare Pine)").equals(conditionalStatementParser.parse("iF pinE isA tRee and me isa huMan thEn trEe soMeare Pine")))
+	{
+		throw "Conditional statements should be the same";
+	}
+	
 	if (!conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine").equals(conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine")))
 	{
 		throw "Conditional statements should be the same";

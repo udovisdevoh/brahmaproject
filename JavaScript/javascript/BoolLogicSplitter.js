@@ -12,6 +12,8 @@ BoolLogicSplitter.prototype.split = function BoolLogicSplitter_split(stringCondi
 	stringCondition = this.removeParanthesesFromBeginingAndEndIfConsistencyIsKept(stringCondition);
 
 	var shallowestOperatorPosition = this.getShallowestOperatorPosition(stringCondition);
+	alert(stringCondition);
+	alert(shallowestOperatorPosition);
 	var shallowestOperator = this.getShallowestOperator(stringCondition, shallowestOperatorPosition);
 	
 	var stringCondition1 = stringCondition.substr(0, shallowestOperatorPosition);
@@ -25,26 +27,93 @@ BoolLogicSplitter.prototype.split = function BoolLogicSplitter_split(stringCondi
 	return this.returnArray;
 }
 
-/*
-private string RemoveBracketsFromBeginingAndIfConsistencyIsKept(string expression)
+//(String) Remove parantheses from begining and end if consistency is kept
+BoolLogicSplitter.prototype.removeParanthesesFromBeginingAndEndIfConsistencyIsKept = function BoolLogicSplitter_removeParanthesesFromBeginingAndEndIfConsistencyIsKept(expression)
 {
-	string oldExpression;
+	var oldExpression;
 	do
 	{
 		oldExpression = expression;
-		string newExpression = expression;
-		foreach (BracketDefinition bracketDefinition in bracketPriorityList)
+		var newExpression = expression;
+		if (expression.charAt(0) == '(' && expression.charAt(expression.length - 1) == ')')
 		{
-			if (expression[0] == bracketDefinition.BeginMarkup && expression[expression.Length - 1] == bracketDefinition.EndMarkup)
+			newExpression = newExpression.substr(1, expression.length - 2);
+			if (this.isParanthesesConsistant(newExpression))
 			{
-				newExpression = newExpression.Substring(1, expression.Length - 2);
-				if (bracketStackConsistencyValidator.IsBracketConsistant(newExpression, bracketPriorityList))
-				{
-					expression = newExpression;
-				}
+				expression = newExpression;
 			}
 		}
+		
 	} while (oldExpression != expression);
 	return expression;
 }
-*/
+
+//(Boolean) Whether parantheses are consistant in expression
+BoolLogicSplitter.prototype.isParanthesesConsistant = function BoolLogicSplitter_isParanthesesConsistant(expression)
+{
+	var depth = 0;
+	for (var index in expression)
+	{
+		var character = expression.charAt(index);
+	
+		if (character == '(')
+		{
+			depth++;
+		}
+		else if (character == ')')
+		{
+			depth--;
+		}
+	}
+	return depth == 0;
+}
+
+//(Integer) get the position of the shallowest operator (least in priority)
+BoolLogicSplitter.prototype.getShallowestOperatorPosition = function BoolLogicSplitter_getShallowestOperatorPosition(expression)
+{
+	var shallowestDepth = -1;
+	var shallowestOperatorPosition = -1;
+	var shallowestOperatorIsAnd = false;
+	var depth = 0;
+	
+	for (var index = 0; index < expression.length ; index++)
+	{
+		var character = expression.charAt(index);
+		if (character == '(')
+			depth++;
+		else if (character == ')')
+			depth--;
+			
+		if (isWord(index, expression, 'and'))
+		{
+			if (shallowestDepth == -1 || depth < shallowestDepth)
+			{
+				shallowestDepth = depth;
+				shallowestOperatorPosition = index;
+				shallowestOperatorIsAnd = true;
+			}
+		}
+		else if (isWord(index, expression, 'or'))
+		{
+			if (shallowestDepth == -1 || depth <= shallowestDepth)
+			{
+				shallowestDepth = depth;
+				shallowestOperatorPosition = index;
+				shallowestOperatorIsAnd = false;
+			}
+		}
+	}
+	
+	//(Boolean) whether there is a word matching word variable at index in expression
+	function isWord(index, expression, word)
+	{
+		if (index > 0)
+		{
+			var currentWord = expression.substr(index - 1, word.length + 2);
+			return currentWord == ' ' + word + ' ';
+		}
+		
+		return false;
+	}
+	return shallowestOperatorPosition;
+}
