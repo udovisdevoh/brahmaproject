@@ -178,7 +178,7 @@ effectStatement</string>
    </object> 
   </void> 
   <void method="addNode"> 
-   <object class="com.horstmann.violet.ClassNode"> 
+   <object id="ClassNode10" class="com.horstmann.violet.ClassNode"> 
     <void property="name"> 
      <void property="text"> 
       <string>ComplementaryOperatorManager</string> 
@@ -187,13 +187,13 @@ effectStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>772.0</double> 
-     <double>699.0</double> 
+     <double>10.0</double> 
+     <double>542.0</double> 
     </void> 
    </object> 
   </void> 
   <void method="addNode"> 
-   <object id="ClassNode10" class="com.horstmann.violet.ClassNode"> 
+   <object id="ClassNode11" class="com.horstmann.violet.ClassNode"> 
     <void property="name"> 
      <void property="text"> 
       <string>BoolLogicSplitter</string> 
@@ -208,7 +208,7 @@ effectStatement</string>
    </object> 
   </void> 
   <void method="addNode"> 
-   <object id="ClassNode11" class="com.horstmann.violet.ClassNode"> 
+   <object id="ClassNode12" class="com.horstmann.violet.ClassNode"> 
     <void property="name"> 
      <void property="text"> 
       <string>Evaluator</string> 
@@ -217,13 +217,13 @@ effectStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>243.0</double> 
-     <double>472.0</double> 
+     <double>259.0</double> 
+     <double>477.0</double> 
     </void> 
    </object> 
   </void> 
   <void method="addNode"> 
-   <object id="ClassNode12" class="com.horstmann.violet.ClassNode"> 
+   <object id="ClassNode13" class="com.horstmann.violet.ClassNode"> 
     <void property="name"> 
      <void property="text"> 
       <string>EvaluationCache</string> 
@@ -232,8 +232,8 @@ effectStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>31.0</double> 
-     <double>470.0</double> 
+     <double>106.0</double> 
+     <double>416.0</double> 
     </void> 
    </object> 
   </void> 
@@ -427,7 +427,7 @@ effectStatement</string>
     </void> 
    </object> 
    <object idref="ClassNode8"/> 
-   <object idref="ClassNode10"/> 
+   <object idref="ClassNode11"/> 
   </void> 
   <void method="connect"> 
    <object class="com.horstmann.violet.ClassRelationshipEdge"> 
@@ -438,7 +438,7 @@ effectStatement</string>
      <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
     </void> 
    </object> 
-   <object idref="ClassNode11"/> 
+   <object idref="ClassNode12"/> 
    <object idref="ClassNode0"/> 
   </void> 
   <void method="connect"> 
@@ -450,8 +450,8 @@ effectStatement</string>
      <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
     </void> 
    </object> 
-   <object idref="ClassNode11"/> 
    <object idref="ClassNode12"/> 
+   <object idref="ClassNode13"/> 
   </void> 
   <void method="connect"> 
    <object class="com.horstmann.violet.ClassRelationshipEdge"> 
@@ -462,8 +462,20 @@ effectStatement</string>
      <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
     </void> 
    </object> 
-   <object idref="ClassNode11"/> 
+   <object idref="ClassNode12"/> 
    <object idref="ClassNode7"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
+    <void property="startArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode12"/> 
+   <object idref="ClassNode10"/> 
   </void> 
  </object> 
 </java> 

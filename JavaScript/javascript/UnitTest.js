@@ -259,10 +259,29 @@ UnitTest.prototype.testConditionalStatementManager = function UnitTest_testCondi
 //Test evaluator
 UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 {
-	var conceptNameMapper = ConceptNameMapper();
+	var conceptNameMapper = new ConceptNameMapper();
 	var totologyManager = new TotologyManager(conceptNameMapper);
+	var complementaryOperatorManager = new ComplementaryOperatorManager(conceptNameMapper);
 	var evaluationCache = new EvaluationCache();
 	var conditionalStatementManager = new ConditionalStatementManager(conceptNameMapper, new ConditionalStatementMemory());
 	
-	var evaluator = new Evaluator(totologyManager, conditionalStatementManager, evaluationCache);
+	var evaluator = new Evaluator(totologyManager, conditionalStatementManager, complementaryOperatorManager, evaluationCache);
+	
+	complementaryOperatorManager.add("isa","someare");
+	complementaryOperatorManager.add("madeof","partof");
+	complementaryOperatorManager.add("contradict","contradict");
+	complementaryOperatorManager.add("need","allow");
+	complementaryOperatorManager.add("make","madeby");
+	
+	totologyManager.learnStatement("pine isa tree");
+	totologyManager.learnStatement("tree isa plant");
+	totologyManager.learnStatement("plant contradict animal");
+	totologyManager.learnStatement("human isa animal");
+	totologyManager.learnStatement("animal isa lifeform");
+	totologyManager.learnStatement("plant isa lifeform");
+	totologyManager.learnStatement("lifeform madeof water");
+	totologyManager.learnStatement("water isa liquid");
+	totologyManager.learnStatement("tree madeof wood");
+	totologyManager.learnStatement("wood isa matter");
+	totologyManager.learnStatement("matter madeof energy");
 }
