@@ -23,5 +23,5 @@ Statement.prototype.equals = function Statement_equals(other)
 //(String) get string representation of statement
 Statement.prototype.toString = function Statement_toString()
 {
-	return this.subject.defaultConceptName + ' ' + this.verb.defaultConceptName + ' ' + this.complement.defaultConceptName;
+	return this.subject.toString() + ' ' + this.verb.toString() + ' ' + this.complement.toString();
 }

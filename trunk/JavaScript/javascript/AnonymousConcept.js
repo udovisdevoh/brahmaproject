@@ -10,3 +10,9 @@ AnonymousConcept.prototype.equals = function AnonymousConcept_equals(other)
 {
 	return this.id == other.id;
 }
+
+//(String) get string representation of anonymous concept
+AnonymousConcept.prototype.toString = function AnonymousConcept_toString()
+{
+	return String(this.id);
+}

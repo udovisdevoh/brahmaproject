@@ -11,9 +11,16 @@ ConditionalStatementMemory.prototype.contains = function ConditionalStatementMem
 	for (var index in this.conditionalStatementList)
 	{
 		var currentConditionalStatement = this.conditionalStatementList[index];
-		if (conditionalStatement.equals(currentConditionalStatement))
+		try
 		{
-			return true;
+			if (conditionalStatement.equals(currentConditionalStatement))
+			{
+				return true;
+			}
+		}
+		catch (err)
+		{
+			//Wrong type, skip
 		}
 	}
 	return false;
@@ -37,10 +44,17 @@ ConditionalStatementMemory.prototype.remove = function ConditionalStatementMemor
 	for (var index in this.conditionalStatementList)
 	{
 		var currentConditionalStatement = this.conditionalStatementList[index];
-		if (conditionalStatement.equals(currentConditionalStatement))
+		try
 		{
-			this.conditionalStatementList.splice(index, 1);
-			return true;
+			if (conditionalStatement.equals(currentConditionalStatement))
+			{
+				this.conditionalStatementList.splice(index, 1);
+				return true;
+			}
+		}
+		catch (err)
+		{
+			//Wrong type, skip
 		}
 	}
 	return false;
