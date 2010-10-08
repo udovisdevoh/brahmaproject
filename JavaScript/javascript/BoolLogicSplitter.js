@@ -8,12 +8,14 @@ function BoolLogicSplitter()
 //splits expression into smaller ones by taking "and" or "or" as the operator
 //creates boolean logic binary trees
 BoolLogicSplitter.prototype.split = function BoolLogicSplitter_split(stringCondition)
-{
-	stringCondition = this.removeParanthesesFromBeginingAndEndIfConsistencyIsKept(stringCondition);
+{	
+	do
+	{
+		var oldStringCondition = stringCondition;
+		stringCondition = this.removeParanthesesFromBeginingAndEndIfConsistencyIsKept(stringCondition);
+	} while (stringCondition != oldStringCondition);
 
 	var shallowestOperatorPosition = this.getShallowestOperatorPosition(stringCondition);
-	alert(stringCondition);
-	alert(shallowestOperatorPosition);
 	var shallowestOperator = this.getShallowestOperator(stringCondition, shallowestOperatorPosition);
 	
 	var stringCondition1 = stringCondition.substr(0, shallowestOperatorPosition);
@@ -30,6 +32,7 @@ BoolLogicSplitter.prototype.split = function BoolLogicSplitter_split(stringCondi
 //(String) Remove parantheses from begining and end if consistency is kept
 BoolLogicSplitter.prototype.removeParanthesesFromBeginingAndEndIfConsistencyIsKept = function BoolLogicSplitter_removeParanthesesFromBeginingAndEndIfConsistencyIsKept(expression)
 {
+	expression = expression.trim();
 	var oldExpression;
 	do
 	{
@@ -115,5 +118,20 @@ BoolLogicSplitter.prototype.getShallowestOperatorPosition = function BoolLogicSp
 		
 		return false;
 	}
+	
+	if (shallowestOperatorPosition == -1)
+		throw "Couldn't find shallowest operator's position in \"" + expression + "\"";
+	
 	return shallowestOperatorPosition;
+}
+
+//(String) get the shallowest operator from its position
+BoolLogicSplitter.prototype.getShallowestOperator = function BoolLogicSplitter_getShallowestOperator(expression, position)
+{
+	if (expression.substr(position, 2) == 'or')
+		return 'or';
+	else if (expression.substr(position, 3) == 'and')
+		return 'and';
+	else
+		throw "Couldn't find shallowest operator in " + expression + " at index " + position
 }
