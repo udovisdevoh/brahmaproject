@@ -80,13 +80,13 @@ Evaluator.prototype.evalString = function Evaluator_evalString(statementString)
 	if (isPositive)
 		return this.eval(subject, verb, complement) == this.resultTrue;
 	else
-		return this.eval(subject, verb, complement) == this.resultFalse;
+		return this.eval(subject, verb, complement) != this.resultTrue;
 }
 
 //(Boolean) evaluate expression and return whether expression is true or false
 Evaluator.prototype.eval = function Evaluator_eval(subject, verb, complement)
 {
-	var resultFromEvaluationCache = this.evaluationCache.getCachedResult(subject, verb, complement);
+	var resultFromEvaluationCache = this.evaluationCache.getCachedResult(subject, verb, complement, this.resultNotInCache);
 	
 	if (resultFromEvaluationCache == this.resultNotInCache)
 	{
@@ -95,4 +95,9 @@ Evaluator.prototype.eval = function Evaluator_eval(subject, verb, complement)
 	}
 	
 	return resultFromEvaluationCache;
+}
+
+Evaluator.prototype.render = function Evaluator_render(subject, verb, complement)
+{
+	throw 'Implement Evaluator.render()';
 }
