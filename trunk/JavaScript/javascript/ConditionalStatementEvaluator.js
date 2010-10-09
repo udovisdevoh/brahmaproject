@@ -85,10 +85,5 @@ ConditionalStatementEvaluator.prototype.isSatisfied = function ConditionalStatem
 		isSatisfied = this.isSatisfied(condition.leftChild, statement) || this.isSatisfied(condition.rightChild, subject, verb, complement);
 	}
 	
-	/*if (isSatisfied)
-	{
-		this.evaluator.proofCache.addProofArgument(subject, verb, complement, complement, complementaryVerb, subject, complementaryResult == this.resultTrue);
-	}*/
-	
 	return isSatisfied;
 }
