@@ -3,10 +3,10 @@ function Condition(statementOrLeftChild, middleOperator, rightChild)
 {
 	//Constants
 	//(int)
-	var or = 0;
+	this.or = 0;
 	
 	//(int)
-	var and = 1;
+	this.and = 1;
 
 	//Parts
 	//(Condition)

@@ -303,6 +303,10 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	var wood = conceptNameMapper.getConcept("wood");
 	var rain = conceptNameMapper.getConcept("rain");
 	var cloud = conceptNameMapper.getConcept("cloud");
+	var joe = conceptNameMapper.getConcept("joe");
+	var human = conceptNameMapper.getConcept("human");
+	var man = conceptNameMapper.getConcept("man");
+	var woman = conceptNameMapper.getConcept("woman");
 	var state_of_affair = conceptNameMapper.getConcept("state_of_affair");
 	var isa = conceptNameMapper.getConcept("isa");
 	var someare = conceptNameMapper.getConcept("someare");
@@ -335,6 +339,9 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	
 	totologyManager.learnStatement("rain partof state_of_affair");	
 	conditionalStatementManager.learnStatement('if rain partof state_of_affair then cloud partof state_of_affair');
+	
+	totologyManager.learnStatement("joe isa man");
+	conditionalStatementManager.learnStatement('if joe isa man or joe isa woman then joe isa human');
 	
 	//Test complementary operators
 	if (!evaluator.evalString("pine isa tree"))
@@ -372,6 +379,12 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 		throw 'Statement should be true';
 		
 	if (!evaluator.evalString("state_of_affair madeof cloud"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("joe isa man"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("joe isa human"))
 		throw 'Statement should be true';
 
 
