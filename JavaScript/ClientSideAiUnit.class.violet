@@ -187,8 +187,8 @@ effectStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>10.0</double> 
-     <double>542.0</double> 
+     <double>11.0</double> 
+     <double>502.0</double> 
     </void> 
    </object> 
   </void> 
@@ -234,6 +234,36 @@ effectStatement</string>
     <void method="setLocation"> 
      <double>106.0</double> 
      <double>416.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode14" class="com.horstmann.violet.ClassNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>ConditionalStatementEvaluator</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>8.0</double> 
+     <double>580.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode15" class="com.horstmann.violet.ClassNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>ProofCache</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>109.0</double> 
+     <double>659.0</double> 
     </void> 
    </object> 
   </void> 
@@ -488,6 +518,30 @@ effectStatement</string>
    </object> 
    <object idref="ClassNode12"/> 
    <object idref="ClassNode1"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
+    <void property="startArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode12"/> 
+   <object idref="ClassNode14"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
+    <void property="startArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode12"/> 
+   <object idref="ClassNode15"/> 
   </void> 
  </object> 
 </java> 

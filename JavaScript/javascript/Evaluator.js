@@ -49,6 +49,9 @@ function Evaluator(conceptNameMapper, totologyManager, conditionalStatementManag
 	
 	//(ProofCache) Stores proof for statements
 	this.proofCache = new ProofCache();
+	
+	//(ConditionalStatementEvaluator) Evaluate implicit statements from conditional statements
+	this.conditionalStatementEvaluator = new ConditionalStatementEvaluator(this);
 }
 
 //(Boolean) evaluate expression and return whether expression is true or false
@@ -122,11 +125,13 @@ Evaluator.prototype.eval = function Evaluator_eval(subject, verb, complement)
 //Evaluator.resultUnknown, Evaluator.resultNotInCache
 Evaluator.prototype.render = function Evaluator_render(subject, verb, complement)
 {		
+	//Render proposition from totology
 	if (this.connectionManager.testConnection(subject, verb, complement))
 	{
 		return this.resultTrue;
 	}
 	
+	//Render implicit proposition from complementary operators
 	for (var index in verb.complementaryOperators)
 	{
 		var complementaryVerb = verb.complementaryOperators[index];
@@ -142,7 +147,8 @@ Evaluator.prototype.render = function Evaluator_render(subject, verb, complement
 		}
 	}
 	
-	return this.resultUnknown;
+	//Render implicit proposition from conditional statements
+	return this.conditionalStatementEvaluator.render(subject, verb, complement);
 }
 
 //(Array of Statement)
