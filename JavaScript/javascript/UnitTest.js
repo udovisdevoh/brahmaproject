@@ -11,6 +11,7 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 	this.testComplementaryOperatorManager();
 	this.testConditionalStatementParser();
 	this.testConditionalStatementManager();
+	this.testEvaluationCache();
 	this.testEvaluator();
 	alert("Unit tests completed");
 }
@@ -253,6 +254,35 @@ UnitTest.prototype.testConditionalStatementManager = function UnitTest_testCondi
 	if (conditionalStatementManager.testStatement('If [PinE] isA [tRee] and [TrEE] madeOF [wOod] thEn [pinE] madEoF [WooD]'))
 	{
 		throw "Conditional statement shouldn't exist";
+	}
+}
+
+//Test evaluation cache
+UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
+{
+	var conceptNameMapper = new ConceptNameMapper();
+	var totologyManager = new TotologyManager(conceptNameMapper);
+	var complementaryOperatorManager = new ComplementaryOperatorManager(conceptNameMapper);
+	var evaluationCache = new EvaluationCache();
+	var conditionalStatementManager = new ConditionalStatementManager(conceptNameMapper, new ConditionalStatementMemory());
+	var evaluator = new Evaluator(conceptNameMapper, totologyManager, conditionalStatementManager, complementaryOperatorManager, evaluationCache);	
+	
+	var pine = new Concept("pine");
+	var isa = new Concept("isa");
+	var tree = new Concept("tree");
+	
+	evaluationCache.setCachedResult(pine, isa, tree, evaluator.resultBeingCurrentlyEvaluated);
+	
+	if (evaluationCache.getCachedResult(pine, isa, tree, evaluator.resultNotInCache) != evaluator.resultBeingCurrentlyEvaluated)
+	{
+		throw 'Statement should be in the process of getting evaluated';
+	}
+	
+	evaluationCache.setCachedResult(pine, isa, tree, evaluator.resultNotBeingCurrentlyEvaluated);
+	
+	if (evaluationCache.getCachedResult(pine, isa, tree, evaluator.resultNotInCache) == evaluator.resultBeingCurrentlyEvaluated)
+	{
+		throw "Statement shouldn't be in the process of getting evaluated";
 	}
 }
 
