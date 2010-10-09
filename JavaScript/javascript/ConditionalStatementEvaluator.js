@@ -29,7 +29,7 @@ ConditionalStatementEvaluator.prototype.render = function ConditionalStatementEv
 			}
 			else
 			{
-				this.proofCache.resetProof(subject, verb, complement);
+				this.evaluator.proofCache.resetProof(subject, verb, complement);
 			}
 		}
 	}
@@ -78,11 +78,11 @@ ConditionalStatementEvaluator.prototype.isSatisfied = function ConditionalStatem
 	}
 	else if (condition.middleOperator == condition.and)
 	{
-		isSatisfied = this.isSatisfied(condition.leftChild, statement) && this.isSatisfied(condition.rightChild, subject, verb, complement);
+		isSatisfied = this.isSatisfied(condition.leftChild, subject, verb, complement) && this.isSatisfied(condition.rightChild, subject, verb, complement);
 	}
 	else if (condition.middleOperator == condition.or)
 	{
-		isSatisfied = this.isSatisfied(condition.leftChild, statement) || this.isSatisfied(condition.rightChild, subject, verb, complement);
+		isSatisfied = this.isSatisfied(condition.leftChild, subject, verb, complement) || this.isSatisfied(condition.rightChild, subject, verb, complement);
 	}
 	
 	return isSatisfied;
