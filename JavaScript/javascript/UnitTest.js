@@ -391,6 +391,9 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	//Test implicit connection rendering with concrete concepts proof
 	if (!evaluator.getProof(cloud, partof, state_of_affair, true)[0].equals(new Statement(rain, partof, state_of_affair, true)))
 		throw 'Wrong proof';
+		
+	if (!evaluator.getProof(joe, isa, human, true)[0].equals(new Statement(joe, isa, man, true)))
+		throw 'Wrong proof';
 	
 
 	//Test implicit connection rendering with anonymous concepts
