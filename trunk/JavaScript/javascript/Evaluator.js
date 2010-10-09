@@ -46,6 +46,9 @@ function Evaluator(conceptNameMapper, totologyManager, conditionalStatementManag
 	
 	//(EvaluationCache) Stores statements that are currently being evaluated
 	this.circularReasoningPreventionMemory = new EvaluationCache();
+	
+	//(ProofCache) Stores proof for statements
+	this.proofCache = new ProofCache();
 }
 
 //(Boolean) evaluate expression and return whether expression is true or false
@@ -106,7 +109,7 @@ Evaluator.prototype.eval = function Evaluator_eval(subject, verb, complement)
 	
 	if (resultFromEvaluationCache == this.resultNotInCache)
 	{
-		resultFromEvaluationCache = this.render(subject, verb, complement);
+		resultFromEvaluationCache = this.render(subject, verb, complement);		
 		this.evaluationCache.setCachedResult(subject, verb, complement, resultFromEvaluationCache);
 	}
 	
@@ -132,11 +135,19 @@ Evaluator.prototype.render = function Evaluator_render(subject, verb, complement
 		{
 			var complementaryResult = this.eval(complement, complementaryVerb, subject);
 			if (complementaryResult == this.resultTrue || complementaryResult == this.resultFalse)
-			{
+			{			
+				this.proofCache.addProofArgument(subject, verb, complement, complement, complementaryVerb, subject, complementaryResult == this.resultTrue);
 				return complementaryResult;
 			}
 		}
 	}
 	
 	return this.resultUnknown;
+}
+
+//(Array of Statement)
+//Get proof for statement
+Evaluator.prototype.getProof = function Evaluator_getProof(subject, verb, complement, isPositive)
+{
+	return this.proofCache.getProof(subject, verb, complement, isPositive);
 }
