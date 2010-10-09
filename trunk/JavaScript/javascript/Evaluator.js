@@ -101,9 +101,6 @@ Evaluator.prototype.evalString = function Evaluator_evalString(statementString)
 Evaluator.prototype.eval = function Evaluator_eval(subject, verb, complement)
 {	
 	this.circularReasoningPreventionMemory.setCachedResult(subject, verb, complement, this.resultBeingCurrentlyEvaluated);
-	
-	if (this.circularReasoningPreventionMemory.getCachedResult(subject, verb, complement, this.resultNotInCache) == this.resultBeingCurrentlyEvaluated)
-		throw 'Already evaluating ' + subject + ' ' + verb + ' ' + complement;
 
 	var resultFromEvaluationCache = this.evaluationCache.getCachedResult(subject, verb, complement, this.resultNotInCache);
 	
