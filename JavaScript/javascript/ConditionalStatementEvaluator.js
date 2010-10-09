@@ -56,28 +56,30 @@ ConditionalStatementEvaluator.prototype.getListConditionalStatementMatchingEffec
 //(Boolean) Whether condition is satisfied
 ConditionalStatementEvaluator.prototype.isSatisfied = function ConditionalStatementEvaluator_isSatisfied(condition)
 {
+	var isSatisfied = false;
+	
 	if (condition.statement != null)
 	{		
 		if (this.evaluator.circularReasoningPreventionMemory.getCachedResult(condition.statement.subject, condition.statement.verb, condition.statement.complement, this.evaluator.resultNotInCache) != this.resultBeingCurrentlyEvaluated)
 		{
 			var result = this.evaluator.eval(condition.statement.subject, condition.statement.verb, condition.statement.complement);		
 			result = result == this.evaluator.resultTrue;
-			
 			var isSatisfied = result == condition.statement.isPositive;
-			
-			//this.proofCache.addProofArgument(subject, verb, complement, complement, complementaryVerb, subject, complementaryResult == this.resultTrue);
-			
-			return isSatisfied;
 		}
 	}
 	else if (condition.middleOperator == condition.and)
 	{
-		return this.isSatisfied(condition.leftChild) && this.isSatisfied(condition.rightChild);
+		isSatisfied = this.isSatisfied(condition.leftChild) && this.isSatisfied(condition.rightChild);
 	}
 	else if (condition.middleOperator == condition.or)
 	{
-		return this.isSatisfied(condition.leftChild) || this.isSatisfied(condition.rightChild);
+		isSatisfied = this.isSatisfied(condition.leftChild) || this.isSatisfied(condition.rightChild);
 	}
 	
-	return false;
+	/*if (isSatisfied)
+	{
+		this.evaluator.proofCache.addProofArgument(subject, verb, complement, complement, complementaryVerb, subject, complementaryResult == this.resultTrue);
+	}*/
+	
+	return isSatisfied;
 }
