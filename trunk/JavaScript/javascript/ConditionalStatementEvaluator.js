@@ -16,7 +16,7 @@ ConditionalStatementEvaluator.prototype.render = function ConditionalStatementEv
 		var conditionalStatementMatchingEffect = listConditionalStatementMatchingEffect[index];		
 		if (conditionalStatementMatchingEffect.condition != null)
 		{
-			if (this.isSatisfied(conditionalStatementMatchingEffect.condition))
+			if (this.isSatisfied(conditionalStatementMatchingEffect.condition, subject, verb, complement))
 			{
 				if (conditionalStatementMatchingEffect.effectStatement.isPositive)
 				{
@@ -26,6 +26,10 @@ ConditionalStatementEvaluator.prototype.render = function ConditionalStatementEv
 				{
 					return this.evaluator.resultFalse;
 				}
+			}
+			else
+			{
+				this.proofCache.resetProof(subject, verb, complement);
 			}
 		}
 	}
@@ -54,7 +58,7 @@ ConditionalStatementEvaluator.prototype.getListConditionalStatementMatchingEffec
 }
 
 //(Boolean) Whether condition is satisfied
-ConditionalStatementEvaluator.prototype.isSatisfied = function ConditionalStatementEvaluator_isSatisfied(condition)
+ConditionalStatementEvaluator.prototype.isSatisfied = function ConditionalStatementEvaluator_isSatisfied(condition, subject, verb, complement)
 {
 	var isSatisfied = false;
 	
@@ -65,15 +69,20 @@ ConditionalStatementEvaluator.prototype.isSatisfied = function ConditionalStatem
 			var result = this.evaluator.eval(condition.statement.subject, condition.statement.verb, condition.statement.complement);		
 			result = result == this.evaluator.resultTrue;
 			var isSatisfied = result == condition.statement.isPositive;
+			
+			if (isSatisfied)
+			{
+				this.evaluator.proofCache.addProofArgument(subject, verb, complement, condition.statement.subject, condition.statement.verb, condition.statement.complement, true);
+			}
 		}
 	}
 	else if (condition.middleOperator == condition.and)
 	{
-		isSatisfied = this.isSatisfied(condition.leftChild) && this.isSatisfied(condition.rightChild);
+		isSatisfied = this.isSatisfied(condition.leftChild, statement) && this.isSatisfied(condition.rightChild, subject, verb, complement);
 	}
 	else if (condition.middleOperator == condition.or)
 	{
-		isSatisfied = this.isSatisfied(condition.leftChild) || this.isSatisfied(condition.rightChild);
+		isSatisfied = this.isSatisfied(condition.leftChild, statement) || this.isSatisfied(condition.rightChild, subject, verb, complement);
 	}
 	
 	/*if (isSatisfied)

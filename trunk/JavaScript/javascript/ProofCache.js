@@ -70,3 +70,19 @@ ProofCache.prototype.getProof = function ProofCache_getProof(subject, verb, comp
 	
 	return proof;
 }
+
+//(Void) Reset proof
+ProofCache.prototype.resetProof = function ProofCache_resetProof(subject, verb, complement)
+{
+	if (!this.cachedData.hasItem(subject))
+		this.cachedData.setItem(subject, new Hash());
+
+	var subjectBranch = this.cachedData.getItem(subject);
+	
+	if (!subjectBranch.hasItem(verb))
+		subjectBranch.setItem(verb, new Hash());
+	
+	var verbBranch = subjectBranch.getItem(verb);
+	
+	verbBranch.clear();
+}
