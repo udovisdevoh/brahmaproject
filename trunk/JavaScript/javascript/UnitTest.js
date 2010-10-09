@@ -363,7 +363,7 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	
 	
 	//Test complementary proposition's proofs
-	if (!evaluator.getProof(tree, someare, pine, true)[0].equals(new Statement(rain, partof, state_of_affair, true)))
+	if (!evaluator.getProof(tree, someare, pine, true)[0].equals(new Statement(pine, isa, tree, true)))
 		throw 'Wrong proof';
 
 	
@@ -376,7 +376,7 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 
 
 	//Test implicit connection rendering with concrete concepts proof
-	if (!evaluator.getProof(cloud, partof, state_of_affair, true)[0].equals(new Statement(pine, isa, tree, true)))
+	if (!evaluator.getProof(cloud, partof, state_of_affair, true)[0].equals(new Statement(rain, partof, state_of_affair, true)))
 		throw 'Wrong proof';
 		
 
