@@ -301,6 +301,9 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	var tree = conceptNameMapper.getConcept("tree");
 	var plant = conceptNameMapper.getConcept("plant");
 	var wood = conceptNameMapper.getConcept("wood");
+	var rain = conceptNameMapper.getConcept("rain");
+	var cloud = conceptNameMapper.getConcept("cloud");
+	var state_of_affair = conceptNameMapper.getConcept("state_of_affair");
 	var isa = conceptNameMapper.getConcept("isa");
 	var someare = conceptNameMapper.getConcept("someare");
 	var madeof = conceptNameMapper.getConcept("madeof");
@@ -325,16 +328,24 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	totologyManager.learnStatement("wood isa matter");
 	totologyManager.learnStatement("matter madeof energy");
 	
+	conditionalStatementManager.learnStatement('if [pine] isa [tree] and [tree] isa [plant] then [pine] isa [plant]');
+	conditionalStatementManager.learnStatement('if [pine] isa [tree] and [tree] madeof [wood] then [pine] madeof [wood]');
+	conditionalStatementManager.learnStatement('if [tree] madeof [wood] and [wood] madeof [carbon] then [tree] madeof [carbon]');
+	conditionalStatementManager.learnStatement('if [tree] madeof [wood] and [wood] isa [matter] then [tree] madeof [matter]');
+	
+	totologyManager.learnStatement("rain partof state_of_affair");	
+	conditionalStatementManager.learnStatement('if rain partof state_of_affair then cloud partof state_of_affair');
+	
 	//Test complementary operators
 	if (!evaluator.evalString("pine isa tree"))
 		throw 'Statement should be true';
-		
+			
 	if (evaluator.evalString("pine not isa tree"))
 		throw 'Statement should be false';
-		
+	
 	if (!evaluator.evalString("tree someare pine"))
 		throw 'Statement should be true';
-		
+	
 	if (evaluator.evalString("tree not someare pine"))
 		throw 'Statement should be false';
 		
@@ -349,14 +360,27 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 		
 	if (!evaluator.evalString("wood partof tree"))
 		throw 'Statement should be true';
-		
+	
 	
 	//Test complementary proposition's proofs
-	if (!evaluator.getProof(tree, someare, pine, true)[0].equals(new Statement(pine, isa, tree, true)))
+	if (!evaluator.getProof(tree, someare, pine, true)[0].equals(new Statement(rain, partof, state_of_affair, true)))
 		throw 'Wrong proof';
 
 	
-	//Test implicit connection rendering
+	//Test implicit connection rendering with concrete concepts
+	if (!evaluator.evalString("cloud partof state_of_affair"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("state_of_affair madeof cloud"))
+		throw 'Statement should be true';
+
+
+	//Test implicit connection rendering with concrete concepts proof
+	if (!evaluator.getProof(cloud, partof, state_of_affair, true)[0].equals(new Statement(pine, isa, tree, true)))
+		throw 'Wrong proof';
+		
+
+	//Test implicit connection rendering with anonymous concepts
 	if (!evaluator.evalString("pine isa plant"))
 		throw 'Statement should be true';
 		
