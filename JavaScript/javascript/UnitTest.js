@@ -297,6 +297,16 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	
 	var evaluator = new Evaluator(conceptNameMapper, totologyManager, conditionalStatementManager, complementaryOperatorManager, evaluationCache);
 	
+	var pine = conceptNameMapper.getConcept("pine");
+	var tree = conceptNameMapper.getConcept("tree");
+	var plant = conceptNameMapper.getConcept("plant");
+	var wood = conceptNameMapper.getConcept("wood");
+	var isa = conceptNameMapper.getConcept("isa");
+	var someare = conceptNameMapper.getConcept("someare");
+	var madeof = conceptNameMapper.getConcept("madeof");
+	var partof = conceptNameMapper.getConcept("partof");
+	var contradict = conceptNameMapper.getConcept("contradict");
+	
 	complementaryOperatorManager.add("isa","someare");
 	complementaryOperatorManager.add("madeof","partof");
 	complementaryOperatorManager.add("contradict","contradict");
@@ -315,6 +325,7 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	totologyManager.learnStatement("wood isa matter");
 	totologyManager.learnStatement("matter madeof energy");
 	
+	//Test complementary operators
 	if (!evaluator.evalString("pine isa tree"))
 		throw 'Statement should be true';
 		
@@ -331,5 +342,36 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 		throw 'Statement should be false';
 		
 	if (!evaluator.evalString("tree not isa pine"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("tree madeof wood"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("wood partof tree"))
+		throw 'Statement should be true';
+		
+	
+	//Test complementary proposition's proofs
+	if (!evaluator.getProof(tree, someare, pine, true)[0].equals(new Statement(pine, isa, tree, true)))
+		throw 'Wrong proof';
+
+	
+	//Test implicit connection rendering
+	if (!evaluator.evalString("pine isa plant"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("pine madeof water"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("pine madeof wood"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("pine madeof matter"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("pine madeof energy"))
+		throw 'Statement should be true';
+	
+	if (!evaluator.evalString("energy partof pine"))
 		throw 'Statement should be true';
 }
