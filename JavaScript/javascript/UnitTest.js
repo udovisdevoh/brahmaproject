@@ -341,7 +341,9 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	conditionalStatementManager.learnStatement('if rain partof state_of_affair then cloud partof state_of_affair');
 	
 	totologyManager.learnStatement("joe isa man");
+	totologyManager.learnStatement("joe partof state_of_affair");
 	conditionalStatementManager.learnStatement('if joe isa man or joe isa woman then joe isa human');
+	conditionalStatementManager.learnStatement('if joe isa human and joe partof state_of_affair then joe madeof matter');
 	
 	//Test complementary operators
 	if (!evaluator.evalString("pine isa tree"))
@@ -385,6 +387,9 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 		throw 'Statement should be true';
 		
 	if (!evaluator.evalString("joe isa human"))
+		throw 'Statement should be true';
+		
+	if (!evaluator.evalString("joe madeof matter"))
 		throw 'Statement should be true';
 
 
