@@ -399,8 +399,8 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 		
 	if (!evaluator.getProof(joe, isa, human, true)[0].equals(new Statement(joe, isa, man, true)))
 		throw 'Wrong proof';
-	
 
+		
 	//Test implicit connection rendering with anonymous concepts
 	if (!evaluator.evalString("pine isa plant"))
 		throw 'Statement should be true';
