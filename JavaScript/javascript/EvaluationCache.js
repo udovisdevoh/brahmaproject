@@ -9,7 +9,7 @@ function EvaluationCache()
 
 //Constant as: Evaluator.resultTrue, Evaluator.resultFalse,
 //Evaluator.resultUnknown
-EvaluationCache.prototype.getCachedResult = function EvaluationCache_getCachedResult(subject, verb, complement, defaultNullValue)
+EvaluationCache.prototype.getCachedResult = function EvaluationCache_getCachedResult(subject, verb, complement)
 {
 	if (!this.cachedData.hasItem(subject))
 		this.cachedData.setItem(subject, new Hash());
@@ -24,7 +24,7 @@ EvaluationCache.prototype.getCachedResult = function EvaluationCache_getCachedRe
 	if (verbBranch.hasItem(complement))
 		return verbBranch.getItem(complement);
 	else
-		return defaultNullValue;
+		return false;
 }
 
 //Void: set value in cache
