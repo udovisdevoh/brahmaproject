@@ -243,6 +243,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("joe partof state_of_affair");
 	
 	//Test totology
+	if (!totologyManager.testConnection(pine, isa, tree))
+	{
+		throw 'Statement should be true because we told so';
+	}
+	
 	if (!flattenizer.testConnection(pine, isa, tree))
 	{
 		throw 'Statement should be true because we told so';

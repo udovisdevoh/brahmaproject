@@ -29,3 +29,14 @@ VerbBranch.prototype.removeComplement = function VerbBranch_addComplement(comple
 	if (index != -1)
 		this.complementList.splice(index, 1);
 }
+
+//(String) get string representation
+VerbBranch.prototype.toString = function VerbBranch_toString(complement)
+{
+	var stringRepresentation = "";
+	for (var index in this.complementList)
+	{
+		stringRepresentation += this.complementList[index] + ", ";
+	}
+	return stringRepresentation;
+}

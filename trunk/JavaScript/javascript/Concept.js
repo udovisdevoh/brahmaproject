@@ -25,3 +25,19 @@ Concept.prototype.toString = function Concept_toString()
 {
 	return this.defaultConceptName;
 }
+
+//(VerbBranch) get implicit verb branch
+Concept.prototype.getImplicitBranch = function Concept_getImplicitBranch(verb)
+{
+	if (!this.implicitConnections.hasItem(verb))
+		this.implicitConnections.setItem(verb, new VerbBranch());
+	return this.implicitConnections.getItem(verb);
+}
+
+//(VerbBranch) get totologic verb branch
+Concept.prototype.getTotologicBranch = function Concept_getTotologicBranch(verb)
+{
+	if (!this.totologyConnections.hasItem(verb))
+		this.totologyConnections.setItem(verb, new VerbBranch());
+	return this.totologyConnections.getItem(verb);
+}

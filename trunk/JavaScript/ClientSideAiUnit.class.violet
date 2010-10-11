@@ -96,7 +96,7 @@ testStatement</string>
    <object id="ClassNode5" class="com.horstmann.violet.ClassNode"> 
     <void property="name"> 
      <void property="text"> 
-      <string>Evaluator</string> 
+      <string>Flattenizer</string> 
      </void> 
     </void> 
    </object> 
