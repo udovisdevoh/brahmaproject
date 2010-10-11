@@ -6,6 +6,9 @@ function Concept(defaultConceptName)
 	
 	//(Array) Totology connections as subject.connections[verb][complementIndex]complement
 	this.totologyConnections = Array();
+	
+	//(Array) Implicit (non-totological) connections as subject.connections[verb][complementIndex]complement
+	this.implicitConnections = Array();
 		
 	//(Array of concept) Complementary operators (should be only one but who knows)
 	this.complementaryOperators = Array();

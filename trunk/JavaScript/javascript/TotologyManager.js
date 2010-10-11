@@ -115,7 +115,7 @@ TotologyManager.prototype.removeConnection = function TotologyManager_removeConn
 //Add a connection from subject through verb to complement
 TotologyManager.prototype.testConnection = function TotologyManager_testConnection(subject, verb, complement)
 {
-	if (subject.totologyConnections[verb] == null)
+	if (subject.totologyConnections == null || subject.totologyConnections[verb] == null)
 	{
 		return false;
 	}
