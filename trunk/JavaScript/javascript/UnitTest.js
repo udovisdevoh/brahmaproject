@@ -206,13 +206,10 @@ UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
 //Test evaluator
 UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 {
-	/*var conceptNameMapper = new ConceptNameMapper();
-	var complementaryOperatorManager = new ComplementaryOperatorManager(conceptNameMapper);
-	var evaluationCache = new EvaluationCache();
+	var conceptNameMapper = new ConceptNameMapper();
 	var totologyManager = new TotologyManager(conceptNameMapper);
-	var instinct = new Instinct(complementaryOperatorManager);
-	var evaluator = new Evaluator(instinct, conceptNameMapper, totologyManager, complementaryOperatorManager, evaluationCache);
-	
+	var flattenizer = new Flattenizer(new Instinct(new ComplementaryOperatorManager(conceptNameMapper)));
+
 	var pine = conceptNameMapper.getConcept("pine");
 	var tree = conceptNameMapper.getConcept("tree");
 	var plant = conceptNameMapper.getConcept("plant");
@@ -229,13 +226,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var madeof = conceptNameMapper.getConcept("madeof");
 	var partof = conceptNameMapper.getConcept("partof");
 	var contradict = conceptNameMapper.getConcept("contradict");
-	
-	complementaryOperatorManager.add("isa","someare");
-	complementaryOperatorManager.add("madeof","partof");
-	complementaryOperatorManager.add("contradict","contradict");
-	complementaryOperatorManager.add("need","allow");
-	complementaryOperatorManager.add("make","madeby");
-	
+		
 	totologyManager.learnStatement("pine isa tree");
 	totologyManager.learnStatement("tree isa plant");
 	totologyManager.learnStatement("plant contradict animal");
@@ -251,7 +242,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("joe isa man");
 	totologyManager.learnStatement("joe partof state_of_affair");
 	
-	//Test complementary operators
+	/*//Test complementary operators
 	if (!evaluator.evalString("pine isa tree"))
 		throw 'Statement should be true';
 			
