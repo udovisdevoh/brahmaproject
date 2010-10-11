@@ -242,26 +242,33 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("joe isa man");
 	totologyManager.learnStatement("joe partof state_of_affair");
 	
-	/*//Test complementary operators
-	if (!evaluator.evalString("pine isa tree"))
-		throw 'Statement should be true';
-			
-	if (evaluator.evalString("pine not isa tree"))
-		throw 'Statement should be false';
+	//Test totology
+	if (!flattenizer.testConnection(pine, isa, tree))
+	{
+		throw 'Statement should be true because we told so';
+	}
 	
-	if (!evaluator.evalString("tree someare pine"))
+	//Test complementary operators
+	if (!flattenizer.testConnection(tree, someare, pine))
+	{
 		throw 'Statement should be true';
+	}
 	
-	if (evaluator.evalString("tree not someare pine"))
+	//Test complementary operators
+	if (flattenizer.testConnection(tree, isa, pine))
+	{
 		throw 'Statement should be false';
-		
-	if (evaluator.evalString("tree isa pine"))
-		throw 'Statement should be false';
-		
-	if (!evaluator.evalString("tree not isa pine"))
+	}
+
+	//Test self recursive operator
+	if (!flattenizer.testConnection(tree, madeof, matter))
+	{
 		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("tree madeof wood"))
+	}
+	
+	throw 'Add more unit tests';
+	
+	/*if (!evaluator.evalString("tree madeof wood"))
 		throw 'Statement should be true';
 		
 	if (!evaluator.evalString("wood partof tree"))
