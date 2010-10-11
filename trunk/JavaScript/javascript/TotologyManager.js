@@ -1,12 +1,8 @@
-//Represents a client side Ai's learning and unlearning system of totology
-//The AI will learn
+//Represents a concept (subject, verb or complement)
 function TotologyManager(conceptNameMapper)
 {
 	//(ConceptNameMapper) Maps names to concepts
 	this.conceptNameMapper = conceptNameMapper;
-	
-	//(ConnectionManager)
-	this.connectionManager = new ConnectionManager();
 }
 
 //Tell statement to AI (negative or positive)
@@ -33,7 +29,7 @@ TotologyManager.prototype.learnStatement = function TotologyManager_learnStateme
 		subject = this.conceptNameMapper.getConcept(wordList[0]);
 		verb = this.conceptNameMapper.getConcept(wordList[1]);
 		complement = this.conceptNameMapper.getConcept(wordList[2]);
-		this.connectionManager.addConnection(subject, verb, complement);
+		this.addConnection(subject, verb, complement);
 	}
 	else
 	{
@@ -45,7 +41,7 @@ TotologyManager.prototype.learnStatement = function TotologyManager_learnStateme
 		subject = this.conceptNameMapper.getConcept(wordList[0]);
 		verb = this.conceptNameMapper.getConcept(wordList[2]);
 		complement = this.conceptNameMapper.getConcept(wordList[3]);
-		this.connectionManager.removeConnection(subject, verb, complement);
+		this.removeConnection(subject, verb, complement);
 	}
 }
 
@@ -74,7 +70,7 @@ TotologyManager.prototype.testStatement = function TotologyManager_testStatement
 		verb = this.conceptNameMapper.getConcept(wordList[1]);
 		complement = this.conceptNameMapper.getConcept(wordList[2]);
 		
-		return this.connectionManager.testConnection(subject, verb, complement);
+		return this.testConnection(subject, verb, complement);
 	}
 	else
 	{
@@ -86,6 +82,45 @@ TotologyManager.prototype.testStatement = function TotologyManager_testStatement
 		subject = this.conceptNameMapper.getConcept(wordList[0]);
 		verb = this.conceptNameMapper.getConcept(wordList[2]);
 		complement = this.conceptNameMapper.getConcept(wordList[3]);
-		return !this.connectionManager.testConnection(subject, verb, complement);
+		return !this.testConnection(subject, verb, complement);
+	}
+}
+
+//Add a connection from subject through verb to complement
+TotologyManager.prototype.addConnection = function TotologyManager_addConnection(subject, verb, complement)
+{
+	if (subject.totologyConnections[verb] == null)
+	{
+		subject.totologyConnections[verb] = Array();
+	}
+	if (subject.totologyConnections[verb].indexOf(complement) == -1)
+	{
+		subject.totologyConnections[verb].push(complement);
+	}
+}
+
+//Remove a connection from subject through verb to complement
+TotologyManager.prototype.removeConnection = function TotologyManager_removeConnection(subject, verb, complement)
+{
+	if (subject.totologyConnections[verb] != null)
+	{
+		var index = subject.totologyConnections[verb].indexOf(complement);
+		if (index != -1)
+		{
+			subject.totologyConnections[verb].splice(index, 1);
+		}
+	}
+}
+
+//Add a connection from subject through verb to complement
+TotologyManager.prototype.testConnection = function TotologyManager_testConnection(subject, verb, complement)
+{
+	if (subject.totologyConnections[verb] == null)
+	{
+		return false;
+	}
+	else
+	{
+		return subject.totologyConnections[verb].indexOf(complement) != -1;
 	}
 }
