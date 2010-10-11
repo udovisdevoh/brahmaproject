@@ -13,7 +13,7 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 	this.testConditionalStatementManager();
 	this.testEvaluationCache();
 	this.testEvaluator();
-	alert("Unit tests completed");
+	alert("Unit tests completed.");
 }
 
 //Test concept name mapper
