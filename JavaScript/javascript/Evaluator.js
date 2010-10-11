@@ -1,5 +1,5 @@
 //Evaluates totological and non-totological propositions
-function Evaluator(conceptNameMapper, totologyManager, conditionalStatementManager, complementaryOperatorManager, evaluationCache)
+function Evaluator(instinct, conceptNameMapper, totologyManager, complementaryOperatorManager, evaluationCache)
 {
 	//Constants
 	
@@ -12,9 +12,6 @@ function Evaluator(conceptNameMapper, totologyManager, conditionalStatementManag
 	//Unknown result
 	this.resultUnknown = 0;
 	
-	//Unknown result
-	this.resultNotInCache = -2;
-	
 	//Result being currently evaluated
 	this.resultBeingCurrentlyEvaluated = -3;
 	
@@ -24,6 +21,9 @@ function Evaluator(conceptNameMapper, totologyManager, conditionalStatementManag
 	
 	//Parts
 	
+	//(Instinct) Manages and renders metaOperator connections
+	this.instinct = instinct;
+	
 	//(ConceptNameMapper) maps concept to names and names to concepts
 	this.conceptNameMapper = conceptNameMapper;
 
@@ -32,15 +32,9 @@ function Evaluator(conceptNameMapper, totologyManager, conditionalStatementManag
 	//The AI will learn
 	this.totologyManager = totologyManager;
 	
-	//(ConditionalStatementManager) Manages conditional statements
-	this.conditionalStatementManager = conditionalStatementManager;
-	
 	//(ComplementaryOperatorManager) Manages complementary operators
 	this.complementaryOperatorManager = complementaryOperatorManager;
-	
-	//(ConnectionManager) Manages connections in concepts
-	this.connectionManager = this.totologyManager.connectionManager;
-	
+		
 	//(EvaluationCache) Stores result of evaluation of propositions to improve performances of evaluation
 	this.evaluationCache = evaluationCache;
 	
@@ -49,9 +43,6 @@ function Evaluator(conceptNameMapper, totologyManager, conditionalStatementManag
 	
 	//(ProofCache) Stores proof for statements
 	this.proofCache = new ProofCache();
-	
-	//(ConditionalStatementEvaluator) Evaluate implicit statements from conditional statements
-	this.conditionalStatementEvaluator = new ConditionalStatementEvaluator(this);
 }
 
 //(Boolean) evaluate expression and return whether expression is true or false
@@ -108,9 +99,9 @@ Evaluator.prototype.eval = function Evaluator_eval(subject, verb, complement)
 {	
 	this.circularReasoningPreventionMemory.setCachedResult(subject, verb, complement, this.resultBeingCurrentlyEvaluated);
 
-	var resultFromEvaluationCache = this.evaluationCache.getCachedResult(subject, verb, complement, this.resultNotInCache);
+	var resultFromEvaluationCache = this.evaluationCache.getCachedResult(subject, verb, complement, this.resultUnknown);
 	
-	if (resultFromEvaluationCache == this.resultNotInCache)
+	if (resultFromEvaluationCache == this.resultUnknown)
 	{
 		resultFromEvaluationCache = this.render(subject, verb, complement);		
 		this.evaluationCache.setCachedResult(subject, verb, complement, resultFromEvaluationCache);
@@ -121,12 +112,19 @@ Evaluator.prototype.eval = function Evaluator_eval(subject, verb, complement)
 	return resultFromEvaluationCache;
 }
 
+//(Array of Statement)
+//Get proof for statement
+Evaluator.prototype.getProof = function Evaluator_getProof(subject, verb, complement, isPositive)
+{
+	return this.proofCache.getProof(subject, verb, complement, isPositive);
+}
+
 //Constant as: Evaluator.resultTrue, Evaluator.resultFalse,
-//Evaluator.resultUnknown, Evaluator.resultNotInCache
+//Evaluator.resultUnknown
 Evaluator.prototype.render = function Evaluator_render(subject, verb, complement)
 {		
 	//Render proposition from totology
-	if (this.connectionManager.testConnection(subject, verb, complement))
+	if (this.totologyManager.testConnection(subject, verb, complement))
 	{
 		return this.resultTrue;
 	}
@@ -136,7 +134,7 @@ Evaluator.prototype.render = function Evaluator_render(subject, verb, complement
 	{
 		var complementaryVerb = verb.complementaryOperators[index];
 		
-		if (this.circularReasoningPreventionMemory.getCachedResult(complement, complementaryVerb, subject, this.resultNotInCache) != this.resultBeingCurrentlyEvaluated)
+		if (this.circularReasoningPreventionMemory.getCachedResult(complement, complementaryVerb, subject, this.resultUnknown) != this.resultBeingCurrentlyEvaluated)
 		{
 			var complementaryResult = this.eval(complement, complementaryVerb, subject);
 			if (complementaryResult == this.resultTrue || complementaryResult == this.resultFalse)
@@ -147,13 +145,5 @@ Evaluator.prototype.render = function Evaluator_render(subject, verb, complement
 		}
 	}
 	
-	//Render implicit proposition from conditional statements
-	return this.conditionalStatementEvaluator.render(subject, verb, complement);
-}
-
-//(Array of Statement)
-//Get proof for statement
-Evaluator.prototype.getProof = function Evaluator_getProof(subject, verb, complement, isPositive)
-{
-	return this.proofCache.getProof(subject, verb, complement, isPositive);
+	return this.instinct.render(this, subject, verb, complement);
 }

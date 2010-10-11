@@ -7,8 +7,8 @@ function ConceptNameMapper()
 	//(Array) Map concept to name
 	this.mapConceptToName = Array();
 	
-	//(ConnectionManager)
-	this.connectionManager = new ConnectionManager();
+	//(TotologyManager)
+	this.totologyManager = new TotologyManager();
 }
 
 //Get concept from name
@@ -49,7 +49,7 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	{
 		for (var complement in concept2.connections[verb])
 		{
-			connectionManager.addConnection(concept1, verb, complement);
+			totologyManager.addConnection(concept1, verb, complement);
 		}
 	}
 	
@@ -78,7 +78,7 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	{
 		for (var complement in concept1.connections[verb])
 		{
-			connectionManager.addConnection(concept2, verb, complement);
+			totologyManager.addConnection(concept2, verb, complement);
 		}
 	}
 	

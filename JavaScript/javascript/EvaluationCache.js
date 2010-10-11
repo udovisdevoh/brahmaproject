@@ -3,12 +3,12 @@ function EvaluationCache()
 {
 	//(Array)[subject][verb][complement]
 	//of constant as: Evaluator.resultTrue, Evaluator.resultFalse,
-	//Evaluator.resultUnknown, Evaluator.resultNotInCache
+	//Evaluator.resultUnknown
 	this.cachedData = new Hash();
 }
 
 //Constant as: Evaluator.resultTrue, Evaluator.resultFalse,
-//Evaluator.resultUnknown, Evaluator.resultNotInCache
+//Evaluator.resultUnknown
 EvaluationCache.prototype.getCachedResult = function EvaluationCache_getCachedResult(subject, verb, complement, defaultNullValue)
 {
 	if (!this.cachedData.hasItem(subject))

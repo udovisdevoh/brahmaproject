@@ -6,11 +6,9 @@ function UnitTest()
 UnitTest.prototype.testAll = function UnitTest_testAll()
 {
 	this.testConceptNameMapper();
-	this.testConnectionManager();
 	this.testTotologyManager();
+	this.testTotologyManagerPart2();
 	this.testComplementaryOperatorManager();
-	this.testConditionalStatementParser();
-	this.testConditionalStatementManager();
 	this.testEvaluationCache();
 	this.testEvaluator();
 	alert("Unit tests completed.");
@@ -47,10 +45,10 @@ UnitTest.prototype.testConceptNameMapper = function UnitTest_testConceptNameMapp
 }
 
 //Test connection manager
-UnitTest.prototype.testConnectionManager = function UnitTest_testConnectionManager()
+UnitTest.prototype.testTotologyManager = function UnitTest_testTotologyManager()
 {
-	var connectionManager = new ConnectionManager();
 	var conceptNameMapper = new ConceptNameMapper();
+	var totologyManager = new TotologyManager(conceptNameMapper);
 	
 	var pine = conceptNameMapper.getConcept("pine");
 	var tree = conceptNameMapper.getConcept("tree");
@@ -59,32 +57,32 @@ UnitTest.prototype.testConnectionManager = function UnitTest_testConnectionManag
 	
 	var isa = conceptNameMapper.getConcept("isa");
 	
-	connectionManager.addConnection(pine, isa, tree);
-	connectionManager.addConnection(tree, isa, plant);	
+	totologyManager.addConnection(pine, isa, tree);
+	totologyManager.addConnection(tree, isa, plant);	
 	
-	if (connectionManager.testConnection(pine, isa, animal))
+	if (totologyManager.testConnection(pine, isa, animal))
 	{
 		throw "Connection shouldn't exist";
 	}
-	if (!connectionManager.testConnection(pine, isa, tree))
+	if (!totologyManager.testConnection(pine, isa, tree))
 	{
 		throw "Connection should exist";
 	}	
-	if (!connectionManager.testConnection(tree, isa, plant))
+	if (!totologyManager.testConnection(tree, isa, plant))
 	{
 		throw "Connection should exist";
 	}
 	
-	connectionManager.removeConnection(pine, isa, tree);
+	totologyManager.removeConnection(pine, isa, tree);
 	
-	if (connectionManager.testConnection(pine, isa, tree))
+	if (totologyManager.testConnection(pine, isa, tree))
 	{
 		throw "Connection shouldn't exist";
 	}
 }
 
 //Test Totology Manager
-UnitTest.prototype.testTotologyManager = function UnitTest_testTotologyManager()
+UnitTest.prototype.testTotologyManagerPart2 = function UnitTest_testTotologyManagerPart2()
 {
 	var totologyManager = new TotologyManager(new ConceptNameMapper());
 	totologyManager.learnStatement("piNe iSa trEe");
@@ -177,95 +175,15 @@ UnitTest.prototype.testComplementaryOperatorManager = function UnitTest_testComp
 	}
 }
 
-//Test Conditional Statement Parser
-UnitTest.prototype.testConditionalStatementParser = function UnitTest_testConditionalStatementParser()
-{
-	var conceptNameMapper = new ConceptNameMapper();
-
-	var conditionalStatementParser = new ConditionalStatementParser(conceptNameMapper);
-	
-	if (!conditionalStatementParser.parse("iF (pinE isA tRee and me isa humaN) thEn (trEe soMeare Pine)").equals(conditionalStatementParser.parse("iF pinE isA tRee and me isa huMan thEn trEe soMeare Pine")))
-	{
-		throw "Conditional statements should be the same";
-	}
-	
-	if (!conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine").equals(conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine")))
-	{
-		throw "Conditional statements should be the same";
-	}
-		
-	if (conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine").equals(conditionalStatementParser.parse("iF pinE isA tREe thEn trEe soMeare mofo")))
-	{
-		throw "Conditional statements shouldn't be the same";
-	}
-	
-	if (!conditionalStatementParser.parse("iF [pinE] isA [tRee] thEn [trEe] soMeare [Pine]").equals(conditionalStatementParser.parse("iF [car] isA [veHicle] thEn [vehiCle] soMeare [caR]")))
-	{
-		throw "Conditional statements should be the same";
-	}
-	
-	if (conditionalStatementParser.parse("iF pinE isA tRee thEn trEe soMeare Pine").equals(conditionalStatementParser.parse("iF [pinE] isA [tRee] thEn [trEe] soMeare [Pine]")))
-	{
-		throw "Conditional statements shouldn't be the same";
-	}
-	
-	if (!conditionalStatementParser.parse("iF (pine isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine isa plant) then plant isa lifeform")))
-	{
-		throw "Conditional statements should be the same";
-	}
-	
-	if (!conditionalStatementParser.parse("iF (pine not isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine not isa plant) then plant isa lifeform")))
-	{
-		throw "Conditional statements should be the same";
-	}
-	
-	if (conditionalStatementParser.parse("iF (pine not isa plant or plant isa animal) and plant madeof matter then plant isa lifeform").equals(conditionalStatementParser.parse("iF plant madeof matter and (plant isa animal or pine isa plant) then plant isa lifeform")))
-	{
-		throw "Conditional statements shouldn't be the same";
-	}
-}
-
-//Test Conditional Statement Manager
-UnitTest.prototype.testConditionalStatementManager = function UnitTest_testConditionalStatementManager()
-{
-	conditionalStatementManager = new ConditionalStatementManager(new ConceptNameMapper(), new ConditionalStatementMemory());
-	
-	conditionalStatementManager.learnStatement('iF [pinE] isA [tRee] thEn [trEe] soMeare [Pine]');
-	
-	if (!conditionalStatementManager.testStatement('iF [pinE] isA [tRee] thEn [trEe] soMeare [Pine]'))
-	{
-		throw "Conditional statement should exist";
-	}
-	
-	if (conditionalStatementManager.testStatement('iF [pinE] isA [tRee] thEn [trEe] maDeOf [Pine]'))
-	{
-		throw "Conditional statement shouldn't exist";
-	}
-	
-	conditionalStatementManager.learnStatement('iF [pinE] isA [tRee] and [TrEE] madeOF [wOOd] thEn [pinE] madEoF [WooD]');
-	
-	if (!conditionalStatementManager.testStatement('If [PinE] isA [tRee] and [TrEE] madeOF [wOod] thEn [pinE] madEoF [WooD]'))
-	{
-		throw "Conditional statement should exist";
-	}
-	
-	conditionalStatementManager.forgetStatement('iF [pinE] isA [tRee] and [TrEE] madeOF [wOOd] thEn [pinE] madEoF [WooD]');
-	
-	if (conditionalStatementManager.testStatement('If [PinE] isA [tRee] and [TrEE] madeOF [wOod] thEn [pinE] madEoF [WooD]'))
-	{
-		throw "Conditional statement shouldn't exist";
-	}
-}
-
 //Test evaluation cache
 UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
 {
 	var conceptNameMapper = new ConceptNameMapper();
-	var totologyManager = new TotologyManager(conceptNameMapper);
 	var complementaryOperatorManager = new ComplementaryOperatorManager(conceptNameMapper);
 	var evaluationCache = new EvaluationCache();
-	var conditionalStatementManager = new ConditionalStatementManager(conceptNameMapper, new ConditionalStatementMemory());
-	var evaluator = new Evaluator(conceptNameMapper, totologyManager, conditionalStatementManager, complementaryOperatorManager, evaluationCache);	
+	var totologyManager = new TotologyManager(conceptNameMapper);
+	var instinct = new Instinct(complementaryOperatorManager);
+	var evaluator = new Evaluator(instinct, conceptNameMapper, totologyManager, complementaryOperatorManager, evaluationCache);	
 	
 	var pine = new Concept("pine");
 	var isa = new Concept("isa");
@@ -273,14 +191,14 @@ UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
 	
 	evaluationCache.setCachedResult(pine, isa, tree, evaluator.resultBeingCurrentlyEvaluated);
 	
-	if (evaluationCache.getCachedResult(pine, isa, tree, evaluator.resultNotInCache) != evaluator.resultBeingCurrentlyEvaluated)
+	if (evaluationCache.getCachedResult(pine, isa, tree, evaluator.resultUnknown) != evaluator.resultBeingCurrentlyEvaluated)
 	{
 		throw 'Statement should be in the process of getting evaluated';
 	}
 	
 	evaluationCache.setCachedResult(pine, isa, tree, evaluator.resultNotBeingCurrentlyEvaluated);
 	
-	if (evaluationCache.getCachedResult(pine, isa, tree, evaluator.resultNotInCache) == evaluator.resultBeingCurrentlyEvaluated)
+	if (evaluationCache.getCachedResult(pine, isa, tree, evaluator.resultUnknown) == evaluator.resultBeingCurrentlyEvaluated)
 	{
 		throw "Statement shouldn't be in the process of getting evaluated";
 	}
@@ -290,12 +208,11 @@ UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
 UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 {
 	var conceptNameMapper = new ConceptNameMapper();
-	var totologyManager = new TotologyManager(conceptNameMapper);
 	var complementaryOperatorManager = new ComplementaryOperatorManager(conceptNameMapper);
 	var evaluationCache = new EvaluationCache();
-	var conditionalStatementManager = new ConditionalStatementManager(conceptNameMapper, new ConditionalStatementMemory());
-	
-	var evaluator = new Evaluator(conceptNameMapper, totologyManager, conditionalStatementManager, complementaryOperatorManager, evaluationCache);
+	var totologyManager = new TotologyManager(conceptNameMapper);
+	var instinct = new Instinct(complementaryOperatorManager);
+	var evaluator = new Evaluator(instinct, conceptNameMapper, totologyManager, complementaryOperatorManager, evaluationCache);
 	
 	var pine = conceptNameMapper.getConcept("pine");
 	var tree = conceptNameMapper.getConcept("tree");
@@ -331,19 +248,9 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	totologyManager.learnStatement("tree madeof wood");
 	totologyManager.learnStatement("wood isa matter");
 	totologyManager.learnStatement("matter madeof energy");
-	
-	conditionalStatementManager.learnStatement('if [pine] isa [tree] and [tree] isa [plant] then [pine] isa [plant]');
-	conditionalStatementManager.learnStatement('if [pine] isa [tree] and [tree] madeof [wood] then [pine] madeof [wood]');
-	conditionalStatementManager.learnStatement('if [tree] madeof [wood] and [wood] madeof [carbon] then [tree] madeof [carbon]');
-	conditionalStatementManager.learnStatement('if [tree] madeof [wood] and [wood] isa [matter] then [tree] madeof [matter]');
-	
 	totologyManager.learnStatement("rain partof state_of_affair");	
-	conditionalStatementManager.learnStatement('if rain partof state_of_affair then cloud partof state_of_affair');
-	
 	totologyManager.learnStatement("joe isa man");
 	totologyManager.learnStatement("joe partof state_of_affair");
-	conditionalStatementManager.learnStatement('if joe isa man or joe isa woman then joe isa human');
-	conditionalStatementManager.learnStatement('if joe isa human and joe partof state_of_affair then joe madeof matter');
 	
 	//Test complementary operators
 	if (!evaluator.evalString("pine isa tree"))
@@ -373,31 +280,6 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 	
 	//Test complementary proposition's proofs
 	if (!evaluator.getProof(tree, someare, pine, true)[0].equals(new Statement(pine, isa, tree, true)))
-		throw 'Wrong proof';
-
-	
-	//Test implicit connection rendering with concrete concepts
-	if (!evaluator.evalString("cloud partof state_of_affair"))
-		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("state_of_affair madeof cloud"))
-		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("joe isa man"))
-		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("joe isa human"))
-		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("joe madeof matter"))
-		throw 'Statement should be true';
-
-
-	//Test implicit connection rendering with concrete concepts proof
-	if (!evaluator.getProof(cloud, partof, state_of_affair, true)[0].equals(new Statement(rain, partof, state_of_affair, true)))
-		throw 'Wrong proof';
-		
-	if (!evaluator.getProof(joe, isa, human, true)[0].equals(new Statement(joe, isa, man, true)))
 		throw 'Wrong proof';
 
 		
