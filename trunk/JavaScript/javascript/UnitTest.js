@@ -10,7 +10,7 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 	this.testTotologyManagerPart2();
 	this.testComplementaryOperatorManager();
 	this.testEvaluationCache();
-	this.testEvaluator();
+	this.testFlattenizer();
 	alert("Unit tests completed.");
 }
 
@@ -183,31 +183,30 @@ UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
 	var evaluationCache = new EvaluationCache();
 	var totologyManager = new TotologyManager(conceptNameMapper);
 	var instinct = new Instinct(complementaryOperatorManager);
-	var evaluator = new Evaluator(instinct, conceptNameMapper, totologyManager, complementaryOperatorManager, evaluationCache);	
 	
 	var pine = new Concept("pine");
 	var isa = new Concept("isa");
 	var tree = new Concept("tree");
 	
-	evaluationCache.setCachedResult(pine, isa, tree, evaluator.resultBeingCurrentlyEvaluated);
+	evaluationCache.setCachedResult(pine, isa, tree, true);
 	
-	if (evaluationCache.getCachedResult(pine, isa, tree, evaluator.resultUnknown) != evaluator.resultBeingCurrentlyEvaluated)
+	if (!evaluationCache.getCachedResult(pine, isa, tree))
 	{
 		throw 'Statement should be in the process of getting evaluated';
 	}
 	
-	evaluationCache.setCachedResult(pine, isa, tree, evaluator.resultNotBeingCurrentlyEvaluated);
+	evaluationCache.setCachedResult(pine, isa, tree, false);
 	
-	if (evaluationCache.getCachedResult(pine, isa, tree, evaluator.resultUnknown) == evaluator.resultBeingCurrentlyEvaluated)
+	if (evaluationCache.getCachedResult(pine, isa, tree))
 	{
 		throw "Statement shouldn't be in the process of getting evaluated";
 	}
 }
 
 //Test evaluator
-UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
+UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 {
-	var conceptNameMapper = new ConceptNameMapper();
+	/*var conceptNameMapper = new ConceptNameMapper();
 	var complementaryOperatorManager = new ComplementaryOperatorManager(conceptNameMapper);
 	var evaluationCache = new EvaluationCache();
 	var totologyManager = new TotologyManager(conceptNameMapper);
@@ -300,5 +299,5 @@ UnitTest.prototype.testEvaluator = function UnitTest_testEvaluator()
 		throw 'Statement should be true';
 	
 	if (!evaluator.evalString("energy partof pine"))
-		throw 'Statement should be true';
+		throw 'Statement should be true';*/
 }

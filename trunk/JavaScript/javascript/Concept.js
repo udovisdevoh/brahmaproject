@@ -4,13 +4,13 @@ function Concept(defaultConceptName)
 	//(string) Default concept name (for debugging and etc)
 	this.defaultConceptName = defaultConceptName;
 	
-	//(Array) Totology connections as subject.connections[verb][complementIndex]complement
-	this.totologyConnections = Array();
+	//(HashSet<Concept, VerbBranch>) Totology connections
+	this.totologyConnections = new Hash();
 	
-	//(Array) Implicit (non-totological) connections as subject.connections[verb][complementIndex]complement
-	this.implicitConnections = Array();
+	//(HashSet<Concept, VerbBranch>) Implicit (non-totological) connections
+	this.implicitConnections = new Hash();
 		
-	//(Array of concept) Complementary operators (should be only one but who knows)
+	//(Array of Concept) Complementary operators (should be only one but who knows)
 	this.complementaryOperators = Array();
 }
 

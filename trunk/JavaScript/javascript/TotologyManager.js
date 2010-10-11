@@ -89,38 +89,50 @@ TotologyManager.prototype.testStatement = function TotologyManager_testStatement
 //Add a connection from subject through verb to complement
 TotologyManager.prototype.addConnection = function TotologyManager_addConnection(subject, verb, complement)
 {
-	if (subject.totologyConnections[verb] == null)
+	var verbBranch;
+	if (subject.totologyConnections.hasItem(verb))
 	{
-		subject.totologyConnections[verb] = Array();
+		verbBranch = subject.totologyConnections.getItem(verb);
 	}
-	if (subject.totologyConnections[verb].indexOf(complement) == -1)
+	else
 	{
-		subject.totologyConnections[verb].push(complement);
+		verbBranch = new VerbBranch();
+		subject.totologyConnections.setItem(verb, verbBranch);
 	}
+	
+	verbBranch.addComplement(complement);
 }
 
 //Remove a connection from subject through verb to complement
 TotologyManager.prototype.removeConnection = function TotologyManager_removeConnection(subject, verb, complement)
 {
-	if (subject.totologyConnections[verb] != null)
+	var verbBranch;
+	if (subject.totologyConnections.hasItem(verb))
 	{
-		var index = subject.totologyConnections[verb].indexOf(complement);
-		if (index != -1)
-		{
-			subject.totologyConnections[verb].splice(index, 1);
-		}
+		verbBranch = subject.totologyConnections.getItem(verb);
 	}
+	else
+	{
+		verbBranch = new VerbBranch();
+		subject.totologyConnections.setItem(verb, verbBranch);
+	}
+	
+	verbBranch.removeComplement(complement);
 }
 
 //Add a connection from subject through verb to complement
 TotologyManager.prototype.testConnection = function TotologyManager_testConnection(subject, verb, complement)
 {
-	if (subject.totologyConnections == null || subject.totologyConnections[verb] == null)
+	var verbBranch;
+	if (subject.totologyConnections.hasItem(verb))
 	{
-		return false;
+		verbBranch = subject.totologyConnections.getItem(verb);
 	}
 	else
 	{
-		return subject.totologyConnections[verb].indexOf(complement) != -1;
+		verbBranch = new VerbBranch();
+		subject.totologyConnections.setItem(verb, verbBranch);
 	}
+	
+	return verbBranch.hasComplement(complement);
 }
