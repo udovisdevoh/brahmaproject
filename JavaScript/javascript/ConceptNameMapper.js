@@ -2,10 +2,10 @@
 function ConceptNameMapper()
 {
 	//(Array) Map name to concept
-	this.mapNameToConcept = Array();
+	this.mapNameToConcept = new Hash();
 	
 	//(Array) Map concept to name
-	this.mapConceptToName = Array();
+	this.mapConceptToName = new Hash();
 	
 	//(TotologyManager)
 	this.totologyManager = new TotologyManager();
@@ -17,16 +17,17 @@ ConceptNameMapper.prototype.getConcept = function ConceptNameMapper_getConcept(c
 	conceptName = conceptName.toLowerCase();
 
 	var concept;
-	if (this.mapNameToConcept[conceptName] == null)
+	if (!this.mapNameToConcept.hasItem(conceptName))
 	{
 		concept = new Concept(conceptName);
-		this.mapNameToConcept[conceptName] = concept;
-		this.mapConceptToName[concept] = Array();
-		this.mapConceptToName[concept].push(conceptName);
+		this.mapNameToConcept.setItem(conceptName, concept);		
+		var conceptNameList = Array();
+		conceptNameList.push(conceptName);
+		this.mapConceptToName.setItem(concept, conceptNameList);
 	}
 	else
 	{
-		concept = this.mapNameToConcept[conceptName];
+		concept = this.mapNameToConcept.getItem(conceptName);
 	}
 	return concept;
 }
@@ -53,9 +54,11 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 		}
 	}
 	
-	this.mapNameToConcept[conceptName2] = concept1;
-	this.mapConceptToName[concept1].push(conceptName2);
-	this.mapConceptToName.splice(concept2, 1);
+	this.mapNameToConcept.setItem(conceptName2, concept1);
+	var nameList = new Array();
+	nameList.push(conceptName2);
+	this.mapConceptToName.setItem(concept1, nameList);
+	this.mapConceptToName.removeItem(concept2);
 }
 
 //Split two concept names so they don't point to the same concept anymore
@@ -82,7 +85,8 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 		}
 	}
 	
-	this.mapNameToConcept[conceptName2] = concept2;
-	this.mapConceptToName[concept2] = Array();
-	this.mapConceptToName[concept2].push(conceptName2);
+	this.mapNameToConcept.setItem(conceptName2, concept2);
+	var nameList = Array();
+	nameList.push(conceptName2);
+	this.mapConceptToName.setItem(concept2, nameList);
 }
