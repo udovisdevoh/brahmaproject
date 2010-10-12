@@ -30,6 +30,11 @@ TotologyManager.prototype.learnStatement = function TotologyManager_learnStateme
 		verb = this.conceptNameMapper.getConcept(wordList[1]);
 		complement = this.conceptNameMapper.getConcept(wordList[2]);
 		this.addConnection(subject, verb, complement);
+		for (var index1 in verb.complementaryOperators)
+		{
+			var complementaryVerb = verb.complementaryOperators[index1];
+			this.addConnection(complement, complementaryVerb, subject);	
+		}
 	}
 	else
 	{
@@ -42,6 +47,11 @@ TotologyManager.prototype.learnStatement = function TotologyManager_learnStateme
 		verb = this.conceptNameMapper.getConcept(wordList[2]);
 		complement = this.conceptNameMapper.getConcept(wordList[3]);
 		this.removeConnection(subject, verb, complement);
+		for (var index1 in verb.complementaryOperators)
+		{
+			var complementaryVerb = verb.complementaryOperators[index1];
+			this.removeConnection(complement, complementaryVerb, subject);	
+		}
 	}
 }
 
