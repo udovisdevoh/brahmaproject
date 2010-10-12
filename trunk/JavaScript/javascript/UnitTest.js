@@ -188,16 +188,16 @@ UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
 	var isa = new Concept("isa");
 	var tree = new Concept("tree");
 	
-	evaluationCache.setCachedResult(pine, isa, tree, true);
+	evaluationCache.setCachedResult(pine, isa, true);
 	
-	if (!evaluationCache.getCachedResult(pine, isa, tree))
+	if (!evaluationCache.getCachedResult(pine, isa))
 	{
 		throw 'Statement should be in the process of getting evaluated';
 	}
 	
-	evaluationCache.setCachedResult(pine, isa, tree, false);
+	evaluationCache.setCachedResult(pine, isa, false);
 	
-	if (evaluationCache.getCachedResult(pine, isa, tree))
+	if (evaluationCache.getCachedResult(pine, isa))
 	{
 		throw "Statement shouldn't be in the process of getting evaluated";
 	}
@@ -214,6 +214,8 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var tree = conceptNameMapper.getConcept("tree");
 	var plant = conceptNameMapper.getConcept("plant");
 	var wood = conceptNameMapper.getConcept("wood");
+	var carbon = conceptNameMapper.getConcept("carbon");
+	var atom = conceptNameMapper.getConcept("atom");
 	var matter = conceptNameMapper.getConcept("matter");
 	var rain = conceptNameMapper.getConcept("rain");
 	var cloud = conceptNameMapper.getConcept("cloud");
@@ -238,10 +240,13 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("water isa liquid");
 	totologyManager.learnStatement("tree madeof wood");
 	totologyManager.learnStatement("wood isa matter");
+	totologyManager.learnStatement("wood madeof carbon");
 	totologyManager.learnStatement("matter madeof energy");
 	totologyManager.learnStatement("rain partof state_of_affair");	
 	totologyManager.learnStatement("joe isa man");
 	totologyManager.learnStatement("joe partof state_of_affair");
+	totologyManager.learnStatement("carbon isa atom");
+	totologyManager.learnStatement("atom madeof matter");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -267,12 +272,12 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	}
 
 	//Test self recursive operator
-	if (!flattenizer.testConnection(tree, madeof, matter))
+	if (!flattenizer.testConnection(tree, madeof, carbon))
 	{
 		throw 'Statement should be true';
 	}
 	
-	throw 'Add more unit tests';
+	alert('Add more unit tests');
 	
 	/*if (!evaluator.evalString("tree madeof wood"))
 		throw 'Statement should be true';
