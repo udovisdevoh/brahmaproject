@@ -17,19 +17,21 @@ function Flattenizer(instinct)
 //(Bool) whether connection exist as an implicit connection
 Flattenizer.prototype.testConnection = function Flattenizer_testConnection(subject, verb, complement)
 {
-	this.circularEvaluationPreventionCache.setCachedResult(subject, verb, complement, true);
-	
-	var totologicBranch = subject.getTotologicBranch(verb);
 	var implicitBranch = subject.getImplicitBranch(verb);
 	
 	if (!implicitBranch.isFlat)
 	{
+		var totologicBranch = subject.getTotologicBranch(verb);
+		this.circularEvaluationPreventionCache.setCachedResult(subject, verb, complement, true);
+		
 		this.copyFromTotologicBranch(totologicBranch, implicitBranch);
-		this.flattenBranch(subject, implicitBranch);
+		this.instinct.render(this, subject, verb, implicitBranch);		
 		implicitBranch.isFlat = true;
+		
+		this.circularEvaluationPreventionCache.setCachedResult(subject, verb, complement, false);
 	}
 	
-	this.circularEvaluationPreventionCache.setCachedResult(subject, verb, complement, false);
+	
 	
 	return implicitBranch.hasComplement(complement);
 }
@@ -44,10 +46,4 @@ Flattenizer.prototype.copyFromTotologicBranch = function Flattenizer_copyFromTot
 			implicitBranch.addComplement(complement);
 		}
 	}
-}
-
-//(Void) Flatten implicit branch
-Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(subject, implicitBranch)
-{
-	throw 'Implement Flattenizer.flattenBranch()';	
 }

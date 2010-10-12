@@ -32,49 +32,42 @@ function Instinct(complementaryOperatorManager)
 
 //Constant as: Evaluator.resultTrue, Evaluator.resultFalse,
 //Evaluator.resultUnknown
-Instinct.prototype.render = function Instinct_render(evaluator, subject, verb, complement)
+Instinct.prototype.render = function Instinct_render(flattenizer, subject, verb, implicitBranch)
 {
 	//Render stuff like: if [tree] [madeof] [wood] and [wood] [madeof] [water] then [tree] [madeof] [water]
-	this.renderSelfRecursiveOperator(evaluator, this.madeof, subject, verb, complement);
+	if (verb == this.madeof)
+		this.renderSelfRecursiveOperator(flattenizer, subject, verb, implicitBranch);
 	
 	//Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
 	//todo
 	
 	//Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [pine] [madeof] [matter]
 	//todo
-
-	throw 'Implement Instinct.render()';
 }
 
 //Constant as: Evaluator.resultTrue, Evaluator.resultFalse,
 //Render stuff like: if [tree] [madeof] [wood] and [wood] [madeof] [water] then [tree] [madeof] [water]
-Instinct.prototype.renderSelfRecursiveOperator = function Instinct_renderSelfRecursiveOperator(evaluator, recursiveOperator, subjectToTest, verbToTest, complementToTest)
+Instinct.prototype.renderSelfRecursiveOperator = function Instinct_renderSelfRecursiveOperator(flattenizer, subjectToTest, selfRecursiveVerb, implicitBranch)
 {
-	for (var index1 in this.conceptNameMapper.mapConceptToName)
+	for (var index1 in implicitBranch.complementList)
 	{
-		var immediateComplement = this.conceptNameMapper.mapConceptToName[index1];
-		for (var index2 in this.conceptNameMapper.mapConceptToName)
+		var immediateComplement = implicitBranch.complementList[index1];
+		
+		var remoteImplicitBranch = immediateComplement.getImplicitBranch(selfRecursiveVerb);
+		
+		if (!remoteImplicitBranch.isFlat)
 		{
-			var remoteComplement = this.conceptNameMapper.mapConceptToName[index2];
+			throw 'Must flatten branch';
+			//if (!flattenizer.circularEvaluationPreventionCache.getCachedResult(subjectToTest, selfRecursiveVerb, immediateComplement))
+		}
+		
+		for (var index2 in remoteImplicitBranch.complementList)
+		{
+			var remoteComplement = remoteImplicityBranch.complementList[index1];
 			
-			if (evaluator.circularReasoningPreventionMemory.getCachedResult(subjectToTest, recursiveOperator, immediateComplement, evaluator.resultUnknown) != evaluator.resultBeingCurrentlyEvaluated)
-			{
-				throw "mofo";
-				if (evaluator.circularReasoningPreventionMemory.getCachedResult(immediateComplement, recursiveOperator, remoteComplement, evaluator.resultUnknown) != evaluator.resultBeingCurrentlyEvaluated)
-				{
-					var immediateResult = evaluator.eval(subjectToTest, recursiveOperator, immediateComplement);
-					var remoteResult = evaluator.eval(immediateComplement, recursiveOperator, remoteComplement);
-					if (immediateResult == evaluator.resultTrue && remoteResult == evaluator.resultTrue)
-					{			
-						evaluator.proofCache.addProofArgument(subjectToTest, verbToTest, complementToTest, subjectToTest, recursiveOperator, immediateComplement, immediateResult == evaluator.resultTrue);
-						evaluator.proofCache.addProofArgument(subjectToTest, verbToTest, complementToTest, immediateComplement, recursiveOperator, remoteComplement, remoteResult == evaluator.resultTrue);
-						return evaluator.resultTrue;
-					}
-				}
-			}
-			
+			flattenizer.proofCache.addProofArgument(subjectToTest, selfRecursiveVerb, remoteComplement, subjectToTest, recursiveOperator, immediateComplement, true);
+			flattenizer.proofCache.addProofArgument(subjectToTest, selfRecursiveVerb, remoteComplement, immediateComplement, recursiveOperator, remoteComplement, true);
+			implicitBranch.addComplement(remoteComplement);
 		}
 	}
-	
-	return evaluator.resultUnknown;
 }
