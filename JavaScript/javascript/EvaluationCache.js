@@ -9,36 +9,26 @@ function EvaluationCache()
 
 //Constant as: Evaluator.resultTrue, Evaluator.resultFalse,
 //Evaluator.resultUnknown
-EvaluationCache.prototype.getCachedResult = function EvaluationCache_getCachedResult(subject, verb, complement)
+EvaluationCache.prototype.getCachedResult = function EvaluationCache_getCachedResult(subject, verb)
 {
 	if (!this.cachedData.hasItem(subject))
 		this.cachedData.setItem(subject, new Hash());
 
 	var subjectBranch = this.cachedData.getItem(subject);
-	
-	if (!subjectBranch.hasItem(verb))
-		subjectBranch.setItem(verb, new Hash());
-	
-	var verbBranch = subjectBranch.getItem(verb);
-	
-	if (verbBranch.hasItem(complement))
-		return verbBranch.getItem(complement);
+		
+	if (subjectBranch.hasItem(verb))
+		return subjectBranch.getItem(verb);
 	else
 		return false;
 }
 
 //Void: set value in cache
-EvaluationCache.prototype.setCachedResult = function EvaluationCache_setCachedResult(subject, verb, complement, resultToSet)
+EvaluationCache.prototype.setCachedResult = function EvaluationCache_setCachedResult(subject, verb, resultToSet)
 {
 	if (!this.cachedData.hasItem(subject))
 		this.cachedData.setItem(subject, new Hash());
 
 	var subjectBranch = this.cachedData.getItem(subject);
 	
-	if (!subjectBranch.hasItem(verb))
-		subjectBranch.setItem(verb, new Hash());
-	
-	var verbBranch = subjectBranch.getItem(verb);
-	
-	verbBranch.setItem(complement, resultToSet);
+	subjectBranch.setItem(verb, resultToSet);
 }
