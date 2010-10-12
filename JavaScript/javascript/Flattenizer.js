@@ -25,8 +25,7 @@ Flattenizer.prototype.testConnection = function Flattenizer_testConnection(subje
 	if (!implicitBranch.isFlat)
 	{
 		this.copyFromTotologicBranch(totologicBranch, implicitBranch);
-		this.renderComplementaryConnection(subject, verb, implicitBranch);
-		//this.flattenBranch(subject, implicitBranch);
+		this.flattenBranch(subject, implicitBranch);
 		implicitBranch.isFlat = true;
 	}
 	
@@ -43,29 +42,6 @@ Flattenizer.prototype.copyFromTotologicBranch = function Flattenizer_copyFromTot
 		if (complement instanceof Concept)
 		{
 			implicitBranch.addComplement(complement);
-		}
-	}
-}
-
-//(Void) Render complementary operator connections
-Flattenizer.prototype.renderComplementaryConnection = function Flattenizer_renderComplementaryConnection(subject, verb, implicitBranch)
-{
-	for (var index1 in verb.complementaryOperators)
-	{
-		var complementaryVerb = verb.complementaryOperators[index1];
-		for (var complement in this.conceptNameMapper.mapConceptToName)
-		{
-			if (complement instanceof Concept)
-			{			
-				if (!this.circularEvaluationPreventionCache.getCachedResult(complement, complementaryVerb, subject))
-				{
-					if (this.testConnection(complement, complementaryVerb, subject))
-					{
-						implicitBranch.addComplement(complement);
-						this.proofCache.addProofArgument(subject, verb, complement, complement, complementaryVerb, subject, true);
-					}
-				}
-			}
 		}
 	}
 }

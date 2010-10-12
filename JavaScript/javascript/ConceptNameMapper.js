@@ -1,11 +1,14 @@
 //Maps concept to names and names to concepts
 function ConceptNameMapper()
 {
-	//(Array) Map name to concept
+	//(Hash<String, Concept>) Map name to concept
 	this.mapNameToConcept = new Hash();
 	
-	//(Array) Map concept to name
+	//(Hash<Concept, Array of String>) Map concept to name
 	this.mapConceptToName = new Hash();
+	
+	//(Array) List of concepts
+	this.conceptList = Array();
 	
 	//(TotologyManager)
 	this.totologyManager = new TotologyManager();
@@ -24,6 +27,7 @@ ConceptNameMapper.prototype.getConcept = function ConceptNameMapper_getConcept(c
 		var conceptNameList = Array();
 		conceptNameList.push(conceptName);
 		this.mapConceptToName.setItem(concept, conceptNameList);
+		this.conceptList.push(concept);
 	}
 	else
 	{
@@ -89,4 +93,5 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	var nameList = Array();
 	nameList.push(conceptName2);
 	this.mapConceptToName.setItem(concept2, nameList);
+	this.conceptList.push(concept2);
 }

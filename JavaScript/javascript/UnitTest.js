@@ -214,6 +214,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var tree = conceptNameMapper.getConcept("tree");
 	var plant = conceptNameMapper.getConcept("plant");
 	var wood = conceptNameMapper.getConcept("wood");
+	var matter = conceptNameMapper.getConcept("matter");
 	var rain = conceptNameMapper.getConcept("rain");
 	var cloud = conceptNameMapper.getConcept("cloud");
 	var joe = conceptNameMapper.getConcept("joe");
