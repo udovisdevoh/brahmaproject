@@ -210,6 +210,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var totologyManager = new TotologyManager(conceptNameMapper);
 	var flattenizer = new Flattenizer(new Instinct(new ComplementaryOperatorManager(conceptNameMapper)));
 
+	var forest = conceptNameMapper.getConcept("forest");
 	var pine = conceptNameMapper.getConcept("pine");
 	var tree = conceptNameMapper.getConcept("tree");
 	var plant = conceptNameMapper.getConcept("plant");
@@ -247,6 +248,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("joe partof state_of_affair");
 	totologyManager.learnStatement("carbon isa atom");
 	totologyManager.learnStatement("atom madeof matter");
+	totologyManager.learnStatement("forest madeof tree");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -271,8 +273,19 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be false';
 	}
 
-	//Test self recursive operator
+	//Test self recursive operator on depth 1
 	if (!flattenizer.testConnection(tree, madeof, carbon))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(forest, madeof, wood))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//Test self recursive operator on depth 2
+	if (!flattenizer.testConnection(forest, madeof, carbon))
 	{
 		throw 'Statement should be true';
 	}

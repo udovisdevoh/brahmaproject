@@ -44,16 +44,23 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 	this.circularEvaluationPreventionCache.setCachedResult(subject, verb, true);
 	this.copyFromTotologicBranch(totologicBranch, implicitBranch);
 	
-	//Render stuff like: if [tree] [madeof] [wood] and [wood] [madeof] [water] then [tree] [madeof] [water]
-	if (verb == this.instinct.madeof)
-		this.renderSelfRecursiveOperator(subject, verb, implicitBranch);
+	var howManyComplement;
+	
+	do
+	{
+		howManyComplement = implicitBranch.complementList.length;
+	
+		//Render stuff like: if [tree] [madeof] [wood] and [wood] [madeof] [water] then [tree] [madeof] [water]
+		if (verb == this.instinct.madeof)
+			this.renderSelfRecursiveOperator(subject, verb, implicitBranch);
+			
 		
-	
-	//Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
-	//todo
-	
-	//Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [pine] [madeof] [matter]
-	//todo
+		//Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
+		//todo
+		
+		//Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [pine] [madeof] [matter]
+		//todo
+	} while (howManyComplement < implicitBranch.complementList.length);
 	
 	implicitBranch.isFlat = true;
 	this.circularEvaluationPreventionCache.setCachedResult(subject, verb, false);
@@ -76,7 +83,7 @@ Flattenizer.prototype.renderSelfRecursiveOperator = function Flattenizer_renderS
 			
 			for (var index2 in remoteImplicitBranch.complementList)
 			{
-				var remoteComplement = remoteImplicitBranch.complementList[index1];
+				var remoteComplement = remoteImplicitBranch.complementList[index2];
 				
 				this.proofCache.addProofArgument(subjectToTest, selfRecursiveVerb, remoteComplement, subjectToTest, selfRecursiveVerb, immediateComplement, true);
 				this.proofCache.addProofArgument(subjectToTest, selfRecursiveVerb, remoteComplement, immediateComplement, selfRecursiveVerb, remoteComplement, true);
