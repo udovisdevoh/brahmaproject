@@ -231,6 +231,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var matter = conceptNameMapper.getConcept("matter");
 	var celestial_body = conceptNameMapper.getConcept("celestial_body");
 	var rain = conceptNameMapper.getConcept("rain");
+	var chemical_reaction = conceptNameMapper.getConcept("chemical_reaction");
 	var cloud = conceptNameMapper.getConcept("cloud");
 	var joe = conceptNameMapper.getConcept("joe");
 	var planet = conceptNameMapper.getConcept("planet");
@@ -280,6 +281,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("fire madeof energy");
 	totologyManager.learnStatement("fire madeof gas");
 	totologyManager.learnStatement("gas isa matter");
+	totologyManager.learnStatement("fire isa chemical_reaction");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -484,6 +486,16 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	if (!flattenizer.testConnection(matter, partof, sun))
 	{
 		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(chemical_reaction, partof, star))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(chemical_reaction, partof, celestial_body))
+	{
+		throw 'Statement should be false';
 	}
 	
 	alert('Add more unit tests');
