@@ -214,6 +214,9 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var ecosystem = conceptNameMapper.getConcept("ecosystem");
 	var earth = conceptNameMapper.getConcept("earth");
 	var sun = conceptNameMapper.getConcept("sun");
+	var fire = conceptNameMapper.getConcept("fire");
+	var energy = conceptNameMapper.getConcept("energy");
+	var gas = conceptNameMapper.getConcept("gas");
 	var solar_system = conceptNameMapper.getConcept("solar_system");
 	var milky_way = conceptNameMapper.getConcept("milky_way");
 	var universe = conceptNameMapper.getConcept("universe");
@@ -268,18 +271,18 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("universe madeof milky_way");
 	totologyManager.learnStatement("multiverse madeof universe");
 	totologyManager.learnStatement("earth isa planet");
+	totologyManager.learnStatement("star madeof fire");
 	totologyManager.learnStatement("sun isa star");
+	totologyManager.learnStatement("star madeof fire");
 	totologyManager.learnStatement("star isa celestial_body");
 	totologyManager.learnStatement("planet isa celestial_body");
 	totologyManager.learnStatement("forest isa ecosystem");
+	totologyManager.learnStatement("fire madeof energy");
+	totologyManager.learnStatement("fire madeof gas");
+	totologyManager.learnStatement("gas isa matter");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
-	{
-		throw 'Statement should be true because we told so';
-	}
-	
-	if (!flattenizer.testConnection(pine, isa, tree))
 	{
 		throw 'Statement should be true because we told so';
 	}
@@ -454,6 +457,31 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	}
 	
 	if (!flattenizer.testConnection(celestial_body, someare, earth))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(tree, partof, universe))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(sun, madeof, matter))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(gas, partof, star))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(gas, partof, sun))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(matter, partof, sun))
 	{
 		throw 'Statement should be true';
 	}
