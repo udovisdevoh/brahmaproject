@@ -220,6 +220,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var pine = conceptNameMapper.getConcept("pine");
 	var tree = conceptNameMapper.getConcept("tree");
 	var plant = conceptNameMapper.getConcept("plant");
+	var lifeform = conceptNameMapper.getConcept("lifeform");
 	var wood = conceptNameMapper.getConcept("wood");
 	var carbon = conceptNameMapper.getConcept("carbon");
 	var atom = conceptNameMapper.getConcept("atom");
@@ -228,6 +229,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var cloud = conceptNameMapper.getConcept("cloud");
 	var joe = conceptNameMapper.getConcept("joe");
 	var human = conceptNameMapper.getConcept("human");
+	var water = conceptNameMapper.getConcept("water");
 	var man = conceptNameMapper.getConcept("man");
 	var woman = conceptNameMapper.getConcept("woman");
 	var state_of_affair = conceptNameMapper.getConcept("state_of_affair");
@@ -337,6 +339,32 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Wrong proof';
 	if (!flattenizer.getProof(multiverse, madeof, carbon, true)[1].equals(new Statement(universe, madeof, carbon, true)))
 		throw 'Wrong proof';
+		
+	//Test self recursive operator on depth 1
+	if (!flattenizer.testConnection(pine, isa, plant))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(lifeform, madeof, water))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(pine, isa, lifeform))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(tree, madeof, matter))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(pine, madeof, wood))
+	{
+		throw 'Statement should be true';
+	}
 		
 	alert('Add more unit tests');
 	
