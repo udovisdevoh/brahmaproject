@@ -211,6 +211,12 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var flattenizer = new Flattenizer(new Instinct(new ComplementaryOperatorManager(conceptNameMapper)));
 
 	var forest = conceptNameMapper.getConcept("forest");
+	var earth = conceptNameMapper.getConcept("earth");
+	var sun = conceptNameMapper.getConcept("sun");
+	var solar_system = conceptNameMapper.getConcept("solar_system");
+	var milky_way = conceptNameMapper.getConcept("milky_way");
+	var universe = conceptNameMapper.getConcept("universe");
+	var multiverse = conceptNameMapper.getConcept("multiverse");
 	var pine = conceptNameMapper.getConcept("pine");
 	var tree = conceptNameMapper.getConcept("tree");
 	var plant = conceptNameMapper.getConcept("plant");
@@ -249,6 +255,12 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("carbon isa atom");
 	totologyManager.learnStatement("atom madeof matter");
 	totologyManager.learnStatement("forest madeof tree");
+	totologyManager.learnStatement("earth madeof forest");
+	totologyManager.learnStatement("solar_system madeof earth");
+	totologyManager.learnStatement("solar_system madeof sun");
+	totologyManager.learnStatement("milky_way madeof solar_system");
+	totologyManager.learnStatement("universe madeof milky_way");
+	totologyManager.learnStatement("multiverse madeof universe");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -286,6 +298,36 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	
 	//Test self recursive operator on depth 2
 	if (!flattenizer.testConnection(forest, madeof, carbon))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//Test self recursive operator on depth 3
+	if (!flattenizer.testConnection(earth, madeof, carbon))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//Test self recursive operator on depth 4
+	if (!flattenizer.testConnection(solar_system, madeof, carbon))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//Test self recursive operator on depth 5
+	if (!flattenizer.testConnection(milky_way, madeof, carbon))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//Test self recursive operator on depth 6
+	if (!flattenizer.testConnection(universe, madeof, carbon))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//Test self recursive operator on depth 7
+	if (!flattenizer.testConnection(multiverse, madeof, carbon))
 	{
 		throw 'Statement should be true';
 	}
