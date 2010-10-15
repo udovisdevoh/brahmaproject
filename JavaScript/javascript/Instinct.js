@@ -13,6 +13,8 @@ function Instinct(complementaryOperatorManager)
 	this.madeof = this.conceptNameMapper.getConcept("madeof");
 	this.partof = this.conceptNameMapper.getConcept("partof");
 	this.contradict = this.conceptNameMapper.getConcept("contradict");
+	this.make = this.conceptNameMapper.getConcept("make");
+	this.madeby = this.conceptNameMapper.getConcept("madeby");
 	
 	//Construction of the instinct
 	this.complementaryOperatorManager.add("contradict","contradict");
