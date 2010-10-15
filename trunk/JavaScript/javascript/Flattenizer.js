@@ -59,7 +59,7 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		//Self recursive verbs
 		//Render stuff like: if [tree] [madeof] [wood] and [wood] [madeof] [water] then [tree] [madeof] [water]
 		// or if [wood] [partof] [tree] and [water] [partof] [wood] then [water] [partof] [tree]
-		if (verb == this.instinct.madeof || verb == this.instinct.partof)
+		if (verb == this.instinct.madeof || verb == this.instinct.partof || verb == this.instinct.someare)
 		{
 			this.renderFromPreRecursiveOperator(subject, verb, verb, implicitBranch);
 		}
