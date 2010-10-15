@@ -71,7 +71,7 @@ ProofCache.prototype.getProof = function ProofCache_getProof(subject, verb, comp
 	return proof;
 }
 
-//(Void) Reset proof
+/*//(Void) Reset proof
 ProofCache.prototype.resetProof = function ProofCache_resetProof(subject, verb, complement)
 {
 	if (!this.cachedData.hasItem(subject))
@@ -85,4 +85,4 @@ ProofCache.prototype.resetProof = function ProofCache_resetProof(subject, verb, 
 	var verbBranch = subjectBranch.getItem(verb);
 	
 	verbBranch.clear();
-}
+}*/

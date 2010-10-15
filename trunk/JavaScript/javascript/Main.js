@@ -131,7 +131,8 @@ function Hash()
 
 	this.clear = function()
 	{
-		for (var i in this.items) {
+		for (var i in this.items)
+		{
 			delete this.items[i];
 		}
 
