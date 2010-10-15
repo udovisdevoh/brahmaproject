@@ -85,6 +85,7 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
 		}
 		
+		//For some symmetric operators like "contradict"
 		if (verb == this.instinct.contradict)
 		{
 			//if [female] contradict [male] and [male] someare [man] then [female] contradict [man]
@@ -167,10 +168,4 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 			}
 		}
 	}
-}
-
-//(Void) Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
-Flattenizer.prototype.renderFromComplementaryOperator = function Flattenizer_renderFromComplementaryOperator(subjectToRender, verbToRender, implicitBranch)
-{
-	throw 'Implement Flattenizer.renderFromComplementaryOperator()';
 }
