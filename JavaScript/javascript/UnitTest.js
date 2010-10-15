@@ -522,12 +522,27 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(joe, contradict, female))
+	if (!flattenizer.testConnection(joe, isa, male))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(female, contradict, joe))
+	if (!flattenizer.testConnection(female, contradict, man))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(man, contradict, female))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(male, contradict, woman))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(female, someare, woman))
 	{
 		throw 'Statement should be true';
 	}
@@ -537,7 +552,12 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(joe, contradict, girl))
+	if (!flattenizer.testConnection(joe, contradict, female))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(female, contradict, joe))
 	{
 		throw 'Statement should be true';
 	}
@@ -551,6 +571,22 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	{
 		throw 'Statement should be false';
 	}
+	
+	if (flattenizer.testConnection(man, contradict, joe))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(joe, contradict, girl))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//Contradiction proofs
+	if (!flattenizer.getProof(joe, contradict, girl, true)[0].equals(new Statement(joe, isa, man, true)))
+		throw 'Wrong proof';
+	if (!flattenizer.getProof(joe, contradict, girl, true)[1].equals(new Statement(man, contradict, girl, true)))
+		throw 'Wrong proof';
 	
 	alert('Add more unit tests');
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
