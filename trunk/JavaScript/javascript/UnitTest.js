@@ -235,8 +235,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var cloud = conceptNameMapper.getConcept("cloud");
 	var joe = conceptNameMapper.getConcept("joe");
 	var planet = conceptNameMapper.getConcept("planet");
+	var girl = conceptNameMapper.getConcept("girl");
 	var star = conceptNameMapper.getConcept("star");
 	var human = conceptNameMapper.getConcept("human");
+	var male = conceptNameMapper.getConcept("male");
+	var female = conceptNameMapper.getConcept("female");
 	var water = conceptNameMapper.getConcept("water");
 	var man = conceptNameMapper.getConcept("man");
 	var woman = conceptNameMapper.getConcept("woman");
@@ -245,6 +248,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var someare = conceptNameMapper.getConcept("someare");
 	var madeof = conceptNameMapper.getConcept("madeof");
 	var partof = conceptNameMapper.getConcept("partof");
+	var banana = conceptNameMapper.getConcept("banana");
 	var contradict = conceptNameMapper.getConcept("contradict");
 		
 	totologyManager.learnStatement("pine isa tree");
@@ -282,6 +286,15 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("fire madeof gas");
 	totologyManager.learnStatement("gas isa matter");
 	totologyManager.learnStatement("fire isa chemical_reaction");
+	totologyManager.learnStatement("male contradict female");
+	totologyManager.learnStatement("animal contradict vegetable");
+	totologyManager.learnStatement("human isa animal");
+	totologyManager.learnStatement("man isa human");
+	totologyManager.learnStatement("woman isa human");
+	totologyManager.learnStatement("man isa male");
+	totologyManager.learnStatement("woman isa female");
+	totologyManager.learnStatement("girl isa woman");
+	totologyManager.learnStatement("banana isa vegetable");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -498,8 +511,45 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be false';
 	}
 	
+	//Testing contradict
+	if (!flattenizer.testConnection(male, contradict, female))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(joe, contradict, female))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(female, contradict, joe))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(man, contradict, woman))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(joe, contradict, girl))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(joe, contradict, banana))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(joe, contradict, man))
+	{
+		throw 'Statement should be false';
+	}
+	
 	alert('Add more unit tests');
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
+	//Isa must cant contradict
 	
 	/*if (!evaluator.evalString("tree madeof wood"))
 		throw 'Statement should be true';

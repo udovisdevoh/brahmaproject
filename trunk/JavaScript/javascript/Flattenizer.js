@@ -78,12 +78,10 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		//For some operators (like partof) the [operator] is, it must use someare recursively to expand its connections
 		else if (verb == this.instinct.someare || verb == this.instinct.partof)
 		{
-			//Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [tree] [madeof] [matter]
-			//BUT NOT: if [tree] [partof] [forest] and [forest] isa [ecosystem] then [tree] [partof] [ecosystem]
-			//because it would mean that all ecosystems contain tree
+			//Render stuff like: if [wood] [partof] [tree] and [matter] someare [wood] then [matter] [partof] [tree]
 			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
 			
-			//Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
+			//Render stuff like: if [tree] someare [pine] and [wood] [partof] [tree] then [wood] [partof] [pine]
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
 		}
 		
