@@ -4,6 +4,9 @@ function VerbBranch()
 	//(Bool) whether the branch is flat (needs to be flattenized when not flat)
 	this.isFlat = false;
 	
+	//(Bool) whether the branch is currently locked
+	this.isLocked = false;
+	
 	//(Array of concept) list of complements
 	this.complementList = Array();
 }
