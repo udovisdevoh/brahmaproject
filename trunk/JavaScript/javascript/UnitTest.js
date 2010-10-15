@@ -361,10 +361,21 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
+	if (!flattenizer.testConnection(pine, madeof, matter))
+	{
+		throw 'Statement should be true';
+	}
+	
 	if (!flattenizer.testConnection(pine, madeof, wood))
 	{
 		throw 'Statement should be true';
 	}
+	
+	//Test self recursive operator's proof
+	if (!flattenizer.getProof(pine, madeof, wood, true)[0].equals(new Statement(pine, isa, tree, true)))
+		throw 'Wrong proof';
+	if (!flattenizer.getProof(pine, madeof, wood, true)[1].equals(new Statement(tree, madeof, wood, true)))
+		throw 'Wrong proof';
 		
 	alert('Add more unit tests');
 	
