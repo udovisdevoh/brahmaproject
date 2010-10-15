@@ -23,6 +23,13 @@ Flattenizer.prototype.testConnection = function Flattenizer_testConnection(subje
 	return implicitBranch.hasComplement(complement);
 }
 
+//(Array of statement)
+//Get proof for statement
+Flattenizer.prototype.getProof = function Flattenizer_getProof(subject, verb, complement, isPositive)
+{
+	return this.proofCache.getProof(subject, verb, complement, isPositive);
+}
+
 Flattenizer.prototype.copyFromTotologicBranch = function Flattenizer_copyFromTotologicBranch(totologicBranch, implicitBranch)
 {
 	for (var index in totologicBranch.complementList)
@@ -49,19 +56,21 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 	{
 		howManyComplement = implicitBranch.complementList.length;
 	
+		//Self recursive verbs
 		//Render stuff like: if [tree] [madeof] [wood] and [wood] [madeof] [water] then [tree] [madeof] [water]
 		if (verb == this.instinct.madeof)
 		{
-			this.renderFromRecursiveOperator(subject, verb, verb, implicitBranch);
+			this.renderFromPreRecursiveOperator(subject, verb, verb, implicitBranch);
 		}
 		
-		//Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [tree] [madeof] [matter]
-		this.renderFromRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
-		
 		//Whathever the [operator] is, it must use ISA recursively to expand its connections
-		//Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
+		//Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [tree] [madeof] [matter]
+		this.renderFromPreRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
 		
-		//Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [pine] [madeof] [matter]
+		//Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
+		this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
+		
+		//Render stuff for complementary operators
 		//todo
 	} while (howManyComplement < implicitBranch.complementList.length);
 	
@@ -69,8 +78,8 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 	implicitBranch.isLocked = false;
 }
 
-//(Void) Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
-Flattenizer.prototype.renderFromRecursiveOperator = function Flattenizer_renderSelfRecursiveOperator(subjectToRender, verbToRender, recursiveVerb, implicitBranch)
+//(Void) Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [tree] [madeof] [matter]
+Flattenizer.prototype.renderFromPreRecursiveOperator = function Flattenizer_renderFromPreRecursiveOperator(subjectToRender, verbToRender, recursiveVerb, implicitBranch)
 {
 	for (var index1 in implicitBranch.complementList)
 	{
@@ -95,9 +104,34 @@ Flattenizer.prototype.renderFromRecursiveOperator = function Flattenizer_renderS
 	}
 }
 
-//(Array of statement)
-//Get proof for statement
-Flattenizer.prototype.getProof = function Flattenizer_getProof(subject, verb, complement, isPositive)
+//(Void) Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
+Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_renderFromPostRecursiveOperator(subjectToRender, verbToRender, recursiveVerb, implicitBranch)
 {
-	return this.proofCache.getProof(subject, verb, complement, isPositive);
+	var remoteRecursiveVerbBranch = subjectToRender.getImplicitBranch(recursiveVerb);
+	
+	if (!remoteRecursiveVerbBranch.isFlat)
+		if (!remoteRecursiveVerbBranch.isLocked)
+			this.flattenBranch(remoteRecursiveVerbBranch, subjectToRender, recursiveVerb);
+
+	for (var index1 in remoteRecursiveVerbBranch.complementList)
+	{
+		var immediateComplement = remoteRecursiveVerbBranch.complementList[index1];
+		if (immediateComplement instanceof Concept)
+		{
+			var remoteCurrentVerbBranch = immediateComplement.getImplicitBranch(verbToRender);
+			
+			if (!remoteCurrentVerbBranch.isFlat)
+				if (!remoteCurrentVerbBranch.isLocked)
+					this.flattenBranch(remoteCurrentVerbBranch, immediateComplement, verbToRender);
+			
+			for (var index2 in remoteCurrentVerbBranch.complementList)
+			{
+				var remoteComplement = remoteCurrentVerbBranch.complementList[index2];
+				
+				this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, recursiveVerb, immediateComplement, true);
+				this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, verbToRender, remoteComplement, true);
+				implicitBranch.addComplement(remoteComplement);
+			}
+		}
+	}
 }
