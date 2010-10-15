@@ -231,6 +231,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var cloud = conceptNameMapper.getConcept("cloud");
 	var joe = conceptNameMapper.getConcept("joe");
 	var planet = conceptNameMapper.getConcept("planet");
+	var star = conceptNameMapper.getConcept("star");
 	var human = conceptNameMapper.getConcept("human");
 	var water = conceptNameMapper.getConcept("water");
 	var man = conceptNameMapper.getConcept("man");
@@ -415,7 +416,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be false';
 	}
 	
-	if (!flattenizer.testConnection(tree, partof, earth))//some planets have no tree
+	if (!flattenizer.testConnection(tree, partof, earth))
 	{
 		throw 'Statement should be true';
 	}
@@ -425,7 +426,13 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be false';
 	}
 	
+	if (!flattenizer.testConnection(milky_way, madeof, star))
+	{
+		throw 'Statement should be false';
+	}
+	
 	alert('Add more unit tests');
+	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
 	
 	/*if (!evaluator.evalString("tree madeof wood"))
 		throw 'Statement should be true';
