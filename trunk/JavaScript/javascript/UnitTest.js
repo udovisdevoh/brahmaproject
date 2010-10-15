@@ -211,6 +211,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var flattenizer = new Flattenizer(new Instinct(new ComplementaryOperatorManager(conceptNameMapper)));
 
 	var forest = conceptNameMapper.getConcept("forest");
+	var ecosystem = conceptNameMapper.getConcept("ecosystem");
 	var earth = conceptNameMapper.getConcept("earth");
 	var sun = conceptNameMapper.getConcept("sun");
 	var solar_system = conceptNameMapper.getConcept("solar_system");
@@ -225,9 +226,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var carbon = conceptNameMapper.getConcept("carbon");
 	var atom = conceptNameMapper.getConcept("atom");
 	var matter = conceptNameMapper.getConcept("matter");
+	var celestial_body = conceptNameMapper.getConcept("celestial_body");
 	var rain = conceptNameMapper.getConcept("rain");
 	var cloud = conceptNameMapper.getConcept("cloud");
 	var joe = conceptNameMapper.getConcept("joe");
+	var planet = conceptNameMapper.getConcept("planet");
 	var human = conceptNameMapper.getConcept("human");
 	var water = conceptNameMapper.getConcept("water");
 	var man = conceptNameMapper.getConcept("man");
@@ -263,6 +266,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("milky_way madeof solar_system");
 	totologyManager.learnStatement("universe madeof milky_way");
 	totologyManager.learnStatement("multiverse madeof universe");
+	totologyManager.learnStatement("earth isa planet");
+	totologyManager.learnStatement("sun isa star");
+	totologyManager.learnStatement("star isa celestial_body");
+	totologyManager.learnStatement("planet isa celestial_body");
+	totologyManager.learnStatement("forest isa ecosystem");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -376,7 +384,47 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Wrong proof';
 	if (!flattenizer.getProof(pine, madeof, wood, true)[1].equals(new Statement(tree, madeof, wood, true)))
 		throw 'Wrong proof';
-		
+	
+	if (!flattenizer.testConnection(sun, isa, celestial_body))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(sun, isa, planet))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(earth, madeof, plant))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(planet, madeof, plant))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(solar_system, madeof, plant))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(tree, partof, ecosystem))//some ecosystems have no tree
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(tree, partof, earth))//some planets have no tree
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(tree, partof, planet))//some planets have no tree
+	{
+		throw 'Statement should be false';
+	}
+	
 	alert('Add more unit tests');
 	
 	/*if (!evaluator.evalString("tree madeof wood"))

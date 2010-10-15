@@ -58,17 +58,23 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 	
 		//Self recursive verbs
 		//Render stuff like: if [tree] [madeof] [wood] and [wood] [madeof] [water] then [tree] [madeof] [water]
-		if (verb == this.instinct.madeof)
+		// or if [wood] [partof] [tree] and [water] [partof] [wood] then [water] [partof] [tree]
+		if (verb == this.instinct.madeof || verb == this.instinct.partof)
 		{
 			this.renderFromPreRecursiveOperator(subject, verb, verb, implicitBranch);
 		}
 		
-		//Whathever the [operator] is, it must use ISA recursively to expand its connections
-		//Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [tree] [madeof] [matter]
-		this.renderFromPreRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
-		
-		//Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
-		this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
+		//For some operators (like madeof) the [operator] is, it must use ISA recursively to expand its connections
+		if (verb == this.instinct.isa || verb == this.instinct.madeof)
+		{
+			//Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [tree] [madeof] [matter]
+			//BUT NOT: if [tree] [partof] [forest] and [forest] isa [ecosystem] then [tree] [partof] [ecosystem]
+			//because it would mean that all ecosystems contain tree
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
+			
+			//Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
+		}
 		
 		//Render stuff for complementary operators
 		//For instance: pine isa lifeform -> lifeform someare pine
@@ -102,8 +108,8 @@ Flattenizer.prototype.renderFromPreRecursiveOperator = function Flattenizer_rend
 				{
 					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, verbToRender, immediateComplement, true);
 					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, recursiveVerb, remoteComplement, true);
-					implicitBranch.addComplement(remoteComplement);
 				}
+				implicitBranch.addComplement(remoteComplement);
 			}
 		}
 	}
@@ -143,4 +149,10 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 			}
 		}
 	}
+}
+
+//(Void) Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
+Flattenizer.prototype.renderFromComplementaryOperator = function Flattenizer_renderFromComplementaryOperator(subjectToRender, verbToRender, implicitBranch)
+{
+	throw 'Implement Flattenizer.renderFromComplementaryOperator()';
 }
