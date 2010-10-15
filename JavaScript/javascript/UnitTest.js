@@ -428,7 +428,34 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	
 	if (!flattenizer.testConnection(milky_way, madeof, star))
 	{
-		throw 'Statement should be false';
+		throw 'Statement should be true';
+	}
+	
+	//Test recursive partof
+	if (!flattenizer.testConnection(earth, partof, universe))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//Test recursive someare
+	if (!flattenizer.testConnection(earth, isa, planet))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(planet, isa, celestial_body))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(earth, isa, celestial_body))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(celestial_body, someare, earth))
+	{
+		throw 'Statement should be true';
 	}
 	
 	alert('Add more unit tests');
