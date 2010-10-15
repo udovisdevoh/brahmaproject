@@ -7,9 +7,6 @@ function Flattenizer(instinct)
 	//(ConceptNameMapper) concept name mapper
 	this.conceptNameMapper = instinct.conceptNameMapper;
 	
-	//(EvaluationCache) to prevent circular evaluation
-	this.circularEvaluationPreventionCache = new EvaluationCache();
-	
 	//(ProofCache) Stores proof for statements
 	this.proofCache = new ProofCache();
 }
@@ -20,7 +17,7 @@ Flattenizer.prototype.testConnection = function Flattenizer_testConnection(subje
 	var implicitBranch = subject.getImplicitBranch(verb);
 	
 	if (!implicitBranch.isFlat)
-		if (!this.circularEvaluationPreventionCache.getCachedResult(subject, verb))
+		if (!implicitBranch.isLocked)
 			this.flattenBranch(implicitBranch, subject, verb);
 	
 	return implicitBranch.hasComplement(complement);
@@ -41,7 +38,9 @@ Flattenizer.prototype.copyFromTotologicBranch = function Flattenizer_copyFromTot
 Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implicitBranch, subject, verb)
 {
 	var totologicBranch = subject.getTotologicBranch(verb);
-	this.circularEvaluationPreventionCache.setCachedResult(subject, verb, true);
+	
+	implicitBranch.isLocked = true;
+	
 	this.copyFromTotologicBranch(totologicBranch, implicitBranch);
 	
 	var howManyComplement;
@@ -63,7 +62,7 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 	} while (howManyComplement < implicitBranch.complementList.length);
 	
 	implicitBranch.isFlat = true;
-	this.circularEvaluationPreventionCache.setCachedResult(subject, verb, false);
+	implicitBranch.isLocked = false;
 }
 
 //Constant as: Evaluator.resultTrue, Evaluator.resultFalse,
@@ -78,7 +77,7 @@ Flattenizer.prototype.renderSelfRecursiveOperator = function Flattenizer_renderS
 			var remoteImplicitBranch = immediateComplement.getImplicitBranch(selfRecursiveVerb);
 			
 			if (!remoteImplicitBranch.isFlat)
-				if (!this.circularEvaluationPreventionCache.getCachedResult(immediateComplement, selfRecursiveVerb))
+				if (!remoteImplicitBranch.isLocked)
 					this.flattenBranch(remoteImplicitBranch, immediateComplement, selfRecursiveVerb);
 			
 			for (var index2 in remoteImplicitBranch.complementList)
