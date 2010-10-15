@@ -71,7 +71,8 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
 		
 		//Render stuff for complementary operators
-		//todo
+		//For instance: pine isa lifeform -> lifeform someare pine
+		//this.renderFromComplementaryOperator(subject, verb, implicitBranch);
 	} while (howManyComplement < implicitBranch.complementList.length);
 	
 	implicitBranch.isFlat = true;
@@ -96,9 +97,13 @@ Flattenizer.prototype.renderFromPreRecursiveOperator = function Flattenizer_rend
 			{
 				var remoteComplement = remoteImplicitBranch.complementList[index2];
 				
-				this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, verbToRender, immediateComplement, true);
-				this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, recursiveVerb, remoteComplement, true);
-				implicitBranch.addComplement(remoteComplement);
+				var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
+				if (proof == null || proof.length == 0)
+				{
+					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, verbToRender, immediateComplement, true);
+					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, recursiveVerb, remoteComplement, true);
+					implicitBranch.addComplement(remoteComplement);
+				}
 			}
 		}
 	}
@@ -128,8 +133,12 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 			{
 				var remoteComplement = remoteCurrentVerbBranch.complementList[index2];
 				
-				this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, recursiveVerb, immediateComplement, true);
-				this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, verbToRender, remoteComplement, true);
+				var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
+				if (proof == null || proof.length == 0)
+				{
+					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, recursiveVerb, immediateComplement, true);
+					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, verbToRender, remoteComplement, true);
+				}
 				implicitBranch.addComplement(remoteComplement);
 			}
 		}
