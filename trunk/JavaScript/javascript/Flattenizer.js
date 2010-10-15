@@ -85,6 +85,15 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
 		}
 		
+		if (verb == this.instinct.contradict)
+		{
+			//if [female] contradict [male] and [male] someare [man] then [female] contradict [man]
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
+			
+			//if [male] contradict [female] and [man] isa [male] then [man] contradict [female]
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
+		}
+		
 		//Render stuff for complementary operators
 		//For instance: pine isa lifeform -> lifeform someare pine
 		//this.renderFromComplementaryOperator(subject, verb, implicitBranch);
