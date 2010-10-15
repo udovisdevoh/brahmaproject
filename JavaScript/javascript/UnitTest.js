@@ -455,6 +455,16 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
+	if (!flattenizer.testConnection(plant, partof, earth))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(plant, partof, planet))//Some planets have no plant
+	{
+		throw 'Statement should not be true';
+	}
+	
 	//Test recursive someare
 	if (!flattenizer.testConnection(earth, isa, planet))
 	{
@@ -591,35 +601,4 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	alert('Add more unit tests');
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
 	//Isa must cant contradict
-	
-	/*if (!evaluator.evalString("tree madeof wood"))
-		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("wood partof tree"))
-		throw 'Statement should be true';
-	
-	
-	//Test complementary proposition's proofs
-	if (!evaluator.getProof(tree, someare, pine, true)[0].equals(new Statement(pine, isa, tree, true)))
-		throw 'Wrong proof';
-
-
-	//Test implicit connection rendering with anonymous concepts
-	if (!evaluator.evalString("pine isa plant"))
-		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("pine madeof water"))
-		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("pine madeof wood"))
-		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("pine madeof matter"))
-		throw 'Statement should be true';
-		
-	if (!evaluator.evalString("pine madeof energy"))
-		throw 'Statement should be true';
-	
-	if (!evaluator.evalString("energy partof pine"))
-		throw 'Statement should be true';*/
 }
