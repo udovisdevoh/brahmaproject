@@ -517,6 +517,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
+	if (!flattenizer.testConnection(female, contradict, male))
+	{
+		throw 'Statement should be true';
+	}
+	
 	if (!flattenizer.testConnection(joe, contradict, female))
 	{
 		throw 'Statement should be true';
