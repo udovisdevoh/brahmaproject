@@ -332,6 +332,12 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
+	//Test self recursive operator's proof
+	if (!flattenizer.getProof(multiverse, madeof, carbon, true)[0].equals(new Statement(multiverse, madeof, universe, true)))
+		throw 'Wrong proof';
+	if (!flattenizer.getProof(multiverse, madeof, carbon, true)[1].equals(new Statement(universe, madeof, carbon, true)))
+		throw 'Wrong proof';
+		
 	alert('Add more unit tests');
 	
 	/*if (!evaluator.evalString("tree madeof wood"))

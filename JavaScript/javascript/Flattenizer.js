@@ -53,7 +53,6 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		if (verb == this.instinct.madeof)
 			this.renderSelfRecursiveOperator(subject, verb, implicitBranch);
 			
-		
 		//Render stuff like: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
 		//todo
 		
@@ -90,4 +89,11 @@ Flattenizer.prototype.renderSelfRecursiveOperator = function Flattenizer_renderS
 			}
 		}
 	}
+}
+
+//(Array of statement)
+//Get proof for statement
+Flattenizer.prototype.getProof = function Flattenizer_getProof(subject, verb, complement, isPositive)
+{
+	return this.proofCache.getProof(subject, verb, complement, isPositive);
 }
