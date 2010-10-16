@@ -254,8 +254,18 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var contradict = conceptNameMapper.getConcept("contradict");
 	var need = conceptNameMapper.getConcept("need");
 	var allow = conceptNameMapper.getConcept("allow");
+	var make = conceptNameMapper.getConcept("make");
+	var madeby = conceptNameMapper.getConcept("madeby");
 	var animal = conceptNameMapper.getConcept("animal");
 	var light = conceptNameMapper.getConcept("light");
+	var billy = conceptNameMapper.getConcept("billy");
+	var black_man = conceptNameMapper.getConcept("black_man");
+	var jazz = conceptNameMapper.getConcept("jazz");
+	var music = conceptNameMapper.getConcept("music");
+	var polka = conceptNameMapper.getConcept("polka");
+	var dance = conceptNameMapper.getConcept("dance");
+	var art = conceptNameMapper.getConcept("art");
+	var painting = conceptNameMapper.getConcept("painting");
 		
 	totologyManager.learnStatement("pine isa tree");
 	totologyManager.learnStatement("tree isa plant");
@@ -305,6 +315,13 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("bird isa animal");
 	totologyManager.learnStatement("parrot isa bird");
 	totologyManager.learnStatement("plant need light");
+	totologyManager.learnStatement("billy make jazz");
+	totologyManager.learnStatement("jazz isa music");
+	totologyManager.learnStatement("music isa art");
+	totologyManager.learnStatement("painting isa art");
+	totologyManager.learnStatement("billy isa black_man");
+	totologyManager.learnStatement("polka isa music");
+	totologyManager.learnStatement("music make dance");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -686,6 +703,110 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Wrong proof';
 	if (!flattenizer.getProof(parrot, need, light, true)[1].equals(new Statement(bird, need, light, true)))
 		throw 'Wrong proof';
+	
+	
+	//Make and madeby
+	//make
+	if (!flattenizer.testConnection(billy, make, jazz))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(billy, make, music))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(billy, make, art))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(billy, make, painting))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(billy, make, polka))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(black_man, make, jazz))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(black_man, make, music))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(black_man, make, polka))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(music, make, dance))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(billy, make, dance))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//madeby
+	if (!flattenizer.testConnection(jazz, madeby, billy))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(music, madeby, billy))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(art, madeby, billy))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(painting, madeby, billy))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(polka, madeby, billy))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(jazz, madeby, black_man))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(music, madeby, black_man))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(polka, madeby, black_man))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(dance, madeby, music))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(dance, madeby, billy))
+	{
+		throw 'Statement should be true';
+	}
 	
 	alert('Add more unit tests');
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
