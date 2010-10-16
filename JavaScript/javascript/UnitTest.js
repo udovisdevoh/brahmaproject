@@ -681,6 +681,12 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
+	//Need and Allow Proofs
+	if (!flattenizer.getProof(parrot, need, light, true)[0].equals(new Statement(parrot, isa, bird, true)))
+		throw 'Wrong proof';
+	if (!flattenizer.getProof(parrot, need, light, true)[1].equals(new Statement(bird, need, light, true)))
+		throw 'Wrong proof';
+	
 	alert('Add more unit tests');
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
 	//Isa must cant contradict
