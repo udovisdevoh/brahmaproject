@@ -249,7 +249,13 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var madeof = conceptNameMapper.getConcept("madeof");
 	var partof = conceptNameMapper.getConcept("partof");
 	var banana = conceptNameMapper.getConcept("banana");
+	var bird = conceptNameMapper.getConcept("bird");
+	var parrot = conceptNameMapper.getConcept("parrot");
 	var contradict = conceptNameMapper.getConcept("contradict");
+	var need = conceptNameMapper.getConcept("need");
+	var allow = conceptNameMapper.getConcept("allow");
+	var animal = conceptNameMapper.getConcept("animal");
+	var light = conceptNameMapper.getConcept("light");
 		
 	totologyManager.learnStatement("pine isa tree");
 	totologyManager.learnStatement("tree isa plant");
@@ -295,6 +301,10 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("woman isa female");
 	totologyManager.learnStatement("girl isa woman");
 	totologyManager.learnStatement("banana isa vegetable");
+	totologyManager.learnStatement("bird need tree");
+	totologyManager.learnStatement("bird isa animal");
+	totologyManager.learnStatement("parrot isa bird");
+	totologyManager.learnStatement("plant need light");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -597,6 +607,79 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Wrong proof';
 	if (!flattenizer.getProof(joe, contradict, girl, true)[1].equals(new Statement(man, contradict, girl, true)))
 		throw 'Wrong proof';
+		
+	//Testing Need and Allow
+	//need
+	if (!flattenizer.testConnection(bird, need, tree))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(parrot, need, tree))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(animal, need, tree))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(bird, need, pine))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(bird, need, plant))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(bird, need, light))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(parrot, need, light))
+	{
+		throw 'Statement should be true';
+	}
+
+	//allow
+	if (!flattenizer.testConnection(tree, allow, bird))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(tree, allow, parrot))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(tree, allow, animal))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(pine, allow, bird))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(plant, allow, bird))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(light, allow, bird))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(light, allow, parrot))
+	{
+		throw 'Statement should be true';
+	}
 	
 	alert('Add more unit tests');
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
