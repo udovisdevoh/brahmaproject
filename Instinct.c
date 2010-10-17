@@ -187,21 +187,6 @@ IF school isa building AND building placeof people THEN school placeof people
 IF school placeof student AND student isa person THEN school placeof person*/
 
 
-//Contradict
-IF human isa animal THEN human CANT contradict animal
-IF human isa animal AND animal contradict plant THEN human contradict plant
-
-//Synergize
-IF me synergize nature THEN me cant destroy nature
-IF me isa indian AND indian synergize nature THEN me synergize nature
-
-//Antagonize
-IF me isa jew AND jew antagonize muslim THEN me antagonize muslim
-IF me antagonize jew THEN me unlikely isa jew
-IF me antagonize jew THEN me unlikely allow jew
-IF me antagonize jew THEN me cant synergize jew
-IF walmart make cheap_labour AND cheap_labour antagonize social_justice THEN walmart antagonize social_justice
-
 //Largerthan and smallerthan
 IF sun largerthan earth AND earth largerthan moon THEN sun largerthan moon
 //IF sun isa star AND star largerthan planet THEN sun largerthan planet
