@@ -275,6 +275,8 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var health = conceptNameMapper.getConcept("health");
 	var corporation = conceptNameMapper.getConcept("corporation");
 	var concept = conceptNameMapper.getConcept("concept");
+	var bee = conceptNameMapper.getConcept("bee");
+	var flower = conceptNameMapper.getConcept("flower");
 		
 	totologyManager.learnStatement("pine isa tree");
 	totologyManager.learnStatement("tree isa plant");
@@ -338,6 +340,8 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("human need health");
 	totologyManager.learnStatement("monsanto isa corporation");
 	totologyManager.learnStatement("human isa concept");
+	totologyManager.learnStatement("bee need flower");
+	totologyManager.learnStatement("flower need bee");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -958,11 +962,21 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
+	if (!flattenizer.testConnection(flower, need, flower))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(bee, need, bee))
+	{
+		throw 'Statement should be true';
+	}
+	
 	alert('Add more unit tests');
-	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
 	//Isa must cant contradict
 	//?Isa must unlikely contradict?
 	//?Allow must unlikely destroy?
 	//?Make must unlikely destroy?
 	//unit test double need and double oppress
+	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
 }
