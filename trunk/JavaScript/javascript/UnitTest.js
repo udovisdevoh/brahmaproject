@@ -961,4 +961,8 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	alert('Add more unit tests');
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
 	//Isa must cant contradict
+	//?Isa must unlikely contradict?
+	//?Allow must unlikely destroy?
+	//?Make must unlikely destroy?
+	//unit test double need and double oppress
 }
