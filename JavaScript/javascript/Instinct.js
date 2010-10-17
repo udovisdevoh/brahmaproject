@@ -17,6 +17,8 @@ function Instinct(complementaryOperatorManager)
 	this.allow = this.conceptNameMapper.getConcept("allow");
 	this.make = this.conceptNameMapper.getConcept("make");
 	this.madeby = this.conceptNameMapper.getConcept("madeby");
+	this.destroy = this.conceptNameMapper.getConcept("destroy");
+	this.destroyedby = this.conceptNameMapper.getConcept("destroyedby");
 	
 	//Construction of the instinct
 	this.complementaryOperatorManager.add("contradict","contradict");
@@ -27,7 +29,7 @@ function Instinct(complementaryOperatorManager)
 	this.complementaryOperatorManager.add("need","allow");
 	this.complementaryOperatorManager.add("make","madeby");
 	this.complementaryOperatorManager.add("somebecome","somewas");
-	this.complementaryOperatorManager.add("oppress","oppressedby");	
+	this.complementaryOperatorManager.add("destroy","destroyedby");	
 	this.complementaryOperatorManager.add("from","originof");
 	this.complementaryOperatorManager.add("largerthan","smallerthan");
 	this.complementaryOperatorManager.add("own","ownedby");

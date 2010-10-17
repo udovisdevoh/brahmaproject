@@ -9,7 +9,9 @@ function ComplementaryOperatorManager(conceptNameMapper)
 ComplementaryOperatorManager.prototype.add = function ComplementaryOperatorManager_add(operatorName1, operatorName2)
 {
 	var operator1 = this.conceptNameMapper.getConcept(operatorName1);
+	operator1.isNaturalOperator = true;
 	var operator2 = this.conceptNameMapper.getConcept(operatorName2);
+	operator1.isNaturalOperator = false;
 	
 	var index;
 	

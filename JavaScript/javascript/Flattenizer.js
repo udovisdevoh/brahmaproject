@@ -96,6 +96,37 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			//if [male] contradict [female] and [man] isa [male] then [man] contradict [female]
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
 		}
+		
+		//For some operators like "destroy"
+		if (verb == this.instinct.destroy)
+		{
+			//Render stuff like: if [gmo] isa [poison] and [poison] [destroy] [life] then [gmo] [destroy] [life]
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
+			
+			//Render stuff like: if [monsanto] make [poison] and [poison] oppress [human] then [monsanto] oppress [human]
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.make, implicitBranch);
+			
+			//Render stuff like if [monsanto] destroy [human] and [human] someare [joe] then [monsanto] destroy [joe]
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
+			
+			//Render stuff like: if [monsanto] destroy [health] and [health] [allow] [human] then [monsanto] [destroy] [human]
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.allow, implicitBranch);
+		}
+		else if (verb == this.instinct.destroyedby)
+		{
+			//Render stuff like: if [gmo] isa [poison] and [poison] [destroy] [life] then [gmo] [destroy] [life]
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
+			
+			//Render stuff like: if [monsanto] make [poison] and [poison] oppress [human] then [monsanto] oppress [human]
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.madeby, implicitBranch);
+			
+			//Render stuff like if [monsanto] destroy [human] and [human] someare [joe] then [monsanto] destroy [joe]
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
+			
+			//Render stuff like: if [monsanto] destroy [health] and [health] [allow] [human] then [monsanto] [destroy] [human]
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.need, implicitBranch);
+		}
+		
 	} while (howManyComplement < implicitBranch.complementList.length);
 	
 	implicitBranch.isFlat = true;
