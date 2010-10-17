@@ -12,6 +12,9 @@ function Concept(defaultConceptName)
 		
 	//(Array of Concept) Complementary operators (should be only one but who knows)
 	this.complementaryOperators = Array();
+	
+	//(Bool) (stuff like isa, but not someare)
+	this.isNaturalOperator = false;
 }
 
 //Whether concepts are the same

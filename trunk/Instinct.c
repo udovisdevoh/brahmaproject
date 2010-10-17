@@ -63,9 +63,9 @@ if ([tree] someare [pine])
 
 /*
 //Recently removed
-if ([big_mac] madeof [trans_fat] && [trans_fat] oppress [lifeform])
+if ([big_mac] madeof [trans_fat] && [trans_fat] destroy [lifeform])
 {
-	[big_mac] oppress [lifeform];
+	[big_mac] destroy [lifeform];
 }
 */
 
@@ -187,36 +187,36 @@ if (child become adult)
 */
 
 
-//Oppress and OppressedBy
-[pollution] oppress [earth] = [earth] oppressedby [pollution];
-if ([pollution] oppress [earth] && [me] need [earth])
+//destroy and destroyedBy
+[pollution] destroy [earth] = [earth] destroyedby [pollution];
+if ([pollution] destroy [earth] && [me] need [earth])
 {
-	[pollution] oppress [me];
+	[pollution] destroy [me];
 }
 
-if ([car] make [pollution] && [pollution] oppress [me])
+if ([car] make [pollution] && [pollution] destroy [me])
 {
-	[car] oppress [me];
+	[car] destroy [me];
 }
 
 /*
 //Not sure
-if ([earth] madeof [nature] && [gm] oppress [nature])
+if ([earth] madeof [nature] && [gm] destroy [nature])
 {
-	[gm] oppress [earth];
+	[gm] destroy [earth];
 }
 */
 
-if ([pollution] oppress [nature])
+if ([pollution] destroy [nature])
 {
 	[pollution] unlikely allow [nature];
 }
 
 /*
 //Create some inconsistency bug... must be fixed
-if ([dogma] oppress [critical_thinking] && [critical_thinking] synergize [intelligence])
+if ([dogma] destroy [critical_thinking] && [critical_thinking] synergize [intelligence])
 {
-	[dogma] oppress [intelligence];
+	[dogma] destroy [intelligence];
 }
 */
 
@@ -256,7 +256,7 @@ IF human isa animal THEN human CANT contradict animal
 IF human isa animal AND animal contradict plant THEN human contradict plant
 
 //Synergize
-IF me synergize nature THEN me cant oppress nature
+IF me synergize nature THEN me cant destroy nature
 IF me isa indian AND indian synergize nature THEN me synergize nature
 
 //Antagonize

@@ -266,6 +266,15 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var dance = conceptNameMapper.getConcept("dance");
 	var art = conceptNameMapper.getConcept("art");
 	var painting = conceptNameMapper.getConcept("painting");
+	var monsanto = conceptNameMapper.getConcept("monsanto");
+	var gmo = conceptNameMapper.getConcept("gmo");
+	var poison = conceptNameMapper.getConcept("poison");
+	var destroy = conceptNameMapper.getConcept("destroy");
+	var destroyedby = conceptNameMapper.getConcept("destroyedby");
+	var mcdonalds = conceptNameMapper.getConcept("mcdonalds");
+	var health = conceptNameMapper.getConcept("health");
+	var corporation = conceptNameMapper.getConcept("corporation");
+	var concept = conceptNameMapper.getConcept("concept");
 		
 	totologyManager.learnStatement("pine isa tree");
 	totologyManager.learnStatement("tree isa plant");
@@ -322,6 +331,13 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("billy isa black_man");
 	totologyManager.learnStatement("polka isa music");
 	totologyManager.learnStatement("music make dance");
+	totologyManager.learnStatement("monsanto make gmo");
+	totologyManager.learnStatement("gmo isa poison");
+	totologyManager.learnStatement("poison destroy human");
+	totologyManager.learnStatement("mcdonalds destroy health");
+	totologyManager.learnStatement("human need health");
+	totologyManager.learnStatement("monsanto isa corporation");
+	totologyManager.learnStatement("human isa concept");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -804,6 +820,140 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	}
 	
 	if (!flattenizer.testConnection(dance, madeby, billy))
+	{
+		throw 'Statement should be true';
+	}
+	
+	
+	//destroy and destroyed by
+	//destroy
+	if (!flattenizer.testConnection(monsanto, make, gmo))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(gmo, isa, poison))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(poison, destroy, human))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(gmo, destroy, human))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(poison, destroy, concept))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(corporation, destroy, human))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(monsanto, destroy, human))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(gmo, destroy, joe))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(monsanto, destroy, joe))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(mcdonalds, destroy, health))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(human, need, health))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(mcdonalds, destroy, human))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(mcdonalds, destroy, joe))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//destroyedby
+	if (!flattenizer.testConnection(gmo, madeby, monsanto))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(poison, someare, gmo))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(human, destroyedby, poison))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(human, destroyedby, gmo))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (flattenizer.testConnection(concept, destroyedby, poison))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (flattenizer.testConnection(human, destroyedby, corporation))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (!flattenizer.testConnection(human, destroyedby, monsanto))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(joe, destroyedby, gmo))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(joe, destroyedby, monsanto))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(health, destroyedby, mcdonalds))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(health, allow, human))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(human, destroyedby, mcdonalds))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(joe, destroyedby, mcdonalds))
 	{
 		throw 'Statement should be true';
 	}
