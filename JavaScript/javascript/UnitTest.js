@@ -837,7 +837,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	{
 		throw 'Statement should be true';
 	}
-	
+
 	if (!flattenizer.testConnection(program, madeby, lewis))
 	{
 		throw 'Statement should be true';

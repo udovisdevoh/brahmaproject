@@ -27,7 +27,8 @@ Flattenizer.prototype.testConnection = function Flattenizer_testConnection(subje
 //Get proof for statement
 Flattenizer.prototype.getProof = function Flattenizer_getProof(subject, verb, complement, isPositive)
 {
-	return this.proofCache.getProof(subject, verb, complement, isPositive);
+	if (this.testConnection(subject, verb, complement) == isPositive)
+		return this.proofCache.getProof(subject, verb, complement, isPositive);
 }
 
 Flattenizer.prototype.copyFromTotologicBranch = function Flattenizer_copyFromTotologicBranch(totologicBranch, implicitBranch)
