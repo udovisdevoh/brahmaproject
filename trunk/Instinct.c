@@ -1,42 +1,4 @@
-﻿//Isa AND SomeAre
-[pine] isa [tree] = [tree] someare [pine];
-conservative_thinking someare;
-if ([pine] isa [tree])
-{
-	[tree] cant someare [pine];
-}
-
-if ([pine] isa [tree] && [tree] isa [plant])
-{
-	[pine] isa [plant];
-}
-
-if ([animal] contradict [plant])
-{
-	[animal] cant isa [plant];
-}
-
-if ([pine] madeof [wood])
-{
-	[wood] unlikely isa [pine];
-}
-
-if ([tree] madeof [wood])
-{
-	[tree] unlikely isa [wood];
-}
-
-if ([pine] [madeof] [wood] && [wood] isa [material])
-{
-	[pine] [madeof] [material];
-}
-
-if ([pine] isa [tree] && [tree] [madeof] [wood])
-{
-	[pine] [madeof] [wood];
-}
-
-/*
+﻿/*
 //not sure if it's useful
 if ([homo_ergaster] isa [hominid])
 {
@@ -44,22 +6,6 @@ if ([homo_ergaster] isa [hominid])
 }
 */
 
-
-//MadeOf AND PartOf
-[tree] madeof [wood] = [wood] partof [tree];
-if ([pine] madeof [wood] && [wood] madeof [carbon])
-{
-	[pine] madeof [carbon];
-}
-
-if ([tree] madeof [wood])
-	[tree] unlikely partof [wood];
-
-if ([pine] isa [tree])
-	[pine] unlikely madeof [tree];
-
-if ([tree] someare [pine])
-	[tree] unlikely madeof [pine];
 
 /*
 //Recently removed
@@ -70,16 +16,6 @@ if ([big_mac] madeof [trans_fat] && [trans_fat] destroy [lifeform])
 */
 
 
-//Contradict
-[black] contradict [white] = [white] contradict [black];
-
-
-//Need and allow
-[life] need [water] = [water] allow [life];
-if ([bird] need [tree] && [tree] need [light])
-{
-	[bird] need [light];
-}
 
 if ([bird] need [tree] && [tree] isa [lifeform])
 {

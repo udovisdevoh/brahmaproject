@@ -277,6 +277,9 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var concept = conceptNameMapper.getConcept("concept");
 	var bee = conceptNameMapper.getConcept("bee");
 	var flower = conceptNameMapper.getConcept("flower");
+	var program = conceptNameMapper.getConcept("program");
+	var lewis = conceptNameMapper.getConcept("lewis");
+	var programmer = conceptNameMapper.getConcept("programmer");
 		
 	totologyManager.learnStatement("pine isa tree");
 	totologyManager.learnStatement("tree isa plant");
@@ -342,6 +345,8 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("human isa concept");
 	totologyManager.learnStatement("bee need flower");
 	totologyManager.learnStatement("flower need bee");
+	totologyManager.learnStatement("lewis isa programmer");
+	totologyManager.learnStatement("programmer make program");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -777,6 +782,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
+	if (!flattenizer.testConnection(lewis, make, program))
+	{
+		throw 'Statement should be true';
+	}
+	
 	//madeby
 	if (!flattenizer.testConnection(jazz, madeby, billy))
 	{
@@ -828,7 +838,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
-	
+	if (!flattenizer.testConnection(program, madeby, lewis))
+	{
+		throw 'Statement should be true';
+	}
+		
 	//destroy and destroyed by
 	//destroy
 	if (!flattenizer.testConnection(monsanto, make, gmo))
