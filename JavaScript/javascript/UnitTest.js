@@ -280,6 +280,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var program = conceptNameMapper.getConcept("program");
 	var lewis = conceptNameMapper.getConcept("lewis");
 	var programmer = conceptNameMapper.getConcept("programmer");
+	var satellite = conceptNameMapper.getConcept("satellite");
+	var largerthan = conceptNameMapper.getConcept("largerthan");
+	var smallerthan = conceptNameMapper.getConcept("smallerthan");
+	var moon = conceptNameMapper.getConcept("moon");
+	
 		
 	totologyManager.learnStatement("pine isa tree");
 	totologyManager.learnStatement("tree isa plant");
@@ -347,6 +352,9 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("flower need bee");
 	totologyManager.learnStatement("lewis isa programmer");
 	totologyManager.learnStatement("programmer make program");
+	totologyManager.learnStatement("star largerthan planet");
+	totologyManager.learnStatement("planet largerthan satellite");
+	totologyManager.learnStatement("moon isa satellite");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -986,11 +994,86 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
+	
+	//Testing largerthan and smallerthan
+	//largerthan
+	if (!flattenizer.testConnection(star, largerthan, planet))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(planet, largerthan, satellite))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(star, largerthan, satellite))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(sun, largerthan, planet))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(planet, largerthan, moon))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(sun, largerthan, earth))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(sun, largerthan, moon))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//smallerthan
+	if (!flattenizer.testConnection(planet, smallerthan, star))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(satellite, smallerthan, planet))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(satellite, smallerthan, star))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(planet, smallerthan, sun))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(moon, smallerthan, planet))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(earth, smallerthan, sun))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(moon, smallerthan, sun))
+	{
+		throw 'Statement should be true';
+	}
+	
 	alert('Add more unit tests');
 	//Isa must cant contradict
 	//?Isa must unlikely contradict?
 	//?Allow must unlikely destroy?
 	//?Make must unlikely destroy?
 	//unit test double need and double oppress
+	//smallerthan cant largerthan
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
 }
