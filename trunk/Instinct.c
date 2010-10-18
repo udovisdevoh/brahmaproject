@@ -52,18 +52,6 @@ if ([dogma] destroy [critical_thinking] && [critical_thinking] synergize [intell
 */
 
 
-//From and originof
-[grunge] from [seattle] = [seattle] originof [grunge];
-if ([grunge] from [seattle] && [seattle] partof [usa])
-{
-	[grunge] from [usa];
-}
-
-if (dragon_ball isa manga && manga from japan)
-{
-	dragon_ball from japan;
-}
-
 /*//In and PlaceOf
 ???IF pine madeof wood THEN pine placeof wood???
 IF school placeof student THEN school UNLIKELY in student//Used to be "cant"
