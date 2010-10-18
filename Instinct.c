@@ -1,22 +1,4 @@
-﻿if ([sergy] make [google] && [google] originof [gmail])
-{
-	[sergy] allow [gmail];
-}
-
-/*
-//Not sure
-if ([joe] madeof [cancer] && [cancer] madeof [cancerous_cell])
-{
-	[joe] need [cancerous_cell];
-}
-
-//Not sure
-if ([bird] need [tree] && [tree] madeof [tree_disease])
-{
-	[bird] need [tree_disease];
-}*/
-
-//Promote AND Promotedby
+﻿//Promote AND Promotedby
 [me] promote [music] = [music] promotedby [me];
 if ([me] make [music])
 {
@@ -33,7 +15,6 @@ if ([mcdonalds] promote [trans_fat] && [trans_fat] isa [fat])
 	[mcdonalds] promote [fat];
 }
 
-
 /*
 //Not sure
 if ([earth] madeof [nature] && [gm] destroy [nature])
@@ -41,7 +22,6 @@ if ([earth] madeof [nature] && [gm] destroy [nature])
 	[gm] destroy [earth];
 }
 */
-
 
 /*
 //Create some inconsistency bug... must be fixed
@@ -51,7 +31,6 @@ if ([dogma] destroy [critical_thinking] && [critical_thinking] synergize [intell
 }
 */
 
-
 /*//In and PlaceOf
 ???IF pine madeof wood THEN pine placeof wood???
 IF school placeof student THEN school UNLIKELY in student//Used to be "cant"
@@ -60,7 +39,6 @@ IF tree someare pine THEN tree UNLIKELY placeof pine//Used to be "cant"
 IF city placeof school AND school placeof student THEN city placeof student
 IF school isa building AND building placeof people THEN school placeof people
 IF school placeof student AND student isa person THEN school placeof person*/
-
 
 //Own and ownedby
 IF catholic isa christian AND christian ownedby christianism THEN catholic ownedby christianism
