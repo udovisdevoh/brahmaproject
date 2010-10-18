@@ -67,7 +67,9 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		|| verb == this.instinct.make
 		|| verb == this.instinct.madeby
 		|| verb == this.instinct.largerthan
-		|| verb == this.instinct.smallerthan)
+		|| verb == this.instinct.smallerthan
+		|| verb == this.instinct.from
+		|| verb == this.instinct.originof)
 		{
 			this.renderFromPreRecursiveOperator(subject, verb, verb, implicitBranch);
 		}
@@ -100,9 +102,8 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			//Render stuff like: if [tree] someare [pine] and [wood] [partof] [tree] then [wood] [partof] [pine]
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
 		}
-		
 		//For some symmetric operators like "contradict"
-		if (verb == this.instinct.contradict)
+		else if (verb == this.instinct.contradict)
 		{
 			//if [female] contradict [male] and [male] someare [man] then [female] contradict [man]
 			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
@@ -110,9 +111,8 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			//if [male] contradict [female] and [man] isa [male] then [man] contradict [female]
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
 		}
-		
 		//For some operators like "destroy"
-		if (verb == this.instinct.destroy)
+		else if (verb == this.instinct.destroy)
 		{
 			//Render stuff like: if [gmo] isa [poison] and [poison] [destroy] [life] then [gmo] [destroy] [life]
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
@@ -139,10 +139,8 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			
 			//Render stuff like: if [monsanto] destroy [health] and [health] [allow] [human] then [monsanto] [destroy] [human]
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.need, implicitBranch);
-		}
-		
-		//For operators like "largerthan" and "smallerthan"
-		if (verb == this.instinct.largerthan)
+		}		
+		else if (verb == this.instinct.largerthan) //For operators like "largerthan" and "smallerthan"
 		{
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
 			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
@@ -151,6 +149,16 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		{
 			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
+		}
+		else if (verb == this.instinct.from)
+		{
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.partof, implicitBranch);
+		}
+		else if (verb == this.instinct.originof)
+		{
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.madeof, implicitBranch);
 		}
 		
 	} while (howManyComplement < implicitBranch.complementList.length);

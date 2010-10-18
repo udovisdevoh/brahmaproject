@@ -21,6 +21,8 @@ function Instinct(complementaryOperatorManager)
 	this.destroyedby = this.conceptNameMapper.getConcept("destroyedby");
 	this.largerthan = this.conceptNameMapper.getConcept("largerthan");
 	this.smallerthan = this.conceptNameMapper.getConcept("smallerthan");
+	this.from = this.conceptNameMapper.getConcept("from");
+	this.originof = this.conceptNameMapper.getConcept("originof");
 	
 	//Construction of the instinct
 	this.complementaryOperatorManager.add("contradict","contradict");

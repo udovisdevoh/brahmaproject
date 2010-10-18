@@ -284,6 +284,16 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var largerthan = conceptNameMapper.getConcept("largerthan");
 	var smallerthan = conceptNameMapper.getConcept("smallerthan");
 	var moon = conceptNameMapper.getConcept("moon");
+	var from = conceptNameMapper.getConcept("from");
+	var originof = conceptNameMapper.getConcept("originof");
+	var grunge = conceptNameMapper.getConcept("grunge");
+	var seattle = conceptNameMapper.getConcept("seattle");
+	var usa = conceptNameMapper.getConcept("usa");
+	var city = conceptNameMapper.getConcept("city");
+	var manga = conceptNameMapper.getConcept("manga");
+	var japan = conceptNameMapper.getConcept("japan");
+	var dragon_ball = conceptNameMapper.getConcept("dragon_ball");
+	var england = conceptNameMapper.getConcept("england");
 	
 		
 	totologyManager.learnStatement("pine isa tree");
@@ -355,6 +365,15 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	totologyManager.learnStatement("star largerthan planet");
 	totologyManager.learnStatement("planet largerthan satellite");
 	totologyManager.learnStatement("moon isa satellite");
+	totologyManager.learnStatement("grunge from seattle");
+	totologyManager.learnStatement("seattle isa city");
+	totologyManager.learnStatement("seattle partof usa");
+	totologyManager.learnStatement("dragon_ball isa manga");
+	totologyManager.learnStatement("manga from japan");
+	totologyManager.learnStatement("japan isa country");
+	totologyManager.learnStatement("usa isa country");
+	totologyManager.learnStatement("england isa country");
+	totologyManager.learnStatement("usa from england");
 	
 	//Test totology
 	if (!totologyManager.testConnection(pine, isa, tree))
@@ -1064,6 +1083,70 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	}
 	
 	if (!flattenizer.testConnection(moon, smallerthan, sun))
+	{
+		throw 'Statement should be true';
+	}
+
+	
+	//Testing from and originof
+	//from
+	if (!flattenizer.testConnection(manga, from, japan))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(dragon_ball, from, japan))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(grunge, from, seattle))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(grunge, from, usa))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(usa, from, england))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(grunge, from, england))
+	{
+		throw 'Statement should be true';
+	}
+	
+	//originof
+	if (!flattenizer.testConnection(japan, originof, manga))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(japan, originof, dragon_ball))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(seattle, originof, grunge))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(usa, originof, grunge))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(england, originof, usa))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(england, originof, grunge))
 	{
 		throw 'Statement should be true';
 	}
