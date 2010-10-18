@@ -34,42 +34,6 @@ if ([mcdonalds] promote [trans_fat] && [trans_fat] isa [fat])
 }
 
 
-//Was and Become
-[ape_species] somebecome [human_species] = [human_species] somewas [ape_species];
-if ([human_body] allbecome [corpse])
-{
-	[human_body] somebecome [corpse];
-}
-
-if ([human_species] allwas [ape_species])
-{
-	[human_species] somewas [ape_species];
-}
-
-if ([adult] allwas [child] && [child] allwas [baby])
-{
-	[adult] allwas [baby];
-}
-
-if ([human] madeof [flesh])
-{
-	[human] unlikely somewas [flesh];
-}
-
-if ([human] madeof [flesh])
-{
-	[human] unlikely somebecome [flesh];
-}
-
-/*
-//not sure
-if (child become adult)
-{
-	THEN child CANT was adult;
-}
-*/
-
-
 /*
 //Not sure
 if ([earth] madeof [nature] && [gm] destroy [nature])
@@ -109,11 +73,6 @@ IF city placeof school AND school placeof student THEN city placeof student
 IF school isa building AND building placeof people THEN school placeof people
 IF school placeof student AND student isa person THEN school placeof person*/
 
-
-//Largerthan and smallerthan
-IF sun largerthan earth AND earth largerthan moon THEN sun largerthan moon
-//IF sun isa star AND star largerthan planet THEN sun largerthan planet
-//IF earth isa planet AND planet smallerthan sun THEN earth smallerthan sun
 
 //Own and ownedby
 IF catholic isa christian AND christian ownedby christianism THEN catholic ownedby christianism
