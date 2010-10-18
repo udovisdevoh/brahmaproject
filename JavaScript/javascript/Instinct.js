@@ -28,7 +28,6 @@ function Instinct(complementaryOperatorManager)
 	this.complementaryOperatorManager.add("madeof","partof");
 	this.complementaryOperatorManager.add("need","allow");
 	this.complementaryOperatorManager.add("make","madeby");
-	this.complementaryOperatorManager.add("somebecome","somewas");
 	this.complementaryOperatorManager.add("destroy","destroyedby");	
 	this.complementaryOperatorManager.add("from","originof");
 	this.complementaryOperatorManager.add("largerthan","smallerthan");

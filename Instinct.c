@@ -100,16 +100,8 @@ if (dragon_ball isa manga && manga from japan)
 	dragon_ball from japan;
 }
 
-
-//student in school = school placeof student
-indian synergize nature = nature synergize indian
-muslim antagonize jew = jew antagonize muslim
-earth largerthan moon = moon smallerthan earth
-pope own catholicism = catholicism ownedby pope
-vertebrate without exoskeleton = exoskeleton notpartof vertebrate
-
 /*//In and PlaceOf
-IF pine madeof wood THEN pine placeof wood
+???IF pine madeof wood THEN pine placeof wood???
 IF school placeof student THEN school UNLIKELY in student//Used to be "cant"
 IF pine isa tree THEN pine UNLIKELY placeof tree//Used to be "cant"
 IF tree someare pine THEN tree UNLIKELY placeof pine//Used to be "cant"
