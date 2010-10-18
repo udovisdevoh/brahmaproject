@@ -1,33 +1,4 @@
-﻿/*
-//not sure if it's useful
-if ([homo_ergaster] isa [hominid])
-{
-	[homo_ergaster] allwas [hominid];
-}
-*/
-
-
-/*
-//Recently removed
-if ([big_mac] madeof [trans_fat] && [trans_fat] destroy [lifeform])
-{
-	[big_mac] destroy [lifeform];
-}
-*/
-
-
-
-if ([bird] need [tree] && [tree] isa [lifeform])
-{
-	[bird] need [lifeform];
-}
-
-if ([crow] isa [bird] && [bird] need [tree])
-{
-	[crow] need [tree];
-}
-
-if ([sergy] make [google] && [google] originof [gmail])
+﻿if ([sergy] make [google] && [google] originof [gmail])
 {
 	[sergy] allow [gmail];
 }
@@ -44,30 +15,6 @@ if ([bird] need [tree] && [tree] madeof [tree_disease])
 {
 	[bird] need [tree_disease];
 }*/
-
-
-//Make AND MadeBy
-[mother] make [baby] = [baby] madeby [mother];
-if ([daughter] madeby [mother])
-{
-	[daughter] cant make [mother];
-}
-
-if ([grandmother] make [mother] && [mother] make [daughter])
-{
-	[grandmother] make [daughter];
-}
-
-if ([mozart] make [music] && [music] isa [art])
-{
-	[mozart] make [art];
-}
-
-if ([mom] isa [mother] && [mother] make [child])
-{
-	[mom] make [child];
-}
-
 
 //Promote AND Promotedby
 [me] promote [music] = [music] promotedby [me];
@@ -123,18 +70,6 @@ if (child become adult)
 */
 
 
-//destroy and destroyedBy
-[pollution] destroy [earth] = [earth] destroyedby [pollution];
-if ([pollution] destroy [earth] && [me] need [earth])
-{
-	[pollution] destroy [me];
-}
-
-if ([car] make [pollution] && [pollution] destroy [me])
-{
-	[car] destroy [me];
-}
-
 /*
 //Not sure
 if ([earth] madeof [nature] && [gm] destroy [nature])
@@ -143,10 +78,6 @@ if ([earth] madeof [nature] && [gm] destroy [nature])
 }
 */
 
-if ([pollution] destroy [nature])
-{
-	[pollution] unlikely allow [nature];
-}
 
 /*
 //Create some inconsistency bug... must be fixed
