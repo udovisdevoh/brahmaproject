@@ -23,14 +23,6 @@ if ([earth] madeof [nature] && [gm] destroy [nature])
 }
 */
 
-/*
-//Create some inconsistency bug... must be fixed
-if ([dogma] destroy [critical_thinking] && [critical_thinking] synergize [intelligence])
-{
-	[dogma] destroy [intelligence];
-}
-*/
-
 /*//In and PlaceOf
 ???IF pine madeof wood THEN pine placeof wood???
 IF school placeof student THEN school UNLIKELY in student//Used to be "cant"
