@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_16" class="java.beans.XMLDecoder"> 
+<java version="1.6.0-oem" class="java.beans.XMLDecoder"> 
  <object class="com.horstmann.violet.ClassDiagramGraph"> 
   <void method="addNode"> 
    <object id="ClassNode0" class="com.horstmann.violet.ClassNode"> 
     <void property="attributes"> 
      <void property="text"> 
       <string>display_name
-user_id</string> 
+user_id
+rating
+data</string> 
      </void> 
     </void> 
     <void property="name"> 
@@ -51,12 +53,54 @@ last name</string>
     <void property="bentStyle"> 
      <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
     </void> 
+    <void property="endLabel"> 
+     <string>*</string> 
+    </void> 
     <void property="startArrowHead"> 
      <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
+    </void> 
+    <void property="startLabel"> 
+     <string>1</string> 
     </void> 
    </object> 
    <object idref="ClassNode1"/> 
    <object idref="ClassNode0"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
+    <void property="endLabel"> 
+     <string>*</string> 
+    </void> 
+    <void property="startArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
+    </void> 
+    <void property="startLabel"> 
+     <string>*</string> 
+    </void> 
+   </object> 
+   <object idref="ClassNode0"/> 
+   <object idref="ClassNode0"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
+    <void property="endLabel"> 
+     <string>1</string> 
+    </void> 
+    <void property="startArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
+    </void> 
+    <void property="startLabel"> 
+     <string>1</string> 
+    </void> 
+   </object> 
+   <object idref="ClassNode1"/> 
+   <object idref="ClassNode1"/> 
   </void> 
  </object> 
 </java> 
