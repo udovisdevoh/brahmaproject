@@ -52,7 +52,8 @@ last name</string>
     <void property="attributes"> 
      <void property="text"> 
       <string>verb
-subject_or_complement</string> 
+subject_or_complement
+is_positive</string> 
      </void> 
     </void> 
     <void property="name"> 
