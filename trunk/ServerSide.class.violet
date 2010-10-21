@@ -51,8 +51,9 @@ last name</string>
    <object id="ClassNode2" class="com.horstmann.violet.ClassNode"> 
     <void property="attributes"> 
      <void property="text"> 
-      <string>verb
-subject_or_complement
+      <string>subject
+verb
+complement
 is_positive</string> 
      </void> 
     </void> 
@@ -81,6 +82,21 @@ is_positive</string>
     <void method="setLocation"> 
      <double>677.0</double> 
      <double>190.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="NoteNode0" class="com.horstmann.violet.NoteNode"> 
+    <void property="text"> 
+     <void property="text"> 
+      <string>subject xor complement is used</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>416.0</double> 
+     <double>57.0</double> 
     </void> 
    </object> 
   </void> 
@@ -191,6 +207,11 @@ is_positive</string>
    </object> 
    <object idref="ClassNode1"/> 
    <object idref="ClassNode2"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.NoteEdge"/> 
+   <object idref="ClassNode2"/> 
+   <object idref="NoteNode0"/> 
   </void> 
  </object> 
 </java> 
