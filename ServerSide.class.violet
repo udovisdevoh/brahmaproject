@@ -123,14 +123,11 @@ is_positive</string>
     <void property="bentStyle"> 
      <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
     </void> 
-    <void property="endLabel"> 
-     <string>1</string> 
+    <void property="middleLabel"> 
+     <string>*</string> 
     </void> 
     <void property="startArrowHead"> 
      <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
-    </void> 
-    <void property="startLabel"> 
-     <string>1</string> 
     </void> 
    </object> 
    <object idref="ClassNode1"/> 
@@ -141,14 +138,11 @@ is_positive</string>
     <void property="bentStyle"> 
      <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
     </void> 
-    <void property="endLabel"> 
+    <void property="middleLabel"> 
      <string>*</string> 
     </void> 
     <void property="startArrowHead"> 
      <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
-    </void> 
-    <void property="startLabel"> 
-     <string>*</string> 
     </void> 
    </object> 
    <object idref="ClassNode0"/> 
