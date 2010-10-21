@@ -6,7 +6,7 @@
     <void property="attributes"> 
      <void property="text"> 
       <string>display_name
-user_id
+user_profile_id
 data</string> 
      </void> 
     </void> 
@@ -42,7 +42,7 @@ last name</string>
     </void> 
     <void property="name"> 
      <void property="text"> 
-      <string>User</string> 
+      <string>UserProfile</string> 
      </void> 
     </void> 
    </object> 
