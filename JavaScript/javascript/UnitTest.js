@@ -295,7 +295,8 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var dragon_ball = conceptNameMapper.getConcept("dragon_ball");
 	var england = conceptNameMapper.getConcept("england");
 	
-		
+	
+	totologyManager.learnStatement("joe isa human");	
 	totologyManager.learnStatement("pine isa tree");
 	totologyManager.learnStatement("tree isa plant");
 	totologyManager.learnStatement("plant contradict animal");
@@ -1149,6 +1150,38 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	if (!flattenizer.testConnection(england, originof, grunge))
 	{
 		throw 'Statement should be true';
+	}
+	
+	
+	//Testing optimization (removing useless totologies)
+	if (!flattenizer.testConnection(joe, isa, human))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(joe, isa, man))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(man, isa, human))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!joe.getTotologicBranch(isa).hasComplement(man))
+	{
+		throw 'Totology should be there';
+	}
+	
+	if (!man.getTotologicBranch(isa).hasComplement(human))
+	{
+		throw 'Totology should be there';
+	}
+	
+	if (joe.getTotologicBranch(isa).hasComplement(human))
+	{
+		throw "Totology shouldn't be there because it's implicit";
 	}
 	
 	alert('Add more unit tests');
