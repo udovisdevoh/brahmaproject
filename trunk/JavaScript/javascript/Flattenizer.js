@@ -52,6 +52,8 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 	
 	implicitBranch.isLocked = true;
 	
+	implicitBranch.complementList = new Array();//We must clear the list of complements
+	
 	this.copyFromTotologicBranch(totologicBranch, implicitBranch);
 	
 	var howManyComplement;
