@@ -9,6 +9,9 @@ function Flattenizer(instinct)
 	
 	//(ProofCache) Stores proof for statements
 	this.proofCache = new ProofCache();
+	
+	//(Optimizer) To remove useless totologies (they are useless because they exist as non-totology connection)
+	this.optimizer = new Optimizer(this.proofCache);
 }
 
 //(Bool) whether connection exist as an implicit connection
@@ -162,6 +165,8 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		}
 		
 	} while (howManyComplement < implicitBranch.complementList.length);
+	
+	this.optimizer.optimize(subject, verb, totologicBranch);
 	
 	implicitBranch.isFlat = true;
 	implicitBranch.isLocked = false;
