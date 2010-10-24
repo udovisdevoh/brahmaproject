@@ -10,8 +10,8 @@ function ConceptNameMapper()
 	//(Array) List of concepts
 	this.conceptList = Array();
 	
-	//(TotologyManager)
-	this.totologyManager = new TotologyManager();
+	//(TautologyManager)
+	this.tautologyManager = new TautologyManager();
 }
 
 //Get concept from name
@@ -54,7 +54,7 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	{
 		for (var complement in concept2.connections[verb])
 		{
-			totologyManager.addConnection(concept1, verb, complement);
+			tautologyManager.addConnection(concept1, verb, complement);
 		}
 	}
 	
@@ -85,7 +85,7 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	{
 		for (var complement in concept1.connections[verb])
 		{
-			totologyManager.addConnection(concept2, verb, complement);
+			tautologyManager.addConnection(concept2, verb, complement);
 		}
 	}
 	

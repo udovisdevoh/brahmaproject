@@ -36,7 +36,7 @@ testStatement</string>
     </void> 
     <void property="name"> 
      <void property="text"> 
-      <string>TotologyManager</string> 
+      <string>TautologyManager</string> 
      </void> 
     </void> 
    </object> 
@@ -87,8 +87,8 @@ testStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>11.0</double> 
-     <double>502.0</double> 
+     <double>2.0</double> 
+     <double>565.0</double> 
     </void> 
    </object> 
   </void> 
@@ -102,8 +102,8 @@ testStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>268.0</double> 
-     <double>421.0</double> 
+     <double>260.0</double> 
+     <double>412.0</double> 
     </void> 
    </object> 
   </void> 
@@ -117,8 +117,8 @@ testStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>106.0</double> 
-     <double>416.0</double> 
+     <double>96.0</double> 
+     <double>492.0</double> 
     </void> 
    </object> 
   </void> 
@@ -132,8 +132,8 @@ testStatement</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>110.0</double> 
-     <double>581.0</double> 
+     <double>101.0</double> 
+     <double>410.0</double> 
     </void> 
    </object> 
   </void> 
@@ -179,6 +179,21 @@ testStatement</string>
     <void method="setLocation"> 
      <double>629.0</double> 
      <double>589.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode11" class="com.horstmann.violet.ClassNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Optimizer</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>100.0</double> 
+     <double>329.0</double> 
     </void> 
    </object> 
   </void> 
@@ -343,6 +358,30 @@ testStatement</string>
    </object> 
    <object idref="ClassNode10"/> 
    <object idref="ClassNode5"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
+    <void property="startArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode5"/> 
+   <object idref="ClassNode11"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="endArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="V"/> 
+    </void> 
+    <void property="lineStyle"> 
+     <object class="com.horstmann.violet.LineStyle" field="DOTTED"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode11"/> 
+   <object idref="ClassNode7"/> 
   </void> 
  </object> 
 </java> 

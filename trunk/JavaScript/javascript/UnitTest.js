@@ -6,8 +6,8 @@ function UnitTest()
 UnitTest.prototype.testAll = function UnitTest_testAll()
 {
 	this.testConceptNameMapper();
-	this.testTotologyManager();
-	this.testTotologyManagerPart2();
+	this.testTautologyManager();
+	this.testTautologyManagerPart2();
 	this.testComplementaryOperatorManager();
 	this.testEvaluationCache();
 	this.testFlattenizer();
@@ -45,10 +45,10 @@ UnitTest.prototype.testConceptNameMapper = function UnitTest_testConceptNameMapp
 }
 
 //Test connection manager
-UnitTest.prototype.testTotologyManager = function UnitTest_testTotologyManager()
+UnitTest.prototype.testTautologyManager = function UnitTest_testTautologyManager()
 {
 	var conceptNameMapper = new ConceptNameMapper();
-	var totologyManager = new TotologyManager(conceptNameMapper);
+	var tautologyManager = new TautologyManager(conceptNameMapper);
 	
 	var pine = conceptNameMapper.getConcept("pine");
 	var tree = conceptNameMapper.getConcept("tree");
@@ -57,76 +57,76 @@ UnitTest.prototype.testTotologyManager = function UnitTest_testTotologyManager()
 	
 	var isa = conceptNameMapper.getConcept("isa");
 	
-	totologyManager.addConnection(pine, isa, tree);
-	totologyManager.addConnection(tree, isa, plant);	
+	tautologyManager.addConnection(pine, isa, tree);
+	tautologyManager.addConnection(tree, isa, plant);	
 	
-	if (totologyManager.testConnection(pine, isa, animal))
+	if (tautologyManager.testConnection(pine, isa, animal))
 	{
 		throw "Connection shouldn't exist";
 	}
-	if (!totologyManager.testConnection(pine, isa, tree))
+	if (!tautologyManager.testConnection(pine, isa, tree))
 	{
 		throw "Connection should exist";
 	}	
-	if (!totologyManager.testConnection(tree, isa, plant))
+	if (!tautologyManager.testConnection(tree, isa, plant))
 	{
 		throw "Connection should exist";
 	}
 	
-	totologyManager.removeConnection(pine, isa, tree);
+	tautologyManager.removeConnection(pine, isa, tree);
 	
-	if (totologyManager.testConnection(pine, isa, tree))
+	if (tautologyManager.testConnection(pine, isa, tree))
 	{
 		throw "Connection shouldn't exist";
 	}
 }
 
-//Test Totology Manager
-UnitTest.prototype.testTotologyManagerPart2 = function UnitTest_testTotologyManagerPart2()
+//Test Tautology Manager
+UnitTest.prototype.testTautologyManagerPart2 = function UnitTest_testTautologyManagerPart2()
 {
-	var totologyManager = new TotologyManager(new ConceptNameMapper());
-	totologyManager.learnStatement("piNe iSa trEe");
+	var tautologyManager = new TautologyManager(new ConceptNameMapper());
+	tautologyManager.learnStatement("piNe iSa trEe");
 	
-	if (!totologyManager.testStatement("pinE IsA TrEe"))
+	if (!tautologyManager.testStatement("pinE IsA TrEe"))
 	{
 		throw "Statement should be true";
 	}
 	
-	if (totologyManager.testStatement("pinE not IsA TrEe"))
+	if (tautologyManager.testStatement("pinE not IsA TrEe"))
 	{
 		throw "Statement should be false";
 	}
 	
-	if (totologyManager.testStatement("pinE IsA AppLe"))
+	if (tautologyManager.testStatement("pinE IsA AppLe"))
 	{
 		throw "Statement should be false";
 	}
 	
-	if (!totologyManager.testStatement("pinE nOt IsA AppLe"))
+	if (!tautologyManager.testStatement("pinE nOt IsA AppLe"))
 	{
 		throw "Statement should be true";
 	}
 	
-	totologyManager.learnStatement("piNe NOt iSa trEe");
+	tautologyManager.learnStatement("piNe NOt iSa trEe");
 	
-	if (!totologyManager.testStatement("pinE noT IsA TrEe"))
+	if (!tautologyManager.testStatement("pinE noT IsA TrEe"))
 	{
 		throw "Statement should be true";
 	}
 
-	if (totologyManager.testStatement("pinE IsA TrEe"))
+	if (tautologyManager.testStatement("pinE IsA TrEe"))
 	{
 		throw "Statement should be false";
 	}
 	
-	totologyManager.learnStatement("piNe NOt iSa pIE");
+	tautologyManager.learnStatement("piNe NOt iSa pIE");
 	
-	if (!totologyManager.testStatement("pinE noT IsA Pie"))
+	if (!tautologyManager.testStatement("pinE noT IsA Pie"))
 	{
 		throw "Statement should be true";
 	}
 		
-	if (totologyManager.testStatement("pinE IsA Pie"))
+	if (tautologyManager.testStatement("pinE IsA Pie"))
 	{
 		throw "Statement should be false";
 	}
@@ -181,7 +181,7 @@ UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
 	var conceptNameMapper = new ConceptNameMapper();
 	var complementaryOperatorManager = new ComplementaryOperatorManager(conceptNameMapper);
 	var evaluationCache = new EvaluationCache();
-	var totologyManager = new TotologyManager(conceptNameMapper);
+	var tautologyManager = new TautologyManager(conceptNameMapper);
 	var instinct = new Instinct(complementaryOperatorManager);
 	
 	var pine = new Concept("pine");
@@ -207,7 +207,7 @@ UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
 UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 {
 	var conceptNameMapper = new ConceptNameMapper();
-	var totologyManager = new TotologyManager(conceptNameMapper);
+	var tautologyManager = new TautologyManager(conceptNameMapper);
 	var flattenizer = new Flattenizer(new Instinct(new ComplementaryOperatorManager(conceptNameMapper)));
 
 	var forest = conceptNameMapper.getConcept("forest");
@@ -296,88 +296,88 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var england = conceptNameMapper.getConcept("england");
 	
 	
-	totologyManager.learnStatement("joe isa human");	
-	totologyManager.learnStatement("pine isa tree");
-	totologyManager.learnStatement("tree isa plant");
-	totologyManager.learnStatement("plant contradict animal");
-	totologyManager.learnStatement("human isa animal");
-	totologyManager.learnStatement("animal isa lifeform");
-	totologyManager.learnStatement("plant isa lifeform");
-	totologyManager.learnStatement("lifeform madeof water");
-	totologyManager.learnStatement("water isa liquid");
-	totologyManager.learnStatement("tree madeof wood");
-	totologyManager.learnStatement("wood isa matter");
-	totologyManager.learnStatement("wood madeof carbon");
-	totologyManager.learnStatement("matter madeof energy");
-	totologyManager.learnStatement("rain partof state_of_affair");	
-	totologyManager.learnStatement("joe isa man");
-	totologyManager.learnStatement("joe partof state_of_affair");
-	totologyManager.learnStatement("carbon isa atom");
-	totologyManager.learnStatement("atom madeof matter");
-	totologyManager.learnStatement("forest madeof tree");
-	totologyManager.learnStatement("earth madeof forest");
-	totologyManager.learnStatement("solar_system madeof earth");
-	totologyManager.learnStatement("solar_system madeof sun");
-	totologyManager.learnStatement("milky_way madeof solar_system");
-	totologyManager.learnStatement("universe madeof milky_way");
-	totologyManager.learnStatement("multiverse madeof universe");
-	totologyManager.learnStatement("earth isa planet");
-	totologyManager.learnStatement("star madeof fire");
-	totologyManager.learnStatement("sun isa star");
-	totologyManager.learnStatement("star madeof fire");
-	totologyManager.learnStatement("star isa celestial_body");
-	totologyManager.learnStatement("planet isa celestial_body");
-	totologyManager.learnStatement("forest isa ecosystem");
-	totologyManager.learnStatement("fire madeof energy");
-	totologyManager.learnStatement("fire madeof gas");
-	totologyManager.learnStatement("gas isa matter");
-	totologyManager.learnStatement("fire isa chemical_reaction");
-	totologyManager.learnStatement("male contradict female");
-	totologyManager.learnStatement("animal contradict vegetable");
-	totologyManager.learnStatement("human isa animal");
-	totologyManager.learnStatement("man isa human");
-	totologyManager.learnStatement("woman isa human");
-	totologyManager.learnStatement("man isa male");
-	totologyManager.learnStatement("woman isa female");
-	totologyManager.learnStatement("girl isa woman");
-	totologyManager.learnStatement("banana isa vegetable");
-	totologyManager.learnStatement("bird need tree");
-	totologyManager.learnStatement("bird isa animal");
-	totologyManager.learnStatement("parrot isa bird");
-	totologyManager.learnStatement("plant need light");
-	totologyManager.learnStatement("billy make jazz");
-	totologyManager.learnStatement("jazz isa music");
-	totologyManager.learnStatement("music isa art");
-	totologyManager.learnStatement("painting isa art");
-	totologyManager.learnStatement("billy isa black_man");
-	totologyManager.learnStatement("polka isa music");
-	totologyManager.learnStatement("music make dance");
-	totologyManager.learnStatement("monsanto make gmo");
-	totologyManager.learnStatement("gmo isa poison");
-	totologyManager.learnStatement("poison destroy human");
-	totologyManager.learnStatement("mcdonalds destroy health");
-	totologyManager.learnStatement("human need health");
-	totologyManager.learnStatement("monsanto isa corporation");
-	totologyManager.learnStatement("human isa concept");
-	totologyManager.learnStatement("bee need flower");
-	totologyManager.learnStatement("flower need bee");
-	totologyManager.learnStatement("lewis isa programmer");
-	totologyManager.learnStatement("programmer make program");
-	totologyManager.learnStatement("star largerthan planet");
-	totologyManager.learnStatement("planet largerthan satellite");
-	totologyManager.learnStatement("moon isa satellite");
-	totologyManager.learnStatement("grunge from seattle");
-	totologyManager.learnStatement("seattle isa city");
-	totologyManager.learnStatement("seattle partof usa");
-	totologyManager.learnStatement("dragon_ball isa manga");
-	totologyManager.learnStatement("manga from japan");
-	totologyManager.learnStatement("japan isa country");
-	totologyManager.learnStatement("usa isa country");
-	totologyManager.learnStatement("england isa country");
-	totologyManager.learnStatement("usa from england");
+	tautologyManager.learnStatement("joe isa human");	
+	tautologyManager.learnStatement("pine isa tree");
+	tautologyManager.learnStatement("tree isa plant");
+	tautologyManager.learnStatement("plant contradict animal");
+	tautologyManager.learnStatement("human isa animal");
+	tautologyManager.learnStatement("animal isa lifeform");
+	tautologyManager.learnStatement("plant isa lifeform");
+	tautologyManager.learnStatement("lifeform madeof water");
+	tautologyManager.learnStatement("water isa liquid");
+	tautologyManager.learnStatement("tree madeof wood");
+	tautologyManager.learnStatement("wood isa matter");
+	tautologyManager.learnStatement("wood madeof carbon");
+	tautologyManager.learnStatement("matter madeof energy");
+	tautologyManager.learnStatement("rain partof state_of_affair");	
+	tautologyManager.learnStatement("joe isa man");
+	tautologyManager.learnStatement("joe partof state_of_affair");
+	tautologyManager.learnStatement("carbon isa atom");
+	tautologyManager.learnStatement("atom madeof matter");
+	tautologyManager.learnStatement("forest madeof tree");
+	tautologyManager.learnStatement("earth madeof forest");
+	tautologyManager.learnStatement("solar_system madeof earth");
+	tautologyManager.learnStatement("solar_system madeof sun");
+	tautologyManager.learnStatement("milky_way madeof solar_system");
+	tautologyManager.learnStatement("universe madeof milky_way");
+	tautologyManager.learnStatement("multiverse madeof universe");
+	tautologyManager.learnStatement("earth isa planet");
+	tautologyManager.learnStatement("star madeof fire");
+	tautologyManager.learnStatement("sun isa star");
+	tautologyManager.learnStatement("star madeof fire");
+	tautologyManager.learnStatement("star isa celestial_body");
+	tautologyManager.learnStatement("planet isa celestial_body");
+	tautologyManager.learnStatement("forest isa ecosystem");
+	tautologyManager.learnStatement("fire madeof energy");
+	tautologyManager.learnStatement("fire madeof gas");
+	tautologyManager.learnStatement("gas isa matter");
+	tautologyManager.learnStatement("fire isa chemical_reaction");
+	tautologyManager.learnStatement("male contradict female");
+	tautologyManager.learnStatement("animal contradict vegetable");
+	tautologyManager.learnStatement("human isa animal");
+	tautologyManager.learnStatement("man isa human");
+	tautologyManager.learnStatement("woman isa human");
+	tautologyManager.learnStatement("man isa male");
+	tautologyManager.learnStatement("woman isa female");
+	tautologyManager.learnStatement("girl isa woman");
+	tautologyManager.learnStatement("banana isa vegetable");
+	tautologyManager.learnStatement("bird need tree");
+	tautologyManager.learnStatement("bird isa animal");
+	tautologyManager.learnStatement("parrot isa bird");
+	tautologyManager.learnStatement("plant need light");
+	tautologyManager.learnStatement("billy make jazz");
+	tautologyManager.learnStatement("jazz isa music");
+	tautologyManager.learnStatement("music isa art");
+	tautologyManager.learnStatement("painting isa art");
+	tautologyManager.learnStatement("billy isa black_man");
+	tautologyManager.learnStatement("polka isa music");
+	tautologyManager.learnStatement("music make dance");
+	tautologyManager.learnStatement("monsanto make gmo");
+	tautologyManager.learnStatement("gmo isa poison");
+	tautologyManager.learnStatement("poison destroy human");
+	tautologyManager.learnStatement("mcdonalds destroy health");
+	tautologyManager.learnStatement("human need health");
+	tautologyManager.learnStatement("monsanto isa corporation");
+	tautologyManager.learnStatement("human isa concept");
+	tautologyManager.learnStatement("bee need flower");
+	tautologyManager.learnStatement("flower need bee");
+	tautologyManager.learnStatement("lewis isa programmer");
+	tautologyManager.learnStatement("programmer make program");
+	tautologyManager.learnStatement("star largerthan planet");
+	tautologyManager.learnStatement("planet largerthan satellite");
+	tautologyManager.learnStatement("moon isa satellite");
+	tautologyManager.learnStatement("grunge from seattle");
+	tautologyManager.learnStatement("seattle isa city");
+	tautologyManager.learnStatement("seattle partof usa");
+	tautologyManager.learnStatement("dragon_ball isa manga");
+	tautologyManager.learnStatement("manga from japan");
+	tautologyManager.learnStatement("japan isa country");
+	tautologyManager.learnStatement("usa isa country");
+	tautologyManager.learnStatement("england isa country");
+	tautologyManager.learnStatement("usa from england");
 	
-	//Test totology
-	if (!totologyManager.testConnection(pine, isa, tree))
+	//Test tautology
+	if (!tautologyManager.testConnection(pine, isa, tree))
 	{
 		throw 'Statement should be true because we told so';
 	}
@@ -1169,19 +1169,19 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
-	if (!joe.getTotologicBranch(isa).hasComplement(man))
+	if (!joe.getTautologicBranch(isa).hasComplement(man))
 	{
-		throw 'Totology should be there';
+		throw 'Tautology should be there';
 	}
 	
-	if (!man.getTotologicBranch(isa).hasComplement(human))
+	if (!man.getTautologicBranch(isa).hasComplement(human))
 	{
-		throw 'Totology should be there';
+		throw 'Tautology should be there';
 	}
 	
-	if (joe.getTotologicBranch(isa).hasComplement(human))
+	if (joe.getTautologicBranch(isa).hasComplement(human))
 	{
-		throw "Totology shouldn't be there because it's implicit";
+		throw "Tautology shouldn't be there because it's implicit";
 	}
 	
 	alert('Add more unit tests');
