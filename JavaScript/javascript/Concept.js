@@ -4,8 +4,8 @@ function Concept(defaultConceptName)
 	//(string) Default concept name (for debugging and etc)
 	this.defaultConceptName = defaultConceptName;
 	
-	//(HashSet<Concept, VerbBranch>) Totology connections
-	this.totologyConnections = new Hash();
+	//(HashSet<Concept, VerbBranch>) Tautology connections
+	this.tautologyConnections = new Hash();
 	
 	//(HashSet<Concept, VerbBranch>) Implicit (non-totological) connections
 	this.implicitConnections = new Hash();
@@ -38,9 +38,9 @@ Concept.prototype.getImplicitBranch = function Concept_getImplicitBranch(verb)
 }
 
 //(VerbBranch) get totologic verb branch
-Concept.prototype.getTotologicBranch = function Concept_getTotologicBranch(verb)
+Concept.prototype.getTautologicBranch = function Concept_getTautologicBranch(verb)
 {
-	if (!this.totologyConnections.hasItem(verb))
-		this.totologyConnections.setItem(verb, new VerbBranch());
-	return this.totologyConnections.getItem(verb);
+	if (!this.tautologyConnections.hasItem(verb))
+		this.tautologyConnections.setItem(verb, new VerbBranch());
+	return this.tautologyConnections.getItem(verb);
 }

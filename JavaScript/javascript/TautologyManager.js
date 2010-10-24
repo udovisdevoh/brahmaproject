@@ -1,12 +1,12 @@
 //Represents a concept (subject, verb or complement)
-function TotologyManager(conceptNameMapper)
+function TautologyManager(conceptNameMapper)
 {
 	//(ConceptNameMapper) Maps names to concepts
 	this.conceptNameMapper = conceptNameMapper;
 }
 
 //Tell statement to AI (negative or positive)
-TotologyManager.prototype.learnStatement = function TotologyManager_learnStatement(statementString)
+TautologyManager.prototype.learnStatement = function TautologyManager_learnStatement(statementString)
 {
 	if (statementString == null)
 	{
@@ -56,7 +56,7 @@ TotologyManager.prototype.learnStatement = function TotologyManager_learnStateme
 }
 
 //Tell statement to AI (negative or positive)
-TotologyManager.prototype.testStatement = function TotologyManager_testStatement(statementString)
+TautologyManager.prototype.testStatement = function TautologyManager_testStatement(statementString)
 {
 	if (statementString == null)
 	{
@@ -97,51 +97,51 @@ TotologyManager.prototype.testStatement = function TotologyManager_testStatement
 }
 
 //Add a connection from subject through verb to complement
-TotologyManager.prototype.addConnection = function TotologyManager_addConnection(subject, verb, complement)
+TautologyManager.prototype.addConnection = function TautologyManager_addConnection(subject, verb, complement)
 {
 	var verbBranch;
-	if (subject.totologyConnections.hasItem(verb))
+	if (subject.tautologyConnections.hasItem(verb))
 	{
-		verbBranch = subject.totologyConnections.getItem(verb);
+		verbBranch = subject.tautologyConnections.getItem(verb);
 	}
 	else
 	{
 		verbBranch = new VerbBranch();
-		subject.totologyConnections.setItem(verb, verbBranch);
+		subject.tautologyConnections.setItem(verb, verbBranch);
 	}
 	
 	verbBranch.addComplement(complement);
 }
 
 //Remove a connection from subject through verb to complement
-TotologyManager.prototype.removeConnection = function TotologyManager_removeConnection(subject, verb, complement)
+TautologyManager.prototype.removeConnection = function TautologyManager_removeConnection(subject, verb, complement)
 {
 	var verbBranch;
-	if (subject.totologyConnections.hasItem(verb))
+	if (subject.tautologyConnections.hasItem(verb))
 	{
-		verbBranch = subject.totologyConnections.getItem(verb);
+		verbBranch = subject.tautologyConnections.getItem(verb);
 	}
 	else
 	{
 		verbBranch = new VerbBranch();
-		subject.totologyConnections.setItem(verb, verbBranch);
+		subject.tautologyConnections.setItem(verb, verbBranch);
 	}
 	
 	verbBranch.removeComplement(complement);
 }
 
 //Add a connection from subject through verb to complement
-TotologyManager.prototype.testConnection = function TotologyManager_testConnection(subject, verb, complement)
+TautologyManager.prototype.testConnection = function TautologyManager_testConnection(subject, verb, complement)
 {
 	var verbBranch;
-	if (subject.totologyConnections.hasItem(verb))
+	if (subject.tautologyConnections.hasItem(verb))
 	{
-		verbBranch = subject.totologyConnections.getItem(verb);
+		verbBranch = subject.tautologyConnections.getItem(verb);
 	}
 	else
 	{
 		verbBranch = new VerbBranch();
-		subject.totologyConnections.setItem(verb, verbBranch);
+		subject.tautologyConnections.setItem(verb, verbBranch);
 	}
 	
 	return verbBranch.hasComplement(complement);

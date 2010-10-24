@@ -10,7 +10,7 @@ function Flattenizer(instinct)
 	//(ProofCache) Stores proof for statements
 	this.proofCache = new ProofCache();
 	
-	//(Optimizer) To remove useless totologies (they are useless because they exist as non-totology connection)
+	//(Optimizer) To remove useless totologies (they are useless because they exist as non-tautology connection)
 	this.optimizer = new Optimizer(this.proofCache);
 }
 
@@ -34,7 +34,7 @@ Flattenizer.prototype.getProof = function Flattenizer_getProof(subject, verb, co
 		return this.proofCache.getProof(subject, verb, complement, isPositive);
 }
 
-Flattenizer.prototype.copyFromTotologicBranch = function Flattenizer_copyFromTotologicBranch(totologicBranch, implicitBranch)
+Flattenizer.prototype.copyFromTautologicBranch = function Flattenizer_copyFromTautologicBranch(totologicBranch, implicitBranch)
 {
 	for (var index in totologicBranch.complementList)
 	{
@@ -48,13 +48,13 @@ Flattenizer.prototype.copyFromTotologicBranch = function Flattenizer_copyFromTot
 
 Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implicitBranch, subject, verb)
 {
-	var totologicBranch = subject.getTotologicBranch(verb);
+	var totologicBranch = subject.getTautologicBranch(verb);
 	
 	implicitBranch.isLocked = true;
 	
 	implicitBranch.complementList = new Array();//We must clear the list of complements
 	
-	this.copyFromTotologicBranch(totologicBranch, implicitBranch);
+	this.copyFromTautologicBranch(totologicBranch, implicitBranch);
 	
 	var howManyComplement;
 	

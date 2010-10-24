@@ -1,4 +1,4 @@
-//To remove useless totologies (they are useless because they exist as non-totology connection)
+//To remove useless totologies (they are useless because they exist as non-tautology connection)
 function Optimizer(proofCache)
 {
 	//(ProofCache) Stores proof for statements
@@ -6,7 +6,7 @@ function Optimizer(proofCache)
 }
 
 //Remove useless totologies from totologic branch
-//(they are useless when they exist as non-totology connection)
+//(they are useless when they exist as non-tautology connection)
 Optimizer.prototype.optimize = function Optimizer_optimize(subject, verb, totologicBranch)
 {
 	var newComplementList = Array();
