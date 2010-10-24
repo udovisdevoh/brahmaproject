@@ -6,11 +6,9 @@
     <void property="attributes"> 
      <void property="text"> 
       <string>id
+key_name
 name
-data
-user_profile_id
-created
-modified</string> 
+user_profile_id</string> 
      </void> 
     </void> 
     <void property="name"> 
@@ -21,7 +19,7 @@ modified</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>320.0</double> 
+     <double>336.0</double> 
      <double>198.0</double> 
     </void> 
    </object> 
@@ -31,6 +29,7 @@ modified</string>
     <void property="attributes"> 
      <void property="text"> 
       <string>id
+key_name
 user_name
 password
 email
@@ -47,8 +46,31 @@ is_active</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>649.0</double> 
-     <double>201.0</double> 
+     <double>604.0</double> 
+     <double>171.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode2" class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>id
+data
+date
+ai_unit_id</string> 
+     </void> 
+    </void> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>AiUnitState</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>114.0</double> 
+     <double>195.0</double> 
     </void> 
    </object> 
   </void> 
@@ -99,6 +121,24 @@ is_active</string>
    </object> 
    <object idref="ClassNode1"/> 
    <object idref="ClassNode0"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
+    <void property="endLabel"> 
+     <string>*</string> 
+    </void> 
+    <void property="startArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
+    </void> 
+    <void property="startLabel"> 
+     <string>1</string> 
+    </void> 
+   </object> 
+   <object idref="ClassNode0"/> 
+   <object idref="ClassNode2"/> 
   </void> 
  </object> 
 </java> 
