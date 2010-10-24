@@ -30,7 +30,7 @@ user_profile_id</string>
      <void property="text"> 
       <string>id
 key_name
-user_name
+name
 password
 email
 first_name
@@ -40,7 +40,7 @@ is_active</string>
     </void> 
     <void property="name"> 
      <void property="text"> 
-      <string>User</string> 
+      <string>UserProfile</string> 
      </void> 
     </void> 
    </object> 
