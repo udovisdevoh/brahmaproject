@@ -1,3 +1,0 @@
-2010-10-18 23:20:27 Debug: Notice (1024): Please change the value of 'Security.salt' in app/config/core.php to a salt value specific to your application in [C:\wamp\www\brahmaproject\PHP\cake_1_3\cake\libs\debugger.php, line 684]
-2010-10-18 23:20:27 Debug: Notice (1024): Please change the value of 'Security.cipherSeed' in app/config/core.php to a numeric (digits only) seed value specific to your application in [C:\wamp\www\brahmaproject\PHP\cake_1_3\cake\libs\debugger.php, line 688]
-2010-10-18 23:48:36 Debug: Notice (1024): Please change the value of 'Security.cipherSeed' in app/config/core.php to a numeric (digits only) seed value specific to your application in [C:\wamp\www\brahmaproject\PHP\cake_1_3\cake\libs\debugger.php, line 688]
