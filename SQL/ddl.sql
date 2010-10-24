@@ -4,15 +4,23 @@ CREATE TABLE IF NOT EXISTS `ai_units` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `key_name` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `data` longblob NOT NULL,
-  `user_profile_id` int(11) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
+  `user_profile_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `key_name` (`key_name`),
   KEY `user_profile_id` (`user_profile_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `ai_unit_states` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `data` longblob NOT NULL,
+  `date` datetime NOT NULL,
+  `ai_unit_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ai_unit_id` (`ai_unit_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
