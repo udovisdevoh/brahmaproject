@@ -1,6 +1,6 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
-CREATE TABLE IF NOT EXISTS `ai_units` (
+CREATE TABLE IF NOT EXISTS `ai_unit` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `key_name` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `ai_units` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `ai_unit_states` (
+CREATE TABLE IF NOT EXISTS `ai_unit_state` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `data` longblob NOT NULL,
   `modified` datetime NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ai_unit_states` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `user_profiles` (
+CREATE TABLE IF NOT EXISTS `user_profile` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `key_name` varchar(248) NOT NULL,
   `name` varchar(248) NOT NULL,
