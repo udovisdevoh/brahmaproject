@@ -27,6 +27,25 @@ function Instinct(complementaryOperatorManager)
 	this.from = this.conceptNameMapper.getConcept("from");
 	this.originof = this.conceptNameMapper.getConcept("originof");
 	
+	//Verb list
+	this.verbList = new Array(
+	this.isa,
+	this.madeof,
+	this.from,
+	this.partof,
+	this.madeby,
+	this.contradict,
+	this.someare,
+	this.need,
+	this.allow,
+	this.make,
+	this.originof,
+	this.largerthan,
+	this.smallerthan,
+	this.destroyedby,
+	this.destroy
+	);
+	
 	//Construction of the instinct
 	this.mutuallyExclusiveOperatorManager.add("isa","contradict");
 	this.complementaryOperatorManager.add("contradict","contradict");
