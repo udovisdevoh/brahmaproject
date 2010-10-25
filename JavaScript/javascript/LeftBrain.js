@@ -82,6 +82,22 @@ LeftBrain.prototype.talkTo = function LeftBrain_talkTo(statementString)
 		var subject, verb, complement, isPositive;
 		if (wordList.length == 3)
 		{
+			if (wordList[0] == 'alias')
+			{
+				return this.talkToAlias(wordList[1], wordList[2]);
+			}
+			else if (wordList[0] == 'unalias')
+			{
+				return this.talkToUnAlias(wordList[1], wordList[2]);
+			}
+			else if (wordList[0] == 'rename')
+			{
+				return this.talkToRename(wordList[1], wordList[2]);
+			}
+		}
+		
+		if (wordList.length == 3)
+		{
 			subject = this.conceptNameMapper.getConcept(wordList[0]);
 			verb = this.conceptNameMapper.getConcept(wordList[1]);
 			complement = this.conceptNameMapper.getConcept(wordList[2]);
