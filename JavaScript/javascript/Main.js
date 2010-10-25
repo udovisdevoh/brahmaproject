@@ -88,6 +88,7 @@ function Hash()
 {
 	this.length = 0;
 	this.items = new Array();
+	this.keys = new Array();
 	for (var i = 0; i < arguments.length; i += 2) {
 		if (typeof(arguments[i + 1]) != 'undefined') {
 			this.items[arguments[i]] = arguments[i + 1];
@@ -98,32 +99,43 @@ function Hash()
 	this.removeItem = function(in_key)
 	{
 		var tmp_previous;
-		if (typeof(this.items[in_key]) != 'undefined') {
+		if (typeof(this.items[in_key]) != 'undefined')
+		{
 			this.length--;
 			var tmp_previous = this.items[in_key];
 			delete this.items[in_key];
 		}
+		
+		var index = this.keys.indexOf(in_key);
+		if (index != -1)
+			this.keys.splice(index, 1);
 	   
 		return tmp_previous;
 	}
 
-	this.getItem = function(in_key) {
+	this.getItem = function(in_key)
+	{
 		return this.items[in_key];
 	}
 
 	this.setItem = function(in_key, in_value)
 	{
 		var tmp_previous;
-		if (typeof(in_value) != 'undefined') {
-			if (typeof(this.items[in_key]) == 'undefined') {
+		if (typeof(in_value) != 'undefined')
+		{
+			if (typeof(this.items[in_key]) == 'undefined')
+			{
 				this.length++;
 			}
-			else {
+			else
+			{
 				tmp_previous = this.items[in_key];
 			}
 
 			this.items[in_key] = in_value;
 		}
+		
+		this.keys.push(in_key);
 	   
 		return tmp_previous;
 	}
@@ -140,6 +152,7 @@ function Hash()
 			delete this.items[i];
 		}
 
+		this.keys = Array();
 		this.length = 0;
 	}
 }

@@ -50,18 +50,24 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 		return;
 	}
 
-	for (var verb in concept2.tautologyConnections.items)
+	for (var index2 in concept2.tautologyConnections.keys)
 	{
-		var verbBranch = concept2.tautologyConnections.items[verb];
-		for (var index in verbBranch.complementList)
+		var verb = concept2.tautologyConnections.keys[index2];
+		if (verb instanceof Concept)
 		{
-			var complement = verbBranch.complementList[index];
-			this.tautologyManager.addConnection(concept1, verb, complement);
-			
-			for (var complementaryVerbIndex in verb.complementaryOperators)
+			var verbBranch = concept2.getTautologicBranch(verb);
+			for (var index in verbBranch.complementList)
 			{
-				var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
-				this.tautologyManager.addConnection(complement, complementaryVerb, concept1);
+				var complement = verbBranch.complementList[index];
+				if (complement instanceof Concept)
+				{
+					this.tautologyManager.addConnection(concept1, verb, complement);
+					for (var complementaryVerbIndex in verb.complementaryOperators)
+					{
+						var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
+						this.tautologyManager.addConnection(complement, complementaryVerb, concept1);
+					}
+				}
 			}
 		}
 	}
@@ -89,18 +95,24 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	
 	var concept2 = new Concept(conceptName2);	
 	
-	for (var verb in concept1.tautologyConnections.items)
+	for (var index2 in concept1.tautologyConnections.keys)
 	{
-		var verbBranch = concept1.tautologyConnections.items[verb];
-		for (var index in verbBranch.complementList)
+		var verb = concept1.tautologyConnections.keys[index2];
+		if (verb instanceof Concept)
 		{
-			var complement = verbBranch.complementList[index];
-			this.tautologyManager.addConnection(concept2, verb, complement);
-			
-			for (var complementaryVerbIndex in verb.complementaryOperators)
+			var verbBranch = concept1.getTautologicBranch(verb);
+			for (var index in verbBranch.complementList)
 			{
-				var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
-				this.tautologyManager.addConnection(complement, complementaryVerb, concept2);
+				var complement = verbBranch.complementList[index];
+				if (complement instanceof Concept)
+				{
+					this.tautologyManager.addConnection(concept2, verb, complement);
+					for (var complementaryVerbIndex in verb.complementaryOperators)
+					{
+						var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
+						this.tautologyManager.addConnection(complement, complementaryVerb, concept2);
+					}
+				}
 			}
 		}
 	}

@@ -1414,6 +1414,8 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 	talkingRouter.talkTo("animal contradict plant");
 	talkingRouter.talkTo("lifeform madeof water");
 	talkingRouter.talkTo("christmas_tree isa pine");
+	talkingRouter.talkTo("palm_tree isa tree");
+	talkingRouter.talkTo("apple_tree isa tree");
 
 	if (talkingRouter.talkTo("wood partof tree?") != 'Yes, <span class="AiConcept">wood</span> <span class="AiOperator">partof</span> <span class="AiConcept">tree</span>')
 		throw 'Wrong answer';
@@ -1429,7 +1431,7 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 		
 	if (talkingRouter.talkTo("why pine not isa animal") != 'because<br /><span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>,<br /><span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span>,<br /><span class="AiConcept">plant</span> <span class="AiOperator">contradict</span> <span class="AiConcept">animal</span>,<br />therefore, <span class="AiConcept">pine</span> <span class="AiOperator">contradict</span> <span class="AiConcept">animal</span>')
 		throw 'Wrong answer';
-		
-	if (talkingRouter.talkTo("whatis tree") != 'todo: add expected answer')
+	
+	if (talkingRouter.talkTo("whatis tree") != '<span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span> <span class="AiOperator">madeof</span> <span class="AiConcept">wood</span> <span class="AiOperator">someare</span> <span class="AiConcept">pine</span>, <span class="AiConcept">palm_tree</span> and <span class="AiConcept">apple_tree</span>')
 		throw 'Wrong answer';
 }
