@@ -33,7 +33,11 @@ if (typeof String.prototype.trim !== 'function')
 
 String.prototype.hardTrim = function String_hardTrim()
 {
-	var text = this.trim().toLowerCase();
+	var text = this;
+	
+	text = text.replace('?','');
+	
+	text = text.trim().toLowerCase();
 	while (text.indexOf("  ") != -1)
 		text = text.replace('  ',' ');
 	

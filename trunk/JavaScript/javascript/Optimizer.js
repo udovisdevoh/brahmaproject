@@ -1,18 +1,18 @@
-//To remove useless totologies (they are useless because they exist as non-tautology connection)
+//To remove useless tautologies (they are useless because they exist as non-tautology connection)
 function Optimizer(proofCache)
 {
 	//(ProofCache) Stores proof for statements
 	this.proofCache = proofCache;
 }
 
-//Remove useless totologies from totologic branch
+//Remove useless tautologies from tautologic branch
 //(they are useless when they exist as non-tautology connection)
-Optimizer.prototype.optimize = function Optimizer_optimize(subject, verb, totologicBranch)
+Optimizer.prototype.optimize = function Optimizer_optimize(subject, verb, tautologicBranch)
 {
 	var newComplementList = Array();
-	for (var index in totologicBranch.complementList)
+	for (var index in tautologicBranch.complementList)
 	{
-		var complement = totologicBranch.complementList[index];
+		var complement = tautologicBranch.complementList[index];
 		var proof = this.proofCache.getProof(subject, verb, complement, true);
 		if (!proof || proof.length == 0)
 		{
@@ -20,5 +20,5 @@ Optimizer.prototype.optimize = function Optimizer_optimize(subject, verb, totolo
 		}
 	}
 	
-	totologicBranch.complementList = newComplementList;
+	tautologicBranch.complementList = newComplementList;
 }

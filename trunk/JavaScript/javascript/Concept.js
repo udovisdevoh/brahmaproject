@@ -7,11 +7,14 @@ function Concept(defaultConceptName)
 	//(HashSet<Concept, VerbBranch>) Tautology connections
 	this.tautologyConnections = new Hash();
 	
-	//(HashSet<Concept, VerbBranch>) Implicit (non-totological) connections
+	//(HashSet<Concept, VerbBranch>) Implicit (non-tautological) connections
 	this.implicitConnections = new Hash();
 		
 	//(Array of Concept) Complementary operators (should be only one but who knows)
 	this.complementaryOperators = Array();
+	
+	//(Array of Concept) Mutually exclusive operators (should be only one but who knows)
+	this.mutuallyExclusiveOperators = Array();
 	
 	//(Bool) (stuff like isa, but not someare)
 	this.isNaturalOperator = false;
@@ -37,7 +40,7 @@ Concept.prototype.getImplicitBranch = function Concept_getImplicitBranch(verb)
 	return this.implicitConnections.getItem(verb);
 }
 
-//(VerbBranch) get totologic verb branch
+//(VerbBranch) get tautologic verb branch
 Concept.prototype.getTautologicBranch = function Concept_getTautologicBranch(verb)
 {
 	if (!this.tautologyConnections.hasItem(verb))

@@ -15,7 +15,7 @@ function TalkingRouter()
 	this.proofCache = this.flattenizer.proofCache;
 	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
-	this.objectionFinder = new ObjectionFinder();
+	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 }
 
 //(String (HTML)) Talk to left brain's talking interface
@@ -160,9 +160,9 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 	if (isPositive != wasPositive && !isQuestion)
 	{
 		if (isPositive)
-			this.tautologyManager.addConnection(subject, verb, complement);
+			this.tautologyManager.learnStatement(subject + ' ' + verb + ' ' + complement);
 		else
-			this.tautologyManager.removeConnection(subject, verb, complement);
+			this.tautologyManager.learnStatement(subject + ' not ' + verb + ' ' + complement);
 	
 		this.invalidator.invalidateAll();
 	}
@@ -205,10 +205,13 @@ TalkingRouter.prototype.talkToWhyStatement = function TalkingRouter_talkToWhySta
 		
 	var objectionStatement = this.objectionFinder.findObjection(subject, verb, complement);
 	
-	proof = this.proofViewer.viewProof(obstructionStatement.subject, obstructionStatement.verb, obstructionStatement.complement);
+	if (objectionStatement == null)
+		return null;
+	
+	proof = this.proofViewer.viewProof(objectionStatement.subject, objectionStatement.verb, objectionStatement.complement, 0);
 	
 	if (proof)
 		return proof;
 	
-	return this.iDonTKnow;
+	return null;
 }
