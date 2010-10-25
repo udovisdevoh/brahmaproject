@@ -56,7 +56,7 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 		for (var index in verbBranch.complementList)
 		{
 			var complement = verbBranch.complementList[index];
-			tautologyManager.addConnection(concept1, verb, complement);
+			this.tautologyManager.addConnection(concept1, verb, complement);
 		}
 	}
 	
@@ -89,7 +89,7 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 		for (var index in verbBranch.complementList)
 		{
 			var complement = verbBranch.complementList[index];
-			tautologyManager.addConnection(concept2, verb, complement);
+			this.tautologyManager.addConnection(concept2, verb, complement);
 		}
 	}
 	
