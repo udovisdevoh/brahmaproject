@@ -15,7 +15,8 @@ function TalkingRouter()
 	this.proofCache = this.flattenizer.proofCache;
 	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
-	this.whatisViewer = new WhatisViewer(this.flattenizer);
+	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
+	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 }
 
@@ -64,19 +65,19 @@ TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 		{
 			return this.talkToWhatIs(this.conceptNameMapper.getConcept(wordList[1]));
 		}
-		else if (wordList[1] == 'define')
+		else if (wordList[0] == 'define')
 		{
 			return this.talkToDefine(this.conceptNameMapper.getConcept(wordList[1]));
 		}
-		else if (wordList[1] == 'thinkabout')
+		else if (wordList[0] == 'thinkabout')
 		{
 			return this.talkToThinkAbout(this.conceptNameMapper.getConcept(wordList[1]));
 		}
-		else if (wordList[1] == 'askabout')
+		else if (wordList[0] == 'askabout')
 		{
 			return this.talkToAskAbout(this.conceptNameMapper.getConcept(wordList[1]));
 		}
-		else if (wordList[1] == 'talkabout')
+		else if (wordList[0] == 'talkabout')
 		{
 			return this.talkToTalkAbout(this.conceptNameMapper.getConcept(wordList[1]));
 		}
@@ -221,4 +222,10 @@ TalkingRouter.prototype.talkToWhyStatement = function TalkingRouter_talkToWhySta
 TalkingRouter.prototype.talkToWhatIs = function TalkingRouter_talkToWhatIs(subject)
 {
 	return this.whatisViewer.viewDefinition(subject);
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToDefine = function TalkingRouter_talkToDefine(subject)
+{
+	return this.defineViewer.viewDefinition(subject);
 }

@@ -1434,4 +1434,7 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 	
 	if (talkingRouter.talkTo("whatis tree") != '<span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span> <span class="AiOperator">madeof</span> <span class="AiConcept">wood</span> <span class="AiOperator">someare</span> <span class="AiConcept">pine</span>, <span class="AiConcept">palm_tree</span> and <span class="AiConcept">apple_tree</span>')
 		throw 'Wrong answer';
+
+	if (talkingRouter.talkTo("define pine") != '<span class="AiConcept">pine</span>: <ul> <li><span class="AiOperator">isa</span><ul> <li><span class="AiConcept">tree</span></li> <li><span class="AiConcept">plant</span></li> <li><span class="AiConcept">lifeform</span></li> </ul></li> <li><span class="AiOperator">madeof</span><ul> <li><span class="AiConcept">wood</span></li> <li><span class="AiConcept">carbon</span></li> <li><span class="AiConcept">material</span></li> <li><span class="AiConcept">water</span></li> </ul></li> <li><span class="AiOperator">contradict</span><ul> <li><span class="AiConcept">animal</span></li> </ul></li> <li><span class="AiOperator">someare</span><ul> <li><span class="AiConcept">christmas_tree</span></li> </ul></li></ul>')
+		throw 'Wrong answer';
 }

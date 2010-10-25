@@ -1,17 +1,18 @@
 //To view short definitions
-function WhatisViewer(flattenizer)
+function WhatisViewer(flattenizer, instinct)
 {
 	this.flattenizer = flattenizer;
+	this.instinct = instinct;
 }
 
-//(String (HTML) view the proof
+//(String (HTML) view the definition
 WhatisViewer.prototype.viewDefinition = function WhatisViewer_viewDefinition(subject)
 {	
 	var definition = '<span class="AiConcept">' + subject + '</span>';
 
-	for (var index in subject.implicitConnections.keys)
+	for (var index2 in this.instinct.verbList)
 	{
-		var verb = subject.implicitConnections.keys[index];
+		var verb = this.instinct.verbList[index2];
 		if (verb instanceof Concept)
 		{
 			var implicitBranch = subject.getImplicitBranch(verb);
@@ -22,22 +23,25 @@ WhatisViewer.prototype.viewDefinition = function WhatisViewer_viewDefinition(sub
 					
 			var tautologicBranch = subject.getTautologicBranch(verb);
 			
+			var counter = 0;
 			if (tautologicBranch.complementList.length > 0)
 			{
-				definition += ' <span class="AiOperator">' + verb + '</span>';
-				
 				for (var index in tautologicBranch.complementList)
-				{
+				{				
 					var complement = tautologicBranch.complementList[index];
 					
 					if (complement instanceof Concept)
-					{
+					{					
+						if (counter == 0)
+							definition += ' <span class="AiOperator">' + verb + '</span>';
+					
 						if (index == tautologicBranch.complementList.length - 1 && index != 0)
 							definition += ' and';
 						else if (index != 0)
 							definition += ',';
 							
 						definition += ' <span class="AiConcept">' + complement + '</span>';
+						counter++;
 					}
 				}
 			}
