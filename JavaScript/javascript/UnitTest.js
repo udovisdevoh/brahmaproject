@@ -11,6 +11,7 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 	this.testComplementaryOperatorManager();
 	this.testEvaluationCache();
 	this.testFlattenizer();
+	this.testLeftBrain();
 	alert("Unit tests completed.");
 }
 
@@ -1184,7 +1185,6 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw "Tautology shouldn't be there because it's implicit";
 	}
 	
-	alert('Add more unit tests');
 	//Isa must cant contradict
 	//?Isa must unlikely contradict?
 	//?Allow must unlikely destroy?
@@ -1192,4 +1192,22 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	//unit test double need and double oppress
 	//smallerthan cant largerthan
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
+}
+
+//Test Ai Unit
+UnitTest.prototype.testLeftBrain = function UnitTest_testLeftBrain()
+{
+	var leftBrain = new LeftBrain();
+	
+	if (leftBrain.talkTo("") != '')
+		throw 'Should answer something empty';
+	
+	if (leftBrain.talkTo("sdgsdfj") != leftBrain.helpLinkString)
+		throw 'Should suggest to read help';
+		
+	if (leftBrain.talkTo("sdgsdfjgfkjf saghjry") != leftBrain.helpLinkString)
+		throw 'Should suggest to read help';
+		
+	if (leftBrain.talkTo("sdgsdfj 6rdfhgf fsdfdhf gffgdshgd") != leftBrain.helpLinkString)
+		throw 'Should suggest to read help';
 }

@@ -50,10 +50,12 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 		return;
 	}
 
-	for (var verb in concept2.connections)
+	for (var verb in concept2.tautologyConnections.items)
 	{
-		for (var complement in concept2.connections[verb])
+		var verbBranch = concept2.tautologyConnections.items[verb];
+		for (var index in verbBranch.complementList)
 		{
+			var complement = verbBranch.complementList[index];
 			tautologyManager.addConnection(concept1, verb, complement);
 		}
 	}
@@ -79,12 +81,14 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 		return;
 	}
 	
-	var concept2 = new Concept(conceptName2);
+	var concept2 = new Concept(conceptName2);	
 	
-	for (var verb in concept1.connections)
+	for (var verb in concept1.tautologyConnections.items)
 	{
-		for (var complement in concept1.connections[verb])
+		var verbBranch = concept1.tautologyConnections.items[verb];
+		for (var index in verbBranch.complementList)
 		{
+			var complement = verbBranch.complementList[index];
 			tautologyManager.addConnection(concept2, verb, complement);
 		}
 	}
