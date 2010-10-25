@@ -12,12 +12,16 @@ Invalidator.prototype.invalidateAll = function Invalidator_invalidateAll()
 	for (var index in this.conceptList)
 	{
 		var subject = this.conceptList[index];
-		if (subject.implicitConnections != null && subject.implicitConnections.items != null)
+		if (subject.implicitConnections != null)
 		{
-			for (var verb in subject.implicitConnections.items)
+			for (var index in subject.implicitConnections.keys)
 			{
-				var verbBranch = subject.getImplicitBranch(verb);
-				verbBranch.isFlat = false;
+				var verb = subject.implicitConnections.keys[index];
+				if (verb instanceof Concept)
+				{
+					var verbBranch = subject.getImplicitBranch(verb);
+					verbBranch.isFlat = false;
+				}
 			}
 		}
 	}

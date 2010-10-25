@@ -15,7 +15,7 @@ function TalkingRouter()
 	this.proofCache = this.flattenizer.proofCache;
 	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
-	this.whatisViewer = new WhatisViewer();
+	this.whatisViewer = new WhatisViewer(this.flattenizer);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 }
 
