@@ -1377,4 +1377,20 @@ UnitTest.prototype.testLeftBrain = function UnitTest_testLeftBrain()
 		
 	if (leftBrain.talkTo("sdgsdfj 6rdfhgf fsdfdhf gffgdshgd") != leftBrain.helpLinkString)
 		throw 'Should suggest to read help';
+		
+	if (leftBrain.talkTo("pine isa tree") != 'alright, <span class="AiConcept">pine</span> now <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>')
+		throw 'Wrong answer';
+		
+	if (leftBrain.talkTo("pine not isa tree") != 'alright, <span class="AiConcept">pine</span> not <span class="AiOperator">isa</span> <span class="AiConcept">tree</span> anymore')
+		throw 'Wrong answer';
+		
+	if (leftBrain.talkTo("pine isa tree") != 'alright, <span class="AiConcept">pine</span> now <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>')
+		throw 'Wrong answer';
+		
+	leftBrain.talkTo("tree isa plant");
+	leftBrain.talkTo("tree madeof wood");
+	leftBrain.talkTo("wood isa material");
+	leftBrain.talkTo("wood madeof carbon");
+	leftBrain.talkTo("plant isa lifeform");
+	leftBrain.talkTo("lifeform madeof water");
 }
