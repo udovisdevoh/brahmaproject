@@ -1390,7 +1390,6 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 	if (talkingRouter.talkTo("pine isa tree") != 'Yes, <span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>')
 		throw 'Wrong answer';
 	
-	alert("mofo");
 	if (talkingRouter.talkTo("pine isa plant?") != 'Not that I know')
 		throw 'Wrong answer';
 		
@@ -1406,11 +1405,12 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 		
 	if (talkingRouter.talkTo("pine not isa stone") != 'Not that I know')
 		throw 'Wrong answer';
-		
 	
 	talkingRouter.talkTo("tree madeof wood");
 	talkingRouter.talkTo("wood isa material");
 	talkingRouter.talkTo("wood madeof carbon");
 	talkingRouter.talkTo("plant isa lifeform");
 	talkingRouter.talkTo("lifeform madeof water");
+	if (talkingRouter.talkTo("why pine madeof water") != 'todo: Add desired output')
+		throw 'Wrong answer';
 }

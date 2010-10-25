@@ -134,7 +134,7 @@ TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 		
 		if (wordList[0] == 'why' || wordList[0] == 'how')
 		{
-			return this.talkToWhyStatement(subject, verb, complement, isPositive);
+			return this.talkToWhyStatement(subject, verb, complement);
 		}
 		else
 		{
@@ -183,10 +183,16 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 	}
 	else
 	{
-		var proof = this.talkToWhyStatement(subject, verb, complement, isStillPositive);
+		var proof = this.talkToWhyStatement(subject, verb, complement);
 		if (proof)
 			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> because<br />' + proof;
 		else
 			return 'Not that I know';
 	}
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToWhyStatement = function TalkingRouter_talkToWhyStatement(subject, verb, complement)
+{
+	var isPositive = this.flattenizer.testConnection(subject, verb, complement);
 }
