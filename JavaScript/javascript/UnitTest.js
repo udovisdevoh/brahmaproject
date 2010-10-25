@@ -1321,7 +1321,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	}
 	
 	
-	//Testing optimization (removing useless totologies)
+	//Testing optimization (removing useless tautologies)
 	if (!flattenizer.testConnection(joe, isa, human))
 	{
 		throw 'Statement should be true';
@@ -1404,7 +1404,7 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 		throw 'Wrong answer';
 		
 	if (talkingRouter.talkTo("pine not isa stone") != 'Not that I know')
-		throw 'Wrong answer';
+		throw 'Wrong answer';	
 	
 	talkingRouter.talkTo("tree madeof wood");
 	talkingRouter.talkTo("wood isa material");
@@ -1413,15 +1413,19 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 	talkingRouter.talkTo("animal isa lifeform");
 	talkingRouter.talkTo("animal contradict plant");
 	talkingRouter.talkTo("lifeform madeof water");
-	
 
-	if (talkingRouter.talkTo("why pine madeof water") != 'because<br /><span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>,<br />because<br /><span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span>,<br />because<br /><span class="AiConcept">plant</span> <span class="AiOperator">isa</span> <span class="AiConcept">lifeform</span>,<br /><span class="AiConcept">lifeform</span> <span class="AiOperator">madeof</span> <span class="AiConcept">water</span>,<br />therefore, <span class="AiConcept">pine</span> <span class="AiOperator">madeof</span> <span class="AiConcept">water</span>')
+	if (talkingRouter.talkTo("wood partof tree?") != 'Yes, <span class="AiConcept">wood</span> <span class="AiOperator">partof</span> <span class="AiConcept">tree</span>')
+		throw 'Wrong answer';
+	
+	if (talkingRouter.talkTo("pine contradict animal?") != 'Yes, <span class="AiConcept">pine</span> <span class="AiOperator">contradict</span> <span class="AiConcept">animal</span>')
 		throw 'Wrong answer';
 
-	alert(talkingRouter.talkTo("why pine isa animal"));		
-	if (talkingRouter.talkTo("why pine isa animal") != 'todo: Add desired output')
+	if (talkingRouter.talkTo("why pine madeof water") != 'because<br /><span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>,<br /><span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span>,<br /><span class="AiConcept">plant</span> <span class="AiOperator">isa</span> <span class="AiConcept">lifeform</span>,<br /><span class="AiConcept">lifeform</span> <span class="AiOperator">madeof</span> <span class="AiConcept">water</span>,<br />therefore, <span class="AiConcept">pine</span> <span class="AiOperator">madeof</span> <span class="AiConcept">water</span>')
+		throw 'Wrong answer';
+
+	if (talkingRouter.talkTo("why pine isa animal") != 'because<br /><span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>,<br /><span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span>,<br /><span class="AiConcept">plant</span> <span class="AiOperator">contradict</span> <span class="AiConcept">animal</span>,<br />therefore, <span class="AiConcept">pine</span> <span class="AiOperator">contradict</span> <span class="AiConcept">animal</span>')
 		throw 'Wrong answer';
 		
-	if (talkingRouter.talkTo("why pine not isa animal") != 'todo: Add desired output')
+	if (talkingRouter.talkTo("why pine not isa animal") != 'because<br /><span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>,<br /><span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span>,<br /><span class="AiConcept">plant</span> <span class="AiOperator">contradict</span> <span class="AiConcept">animal</span>,<br />therefore, <span class="AiConcept">pine</span> <span class="AiOperator">contradict</span> <span class="AiConcept">animal</span>')
 		throw 'Wrong answer';
 }

@@ -10,7 +10,7 @@ function Flattenizer(instinct)
 	//(ProofCache) Stores proof for statements
 	this.proofCache = new ProofCache();
 	
-	//(Optimizer) To remove useless totologies (they are useless because they exist as non-tautology connection)
+	//(Optimizer) To remove useless tautologies (they are useless because they exist as non-tautology connection)
 	this.optimizer = new Optimizer(this.proofCache);
 }
 
@@ -34,11 +34,11 @@ Flattenizer.prototype.getProof = function Flattenizer_getProof(subject, verb, co
 		return this.proofCache.getProof(subject, verb, complement, isPositive);
 }
 
-Flattenizer.prototype.copyFromTautologicBranch = function Flattenizer_copyFromTautologicBranch(totologicBranch, implicitBranch)
+Flattenizer.prototype.copyFromTautologicBranch = function Flattenizer_copyFromTautologicBranch(tautologicBranch, implicitBranch)
 {
-	for (var index in totologicBranch.complementList)
+	for (var index in tautologicBranch.complementList)
 	{
-		var complement = totologicBranch.complementList[index];
+		var complement = tautologicBranch.complementList[index];
 		if (complement instanceof Concept)
 		{
 			implicitBranch.addComplement(complement);
@@ -48,13 +48,13 @@ Flattenizer.prototype.copyFromTautologicBranch = function Flattenizer_copyFromTa
 
 Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implicitBranch, subject, verb)
 {
-	var totologicBranch = subject.getTautologicBranch(verb);
+	var tautologicBranch = subject.getTautologicBranch(verb);
 	
 	implicitBranch.isLocked = true;
 	
 	implicitBranch.complementList = new Array();//We must clear the list of complements
 	
-	this.copyFromTautologicBranch(totologicBranch, implicitBranch);
+	this.copyFromTautologicBranch(tautologicBranch, implicitBranch);
 	
 	var howManyComplement;
 	
@@ -168,7 +168,7 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		
 	} while (howManyComplement < implicitBranch.complementList.length);
 	
-	this.optimizer.optimize(subject, verb, totologicBranch);
+	this.optimizer.optimize(subject, verb, tautologicBranch);
 	
 	implicitBranch.isFlat = true;
 	implicitBranch.isLocked = false;

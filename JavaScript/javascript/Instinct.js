@@ -7,6 +7,9 @@ function Instinct(complementaryOperatorManager)
 	//(ComplementaryOperatorManager) Manages complementary operators
 	this.complementaryOperatorManager = complementaryOperatorManager;
 	
+	//(MutuallyExclusiveOperatorManager) Manages mutually exclusive operators like isa and contradict
+	this.mutuallyExclusiveOperatorManager = new MutuallyExclusiveOperatorManager(this.conceptNameMapper);
+	
 	//Some common operators
 	this.isa = this.conceptNameMapper.getConcept("isa");
 	this.someare = this.conceptNameMapper.getConcept("someare");
@@ -25,6 +28,7 @@ function Instinct(complementaryOperatorManager)
 	this.originof = this.conceptNameMapper.getConcept("originof");
 	
 	//Construction of the instinct
+	this.mutuallyExclusiveOperatorManager.add("isa","contradict");
 	this.complementaryOperatorManager.add("contradict","contradict");
 	this.complementaryOperatorManager.add("synergize","synergize");
 	this.complementaryOperatorManager.add("antagonize","antagonize");

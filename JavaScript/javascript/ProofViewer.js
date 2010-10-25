@@ -18,7 +18,11 @@ ProofViewer.prototype.viewProof = function ProofViewer_viewProof(subject, verb, 
 	if (proof == null || proof.length == 0)
 		return null;
 	
-	var htmlProof = "because<br />";
+	if (depth == 0)
+		var htmlProof = "because<br />";
+	else
+		var htmlProof = '';
+		
 	for (var index in proof)
 	{
 		var statement = proof[index];
