@@ -15,6 +15,7 @@ function TalkingRouter()
 	this.proofCache = this.flattenizer.proofCache;
 	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
+	this.whatisViewer = new WhatisViewer();
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 }
 
@@ -214,4 +215,10 @@ TalkingRouter.prototype.talkToWhyStatement = function TalkingRouter_talkToWhySta
 		return proof;
 	
 	return null;
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToWhatIs = function TalkingRouter_talkToWhatIs(subject)
+{
+	return this.whatisViewer.viewDefinition(subject);
 }
