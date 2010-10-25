@@ -3,6 +3,8 @@ function TalkingRouter()
 {
 	//Constants
 	this.helpLinkString = 'Unrecognized statement, use <a href="./help.php" target="_blank">help</a>';
+	this.notThatIKnow = 'Not that I know';
+	this.iDonTKnow = "I don't know";
 	
 	//Members
 	this.conceptNameMapper = new ConceptNameMapper();
@@ -13,6 +15,7 @@ function TalkingRouter()
 	this.proofCache = this.flattenizer.proofCache;
 	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
+	this.objectionFinder = new ObjectionFinder();
 }
 
 //(String (HTML)) Talk to left brain's talking interface
@@ -180,7 +183,7 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 			if (wasPositive)
 				return 'Alright, <span class="AiConcept">' + subject + '</span> not <span class="AiOperator">' + verb + '</span> <span class="AiConcept">' + complement + '</span> anymore';
 			else
-				return 'Not that I know';
+				return this.notThatIKnow;
 		}
 	}
 	else
@@ -189,12 +192,23 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 		if (proof)
 			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> because<br />' + proof;
 		else
-			return 'Not that I know';
+			return this.notThatIKnow;
 	}
 }
 
 //(String (HTML))
 TalkingRouter.prototype.talkToWhyStatement = function TalkingRouter_talkToWhyStatement(subject, verb, complement)
 {
-	return this.proofViewer.viewProof(subject, verb, complement);
+	var proof = this.proofViewer.viewProof(subject, verb, complement);
+	if (proof)
+		return proof;
+		
+	var objectionStatement = this.objectionFinder.findObjection(subject, verb, complement);
+	
+	proof = this.proofViewer.viewProof(obstructionStatement.subject, obstructionStatement.verb, obstructionStatement.complement);
+	
+	if (proof)
+		return proof;
+	
+	return this.iDonTKnow;
 }
