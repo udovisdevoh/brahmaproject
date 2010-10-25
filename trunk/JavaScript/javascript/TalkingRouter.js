@@ -1,5 +1,5 @@
-//Represent a client-side left brain
-function LeftBrain()
+//Represent a client-side's talking interface
+function TalkingRouter()
 {
 	//Constants
 	this.helpLinkString = 'Unrecognized statement, use <a href="./help.php" target="_blank">help</a>';
@@ -10,12 +10,14 @@ function LeftBrain()
 	this.complementaryOperatorManager = new ComplementaryOperatorManager(this.conceptNameMapper)
 	this.instinct = new Instinct(this.complementaryOperatorManager);
 	this.flattenizer = new Flattenizer(this.instinct);
+	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache);
 }
 
-//(String (HTML)) Talk to left brain
+//(String (HTML)) Talk to left brain's talking interface
 //This is the main router of the left brain
-LeftBrain.prototype.talkTo = function LeftBrain_talkTo(statementString)
+TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 {
+	var isQuestion = statementString.indexOf('?') != -1;
 	statementString = statementString.hardTrim();
 	var wordList = statementString.split(' ');
 	
@@ -110,7 +112,7 @@ LeftBrain.prototype.talkTo = function LeftBrain_talkTo(statementString)
 			complement = this.conceptNameMapper.getConcept(wordList[3]);
 			isPositive = false;
 		}
-		return this.talkToStatement(subject, verb, complement, isPositive);
+		return this.talkToStatement(subject, verb, complement, isPositive, isQuestion);
 	}
 	else if (wordList.length == 4 || (wordList.length == 5 && wordList[2] == 'not'))
 	{
@@ -142,5 +144,49 @@ LeftBrain.prototype.talkTo = function LeftBrain_talkTo(statementString)
 	else
 	{
 		return this.helpLinkString;
+	}
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement(subject, verb, complement, isPositive, isQuestion)
+{
+	var wasPositive = this.flattenizer.testConnection(subject, verb, complement);
+	
+	if (isPositive != wasPositive && !isQuestion)
+	{
+		if (isPositive)
+			this.tautologyManager.addConnection(subject, verb, complement);
+		else
+			this.tautologyManager.removeConnection(subject, verb, complement);
+	
+		this.invalidator.invalidateAll();
+	}
+	
+	var isStillPositive = this.flattenizer.testConnection(subject, verb, complement);
+	
+	if (isStillPositive == isPositive) //The Ai found no counter-argument
+	{
+		if (isPositive)
+		{
+			if (wasPositive)
+				return 'Yes, <span class="AiConcept">' + subject + '</span> <span class="AiOperator">' + verb + '</span> <span class="AiConcept">' + complement + '</span>';
+			else
+				return 'Alright, <span class="AiConcept">' + subject + '</span> now <span class="AiOperator">' + verb + '</span> <span class="AiConcept">' + complement + '</span>';
+		}
+		else
+		{
+			if (wasPositive)
+				return 'Alright, <span class="AiConcept">' + subject + '</span> not <span class="AiOperator">' + verb + '</span> <span class="AiConcept">' + complement + '</span> anymore';
+			else
+				return 'Not that I know';
+		}
+	}
+	else
+	{
+		var proof = this.talkToWhyStatement(subject, verb, complement, isStillPositive);
+		if (proof)
+			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> because<br />' + proof;
+		else
+			return 'Not that I know';
 	}
 }
