@@ -7,6 +7,7 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 {
 	this.testConceptNameMapper();
 	this.testConceptNameMapperAlias();
+	this.testConceptNameMapperRename();
 	this.testTautologyManager();
 	this.testTautologyManagerPart2();
 	this.testComplementaryOperatorManager();
@@ -46,7 +47,6 @@ UnitTest.prototype.testConceptNameMapper = function UnitTest_testConceptNameMapp
 	}
 }
 
-//Test alias
 //Test alias
 UnitTest.prototype.testConceptNameMapperAlias = function UnitTest_testConceptNameMapperAlias()
 {
@@ -134,6 +134,81 @@ UnitTest.prototype.testConceptNameMapperAlias = function UnitTest_testConceptNam
 	if (!tautologyManager.testConnection(round, madeof, circumference))
 	{
 		throw 'Statement should be true';
+	}
+}
+
+//Test rename
+UnitTest.prototype.testConceptNameMapperRename = function UnitTest_testConceptNameMapperRename()
+{
+	var conceptNameMapper = new ConceptNameMapper();
+	var tautologyManager = new TautologyManager(conceptNameMapper);
+	var flattenizer = new Flattenizer(new Instinct(new ComplementaryOperatorManager(conceptNameMapper)));
+
+	var circle = conceptNameMapper.getConcept("circle");
+	var round = conceptNameMapper.getConcept("round");
+	var sphere = conceptNameMapper.getConcept("sphere");
+	var shape = conceptNameMapper.getConcept("shape");
+	var disc = conceptNameMapper.getConcept("disc");
+	var torus = conceptNameMapper.getConcept("torus");
+	var circumference = conceptNameMapper.getConcept("circumference");
+	var perimeter = conceptNameMapper.getConcept("perimeter");
+	var diameter = conceptNameMapper.getConcept("diameter");
+	var segment = conceptNameMapper.getConcept("segment");
+	
+	var isa = conceptNameMapper.getConcept("isa");
+	var madeof = conceptNameMapper.getConcept("madeof");
+	
+	
+	tautologyManager.learnStatement("circle isa shape");
+	tautologyManager.learnStatement("circle madeof diameter");
+	tautologyManager.learnStatement("circle madeof circumference");
+	tautologyManager.learnStatement("sphere madeof circle");
+	tautologyManager.learnStatement("diameter isa segment");
+	tautologyManager.learnStatement("circumference isa perimeter");
+	
+	conceptNameMapper.rename("circle", "round");
+	
+	circle = conceptNameMapper.getConcept("circle");
+	round = conceptNameMapper.getConcept("round");
+	
+	if (!tautologyManager.testConnection(round, isa, shape))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!tautologyManager.testConnection(round, madeof, circumference))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!tautologyManager.testConnection(round, isa, shape))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!tautologyManager.testConnection(round, madeof, circumference))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (tautologyManager.testConnection(circle, isa, shape))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (tautologyManager.testConnection(circle, madeof, circumference))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (tautologyManager.testConnection(circle, isa, shape))
+	{
+		throw 'Statement should be false';
+	}
+	
+	if (tautologyManager.testConnection(circle, madeof, circumference))
+	{
+		throw 'Statement should be false';
 	}
 }
 
