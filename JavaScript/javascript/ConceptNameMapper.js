@@ -57,6 +57,12 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 		{
 			var complement = verbBranch.complementList[index];
 			this.tautologyManager.addConnection(concept1, verb, complement);
+			
+			for (var complementaryVerbIndex in verb.complementaryOperators)
+			{
+				var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
+				this.tautologyManager.addConnection(complement, complementaryVerb, concept1);
+			}
 		}
 	}
 	
@@ -65,22 +71,6 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	nameList.push(conceptName2);
 	this.mapConceptToName.setItem(concept1, nameList);
 	this.mapConceptToName.removeItem(concept2);
-}
-
-//Rename a concept to another one
-ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptName1, conceptName2)
-{
-	this.alias(conceptName1, conceptName2);
-	
-	conceptName2 = conceptName2.toLowerCase();
-	var concept2 = this.getConcept(conceptName2);
-	
-	this.mapNameToConcept.removeItem(conceptName1);
-	var nameList = this.mapConceptToName.getItem(concept2);
-	
-	for (var index in nameList)
-		if (nameList[index] == conceptName1)
-			nameList.splice(index,1); 
 }
 
 //Split two concept names so they don't point to the same concept anymore
@@ -106,6 +96,12 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 		{
 			var complement = verbBranch.complementList[index];
 			this.tautologyManager.addConnection(concept2, verb, complement);
+			
+			for (var complementaryVerbIndex in verb.complementaryOperators)
+			{
+				var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
+				this.tautologyManager.addConnection(complement, complementaryVerb, concept2);
+			}
 		}
 	}
 	
@@ -114,4 +110,20 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	nameList.push(conceptName2);
 	this.mapConceptToName.setItem(concept2, nameList);
 	this.conceptList.push(concept2);
+}
+
+//Rename a concept to another one
+ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptName1, conceptName2)
+{
+	this.alias(conceptName1, conceptName2);
+	
+	conceptName2 = conceptName2.toLowerCase();
+	var concept2 = this.getConcept(conceptName2);
+	
+	this.mapNameToConcept.removeItem(conceptName1);
+	var nameList = this.mapConceptToName.getItem(concept2);
+	
+	for (var index in nameList)
+		if (nameList[index] == conceptName1)
+			nameList.splice(index,1); 
 }
