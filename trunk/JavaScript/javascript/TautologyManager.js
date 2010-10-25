@@ -33,7 +33,10 @@ TautologyManager.prototype.learnStatement = function TautologyManager_learnState
 		for (var index1 in verb.complementaryOperators)
 		{
 			var complementaryVerb = verb.complementaryOperators[index1];
-			this.addConnection(complement, complementaryVerb, subject);	
+			if (complementaryVerb instanceof Concept)
+			{
+				this.addConnection(complement, complementaryVerb, subject);	
+			}
 		}
 	}
 	else
@@ -50,7 +53,10 @@ TautologyManager.prototype.learnStatement = function TautologyManager_learnState
 		for (var index1 in verb.complementaryOperators)
 		{
 			var complementaryVerb = verb.complementaryOperators[index1];
-			this.removeConnection(complement, complementaryVerb, subject);	
+			if (complementaryVerb instanceof Concept)
+			{
+				this.removeConnection(complement, complementaryVerb, subject);	
+			}
 		}
 	}
 }

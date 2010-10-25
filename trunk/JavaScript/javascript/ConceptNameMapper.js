@@ -65,7 +65,10 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 					for (var complementaryVerbIndex in verb.complementaryOperators)
 					{
 						var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
-						this.tautologyManager.addConnection(complement, complementaryVerb, concept1);
+						if (complementaryVerb instanceof Concept)
+						{
+							this.tautologyManager.addConnection(complement, complementaryVerb, concept1);
+						}
 					}
 				}
 			}
@@ -110,7 +113,10 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 					for (var complementaryVerbIndex in verb.complementaryOperators)
 					{
 						var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
-						this.tautologyManager.addConnection(complement, complementaryVerb, concept2);
+						if (complementaryVerb instanceof Concept)
+						{
+							this.tautologyManager.addConnection(complement, complementaryVerb, concept2);
+						}
 					}
 				}
 			}
