@@ -96,6 +96,33 @@ LeftBrain.prototype.talkTo = function LeftBrain_talkTo(statementString)
 		}
 		return this.talkToStatement(subject, verb, complement, isPositive);
 	}
+	else if (wordList.length == 4 || (wordList.length == 5 && wordList[2] == 'not'))
+	{
+		var subject, verb, complement, isPositive;
+		if (wordList.length == 4)
+		{
+			subject = this.conceptNameMapper.getConcept(wordList[1]);
+			verb = this.conceptNameMapper.getConcept(wordList[2]);
+			complement = this.conceptNameMapper.getConcept(wordList[3]);
+			isPositive = true;
+		}
+		else
+		{
+			subject = this.conceptNameMapper.getConcept(wordList[1]);
+			verb = this.conceptNameMapper.getConcept(wordList[3]);
+			complement = this.conceptNameMapper.getConcept(wordList[4]);
+			isPositive = false;
+		}
+		
+		if (wordList[0] == 'why' || wordList[0] == 'how')
+		{
+			return this.talkToWhyStatement(subject, verb, complement, isPositive);
+		}
+		else
+		{
+			return this.helpLinkString;
+		}
+	}
 	else
 	{
 		return this.helpLinkString;
