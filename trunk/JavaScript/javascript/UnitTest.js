@@ -1410,7 +1410,18 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 	talkingRouter.talkTo("wood isa material");
 	talkingRouter.talkTo("wood madeof carbon");
 	talkingRouter.talkTo("plant isa lifeform");
+	talkingRouter.talkTo("animal isa lifeform");
+	talkingRouter.talkTo("animal contradict plant");
 	talkingRouter.talkTo("lifeform madeof water");
-	if (talkingRouter.talkTo("why pine madeof water") != 'todo: Add desired output')
+	
+
+	if (talkingRouter.talkTo("why pine madeof water") != 'because<br /><span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>,<br />because<br /><span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span>,<br />because<br /><span class="AiConcept">plant</span> <span class="AiOperator">isa</span> <span class="AiConcept">lifeform</span>,<br /><span class="AiConcept">lifeform</span> <span class="AiOperator">madeof</span> <span class="AiConcept">water</span>,<br />therefore, <span class="AiConcept">pine</span> <span class="AiOperator">madeof</span> <span class="AiConcept">water</span>')
+		throw 'Wrong answer';
+
+	alert(talkingRouter.talkTo("why pine isa animal"));		
+	if (talkingRouter.talkTo("why pine isa animal") != 'todo: Add desired output')
+		throw 'Wrong answer';
+		
+	if (talkingRouter.talkTo("why pine not isa animal") != 'todo: Add desired output')
 		throw 'Wrong answer';
 }
