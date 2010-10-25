@@ -10,7 +10,9 @@ function TalkingRouter()
 	this.complementaryOperatorManager = new ComplementaryOperatorManager(this.conceptNameMapper)
 	this.instinct = new Instinct(this.complementaryOperatorManager);
 	this.flattenizer = new Flattenizer(this.instinct);
+	this.proofCache = this.flattenizer.proofCache;
 	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache);
+	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
 }
 
 //(String (HTML)) Talk to left brain's talking interface
@@ -194,5 +196,5 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 //(String (HTML))
 TalkingRouter.prototype.talkToWhyStatement = function TalkingRouter_talkToWhyStatement(subject, verb, complement)
 {
-	var isPositive = this.flattenizer.testConnection(subject, verb, complement);
+	return this.proofViewer.viewProof(subject, verb, complement);
 }
