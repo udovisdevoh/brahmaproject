@@ -115,6 +115,8 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 //Rename a concept to another one
 ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptName1, conceptName2)
 {
+	var concept1 = this.getConcept(conceptName1);
+
 	this.alias(conceptName1, conceptName2);
 	
 	conceptName2 = conceptName2.toLowerCase();
@@ -126,4 +128,8 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 	for (var index in nameList)
 		if (nameList[index] == conceptName1)
 			nameList.splice(index,1); 
+			
+	for (var index in this.conceptList)
+		if (this.conceptList[index] == concept1)
+			this.conceptList.splice(index,1); 
 }

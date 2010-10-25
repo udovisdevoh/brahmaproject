@@ -13,7 +13,7 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 	this.testComplementaryOperatorManager();
 	this.testEvaluationCache();
 	this.testFlattenizer();
-	this.testLeftBrain();
+	this.testTalkingRouter();
 	alert("Unit tests completed.");
 }
 
@@ -1362,35 +1362,55 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 }
 
 //Test Ai Unit
-UnitTest.prototype.testLeftBrain = function UnitTest_testLeftBrain()
+UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 {
-	var leftBrain = new LeftBrain();
+	var talkingRouter = new TalkingRouter();
 	
-	if (leftBrain.talkTo("") != '')
+	if (talkingRouter.talkTo("") != '')
 		throw 'Should answer something empty';
 	
-	if (leftBrain.talkTo("sdgsdfj") != leftBrain.helpLinkString)
+	if (talkingRouter.talkTo("sdgsdfj") != talkingRouter.helpLinkString)
 		throw 'Should suggest to read help';
 		
-	if (leftBrain.talkTo("sdgsdfjgfkjf saghjry") != leftBrain.helpLinkString)
+	if (talkingRouter.talkTo("sdgsdfjgfkjf saghjry") != talkingRouter.helpLinkString)
 		throw 'Should suggest to read help';
 		
-	if (leftBrain.talkTo("sdgsdfj 6rdfhgf fsdfdhf gffgdshgd") != leftBrain.helpLinkString)
+	if (talkingRouter.talkTo("sdgsdfj 6rdfhgf fsdfdhf gffgdshgd") != talkingRouter.helpLinkString)
 		throw 'Should suggest to read help';
-		
-	if (leftBrain.talkTo("pine isa tree") != 'alright, <span class="AiConcept">pine</span> now <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>')
+	
+	if (talkingRouter.talkTo("pine isa tree") != 'Alright, <span class="AiConcept">pine</span> now <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>')
 		throw 'Wrong answer';
 		
-	if (leftBrain.talkTo("pine not isa tree") != 'alright, <span class="AiConcept">pine</span> not <span class="AiOperator">isa</span> <span class="AiConcept">tree</span> anymore')
+	if (talkingRouter.talkTo("pine not isa tree") != 'Alright, <span class="AiConcept">pine</span> not <span class="AiOperator">isa</span> <span class="AiConcept">tree</span> anymore')
 		throw 'Wrong answer';
 		
-	if (leftBrain.talkTo("pine isa tree") != 'alright, <span class="AiConcept">pine</span> now <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>')
+	if (talkingRouter.talkTo("pine isa tree") != 'Alright, <span class="AiConcept">pine</span> now <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>')
 		throw 'Wrong answer';
 		
-	leftBrain.talkTo("tree isa plant");
-	leftBrain.talkTo("tree madeof wood");
-	leftBrain.talkTo("wood isa material");
-	leftBrain.talkTo("wood madeof carbon");
-	leftBrain.talkTo("plant isa lifeform");
-	leftBrain.talkTo("lifeform madeof water");
+	if (talkingRouter.talkTo("pine isa tree") != 'Yes, <span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>')
+		throw 'Wrong answer';
+	
+	alert("mofo");
+	if (talkingRouter.talkTo("pine isa plant?") != 'Not that I know')
+		throw 'Wrong answer';
+		
+	talkingRouter.talkTo("tree isa plant");	
+	if (talkingRouter.talkTo("pine isa plant") != 'Yes, <span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span>')
+		throw 'Wrong answer';
+		
+	if (talkingRouter.talkTo("pine isa stone?") != 'Not that I know')
+		throw 'Wrong answer';
+		
+	if (talkingRouter.talkTo("pine not isa stone?") != 'Not that I know')
+		throw 'Wrong answer';
+		
+	if (talkingRouter.talkTo("pine not isa stone") != 'Not that I know')
+		throw 'Wrong answer';
+		
+	
+	talkingRouter.talkTo("tree madeof wood");
+	talkingRouter.talkTo("wood isa material");
+	talkingRouter.talkTo("wood madeof carbon");
+	talkingRouter.talkTo("plant isa lifeform");
+	talkingRouter.talkTo("lifeform madeof water");
 }
