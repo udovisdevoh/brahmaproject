@@ -46,6 +46,11 @@ function Instinct(complementaryOperatorManager)
 	this.destroy
 	);
 	
+	//Verb name list
+	this.verbNameList = Array();
+	for (var index = 0; index < this.verbList.length; index++)
+		this.verbNameList.push(this.verbList[0].toString());
+	
 	//Construction of the instinct
 	this.mutuallyExclusiveOperatorManager.add("isa","contradict");
 	this.complementaryOperatorManager.add("contradict","contradict");

@@ -39,8 +39,13 @@ TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 		var contextFreeAiStatement = this.talkToContextFree(contextFreeHumanStatement);
 		
 		input += this.humanStatementColorizer.colorize(subStatement);
-		
 		output += this.firstSecondPersonManager.formatAiOutput(contextFreeAiStatement);
+		
+		if (index < statementList.length - 1)
+		{
+			input += '<br />';
+			output += '<br />';
+		}
 	}
 	
 	this.io['input'] = input;

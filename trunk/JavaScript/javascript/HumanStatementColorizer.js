@@ -17,19 +17,8 @@ HumanStatementColorizer.prototype.colorize = function HumanStatementColorizer_co
 	for (var index = 0; index < wordList.length; index++)
 	{
 		var word = wordList[index];
-		var isVerb = false;
 		
-		for (var verbIndex = 0; verbIndex < this.instinct.verbList.length; verbIndex++)
-		{
-			var verb = this.instinct.verbList[verbIndex];
-			if (verb.toString() == word)
-			{
-				isVerb = true;
-				break;
-			}
-		}
-		
-		if (isVerb)
+		if (this.instinct.verbNameList.indexOf(word) != -1)
 		{
 			word = '<span class="HumanOperator">' + word + '</span>';
 		}
