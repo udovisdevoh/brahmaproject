@@ -1507,8 +1507,6 @@ UnitTest.prototype.testHumanStatementSplitter = function UnitTest_testHumanState
 		throw 'Wrong statement';
 	if (statementList[5] != "tree madeof water")
 		throw 'Wrong statement';
-		
-	throw 'implement testHumanStatementSplitter()';
 }
 
 //Test Ai Unit
