@@ -1,0 +1,14 @@
+#conversation
+{
+	font-family:"Courier New", "Lucida Console", Monaco
+}
+
+#conversation .AiConcept
+{
+	color:#2b91af;
+}
+
+#conversation .AiOperator
+{
+	color:#0000ff;
+} 
