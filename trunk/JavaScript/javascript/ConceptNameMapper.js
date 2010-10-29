@@ -50,19 +50,19 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 		return;
 	}
 
-	for (var index2 in concept2.tautologyConnections.keys)
+	for (var index2 = 0; index2 < concept2.tautologyConnections.keys.length; index2++)
 	{
 		var verb = concept2.tautologyConnections.keys[index2];
 		if (verb instanceof Concept)
 		{
 			var verbBranch = concept2.getTautologicBranch(verb);
-			for (var index in verbBranch.complementList)
+			for (var index = 0; index < verbBranch.complementList.length; index++)
 			{
 				var complement = verbBranch.complementList[index];
 				if (complement instanceof Concept)
 				{
 					this.tautologyManager.addConnection(concept1, verb, complement);
-					for (var complementaryVerbIndex in verb.complementaryOperators)
+					for (var complementaryVerbIndex = 0; complementaryVerbIndex < verb.complementaryOperators.length; complementaryVerbIndex++)
 					{
 						var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
 						if (complementaryVerb instanceof Concept)
@@ -98,7 +98,7 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	
 	var concept2 = new Concept(conceptName2);	
 	
-	for (var index2 in concept1.tautologyConnections.keys)
+	for (var index2 = 0; index2 < concept1.tautologyConnections.keys.length; index2++)
 	{
 		var verb = concept1.tautologyConnections.keys[index2];
 		if (verb instanceof Concept)

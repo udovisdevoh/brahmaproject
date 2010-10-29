@@ -32,7 +32,7 @@ ProofCache.prototype.addProofArgument = function ProofCache_addProofArgument(sub
 	argumentStatement = new Statement(argumentSubject, argumentVerb, argumentComplement, isArgumentPositive);
 	
 	var isFoundArgument = false;
-	for (var index in proof)
+	for (var index = 0; index < proof.length; index++)
 	{
 		var currentArgument = proof[index];
 		if (argumentStatement == currentArgument)

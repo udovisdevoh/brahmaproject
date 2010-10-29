@@ -10,7 +10,7 @@ function Optimizer(proofCache)
 Optimizer.prototype.optimize = function Optimizer_optimize(subject, verb, tautologicBranch)
 {
 	var newComplementList = Array();
-	for (var index in tautologicBranch.complementList)
+	for (var index = 0; index < tautologicBranch.complementList.length; index++)
 	{
 		var complement = tautologicBranch.complementList[index];
 		var proof = this.proofCache.getProof(subject, verb, complement, true);

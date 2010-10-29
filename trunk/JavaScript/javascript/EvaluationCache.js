@@ -22,7 +22,7 @@ EvaluationCache.prototype.getCachedResult = function EvaluationCache_getCachedRe
 		return false;
 }
 
-//Void: set value in cache
+//Void: set value inside cache
 EvaluationCache.prototype.setCachedResult = function EvaluationCache_setCachedResult(subject, verb, resultToSet)
 {
 	if (!this.cachedData.hasItem(subject))
