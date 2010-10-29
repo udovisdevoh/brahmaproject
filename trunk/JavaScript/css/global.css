@@ -11,4 +11,14 @@
 #conversation .AiOperator
 {
 	color:#0000ff;
-} 
+}
+
+#conversation .HumanConcept
+{
+	color: #808000;
+}
+
+#conversation .HumanOperator
+{
+	color: #ff8c00;
+}
