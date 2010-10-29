@@ -19,7 +19,8 @@ function TalkingRouter(humanName, aiName)
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
-	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct);
+	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
+	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
 	this.io = Array();
 }
 
@@ -30,17 +31,19 @@ TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 {
 	var statementList = this.humanStatementSplitter.split(statementString);
 	var output = "";
-	var humanStatementFormated = "";
+	var input = "";
 	for (var index = 0; index < statementList.length; index++)
 	{
 		var subStatement = statementList[index];
-		humanStatementFormated += subStatement;	
 		var contextFreeHumanStatement = this.firstSecondPersonManager.formatHumanInput(subStatement);
 		var contextFreeAiStatement = this.talkToContextFree(contextFreeHumanStatement);
+		
+		input += this.humanStatementColorizer.colorize(subStatement);
+		
 		output += this.firstSecondPersonManager.formatAiOutput(contextFreeAiStatement);
 	}
 	
-	this.io['input'] = humanStatementFormated;
+	this.io['input'] = input;
 	this.io['output'] = output;
 	
 	return this.io;

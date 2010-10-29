@@ -41,19 +41,37 @@ String.prototype.hardTrim = function String_hardTrim()
 	while (text.indexOf("  ") != -1)
 		text = text.replace('  ',' ');
 	
-	/*while (text.indexOf(" (") != -1)
-		text = text.replace(" (","(");
-		
-	while (text.indexOf("( ") != -1)
-		text = text.replace('( ','(');
-		
-	while (text.indexOf(" )") != -1)
-		text = text.replace(' )',')');
-		
-	while (text.indexOf(") ") != -1)
-		text = text.replace(') ',')');*/
+	text = stripTags(text);
 	
 	return text;
+}
+
+function stripTags(oldString)
+{
+	var newString = "";
+	var inTag = false;
+	for(var i = 0; i < oldString.length; i++)
+	{
+		if(oldString.charAt(i) == '<')
+			inTag = true;
+			
+		if(oldString.charAt(i) == '>')
+		{
+			if(oldString.charAt(i+1)=="<")
+			{
+				//dont do anything
+			}
+			else
+			{
+				inTag = false;
+				i++;
+			}
+		}
+
+		if(!inTag)
+			newString += oldString.charAt(i);
+	}
+	return newString;
 }
 
 String.prototype.startsWith = function String_startsWith(str)

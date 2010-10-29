@@ -13,7 +13,8 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 	this.testComplementaryOperatorManager();
 	this.testEvaluationCache();
 	this.testFlattenizer();
-	this.testTalkingRouter();
+	this.testHumanStatementSplitter();
+	this.testTalkingRouter();	
 	alert("Unit tests completed.");
 }
 
@@ -1359,6 +1360,155 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	//unit test double need and double oppress
 	//smallerthan cant largerthan
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
+}
+
+//Test human statement splitter
+UnitTest.prototype.testHumanStatementSplitter = function UnitTest_testHumanStatementSplitter()
+{
+	var talkingRouter = new TalkingRouter("human_dude", "ai_dude");
+	var humanStatementSplitter = talkingRouter.humanStatementSplitter;
+	
+	var statementList;//String[]
+	
+	statementList = humanStatementSplitter.split("pine isa tree which isa plant");
+	
+	if (statementList[0] != "pine isa tree")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree isa plant")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("pine isa tree which madeof wood");
+	
+	if (statementList[0] != "pine isa tree")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree madeof wood")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("tree isa plant madeof wood");
+	
+	if (statementList[0] != "tree isa plant")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree madeof wood")
+		throw 'Wrong statement';
+
+	statementList = humanStatementSplitter.split("pine isa tree which isa plant madeof wood");
+	
+	if (statementList[0] != "pine isa tree")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree isa plant")
+		throw 'Wrong statement';
+	if (statementList[2] != "tree madeof wood")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("pine isa tree which isa plant madeof wood which isa material");
+	
+	if (statementList[0] != "pine isa tree")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree isa plant")
+		throw 'Wrong statement';
+	if (statementList[2] != "tree madeof wood")
+		throw 'Wrong statement';
+	if (statementList[3] != "wood isa material")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("pine isa tree which isa plant which isa lifeform contradict animal which someare dog");
+	
+	if (statementList[0] != "pine isa tree")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree isa plant")
+		throw 'Wrong statement';
+	if (statementList[2] != "plant isa lifeform")
+		throw 'Wrong statement';
+	if (statementList[3] != "plant contradict animal")
+		throw 'Wrong statement';
+	if (statementList[4] != "animal someare dog")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("tree someare pine, christmas_tree, palm_tree and apple_tree madeof wood");
+	
+	if (statementList[0] != "tree someare pine")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree someare christmas_tree")
+		throw 'Wrong statement';
+	if (statementList[2] != "tree someare palm_tree")
+		throw 'Wrong statement';
+	if (statementList[3] != "tree someare apple_tree")
+		throw 'Wrong statement';
+	if (statementList[4] != "tree madeof wood")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("tree someare pine christmas_tree palm_tree and apple_tree madeof wood");
+	
+	if (statementList[0] != "tree someare pine")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree someare christmas_tree")
+		throw 'Wrong statement';
+	if (statementList[2] != "tree someare palm_tree")
+		throw 'Wrong statement';
+	if (statementList[3] != "tree someare apple_tree")
+		throw 'Wrong statement';
+	if (statementList[4] != "tree madeof wood")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("tree someare pine and christmas_tree and palm_tree and apple_tree madeof wood");
+	
+	if (statementList[0] != "tree someare pine")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree someare christmas_tree")
+		throw 'Wrong statement';
+	if (statementList[2] != "tree someare palm_tree")
+		throw 'Wrong statement';
+	if (statementList[3] != "tree someare apple_tree")
+		throw 'Wrong statement';
+	if (statementList[4] != "tree madeof wood")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("tree someare pine and christmas_tree and palm_tree and apple_tree madeof wood and water");
+	
+	if (statementList[0] != "tree someare pine")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree someare christmas_tree")
+		throw 'Wrong statement';
+	if (statementList[2] != "tree someare palm_tree")
+		throw 'Wrong statement';
+	if (statementList[3] != "tree someare apple_tree")
+		throw 'Wrong statement';
+	if (statementList[4] != "tree madeof wood")
+		throw 'Wrong statement';
+	if (statementList[5] != "tree madeof water")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("tree someare pine and christmas_tree and palm_tree and apple_tree madeof wood water");
+	
+	if (statementList[0] != "tree someare pine")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree someare christmas_tree")
+		throw 'Wrong statement';
+	if (statementList[2] != "tree someare palm_tree")
+		throw 'Wrong statement';
+	if (statementList[3] != "tree someare apple_tree")
+		throw 'Wrong statement';
+	if (statementList[4] != "tree madeof wood")
+		throw 'Wrong statement';
+	if (statementList[5] != "tree madeof water")
+		throw 'Wrong statement';
+		
+	statementList = humanStatementSplitter.split("tree someare pine and christmas_tree and palm_tree and apple_tree madeof wood madeof water");
+	
+	if (statementList[0] != "tree someare pine")
+		throw 'Wrong statement';
+	if (statementList[1] != "tree someare christmas_tree")
+		throw 'Wrong statement';
+	if (statementList[2] != "tree someare palm_tree")
+		throw 'Wrong statement';
+	if (statementList[3] != "tree someare apple_tree")
+		throw 'Wrong statement';
+	if (statementList[4] != "tree madeof wood")
+		throw 'Wrong statement';
+	if (statementList[5] != "tree madeof water")
+		throw 'Wrong statement';
+		
+	throw 'implement testHumanStatementSplitter()';
 }
 
 //Test Ai Unit
