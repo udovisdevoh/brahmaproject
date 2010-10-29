@@ -162,7 +162,13 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 	if (isPositive != wasPositive && !isQuestion)
 	{
 		if (isPositive)
-			this.tautologyManager.learnStatement(subject + ' ' + verb + ' ' + complement);
+		{
+			var objectionStatement = this.objectionFinder.findObjection(subject, verb, complement);
+			if (objectionStatement == null)
+			{
+				this.tautologyManager.learnStatement(subject + ' ' + verb + ' ' + complement);
+			}
+		}
 		else
 			this.tautologyManager.learnStatement(subject + ' not ' + verb + ' ' + complement);
 	
@@ -192,7 +198,7 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 	{
 		var proof = this.talkToWhyStatement(subject, verb, complement);
 		if (proof)
-			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> because<br />' + proof;
+			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> ' + proof;
 		else
 			return this.notThatIKnow;
 	}
