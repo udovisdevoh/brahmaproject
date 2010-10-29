@@ -23,7 +23,18 @@ function TalkingRouter(humanName, aiName)
 
 //(String (HTML)) Talk to left brain's talking interface
 //This is the main router of the left brain
+//Aware of "you", "me", human's name and ai's name
 TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
+{
+	var contextFreeHumanStatement = this.firstSecondPersonManager.formatHumanInput(statementString);
+	var contextFreeAiStatement = this.talkToContextFree(contextFreeHumanStatement);
+	return this.firstSecondPersonManager.formatAiOutput(contextFreeAiStatement);
+}
+
+//(String (HTML)) Talk to left brain's talking interface
+//This is the main router of the left brain
+//Unaware of "you", "me", human's name and ai's name
+TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContextFree(statementString)
 {
 	var isQuestion = statementString.indexOf('?') != -1;
 	statementString = statementString.hardTrim();

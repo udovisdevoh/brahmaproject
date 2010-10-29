@@ -33,9 +33,13 @@ FirstSecondPersonManager.prototype.formatAiOutput = function FirstSecondPersonMa
 	
 	while (statementString.indexOf(' ' + this.aiName + ' ') != -1)
 		statementString = statementString.replace(' ' + this.aiName + ' ', ' me ');
-		
 	while (statementString.indexOf(' ' + this.humanName + ' ') != -1)
 		statementString = statementString.replace(' ' + this.humanName + ' ', ' you ');
+		
+	while (statementString.indexOf('>' + this.aiName + '<') != -1)
+		statementString = statementString.replace('>' + this.aiName + '<', '>me<');
+	while (statementString.indexOf('>' + this.humanName + '<') != -1)
+		statementString = statementString.replace('>' + this.humanName + '<', '>you<');
 	
 	statementString = statementString.trim();
 	
