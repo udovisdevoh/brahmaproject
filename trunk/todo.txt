@@ -1,0 +1,27 @@
+must parse stuff like: "you made what"
+
+
+
+must parse stuff like "yes or no"
+
+
+
+
+
+ask/talk/think (about)
+start
+stop
+
+
+
+
+
+
+
+must not allow some special words (for concepts) like "yes", "which", "what" etc...
+
+
+
+me make me
+why me make me: stack overflow
+must add much more stuff like "madeof cant partof"
