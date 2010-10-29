@@ -101,6 +101,10 @@ HumanStatementSplitter.prototype.isSplittable = function HumanStatementSplitter_
 		statementChunkString = statementChunkString.replace(' and ',' ');
 	while (statementChunkString.indexOf(',') != -1)
 		statementChunkString = statementChunkString.replace(',',' ');
+	while (statementChunkString.indexOf(' define ') != -1)
+		statementChunkString = statementChunkString.replace(' define ',' ');
+	while (statementChunkString.indexOf(' what ') != -1)
+		statementChunkString = statementChunkString.replace(' what ',' ');
 	
 	statementChunkString = statementChunkString.hardTrim();
 	
