@@ -25,17 +25,20 @@
 		<script type="text/javascript" src="./javascript/WhatisViewer.js"></script>
 		<script type="text/javascript" src="./javascript/DefineViewer.js"></script>
 		<script type="text/javascript" src="./javascript/ObjectionFinder.js"></script>
+		<script type="text/javascript" src="./javascript/FirstSecondPersonManager.js"></script>
 		<script type="text/javascript" src="./javascript/TalkingRouter.js"></script>
 		<script type="text/javascript">
 			<!--
-			var talkingRouter = new TalkingRouter();
+			var humanName = "human_dude";
+			var aiName = "ai_dude";
+			var talkingRouter = new TalkingRouter(humanName,aiName);
 			function sendMessage(talkingRouter)
 			{
 				var conversationDom = document.getElementById('conversation');
 				var humanStatementField = document.getElementById('humanStatementField');
 				var humanStatement = humanStatementField.value;
 				var aiStatement = talkingRouter.talkTo(humanStatement);
-				conversationDom.innerHTML += aiStatement + '<br />';
+				conversationDom.innerHTML += aiName + ": " + aiStatement + '<br />';
 				conversationDom.scrollTop = conversationDom.scrollHeight;
 				humanStatementField.value = "";
 				return false;

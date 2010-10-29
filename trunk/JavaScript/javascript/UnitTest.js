@@ -1364,7 +1364,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 //Test Ai Unit
 UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 {
-	var talkingRouter = new TalkingRouter();
+	var talkingRouter = new TalkingRouter("human_dude", "ai_dude");
 	
 	if (talkingRouter.talkTo("") != '')
 		throw 'Should answer something empty';

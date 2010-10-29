@@ -1,5 +1,5 @@
 //Represent a client-side's talking interface
-function TalkingRouter()
+function TalkingRouter(humanName, aiName)
 {
 	//Constants
 	this.helpLinkString = 'Unrecognized statement, use <a href="./help.php" target="_blank">help</a>';
@@ -18,6 +18,7 @@ function TalkingRouter()
 	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
+	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
 }
 
 //(String (HTML)) Talk to left brain's talking interface
@@ -26,6 +27,8 @@ TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 {
 	var isQuestion = statementString.indexOf('?') != -1;
 	statementString = statementString.hardTrim();
+	statementString = this.firstSecondPersonManager.formatHumanInput(statementString);
+	
 	var wordList = statementString.split(' ');
 	
 	if (statementString == '')
