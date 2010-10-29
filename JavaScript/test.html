@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF8">
+		<meta NAME="description" content="Collective Artificial Intelligence">
+		<meta NAME="keywords" content="artificial intelligence">
+		<meta name="language" content="en">
+		<meta name="country" content="ca">
+		<link href="./css/global.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="./javascript/Main.js"></script>
+		<script type="text/javascript" src="./javascript/Concept.js"></script>
+		<script type="text/javascript" src="./javascript/VerbBranch.js"></script>
+		<script type="text/javascript" src="./javascript/ConceptNameMapper.js"></script>
+		<script type="text/javascript" src="./javascript/TautologyManager.js"></script>
+		<script type="text/javascript" src="./javascript/Instinct.js"></script>
+		<script type="text/javascript" src="./javascript/Statement.js"></script>
+		<script type="text/javascript" src="./javascript/ComplementaryOperatorManager.js"></script>
+		<script type="text/javascript" src="./javascript/MutuallyExclusiveOperatorManager.js"></script>
+		<script type="text/javascript" src="./javascript/EvaluationCache.js"></script>
+		<script type="text/javascript" src="./javascript/ProofCache.js"></script>
+		<script type="text/javascript" src="./javascript/Flattenizer.js"></script>
+		<script type="text/javascript" src="./javascript/Optimizer.js"></script>
+		<script type="text/javascript" src="./javascript/Invalidator.js"></script>
+		<script type="text/javascript" src="./javascript/ProofViewer.js"></script>
+		<script type="text/javascript" src="./javascript/WhatisViewer.js"></script>
+		<script type="text/javascript" src="./javascript/DefineViewer.js"></script>
+		<script type="text/javascript" src="./javascript/ObjectionFinder.js"></script>
+		<script type="text/javascript" src="./javascript/TalkingRouter.js"></script>
+		<script type="text/javascript">
+			<!--
+			var talkingRouter = new TalkingRouter();
+			function sendMessage(talkingRouter)
+			{
+				var conversationDom = document.getElementById('conversation');
+				var humanStatementField = document.getElementById('humanStatementField');
+				var humanStatement = humanStatementField.value;
+				var aiStatement = talkingRouter.talkTo(humanStatement);
+				conversationDom.innerHTML += aiStatement + '<br />';
+				conversationDom.scrollTop = conversationDom.scrollHeight;
+				humanStatementField.value = "";
+				return false;
+			}
+			-->
+		</script>
+		<title>Testing</title>
+	</head>
+	<body>
+		<form method="post" onsubmit='sendMessage(talkingRouter);return false;'>
+			<div style="overflow:scroll;height:640px" id="conversation"></div>
+			<div>
+				<input style="width:88%" type="text" id="humanStatementField" name="conversation" />
+				<input style="width:8%" type="submit" value="Talk" />
+			</div>
+		</form>
+	</body>
+</html>
