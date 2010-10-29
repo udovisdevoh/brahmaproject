@@ -23,7 +23,7 @@ ProofViewer.prototype.viewProof = function ProofViewer_viewProof(subject, verb, 
 	else
 		var htmlProof = '';
 		
-	for (var index in proof)
+	for (var index = 0; index < proof.length; index++)
 	{
 		var statement = proof[index];
 		try

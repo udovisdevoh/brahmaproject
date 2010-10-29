@@ -37,7 +37,7 @@ VerbBranch.prototype.removeComplement = function VerbBranch_addComplement(comple
 VerbBranch.prototype.toString = function VerbBranch_toString(complement)
 {
 	var stringRepresentation = "";
-	for (var index in this.complementList)
+	for (var index = 0; index < this.complementList.length; index++)
 	{
 		stringRepresentation += this.complementList[index] + ", ";
 	}

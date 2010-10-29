@@ -19,6 +19,8 @@ function TalkingRouter(humanName, aiName)
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
+	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct);
+	this.io = Array();
 }
 
 //(String (HTML)) Talk to left brain's talking interface
@@ -26,9 +28,22 @@ function TalkingRouter(humanName, aiName)
 //Aware of "you", "me", human's name and ai's name
 TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 {
-	var contextFreeHumanStatement = this.firstSecondPersonManager.formatHumanInput(statementString);
-	var contextFreeAiStatement = this.talkToContextFree(contextFreeHumanStatement);
-	return this.firstSecondPersonManager.formatAiOutput(contextFreeAiStatement);
+	var statementList = this.humanStatementSplitter.split(statementString);
+	var output = "";
+	var humanStatementFormated = "";
+	for (var index = 0; index < statementList.length; index++)
+	{
+		var subStatement = statementList[index];
+		humanStatementFormated += subStatement;	
+		var contextFreeHumanStatement = this.firstSecondPersonManager.formatHumanInput(subStatement);
+		var contextFreeAiStatement = this.talkToContextFree(contextFreeHumanStatement);
+		output += this.firstSecondPersonManager.formatAiOutput(contextFreeAiStatement);
+	}
+	
+	this.io['input'] = humanStatementFormated;
+	this.io['output'] = output;
+	
+	return this.io;
 }
 
 //(String (HTML)) Talk to left brain's talking interface
