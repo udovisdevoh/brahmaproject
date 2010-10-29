@@ -22,7 +22,7 @@ HumanStatementColorizer.prototype.colorize = function HumanStatementColorizer_co
 		{
 			word = '<span class="HumanOperator">' + word + '</span>';
 		}
-		else if (this.conceptNameMapper.mapNameToConcept.hasItem(word))
+		else if (this.conceptNameMapper.mapNameToConcept.hasItem(word) || word == 'me' || word == 'you' || word == 'i')
 		{
 			word = '<span class="HumanConcept">' + word + '</span>';
 		}
