@@ -38,8 +38,12 @@
 				var conversationDom = document.getElementById('conversation');
 				var humanStatementField = document.getElementById('humanStatementField');
 				var humanStatement = humanStatementField.value;
-				var aiStatement = talkingRouter.talkTo(humanStatement);
-				conversationDom.innerHTML += aiName + ": " + aiStatement + '<br />';
+				
+				var inputAndOutput = talkingRouter.talkTo(humanStatement);
+				
+				conversationDom.innerHTML += humanName + ": " + inputAndOutput['input'] + '<br />';
+				conversationDom.innerHTML += aiName + ": " + inputAndOutput['output'] + '<br />';
+				
 				conversationDom.scrollTop = conversationDom.scrollHeight;
 				humanStatementField.value = "";
 				return false;
