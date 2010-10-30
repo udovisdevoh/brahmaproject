@@ -104,13 +104,13 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 		if (verb instanceof Concept)
 		{
 			var verbBranch = concept1.getTautologicBranch(verb);
-			for (var index in verbBranch.complementList)
+			for (var index = 0; index < verbBranch.complementList.length; index++)
 			{
 				var complement = verbBranch.complementList[index];
 				if (complement instanceof Concept)
 				{
 					this.tautologyManager.addConnection(concept2, verb, complement);
-					for (var complementaryVerbIndex in verb.complementaryOperators)
+					for (var complementaryVerbIndex = 0; complementaryVerbIndex < verb.complementaryOperators.length; complementaryVerbIndex++)
 					{
 						var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
 						if (complementaryVerb instanceof Concept)
@@ -143,11 +143,11 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 	this.mapNameToConcept.removeItem(conceptName1);
 	var nameList = this.mapConceptToName.getItem(concept2);
 	
-	for (var index in nameList)
+	for (var index = 0; index < nameList.length; index++)
 		if (nameList[index] == conceptName1)
 			nameList.splice(index,1); 
 			
-	for (var index in this.conceptList)
+	for (var index = 0; index < this.conceptList.length; index++)
 		if (this.conceptList[index] == concept1)
 			this.conceptList.splice(index,1); 
 }
