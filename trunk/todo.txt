@@ -12,7 +12,7 @@ must parse stuff like "yes or no"
 
 
 
-ask/talk/think/teach (about)
+ask/talk/think (about)
 start
 stop
 
@@ -21,3 +21,7 @@ stop
 
 must add much more stuff like "madeof cant partof"
 
+
+
+doskey
+autocomplete

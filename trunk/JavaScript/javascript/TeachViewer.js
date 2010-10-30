@@ -21,7 +21,6 @@ TeachViewer.prototype.teach = function teach()
 		var concept = this.conceptNameMapper.conceptList[index];
 		if (this.instinct.verbList.indexOf(concept) == -1)
 		{
-			alert(concept);
 			nonOperatorConceptList.push(concept);
 		}
 	}
@@ -33,7 +32,7 @@ TeachViewer.prototype.teach = function teach()
 	}
 	else
 	{
-		return this.couldntTeach;
+		return 'I tried to teach about ' + subject + " but I couldn't find anything interesting";
 	}
 }
 
@@ -43,12 +42,12 @@ TeachViewer.prototype.teachAbout = function teachAbout(subject)
 	var verb = this.getVerbWithMostNonTautologicConnection(subject);
 	
 	if (verb == null)
-		return this.couldntTeach;
+		return 'I tried to teach about ' + subject + " but I couldn't find anything interesting";
 	
 	var complement = this.getRandomNonTautologicComplement(subject, verb);
 	
 	if (complement == null)
-		return this.couldntTeach;
+		return 'I tried to teach about ' + subject + ' ' + verb + " but I couldn't find anything interesting";
 		
 	var proof = this.proofViewer.viewProof(subject, verb, complement);
 
