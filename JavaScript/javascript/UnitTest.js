@@ -361,14 +361,14 @@ UnitTest.prototype.testEvaluationCache = function UnitTest_testEvaluationCache()
 	
 	if (!evaluationCache.getCachedResult(pine, isa))
 	{
-		throw 'Statement should be in the process of getting evaluated';
+		throw 'Statement should be currently getting evaluated';
 	}
 	
 	evaluationCache.setCachedResult(pine, isa, false);
 	
 	if (evaluationCache.getCachedResult(pine, isa))
 	{
-		throw "Statement shouldn't be in the process of getting evaluated";
+		throw "Statement shouldn't be currently getting evaluated";
 	}
 }
 
