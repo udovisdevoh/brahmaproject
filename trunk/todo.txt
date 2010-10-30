@@ -1,3 +1,6 @@
+add love operator
+
+
 instinct: add list of forbiden words for concepts
 must not allow some special words (for concepts) like "yes", "which", "what" etc...
 replace code to use it instead of doing multiple || something ==
@@ -19,13 +22,5 @@ stop
 
 
 
-
-
-me make me
-why me make me: stack overflow
 must add much more stuff like "madeof cant partof"
-
-
-find all: addProofArgument
-make sure stuff where a verb a is never an argument
 
