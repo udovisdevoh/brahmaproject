@@ -154,7 +154,7 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 				return this.talkToVerbWhat(this.conceptNameMapper.getConcept(wordList[0]), this.conceptNameMapper.getConcept(wordList[1]));
 			}
 		}
-		
+			
 		if (wordList.length == 3)
 		{
 			subject = this.conceptNameMapper.getConcept(wordList[0]);
@@ -169,6 +169,10 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 			complement = this.conceptNameMapper.getConcept(wordList[3]);
 			isPositive = false;
 		}
+		
+		if (this.instinct.verbList.indexOf(verb) == -1)
+			return this.helpLinkString;
+		
 		return this.talkToStatement(subject, verb, complement, isPositive, isQuestion);
 	}
 	else if (wordList.length == 4 || (wordList.length == 5 && wordList[2] == 'not'))
