@@ -84,7 +84,7 @@ function print_r(theObj)
 	if(theObj.constructor == Array || theObj.constructor == Object)
 	{
 		document.write("<ul>");
-		for(var p in theObj)
+		for(var p = 0; p < theObj.length; p++)
 		{
 			if(theObj[p].constructor == Array|| theObj[p].constructor == Object)
 			{
@@ -165,7 +165,7 @@ function Hash()
 
 	this.clear = function()
 	{
-		for (var i in this.items)
+		for (var i = 0; i < this.items.length; i++)
 		{
 			delete this.items[i];
 		}

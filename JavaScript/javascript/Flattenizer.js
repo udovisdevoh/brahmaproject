@@ -36,7 +36,7 @@ Flattenizer.prototype.getProof = function Flattenizer_getProof(subject, verb, co
 
 Flattenizer.prototype.copyFromTautologicBranch = function Flattenizer_copyFromTautologicBranch(tautologicBranch, implicitBranch)
 {
-	for (var index in tautologicBranch.complementList)
+	for (var index = 0; index < tautologicBranch.complementList.length; index++)
 	{
 		var complement = tautologicBranch.complementList[index];
 		if (complement instanceof Concept)
@@ -177,7 +177,7 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 //(Void) Render stuff like: if [tree] [madeof] [wood] and [wood] isa [matter] then [tree] [madeof] [matter]
 Flattenizer.prototype.renderFromPreRecursiveOperator = function Flattenizer_renderFromPreRecursiveOperator(subjectToRender, verbToRender, recursiveVerb, implicitBranch)
 {
-	for (var index1 in implicitBranch.complementList)
+	for (var index1 = 0; index1 < implicitBranch.complementList.length; index1++)
 	{
 		var immediateComplement = implicitBranch.complementList[index1];
 		if (immediateComplement instanceof Concept)
@@ -188,7 +188,7 @@ Flattenizer.prototype.renderFromPreRecursiveOperator = function Flattenizer_rend
 				if (!remoteImplicitBranch.isLocked)
 					this.flattenBranch(remoteImplicitBranch, immediateComplement, recursiveVerb);
 			
-			for (var index2 in remoteImplicitBranch.complementList)
+			for (var index2 = 0; index2 < remoteImplicitBranch.complementList.length; index2++)
 			{
 				var remoteComplement = remoteImplicitBranch.complementList[index2];
 				
@@ -213,7 +213,7 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 		if (!remoteRecursiveVerbBranch.isLocked)
 			this.flattenBranch(remoteRecursiveVerbBranch, subjectToRender, recursiveVerb);
 
-	for (var index1 in remoteRecursiveVerbBranch.complementList)
+	for (var index1 = 0; index1 < remoteRecursiveVerbBranch.complementList.length; index1++)
 	{
 		var immediateComplement = remoteRecursiveVerbBranch.complementList[index1];
 		if (immediateComplement instanceof Concept)
@@ -224,7 +224,7 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 				if (!remoteCurrentVerbBranch.isLocked)
 					this.flattenBranch(remoteCurrentVerbBranch, immediateComplement, verbToRender);
 			
-			for (var index2 in remoteCurrentVerbBranch.complementList)
+			for (var index2 = 0; index2 < remoteCurrentVerbBranch.complementList.length; index2++)
 			{
 				var remoteComplement = remoteCurrentVerbBranch.complementList[index2];
 				
