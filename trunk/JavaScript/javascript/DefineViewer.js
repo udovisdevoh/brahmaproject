@@ -45,7 +45,7 @@ DefineViewer.prototype.viewVerbDefinition = function DefineViewer_viewVerbDefini
 	var counter = 0;
 	if (implicitBranch.complementList.length > 0)
 	{
-		for (var index in implicitBranch.complementList)
+		for (var index = 0; index < implicitBranch.complementList.length; index++)
 		{					
 			var complement = implicitBranch.complementList[index];
 			if (complement instanceof Concept)

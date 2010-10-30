@@ -10,7 +10,7 @@ WhatisViewer.prototype.viewDefinition = function WhatisViewer_viewDefinition(sub
 {	
 	var definition = '<span class="AiConcept">' + subject + '</span>';
 
-	for (var index2 in this.instinct.verbList)
+	for (var index2 = 0; index2 < this.instinct.verbList.length; index2++)
 	{
 		var verb = this.instinct.verbList[index2];
 		if (verb instanceof Concept)
@@ -26,7 +26,7 @@ WhatisViewer.prototype.viewDefinition = function WhatisViewer_viewDefinition(sub
 			var counter = 0;
 			if (tautologicBranch.complementList.length > 0)
 			{
-				for (var index in tautologicBranch.complementList)
+				for (var index = 0; index < tautologicBranch.complementList.length; index++)
 				{				
 					var complement = tautologicBranch.complementList[index];
 					

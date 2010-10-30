@@ -92,7 +92,7 @@ TautologyManager.prototype.testStatement = function TautologyManager_testStateme
 	{
 		if (wordList.length < 4)
 		{
-			throw 'I can only learn negations in the form: "subject not verb complement"';
+			throw 'I can only learn negations as: "subject not verb complement"';
 		}
 	
 		subject = this.conceptNameMapper.getConcept(wordList[0]);
