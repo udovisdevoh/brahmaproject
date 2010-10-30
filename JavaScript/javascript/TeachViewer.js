@@ -1,5 +1,5 @@
 //Picks random proofs
-function TeachViewer(flattenizer, instinct, proofViewer)
+function TeachViewer(flattenizer, instinct, conceptNameMapper, proofViewer)
 {
 	//Constants
 	this.couldntTeach = "Couldn't find anything to teach";
@@ -7,7 +7,34 @@ function TeachViewer(flattenizer, instinct, proofViewer)
 	//Parts
 	this.flattenizer = flattenizer
 	this.instinct = instinct;
+	this.conceptNameMapper = conceptNameMapper;
 	this.proofViewer = proofViewer;
+}
+
+//(String (HTML)) Find a random connection and make proof about it
+TeachViewer.prototype.teach = function teach()
+{
+	var nonOperatorConceptList = new Array();
+	
+	for (var index = 0; index < this.conceptNameMapper.conceptList.length; index++)
+	{
+		var concept = this.conceptNameMapper.conceptList[index];
+		if (this.instinct.verbList.indexOf(concept) == -1)
+		{
+			alert(concept);
+			nonOperatorConceptList.push(concept);
+		}
+	}
+
+	if (nonOperatorConceptList.length > 0)
+	{
+		var subject = nonOperatorConceptList[Math.floor(Math.random() * nonOperatorConceptList.length)];
+		return this.teachAbout(subject);
+	}
+	else
+	{
+		return this.couldntTeach;
+	}
 }
 
 //(String (HTML)) Find a random connection and make proof about it
