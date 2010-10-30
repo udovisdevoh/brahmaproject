@@ -18,6 +18,7 @@ function TalkingRouter(humanName, aiName)
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
 	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
+	this.teachViewer = new TeachViewer(this.flattenizer, this.instinct, this.proofViewer);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
@@ -88,6 +89,10 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 		{
 			return this.talkToAsk();
 		}
+		else if (wordList[0] == 'ask')
+		{
+			return this.talkToTeach();
+		}
 		else if (wordList[0] == 'talk')
 		{
 			return this.talkToTalk();
@@ -122,6 +127,10 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 		else if (wordList[0] == 'askabout')
 		{
 			return this.talkToAskAbout(this.conceptNameMapper.getConcept(wordList[1]));
+		}
+		else if (wordList[0] == 'teachabout')
+		{
+			return this.talkToTeachAbout(this.conceptNameMapper.getConcept(wordList[1]));
 		}
 		else if (wordList[0] == 'talkabout')
 		{
@@ -299,4 +308,10 @@ TalkingRouter.prototype.talkToDefine = function TalkingRouter_talkToDefine(subje
 TalkingRouter.prototype.talkToVerbWhat = function TalkingRouter_talkToVerbWhat(subject, verb)
 {
 	return this.defineViewer.viewDefinition(subject, verb);
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToTeachAbout = function TalkingRouter_talkToTeachAbout(subject)
+{
+	return this.teachViewer.teachAbout(subject);
 }

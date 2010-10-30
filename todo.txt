@@ -12,7 +12,7 @@ must parse stuff like "yes or no"
 
 
 
-ask/talk/think (about)
+ask/talk/think/teach (about)
 start
 stop
 
