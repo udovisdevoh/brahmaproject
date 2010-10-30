@@ -192,13 +192,17 @@ Flattenizer.prototype.renderFromPreRecursiveOperator = function Flattenizer_rend
 			{
 				var remoteComplement = remoteImplicitBranch.complementList[index2];
 				
-				var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
-				if (proof == null || proof.length == 0)
-				{
-					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, verbToRender, immediateComplement, true);
-					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, recursiveVerb, remoteComplement, true);
+				//We will not flatten operations when they depend on [subject] [verb] [subject] propositions
+				if (subjectToRender != immediateComplement && immediateComplement != remoteComplement)
+				{	
+					var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
+					if (proof == null || proof.length == 0)
+					{		
+						this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, verbToRender, immediateComplement, true);
+						this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, recursiveVerb, remoteComplement, true);
+					}
+					implicitBranch.addComplement(remoteComplement);
 				}
-				implicitBranch.addComplement(remoteComplement);
 			}
 		}
 	}
@@ -228,13 +232,17 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 			{
 				var remoteComplement = remoteCurrentVerbBranch.complementList[index2];
 				
-				var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
-				if (proof == null || proof.length == 0)
+				//We will not flatten operations when they depend on [subject] [verb] [subject] propositions
+				if (subjectToRender != immediateComplement && immediateComplement != remoteComplement)
 				{
-					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, recursiveVerb, immediateComplement, true);
-					this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, verbToRender, remoteComplement, true);
+					var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
+					if (proof == null || proof.length == 0)
+					{
+						this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, recursiveVerb, immediateComplement, true);
+						this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, verbToRender, remoteComplement, true);
+					}
+					implicitBranch.addComplement(remoteComplement);
 				}
-				implicitBranch.addComplement(remoteComplement);
 			}
 		}
 	}
