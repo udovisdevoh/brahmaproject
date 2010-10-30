@@ -5,6 +5,7 @@ function TalkingRouter(humanName, aiName)
 	this.helpLinkString = 'Unrecognized statement, use <a href="./help.php" target="_blank">help</a>';
 	this.notThatIKnow = 'Not that I know';
 	this.iDonTKnow = "I don't know";
+	this.someoneToldMe = "That's what I've been told";
 	
 	//Members
 	this.conceptNameMapper = new ConceptNameMapper();
@@ -190,7 +191,11 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 		
 		if (wordList[0] == 'why' || wordList[0] == 'how')
 		{
-			return this.talkToWhyStatement(subject, verb, complement);
+			var proof = this.talkToWhyStatement(subject, verb, complement); 
+			if (proof)
+				return proof;
+			else
+				return this.someoneToldMe;
 		}
 		else
 		{
