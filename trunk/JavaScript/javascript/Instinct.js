@@ -46,6 +46,18 @@ function Instinct(complementaryOperatorManager)
 	this.destroy
 	);
 	
+	//Reserved name list
+	this.reservedNameList = new Array(
+	'not',
+	'and',
+	'or',
+	'define',
+	'why',
+	'how',
+	'yes',
+	'no'
+	);
+	
 	//Verb name list
 	this.verbNameList = Array();
 	for (var index = 0; index < this.verbList.length; index++)

@@ -91,6 +91,14 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 		{
 			return this.talkToTalk();
 		}
+		else if (wordList[0] == 'yes')
+		{
+			return this.talkToYes();
+		}
+		else if (wordList[0] == 'no')
+		{
+			return this.talkToYes();
+		}
 		else
 		{
 			return this.helpLinkString;
@@ -139,6 +147,10 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 			else if (wordList[0] == 'rename')
 			{
 				return this.talkToRename(wordList[1], wordList[2]);
+			}
+			else if (wordList[2] == 'what')
+			{
+				return this.talkToVerbWhat(this.conceptNameMapper.getConcept(wordList[0]), this.conceptNameMapper.getConcept(wordList[1]));
 			}
 		}
 		
@@ -271,4 +283,11 @@ TalkingRouter.prototype.talkToWhatIs = function TalkingRouter_talkToWhatIs(subje
 TalkingRouter.prototype.talkToDefine = function TalkingRouter_talkToDefine(subject)
 {
 	return this.defineViewer.viewDefinition(subject);
+}
+
+//(String (HTML))
+//Answer to stuff like: pine madeof what?
+TalkingRouter.prototype.talkToVerbWhat = function TalkingRouter_talkToVerbWhat(subject, verb)
+{
+	return this.defineViewer.viewDefinition(subject, verb);
 }
