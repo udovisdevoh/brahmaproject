@@ -68,10 +68,12 @@ function Instinct(complementaryOperatorManager)
 		this.verbNameList.push(this.verbList[index].toString());
 	
 	//Construction of the instinct
+	//this.complementaryOperatorManager.add("synergize","synergize");
+	//this.complementaryOperatorManager.add("antagonize","antagonize");
+	//this.complementaryOperatorManager.add("own","ownedby");
+	//this.complementaryOperatorManager.add("without","notpartof");
 	this.mutuallyExclusiveOperatorManager.add("isa","contradict");
 	this.complementaryOperatorManager.add("contradict","contradict");
-	this.complementaryOperatorManager.add("synergize","synergize");
-	this.complementaryOperatorManager.add("antagonize","antagonize");
 	this.complementaryOperatorManager.add("isa","someare");
 	this.complementaryOperatorManager.add("madeof","partof");
 	this.complementaryOperatorManager.add("need","allow");
@@ -79,7 +81,5 @@ function Instinct(complementaryOperatorManager)
 	this.complementaryOperatorManager.add("destroy","destroyedby");	
 	this.complementaryOperatorManager.add("from","originof");
 	this.complementaryOperatorManager.add("largerthan","smallerthan");
-	this.complementaryOperatorManager.add("own","ownedby");
-	this.complementaryOperatorManager.add("without","notpartof");
 	this.complementaryOperatorManager.add("like","likedby");
 }
