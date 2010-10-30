@@ -26,6 +26,8 @@ function Instinct(complementaryOperatorManager)
 	this.smallerthan = this.conceptNameMapper.getConcept("smallerthan");
 	this.from = this.conceptNameMapper.getConcept("from");
 	this.originof = this.conceptNameMapper.getConcept("originof");
+	this.like = this.conceptNameMapper.getConcept("like");
+	this.likedby = this.conceptNameMapper.getConcept("likedby");
 	
 	//Verb list
 	this.verbList = new Array(
@@ -43,7 +45,9 @@ function Instinct(complementaryOperatorManager)
 	this.largerthan,
 	this.smallerthan,
 	this.destroyedby,
-	this.destroy
+	this.destroy,
+	this.like,
+	this.likedby
 	);
 	
 	//Reserved name list
@@ -77,4 +81,5 @@ function Instinct(complementaryOperatorManager)
 	this.complementaryOperatorManager.add("largerthan","smallerthan");
 	this.complementaryOperatorManager.add("own","ownedby");
 	this.complementaryOperatorManager.add("without","notpartof");
+	this.complementaryOperatorManager.add("like","likedby");
 }
