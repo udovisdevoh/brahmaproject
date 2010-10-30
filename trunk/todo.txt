@@ -1,6 +1,3 @@
-add love operator
-
-
 instinct: add list of forbiden words for concepts
 must not allow some special words (for concepts) like "yes", "which", "what" etc...
 replace code to use it instead of doing multiple || something ==
