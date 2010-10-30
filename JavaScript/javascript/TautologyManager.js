@@ -19,7 +19,7 @@ TautologyManager.prototype.learnStatement = function TautologyManager_learnState
 	
 	if (wordList.length < 3)
 	{
-		throw 'I can only learn in the form: "subject verb complement" or "subject not verb complement"';
+		throw 'I can only learn as: "subject verb complement" or "subject not verb complement"';
 	}
 	
 	var subject, verb, complement;
@@ -30,7 +30,7 @@ TautologyManager.prototype.learnStatement = function TautologyManager_learnState
 		verb = this.conceptNameMapper.getConcept(wordList[1]);
 		complement = this.conceptNameMapper.getConcept(wordList[2]);
 		this.addConnection(subject, verb, complement);
-		for (var index1 in verb.complementaryOperators)
+		for (var index1 = 0; index1 < verb.complementaryOperators.length; index1++)
 		{
 			var complementaryVerb = verb.complementaryOperators[index1];
 			if (complementaryVerb instanceof Concept)
@@ -43,14 +43,14 @@ TautologyManager.prototype.learnStatement = function TautologyManager_learnState
 	{
 		if (wordList.length < 4)
 		{
-			throw 'I can only learn negations in the form: "subject not verb complement"';
+			throw 'I can only learn negations as: "subject not verb complement"';
 		}
 	
 		subject = this.conceptNameMapper.getConcept(wordList[0]);
 		verb = this.conceptNameMapper.getConcept(wordList[2]);
 		complement = this.conceptNameMapper.getConcept(wordList[3]);
 		this.removeConnection(subject, verb, complement);
-		for (var index1 in verb.complementaryOperators)
+		for (var index1 = 0; index1 < verb.complementaryOperators.length; index1++)
 		{
 			var complementaryVerb = verb.complementaryOperators[index1];
 			if (complementaryVerb instanceof Concept)
@@ -75,7 +75,7 @@ TautologyManager.prototype.testStatement = function TautologyManager_testStateme
 	
 	if (wordList.length < 3)
 	{
-		throw 'I can only learn in the form: "subject verb complement" or "subject not verb complement"';
+		throw 'I can only learn as: "subject verb complement" or "subject not verb complement"';
 	}
 	
 	var subject, verb, complement;
