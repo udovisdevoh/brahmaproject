@@ -24,3 +24,7 @@ stop
 me make me
 why me make me: stack overflow
 must add much more stuff like "madeof cant partof"
+
+
+find all: addProofArgument
+make sure stuff where a verb a is never an argument
