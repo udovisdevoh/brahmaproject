@@ -3,24 +3,16 @@ must not allow some special words (for concepts) like "yes", "which", "what" etc
 replace code to use it instead of doing multiple || something ==
 
 
-
-
-
 must parse stuff like "yes or no"
 
 
 
-
-
-ask/talk/think (about)
+talk/think (about)
 start
 stop
 
 
-
-
 must add much more stuff like "madeof cant partof"
-
 
 
 doskey
@@ -34,3 +26,22 @@ for instance: me madeof what? programming_code
 
 
 when in conversation: have a 50% bias torward: you, me and concepts that are flat connected to you and me
+
+
+think
+{
+	heuristics
+	{
+		Enemy brothers
+		{
+			since new_france isa colony and new_france contradict new_england,
+			(and there is no concept from which both new_france and new_england inherit)
+			maybe new_england isa colony too
+		}
+		
+		Composition -> Essence inference (ducktyping)
+		{
+			
+		}
+	}
+}
