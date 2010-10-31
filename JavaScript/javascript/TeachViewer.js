@@ -32,7 +32,7 @@ TeachViewer.prototype.teach = function teach()
 	}
 	else
 	{
-		return 'I tried to teach about <span class="AiConcept">' + subject + "</span> but I couldn't find anything interesting";
+		return "I couldn't find anything interesting to teach";
 	}
 }
 
