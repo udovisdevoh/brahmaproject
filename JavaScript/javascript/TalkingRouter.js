@@ -321,3 +321,9 @@ TalkingRouter.prototype.talkToTeach = function TalkingRouter_talkToTeach()
 {
 	return this.teachViewer.teach();
 }
+
+//(String (HTML))
+TalkingRouter.prototype.talkToAskAbout = function TalkingRouter_talkToAskAbout(subject)
+{
+	throw 'Implement talkToAskAbout()';
+}
