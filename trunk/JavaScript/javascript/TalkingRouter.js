@@ -19,6 +19,7 @@ function TalkingRouter(humanName, aiName)
 	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
 	this.teachViewer = new TeachViewer(this.flattenizer, this.instinct, this.conceptNameMapper, this.proofViewer);
+	this.askViewer = new AskViewer(this.flattenizer, this.instinct, this.conceptNameMapper);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
@@ -325,5 +326,5 @@ TalkingRouter.prototype.talkToTeach = function TalkingRouter_talkToTeach()
 //(String (HTML))
 TalkingRouter.prototype.talkToAskAbout = function TalkingRouter_talkToAskAbout(subject)
 {
-	throw 'Implement talkToAskAbout()';
+	return this.askViewer.askAbout(subject);
 }
