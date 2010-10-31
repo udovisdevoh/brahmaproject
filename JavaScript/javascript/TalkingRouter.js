@@ -326,5 +326,5 @@ TalkingRouter.prototype.talkToTeach = function TalkingRouter_talkToTeach()
 //(String (HTML))
 TalkingRouter.prototype.talkToAskAbout = function TalkingRouter_talkToAskAbout(subject)
 {
-	return this.askViewer.askAbout(subject);
+	return this.whatisViewer.viewDefinition(subject) + '<br />' + this.askViewer.askAbout(subject);
 }
