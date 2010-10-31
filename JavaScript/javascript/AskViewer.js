@@ -33,11 +33,17 @@ AskViewer.prototype.getRandomSubject = function AskViewer_getRandomSubject()
 //(String (HTML))
 AskViewer.prototype.askAbout = function AskViewer_askAbout(subject)
 {
-	var leastDocumentedVerb = this.getLeastDocumentedVerbNotInIgnoreList(subject);
+	var verb;
+	
+	if (Math.round(Math.random()) == 0)
+		verb = this.getLeastDocumentedVerbNotInIgnoreList(subject);
+	else
+		verb = this.instinct.verbList[Math.floor(Math.random() * this.instinct.verbList.length)];
+	
 	while (this.ignoreList.length > this.maxIgnoreListLength)
 		this.ignoreList.splice(0,1);
-	var question = '<span class="AiConcept">' + subject + '</span> <span class="AiOperator">' + leastDocumentedVerb + '</span> what?';
-	this.ignoreList.push(subject + ' ' + leastDocumentedVerb);
+	var question = '<span class="AiConcept">' + subject + '</span> <span class="AiOperator">' + verb + '</span> what?';
+	this.ignoreList.push(subject + ' ' + verb);
 	return question;
 }
 
