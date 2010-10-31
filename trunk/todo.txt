@@ -25,3 +25,12 @@ must add much more stuff like "madeof cant partof"
 
 doskey
 autocomplete
+
+
+must not ask stuff like: you someare what
+
+when AI asks question, it must be possible to answer with one word,
+for instance: me madeof what? programming_code
+
+
+when in conversation: have a 50% bias torward: you, me and concepts that are flat connected to you and me

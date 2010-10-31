@@ -326,5 +326,18 @@ TalkingRouter.prototype.talkToTeach = function TalkingRouter_talkToTeach()
 //(String (HTML))
 TalkingRouter.prototype.talkToAskAbout = function TalkingRouter_talkToAskAbout(subject)
 {
-	return this.whatisViewer.viewDefinition(subject) + '<br />' + this.askViewer.askAbout(subject);
+	var whatisDefinition = this.whatisViewer.viewDefinition(subject);
+	var question = this.askViewer.askAbout(subject);
+	return whatisDefinition + '<br />' + question;
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToAsk = function TalkingRouter_talkToAsk()
+{
+	var subject = this.askViewer.getRandomSubject();
+	if (subject == null)
+		return 'Please teach me at least one thing first';	
+	var whatisDefinition = this.whatisViewer.viewDefinition(subject);
+	var question = this.askViewer.askAbout(subject);
+	return whatisDefinition + '<br />' + question;
 }
