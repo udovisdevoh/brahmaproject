@@ -27,7 +27,7 @@ doskey
 autocomplete
 
 
-must not ask stuff like: you someare what
+must not ask stuff like: you !someare! what
 
 when AI asks question, it must be possible to answer with one word,
 for instance: me madeof what? programming_code

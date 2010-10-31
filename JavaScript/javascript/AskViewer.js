@@ -38,13 +38,27 @@ AskViewer.prototype.askAbout = function AskViewer_askAbout(subject)
 	if (Math.round(Math.random()) == 0)
 		verb = this.getLeastDocumentedVerbNotInIgnoreList(subject);
 	else
-		verb = this.instinct.verbList[Math.floor(Math.random() * this.instinct.verbList.length)];
+		verb = this.getRandomVerbNotInIgnoreList(subject);
 	
 	while (this.ignoreList.length > this.maxIgnoreListLength)
 		this.ignoreList.splice(0,1);
 	var question = '<span class="AiConcept">' + subject + '</span> <span class="AiOperator">' + verb + '</span> what?';
 	this.ignoreList.push(subject + ' ' + verb);
 	return question;
+}
+
+//(Concept)
+AskViewer.prototype.getRandomVerbNotInIgnoreList = function AskViewer_getRandomVerbNotInIgnoreList(subject)
+{
+	var verb;
+	var limit = 0;
+	do
+	{
+		verb = this.instinct.verbList[Math.floor(Math.random() * this.instinct.verbList.length)];
+		limit++;
+	} while (limit < 10 && this.ignoreList.indexOf(subject + ' ' + verb) != -1);
+	
+	return verb;
 }
 
 //(Concept)
