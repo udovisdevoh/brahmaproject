@@ -32,7 +32,7 @@ TeachViewer.prototype.teach = function teach()
 	}
 	else
 	{
-		return 'I tried to teach about ' + subject + " but I couldn't find anything interesting";
+		return 'I tried to teach about <span class="AiConcept">' + subject + "</span> but I couldn't find anything interesting";
 	}
 }
 
@@ -42,12 +42,12 @@ TeachViewer.prototype.teachAbout = function teachAbout(subject)
 	var verb = this.getVerbWithMostNonTautologicConnection(subject);
 	
 	if (verb == null)
-		return 'I tried to teach about ' + subject + " but I couldn't find anything interesting";
+		return 'I tried to teach about <span class="AiConcept">' + subject + "</span> but I couldn't find anything interesting";
 	
 	var complement = this.getRandomNonTautologicComplement(subject, verb);
 	
 	if (complement == null)
-		return 'I tried to teach about ' + subject + ' ' + verb + " but I couldn't find anything interesting";
+		return 'I tried to teach about <span class="AiConcept">' + subject + '</span> <span class="AiOperator">' + verb + "</span> but I couldn't find anything interesting";
 		
 	var proof = this.proofViewer.viewProof(subject, verb, complement);
 
