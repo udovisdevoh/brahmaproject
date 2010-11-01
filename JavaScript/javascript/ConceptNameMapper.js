@@ -37,7 +37,8 @@ ConceptNameMapper.prototype.getConcept = function ConceptNameMapper_getConcept(c
 }
 
 //Merge two concept names so they point to the same concept
-ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName1, conceptName2)
+//The flattenizer is facultative, but highly recommended so we keep consistency
+ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName1, conceptName2, flattenizer)
 {
 	conceptName1 = conceptName1.toLowerCase();
 	conceptName2 = conceptName2.toLowerCase();
@@ -55,19 +56,30 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 		var verb = concept2.tautologyConnections.keys[index2];
 		if (verb instanceof Concept)
 		{
-			var verbBranch = concept2.getTautologicBranch(verb);
-			for (var index = 0; index < verbBranch.complementList.length; index++)
+			var tautologicBranch = concept2.getTautologicBranch(verb);
+			
+			if (flattenizer != null)
 			{
-				var complement = verbBranch.complementList[index];
+				var implicitBranch = concept2.getImplicitBranch(verb);
+				if (!implicitBranch.isFlat)
+					if (!implicitBranch.isLocked)
+						flattenizer.flattenBranch(implicitBranch, concept2, verb);
+			}
+			
+			for (var index = 0; index < tautologicBranch.complementList.length; index++)
+			{
+				var complement = tautologicBranch.complementList[index];
 				if (complement instanceof Concept)
 				{
 					this.tautologyManager.addConnection(concept1, verb, complement);
+										
 					for (var complementaryVerbIndex = 0; complementaryVerbIndex < verb.complementaryOperators.length; complementaryVerbIndex++)
 					{
 						var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
 						if (complementaryVerb instanceof Concept)
 						{
 							this.tautologyManager.addConnection(complement, complementaryVerb, concept1);
+							this.tautologyManager.removeConnection(complement, complementaryVerb, concept2);
 						}
 					}
 				}
@@ -83,7 +95,8 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 }
 
 //Split two concept names so they don't point to the same concept anymore
-ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(conceptName1, conceptName2)
+//The flattenizer is facultative, but highly recommended so we keep consistency
+ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(conceptName1, conceptName2, flattenizer)
 {
 	conceptName1 = conceptName1.toLowerCase();
 	conceptName2 = conceptName2.toLowerCase();
@@ -103,10 +116,19 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 		var verb = concept1.tautologyConnections.keys[index2];
 		if (verb instanceof Concept)
 		{
-			var verbBranch = concept1.getTautologicBranch(verb);
-			for (var index = 0; index < verbBranch.complementList.length; index++)
+			var tautologicBranch = concept1.getTautologicBranch(verb);
+			
+			if (flattenizer != null)
 			{
-				var complement = verbBranch.complementList[index];
+				var implicitBranch = concept1.getImplicitBranch(verb);
+				if (!implicitBranch.isFlat)
+					if (!implicitBranch.isLocked)
+						flattenizer.flattenBranch(implicitBranch, concept1, verb);
+			}
+			
+			for (var index = 0; index < tautologicBranch.complementList.length; index++)
+			{
+				var complement = tautologicBranch.complementList[index];
 				if (complement instanceof Concept)
 				{
 					this.tautologyManager.addConnection(concept2, verb, complement);
@@ -131,11 +153,12 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 }
 
 //Rename a concept to another one
-ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptName1, conceptName2)
+//The flattenizer is facultative, but highly recommended so we keep consistency
+ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptName1, conceptName2, flattenizer)
 {
 	var concept1 = this.getConcept(conceptName1);
 
-	this.alias(conceptName1, conceptName2);
+	this.alias(conceptName1, conceptName2, flattenizer);
 	
 	conceptName2 = conceptName2.toLowerCase();
 	var concept2 = this.getConcept(conceptName2);
