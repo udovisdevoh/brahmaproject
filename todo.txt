@@ -29,6 +29,10 @@ for instance: me madeof what? programming_code
 when in conversation: have a 50% bias torward: you, me and concepts that are flat connected to you and me
 
 
+
+prevent double message sending (double event handling)
+
+
 think
 {
 	heuristics
@@ -42,7 +46,10 @@ think
 		
 		Composition -> Essence inference (ducktyping)
 		{
-			
+			//Could work with "make"
+			chicken madeof feather
+			duck madeof feather and isa bird,
+			maybe chicken isa bird too
 		}
 	}
 }
