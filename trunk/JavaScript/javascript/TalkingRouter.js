@@ -342,3 +342,27 @@ TalkingRouter.prototype.talkToAsk = function TalkingRouter_talkToAsk()
 	var question = this.askViewer.askAbout(subject);
 	return whatisDefinition + '<br />' + question;
 }
+
+//(String (HTML))
+TalkingRouter.prototype.talkToRename = function TalkingRouter_talkToRename(conceptName1, conceptName2)
+{
+	this.conceptNameMapper.rename(conceptName1, conceptName2, this.flattenizer);
+	this.invalidator.invalidateAll();
+	return 'Alright, <span class="AiConcept">' + conceptName1 + '</span> is now named <span class="AiConcept">' + conceptName2 + '</span>';
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToAlias = function TalkingRouter_talkToAlias(conceptName1, conceptName2)
+{
+	this.conceptNameMapper.alias(conceptName1, conceptName2, this.flattenizer);
+	this.invalidator.invalidateAll();
+	return 'Alright, <span class="AiConcept">' + conceptName1 + '</span> is now the same thing as <span class="AiConcept">' + conceptName2 + '</span>';
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToUnAlias = function TalkingRouter_talkToAlias(conceptName1, conceptName2)
+{
+	this.conceptNameMapper.unAlias(conceptName1, conceptName2, this.flattenizer);
+	this.invalidator.invalidateAll();
+	return 'Alright, <span class="AiConcept">' + conceptName1 + '</span> is not the same thing as <span class="AiConcept">' + conceptName2 + '</span> anymore';
+}
