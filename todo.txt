@@ -1,3 +1,9 @@
+must parse parantheses
+windows madeby microsoft (which isa corporation) isa operating_system which isa sofware
+
+
+
+
 instinct: add list of forbiden words for concepts
 must not allow some special words (for concepts) like "yes", "which", "what" etc...
 replace code to use it instead of doing multiple || something ==
