@@ -73,6 +73,7 @@ function Instinct(complementaryOperatorManager)
 	//this.complementaryOperatorManager.add("own","ownedby");
 	//this.complementaryOperatorManager.add("without","notpartof");
 	this.mutuallyExclusiveOperatorManager.add("isa","contradict");
+	this.mutuallyExclusiveOperatorManager.add("someare","contradict");
 	this.mutuallyExclusiveOperatorManager.add("madeof","partof");
 	this.mutuallyExclusiveOperatorManager.add("make","madeby");
 	this.mutuallyExclusiveOperatorManager.add("isa","someare");
