@@ -26,7 +26,7 @@ start
 stop
 
 
-must add much more stuff like "madeof cant partof"
+
 
 
 doskey
