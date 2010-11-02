@@ -28,6 +28,18 @@ stop
 
 
 
+?invalidator must invalidate theories from the thinker when doing "invalidate all"?
+
+
+background thinker
+{
+	must think in background unless user is sending message
+	thinking cache must be cleaned by invalidator
+}
+
+
+
+
 
 doskey
 autocomplete
