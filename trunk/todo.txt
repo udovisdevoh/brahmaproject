@@ -5,9 +5,6 @@ must parse parantheses:
 
 
 
-when aliasing, don't allow if find obstruction
-
-
 exceptions (when in production): must be catched and outputed by AI
 
 
