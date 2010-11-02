@@ -270,7 +270,7 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 		if (proof)
 			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> ' + proof;
 		else if (objectionStatement != null)
-			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> because <span class="AiConcept">' + objectionStatement.subject + '</span> <span class="AiOperator">' + objectionStatement.verb + '</span> <span class="AiConcept">' + objectionStatement.complement + '</span>';
+			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> because I\'ve been told <span class="AiConcept">' + objectionStatement.subject + '</span> <span class="AiOperator">' + objectionStatement.verb + '</span> <span class="AiConcept">' + objectionStatement.complement + '</span>';
 		else
 			return this.notThatIKnow;
 	}
