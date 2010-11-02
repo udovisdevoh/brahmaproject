@@ -226,13 +226,14 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 //(String (HTML))
 TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement(subject, verb, complement, isPositive, isQuestion)
 {
+	var objectionStatement = null;
 	var wasPositive = this.flattenizer.testConnection(subject, verb, complement);
 	
 	if (isPositive != wasPositive && !isQuestion)
 	{
 		if (isPositive)
 		{
-			var objectionStatement = this.objectionFinder.findObjection(subject, verb, complement);
+			objectionStatement = this.objectionFinder.findObjection(subject, verb, complement);
 			if (objectionStatement == null)
 			{
 				this.tautologyManager.learnStatement(subject + ' ' + verb + ' ' + complement);
@@ -268,6 +269,8 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 		var proof = this.talkToWhyStatement(subject, verb, complement);
 		if (proof)
 			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> ' + proof;
+		else if (objectionStatement != null)
+			return '<span class="AiConcept">Me</span> <span class="AiOperator">disagree</span> because <span class="AiConcept">' + objectionStatement.subject + '</span> <span class="AiOperator">' + objectionStatement.verb + '</span> <span class="AiConcept">' + objectionStatement.complement + '</span>';
 		else
 			return this.notThatIKnow;
 	}
