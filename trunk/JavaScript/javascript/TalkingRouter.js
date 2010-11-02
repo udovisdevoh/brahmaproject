@@ -14,8 +14,8 @@ function TalkingRouter(humanName, aiName)
 	this.instinct = new Instinct(this.complementaryOperatorManager);
 	this.flattenizer = new Flattenizer(this.instinct);
 	this.proofCache = this.flattenizer.proofCache;
-	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache);
-	this.thinker = new Thinker();
+	this.thinker = new Thinker(this.conceptNameMapper);
+	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache, this.thinker);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
 	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
@@ -25,7 +25,7 @@ function TalkingRouter(humanName, aiName)
 	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
 	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
-	this.io = Array();
+	this.io = Array();//['input']: human's input, ['output']: ai's output
 }
 
 //(String (HTML)) Talk to left brain's talking interface
@@ -344,6 +344,26 @@ TalkingRouter.prototype.talkToAsk = function TalkingRouter_talkToAsk()
 	var whatisDefinition = this.whatisViewer.viewDefinition(subject);
 	var question = this.askViewer.askAbout(subject);
 	return whatisDefinition + '<br />' + question;
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToThinkAbout = function TalkingRouter_talkToThinkAbout(subject)
+{
+	var theory = this.thinker.getTheoryAbout(subject);
+	if (theory != null)
+		return theory;
+	else
+		return 'Please teach me more first';
+}
+
+//(String (HTML))
+TalkingRouter.prototype.talkToThink = function TalkingRouter_talkToThink()
+{
+	var theory = this.thinker.getTheory();
+	if (theory != null)
+		return theory;
+	else
+		return 'Please teach me more first';
 }
 
 //(String (HTML))

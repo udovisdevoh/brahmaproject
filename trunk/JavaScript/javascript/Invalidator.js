@@ -1,8 +1,9 @@
 //To invalidate branches
-function Invalidator(conceptList, proofCache)
+function Invalidator(conceptList, proofCache, thinker)
 {
 	this.conceptList = conceptList;
 	this.proofCache = proofCache;
+	this.thinker = thinker;
 }
 
 Invalidator.prototype.invalidateAll = function Invalidator_invalidateAll()
