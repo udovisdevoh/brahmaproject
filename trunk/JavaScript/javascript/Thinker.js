@@ -53,11 +53,11 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//todo: produce theories here
 		//the longer a proof is for a connection, the least relevent it will be considered
 		
-		//strong or weak induction			
+		//generalization to parent (strong or weak induction)		
 		//the majority of isa animal is madeof blood
 		//maybe animal always madeof blood
 		
-		//argument from analogy
+		//generalization to brother (argument from analogy)
 		//the majority of madeof long_hair and isa human like pot
 		//you madeof long_hair and isa human
 		//maybe you like pot too
