@@ -32,16 +32,16 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 			var theorySet = Array();
 			
 			/*
-			Approximate list of operator sorted by there relevence in describing a concept
+			Approximate list of operator sorted by there relevance in describing a concept
 			isa
 			madeof
+			make
+			need
 			from
 			partof
 			madeby
-			contradict
-			need
 			allow
-			make
+			contradict
 			like
 			likedby
 			someare

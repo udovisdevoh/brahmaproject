@@ -29,6 +29,26 @@ function Instinct(complementaryOperatorManager)
 	this.like = this.conceptNameMapper.getConcept("like");
 	this.likedby = this.conceptNameMapper.getConcept("likedby");
 	
+	//We set the relevence of operators when it gets to describing concepts
+	//todo: fill this
+	/*this.isa.conceptDescriptionRelevance = 
+	this.madeof.conceptDescriptionRelevance = 
+	this.make.conceptDescriptionRelevance = 
+	this.need.conceptDescriptionRelevance = 
+	this.from.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = 
+	this.isa.conceptDescriptionRelevance = */
+	
 	//Verb list
 	this.verbList = new Array(
 	this.isa,
