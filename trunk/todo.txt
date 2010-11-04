@@ -26,6 +26,9 @@ start
 stop
 
 
+instinct: add concept description operator relevance
+http://en.wikipedia.org/wiki/Inductive_reasoning
+
 
 
 background thinker

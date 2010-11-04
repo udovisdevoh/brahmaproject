@@ -18,6 +18,9 @@ function Concept(defaultConceptName)
 	
 	//(Bool) (stuff like isa, but not someare)
 	this.isNaturalOperator = false;
+	
+	//(int) conceptDescriptionRelevance (how much a verb can be relevant to describe a concept)
+	this.conceptDescriptionRelevance = 0;
 }
 
 //Whether concepts are the same
