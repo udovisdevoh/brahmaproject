@@ -36,13 +36,13 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 			isa
 			madeof
 			make
+			allow
 			need
+			contradict
+			like
 			from
 			partof
 			madeby
-			allow
-			contradict
-			like
 			likedby
 			someare
 			originof
