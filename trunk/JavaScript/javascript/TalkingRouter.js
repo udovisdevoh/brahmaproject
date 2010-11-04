@@ -14,7 +14,7 @@ function TalkingRouter(humanName, aiName)
 	this.instinct = new Instinct(this.complementaryOperatorManager);
 	this.flattenizer = new Flattenizer(this.instinct);
 	this.proofCache = this.flattenizer.proofCache;
-	this.thinker = new Thinker(this.conceptNameMapper);
+	this.thinker = new Thinker(this.flattenizer, this.conceptNameMapper);
 	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache, this.thinker);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
 	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
@@ -351,7 +351,7 @@ TalkingRouter.prototype.talkToThinkAbout = function TalkingRouter_talkToThinkAbo
 {
 	var theory = this.thinker.getTheoryAbout(subject);
 	if (theory != null)
-		return theory;
+		return theory.toString();
 	else
 		return 'Please teach me more first';
 }
@@ -361,7 +361,7 @@ TalkingRouter.prototype.talkToThink = function TalkingRouter_talkToThink()
 {
 	var theory = this.thinker.getTheory();
 	if (theory != null)
-		return theory;
+		return theory.toString();
 	else
 		return 'Please teach me more first';
 }

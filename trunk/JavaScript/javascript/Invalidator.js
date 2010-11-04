@@ -9,7 +9,7 @@ function Invalidator(conceptList, proofCache, thinker)
 Invalidator.prototype.invalidateAll = function Invalidator_invalidateAll()
 {
 	this.proofCache.cachedData = new Hash();
-	
+	this.thinker.theoryCache = new Hash();
 	for (var index = 0; index < this.conceptList.length; index++)
 	{
 		var subject = this.conceptList[index];
