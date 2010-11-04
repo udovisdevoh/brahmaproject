@@ -38,6 +38,16 @@ background thinker
 
 
 
+brahma
+{
+	?obstructed connections : same weight as connection?
+	{
+		when compiling left brain connections,
+		if there are more / less positive flat connections than obstructed connections,
+		make the weight of connection or obstructed connections so
+		the sum of connection is equal to sum of obstructed connections
+	}
+}
 
 
 doskey
