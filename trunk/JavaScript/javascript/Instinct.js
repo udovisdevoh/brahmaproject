@@ -30,24 +30,23 @@ function Instinct(complementaryOperatorManager)
 	this.likedby = this.conceptNameMapper.getConcept("likedby");
 	
 	//We set the relevence of operators when it gets to describing concepts
-	//todo: fill this
-	/*this.isa.conceptDescriptionRelevance = 
-	this.madeof.conceptDescriptionRelevance = 
-	this.make.conceptDescriptionRelevance = 
-	this.need.conceptDescriptionRelevance = 
-	this.from.conceptDescriptionRelevance = 
-	this.partof.conceptDescriptionRelevance = 
-	this.madeby.conceptDescriptionRelevance = 
-	this.allow.conceptDescriptionRelevance = 
-	this.contradict.conceptDescriptionRelevance = 
-	this.like.conceptDescriptionRelevance = 
-	this.likedby.conceptDescriptionRelevance = 
-	this.someare.conceptDescriptionRelevance = 
-	this.originof.conceptDescriptionRelevance = 
-	this.destroyedby.conceptDescriptionRelevance = 
-	this.destroy.conceptDescriptionRelevance = 
-	this.largerthan.conceptDescriptionRelevance = 
-	this.smallerthan.conceptDescriptionRelevance = */
+	this.isa.conceptDescriptionRelevance = 1.0;
+	this.madeof.conceptDescriptionRelevance = 0.5;
+	this.make.conceptDescriptionRelevance = 0.25;
+	this.allow.conceptDescriptionRelevance = 0.2;
+	this.need.conceptDescriptionRelevance = 0.2;
+	this.contradict.conceptDescriptionRelevance = 0.2;
+	this.like.conceptDescriptionRelevance = 0.16;
+	this.from.conceptDescriptionRelevance = 0.125;
+	this.partof.conceptDescriptionRelevance = 0.125;
+	this.madeby.conceptDescriptionRelevance = 0.125;
+	this.likedby.conceptDescriptionRelevance = 0.125;
+	this.someare.conceptDescriptionRelevance = 0.05;
+	this.originof.conceptDescriptionRelevance = 0.05;
+	this.destroyedby.conceptDescriptionRelevance = 0.05;
+	this.destroy.conceptDescriptionRelevance = 0.05;
+	this.largerthan.conceptDescriptionRelevance = 0;
+	this.smallerthan.conceptDescriptionRelevance = 0;
 	
 	//Verb list
 	this.verbList = new Array(
