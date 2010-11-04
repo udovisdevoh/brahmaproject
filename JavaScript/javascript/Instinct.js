@@ -36,18 +36,18 @@ function Instinct(complementaryOperatorManager)
 	this.make.conceptDescriptionRelevance = 
 	this.need.conceptDescriptionRelevance = 
 	this.from.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = 
-	this.isa.conceptDescriptionRelevance = */
+	this.partof.conceptDescriptionRelevance = 
+	this.madeby.conceptDescriptionRelevance = 
+	this.allow.conceptDescriptionRelevance = 
+	this.contradict.conceptDescriptionRelevance = 
+	this.like.conceptDescriptionRelevance = 
+	this.likedby.conceptDescriptionRelevance = 
+	this.someare.conceptDescriptionRelevance = 
+	this.originof.conceptDescriptionRelevance = 
+	this.destroyedby.conceptDescriptionRelevance = 
+	this.destroy.conceptDescriptionRelevance = 
+	this.largerthan.conceptDescriptionRelevance = 
+	this.smallerthan.conceptDescriptionRelevance = */
 	
 	//Verb list
 	this.verbList = new Array(
