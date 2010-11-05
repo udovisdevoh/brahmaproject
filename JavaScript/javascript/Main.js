@@ -138,6 +138,9 @@ function Hash()
 
 	this.setItem = function(in_key, in_value)
 	{
+		if (!this.hasItem(in_key))
+			this.keys.push(in_key);
+			
 		var tmp_previous;
 		if (typeof(in_value) != 'undefined')
 		{
@@ -152,8 +155,6 @@ function Hash()
 
 			this.items[in_key] = in_value;
 		}
-		
-		this.keys.push(in_key);
 	   
 		return tmp_previous;
 	}
