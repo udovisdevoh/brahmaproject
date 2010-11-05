@@ -1596,9 +1596,9 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 UnitTest.prototype.testThinker = function UnitTest_testThinker()
 {
 	var talkingRouter = new TalkingRouter();	
-	talkingRouter.talkTo("me isa human make you which isa artificial_intelligence which isa software which is madeof of boolean_logic");
+	talkingRouter.talkTo("me isa human make you which isa artificial_intelligence which isa program which madeof of boolean_logic");
 	talkingRouter.talkTo("human isa mammal which isa animal which isa organic_lifeform contradict plant which isa organic_lifeform");
-	talkingRouter.talkTo("google isa search_engine which isa software and web_site which partof internet");
+	talkingRouter.talkTo("google isa search_engine which isa program and web_site which partof internet");
 	talkingRouter.talkTo("windows madeby microsoft isa operating_system which isa sofware");
 	talkingRouter.talkTo("microsoft isa corporation");
 	talkingRouter.talkTo("monsanto isa corporation make gmo which isa poison which destroy health");
@@ -1615,5 +1615,7 @@ UnitTest.prototype.testThinker = function UnitTest_testThinker()
 	talkingRouter.talkTo("fish isa animal madeof blood");
 	talkingRouter.talkTo("kangaroo isa animal madeof blood");
 	talkingRouter.talkTo("squid isa animal");
+	talkingRouter.talkTo("google isa website which isa program");
+	talkingRouter.talkTo("microsoft make windows which isa operating_system which isa program");
 	alert(talkingRouter.talkTo("thinkabout animal")['output']);
 }

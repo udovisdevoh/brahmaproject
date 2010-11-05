@@ -35,10 +35,19 @@ AskViewer.prototype.askAbout = function AskViewer_askAbout(subject)
 {
 	var verb;
 	
-	if (Math.round(Math.random()) == 0)
+	var methodId = Math.floor(Math.random() * 3);
+	if (methodId == 0)
+	{
 		verb = this.getLeastDocumentedVerbNotInIgnoreList(subject);
-	else
+	}
+	else if (methodId == 1)
+	{
 		verb = this.getRandomVerbNotInIgnoreList(subject);
+	}
+	else
+	{
+		verb = this.getMostAsymetricVerbNotInIgnoreList(subject);
+	}
 	
 	while (this.ignoreList.length > this.maxIgnoreListLength)
 		this.ignoreList.splice(0,1);
@@ -89,4 +98,37 @@ AskViewer.prototype.getLeastDocumentedVerbNotInIgnoreList = function AskViewer_g
 	}
 	
 	return leastDocumentedVerb;
+}
+
+//(Concept)
+AskViewer.prototype.getMostAsymetricVerbNotInIgnoreList = function AskViewer_getMostAsymetricVerbNotInIgnoreList(subject)
+{
+	var mostConnectionCount = -1;
+	var mostAsymmetricVerb;
+	
+	for (var index = 0; index < this.instinct.verbList.length; index++)
+	{
+		var verb = this.instinct.verbList[index];
+		if (verb instanceof Concept)
+		{
+			var implicitBranch = subject.getImplicitBranch(verb);
+			
+			if (!implicitBranch.isFlat)
+				if (!implicitBranch.isLocked)
+					this.flattenizer.flattenBranch(implicitBranch, subject, verb);
+					
+			var tautologicBranch = subject.getTautologicBranch(verb);
+			
+			if ((mostConnectionCount == -1 || tautologicBranch.complementList.length > mostConnectionCount) && this.ignoreList.indexOf(subject + ' ' + verb) == -1)
+			{
+				if (verb.complementaryOperators.length > 0)
+				{
+					mostConnectionCount = tautologicBranch.complementList.length;
+					mostAsymmetricVerb = verb.complementaryOperators[0];
+				}
+			}
+		}
+	}
+	
+	return mostAsymmetricVerb;
 }
