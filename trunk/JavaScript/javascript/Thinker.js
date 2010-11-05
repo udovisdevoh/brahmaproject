@@ -8,7 +8,7 @@ function Thinker(flattenizer, instinct, conceptNameMapper)
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
-	this.theoryCache = Hash();//As theoryCache[subject]theory[]
+	this.theoryCache = new Hash();//As theoryCache[subject]theory[]
 }
 
 //(Theory)
@@ -182,7 +182,9 @@ Thinker.prototype.produceTheoriesGeneralizationToParent = function Thinker_produ
 					
 					if (probability > 0)
 					{
-						alert(probability + " " + theoryVerb + " " + theoryComplement);
+						var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know about also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement;
+						var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);
+						alert(theory);
 					}
 				}
 			}

@@ -1400,7 +1400,7 @@ UnitTest.prototype.testHumanStatementSplitter = function UnitTest_testHumanState
 		throw 'Wrong statement';
 	if (statementList[2] != "tree madeof wood")
 		throw 'Wrong statement';
-		
+	
 	statementList = humanStatementSplitter.split("pine isa tree which isa plant madeof wood which isa material");
 	
 	if (statementList[0] != "pine isa tree")
@@ -1595,7 +1595,7 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 //Test thinker
 UnitTest.prototype.testThinker = function UnitTest_testThinker()
 {
-	var talkingRouter = new TalkingRouter();
+	var talkingRouter = new TalkingRouter();	
 	talkingRouter.talkTo("me isa human make you which isa artificial_intelligence which isa software which is madeof of boolean_logic");
 	talkingRouter.talkTo("human isa mammal which isa animal which isa organic_lifeform contradict plant which isa organic_lifeform");
 	talkingRouter.talkTo("google isa search_engine which isa software and web_site which partof internet");
@@ -1615,6 +1615,5 @@ UnitTest.prototype.testThinker = function UnitTest_testThinker()
 	talkingRouter.talkTo("fish isa animal madeof blood");
 	talkingRouter.talkTo("kangaroo isa animal madeof blood");
 	talkingRouter.talkTo("squid isa animal");
-	
 	alert(talkingRouter.talkTo("thinkabout animal"));
 }
