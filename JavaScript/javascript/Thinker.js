@@ -3,6 +3,8 @@ function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder)
 {
 	//Constants
 	this.minimumSampleSizeForGeneralization = 2;
+	this.maxIgnoreListLength = 20;
+	this.maxRandomConceptTheorySamplingSize = 20;
 	
 	//Parts
 	this.flattenizer = flattenizer;
@@ -10,16 +12,52 @@ function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder)
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
 	this.theoryCache = new Hash();//As theoryCache[subject]theory[]
+	this.ignoreList = Array();//Array of strings (as unique keys of theories)
 }
 
 //(Theory)
 Thinker.prototype.getTheory = function Thinker_getTheory()
 {
-	throw 'Implement Thinker.getTheory()';
+	while (this.ignoreList.length > this.maxIgnoreListLength)
+		this.ignoreList.splice(0,1);
+		
+	var bestTheory = null;
+	for (var counter = 0; counter < this.maxRandomConceptTheorySamplingSize; counter++)
+	{
+		var concept = this.conceptNameMapper.conceptList[Math.floor(Math.random() * this.conceptNameMapper.conceptList.length)];
+		var theory = this._getTheoryAbout(concept);
+		
+		if (theory != null)
+		{
+			if (bestTheory == null || theory.weight > bestTheory)
+			{
+				bestTheory = theory;
+			}
+		}
+	}
+	
+	if (bestTheory != null)
+		this.ignoreList.push(bestTheory.getUniqueKey());
+	
+	return bestTheory;
 }
 
 //(Theory)
 Thinker.prototype.getTheoryAbout = function Thinker_getTheoryAbout(subject)
+{
+	while (this.ignoreList.length > this.maxIgnoreListLength)
+		this.ignoreList.splice(0,1);
+
+	var bestTheory = this._getTheoryAbout(subject);
+
+	if (bestTheory != null)
+		this.ignoreList.push(bestTheory.getUniqueKey());
+	
+	return bestTheory;
+}
+
+//(Theory)
+Thinker.prototype._getTheoryAbout = function Thinker__getTheoryAbout(subject)
 {
 	this.produceTheoriesAbout(subject);
 	
@@ -37,11 +75,14 @@ Thinker.prototype.getTheoryAbout = function Thinker_getTheoryAbout(subject)
 		
 		if (bestTheory == null || theory.weight > bestWeight)
 		{
-			bestWeight = theory.weight;
-			bestTheory = theory;
+			if (this.ignoreList.indexOf(theory.getUniqueKey()) == -1)
+			{
+				bestWeight = theory.weight;
+				bestTheory = theory;
+			}
 		}
 	}
-
+	
 	return bestTheory;
 }
 
