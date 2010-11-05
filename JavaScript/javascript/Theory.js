@@ -1,10 +1,11 @@
 //Theory
-function Theory(subject, verb, complement, argumentString)
+function Theory(subject, verb, complement, weight, argumentString)
 {
 	this.subject = subject; //(Concept)
 	this.verb = verb; //(Concept)
 	this.complement = complement; //(Concept)
 	this.argumentString = argumentString; //(String, could be anything)
+	this.weight = weight = weight; //(Float): weight of the theory
 	this._stringRepresentation = null;
 	this._uniqueKey = null;
 	
