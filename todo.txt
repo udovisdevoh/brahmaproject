@@ -1,4 +1,3 @@
-must parse multiple statement chunk (splitted with .)
 fix bug: theory about concept1 isa aliasOfConcept1
 thinker: must make theories form flat connection but put larger weight on connection that have few intermediates (short proof length)
 
@@ -32,15 +31,14 @@ must not allow some special words (for concepts) like "yes", "which", "what" etc
 replace code to use it instead of doing multiple || something ==
 
 
-must parse stuff like "yes or no"
-
-
-
-
-talk/think (about)
-start
-stop
-
+add
+{
+	yes
+	no
+	talk
+	start
+	stop
+}
 
 
 http://en.wikipedia.org/wiki/Inductive_reasoning
