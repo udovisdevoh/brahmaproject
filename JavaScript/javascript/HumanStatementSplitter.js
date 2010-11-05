@@ -19,6 +19,12 @@ HumanStatementSplitter.prototype.split = function HumanStatementSplitter_split(s
 
 	while (statementChunkString.indexOf(',') != -1)
 		statementChunkString = statementChunkString.replace(',',' ');
+		
+	while (statementChunkString.indexOf('. ') != -1)
+		statementChunkString = statementChunkString.replace('. ','.');
+		
+	while (statementChunkString.indexOf(' .') != -1)
+		statementChunkString = statementChunkString.replace(' .','.');
 	
 	while (statementChunkString.indexOf(' and ') != -1)
 		statementChunkString = statementChunkString.replace(' and ',' ');
@@ -26,9 +32,18 @@ HumanStatementSplitter.prototype.split = function HumanStatementSplitter_split(s
 	statementChunkString = statementChunkString.hardTrim();
 	
 	
-	//If the chunk contains a "which"
+	
+	var positionOfDot = statementChunkString.indexOf('.');
 	var positionOfKeyWordWhich = statementChunkString.indexOf(' which ');
-	if (positionOfKeyWordWhich != -1)
+	
+	
+	if (positionOfDot != -1) //If chunk contains a "."
+	{
+		var leftChild = statementChunkString.substr(0, positionOfDot);
+		var rightChild = statementChunkString.substr(positionOfDot+1);		
+		return statementList.concat(this.split(leftChild), this.split(rightChild));
+	}
+	else if (positionOfKeyWordWhich != -1)//If the chunk contains a "which"
 	{
 		var leftChild = statementChunkString.substr(0, positionOfKeyWordWhich);
 		var rightChild = statementChunkString.substr(positionOfKeyWordWhich+7);
