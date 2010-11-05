@@ -22,7 +22,7 @@ function Theory(subject, verb, complement, weight, argumentString)
 Theory.prototype.toString = function Theory_toString()
 {
 	if (this._stringRepresentation == null)
-		this._stringRepresentation = 'Since ' + this.argumentString + ', maybe <span class="AiConcept">' + this.subject.toString() + '</span> always <span class="AiOperator">' + this.verb.toString() + '</span> <span class="AiConcept">' + this.complement.toString() + '</span>';
+		this._stringRepresentation = 'Since ' + this.argumentString + ', does <span class="AiConcept">' + this.subject.toString() + '</span> always <span class="AiOperator">' + this.verb.toString() + '</span> <span class="AiConcept">' + this.complement.toString() + '</span>?';
 	return this._stringRepresentation;
 }
 

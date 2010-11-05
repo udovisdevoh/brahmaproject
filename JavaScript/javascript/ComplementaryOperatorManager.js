@@ -11,7 +11,7 @@ ComplementaryOperatorManager.prototype.add = function ComplementaryOperatorManag
 	var operator1 = this.conceptNameMapper.getConcept(operatorName1);
 	operator1.isNaturalOperator = true;
 	var operator2 = this.conceptNameMapper.getConcept(operatorName2);
-	operator1.isNaturalOperator = false;
+	operator2.isNaturalOperator = false;
 	
 	var index;
 	
