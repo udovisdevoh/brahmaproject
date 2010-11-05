@@ -1616,6 +1616,6 @@ UnitTest.prototype.testThinker = function UnitTest_testThinker()
 	talkingRouter.talkTo("kangaroo isa animal madeof blood");
 	talkingRouter.talkTo("squid isa animal");
 	talkingRouter.talkTo("google isa website which isa program");
-	talkingRouter.talkTo("microsoft make windows which isa operating_system which isa program");
+	talkingRouter.talkTo("apple_computer isa corporation make mac_os_x which isa operating_system");
 	alert(talkingRouter.talkTo("thinkabout animal")['output']);
 }

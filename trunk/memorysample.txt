@@ -1,7 +1,0 @@
-me isa human make you which isa artificial_intelligence which isa software which is madeof of boolean_logic
-human isa mammal which isa animal which isa organic_lifeform contradict plant which isa organic_lifeform
-google isa search_engine which isa software and web_site which partof internet
-windows madeby microsoft isa operating_system which isa sofware
-microsoft isa corporation
-monsanto isa corporation make gmo which isa poison which destroy health
-organic_lifeform need health
