@@ -105,7 +105,7 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 		}
 		else if (wordList[0] == 'no')
 		{
-			return this.talkToNo();
+			return 'You may tell me why or talk about something else';
 		}
 		else
 		{
