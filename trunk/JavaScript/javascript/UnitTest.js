@@ -1596,26 +1596,5 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 UnitTest.prototype.testThinker = function UnitTest_testThinker()
 {
 	var talkingRouter = new TalkingRouter();	
-	talkingRouter.talkTo("me isa human make you which isa artificial_intelligence which isa program which madeof of boolean_logic");
-	talkingRouter.talkTo("human isa mammal which isa animal which isa organic_lifeform contradict plant which isa organic_lifeform");
-	talkingRouter.talkTo("google isa search_engine which isa program and web_site which partof internet");
-	talkingRouter.talkTo("windows madeby microsoft isa operating_system which isa sofware");
-	talkingRouter.talkTo("microsoft isa corporation");
-	talkingRouter.talkTo("monsanto isa corporation make gmo which isa poison which destroy health");
-	talkingRouter.talkTo("organic_lifeform need health");
-	talkingRouter.talkTo("you make logic_derivation and question and inductive_reasoning");
-	talkingRouter.talkTo("human madeof big_brain which isa brain make critical_thinking and inductive_reasoning and logic_derivation and creativity");
-	talkingRouter.talkTo("pine isa tree which madeof wood isa plant which isa organic_lifeform");
-	talkingRouter.talkTo("organic_lifeform isa lifeform");
-	talkingRouter.talkTo("artificial_intelligence isa electronic_lifeform which isa lifeform");	
-	talkingRouter.talkTo("reptile isa animal madeof blood");
-	talkingRouter.talkTo("bird isa animal madeof blood");
-	talkingRouter.talkTo("mammal isa animal madeof blood");
-	talkingRouter.talkTo("insect isa animal madeof blood");
-	talkingRouter.talkTo("fish isa animal madeof blood");
-	talkingRouter.talkTo("kangaroo isa animal madeof blood");
-	talkingRouter.talkTo("squid isa animal");
-	talkingRouter.talkTo("google isa website which isa program");
-	talkingRouter.talkTo("apple_computer isa corporation make mac_os_x which isa operating_system");
-	alert(talkingRouter.talkTo("thinkabout animal")['output']);
+	talkingRouter.talkTo("me isa human make you which isa artificial_intelligence which isa program which madeof of boolean_logic . human isa mammal which isa animal which isa organic_lifeform contradict plant which isa organic_lifeform . google isa search_engine which isa program and web_site which partof internet . windows madeby microsoft isa operating_system which isa sofware . microsoft isa corporation . monsanto isa corporation make gmo which isa poison which destroy health . organic_lifeform need health . you make logic_derivation and question and inductive_reasoning . human madeof big_brain which isa brain make critical_thinking and inductive_reasoning and logic_derivation and creativity . pine isa tree which madeof wood isa plant which isa organic_lifeform . organic_lifeform isa lifeform . artificial_intelligence isa electronic_lifeform which isa lifeform . reptile isa animal madeof blood . bird isa animal madeof blood . mammal isa animal madeof blood . insect isa animal madeof blood . fish isa animal madeof blood . kangaroo isa animal madeof blood . squid isa animal . google isa website which isa program . apple_computer isa corporation make mac_os_x which isa operating_system . thinkabout animal")['output']);
 }
