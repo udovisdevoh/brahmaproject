@@ -1605,6 +1605,15 @@ UnitTest.prototype.testThinker = function UnitTest_testThinker()
 	talkingRouter.talkTo("organic_lifeform need health");
 	talkingRouter.talkTo("you make logic_derivation and question and inductive_reasoning");
 	talkingRouter.talkTo("human madeof big_brain which isa brain make critical_thinking and inductive_reasoning and logic_derivation and creativity");
+	talkingRouter.talkTo("pine isa tree which madeof wood isa plant which isa organic_lifeform");
+	talkingRouter.talkTo("organic_lifeform isa lifeform");
+	talkingRouter.talkTo("artificial_intelligence isa electronic_lifeform which isa lifeform");	
+	talkingRouter.talkTo("reptile isa animal madeof blood");
+	talkingRouter.talkTo("bird isa animal madeof blood");
+	talkingRouter.talkTo("mammal isa animal madeof blood");
+	talkingRouter.talkTo("insect isa animal madeof blood");
+	talkingRouter.talkTo("fish isa animal madeof blood");
+	talkingRouter.talkTo("kangaroo isa animal madeof blood");
 	
-	alert(talkingRouter.talkTo("thinkabout you"));
+	alert(talkingRouter.talkTo("thinkabout animal"));
 }
