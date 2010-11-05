@@ -134,6 +134,10 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	nameList.push(conceptName2);
 	this.mapConceptToName.setItem(concept1, nameList);
 	this.mapConceptToName.removeItem(concept2);
+	
+	var indexOfConcept2 = this.conceptList.indexOf(concept2);
+	if (indexOfConcept2 != -1)
+		this.conceptList.splice(indexOfConcept2, 1);
 }
 
 //Split two concept names so they don't point to the same concept anymore
