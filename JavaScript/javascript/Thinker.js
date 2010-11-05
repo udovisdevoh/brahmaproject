@@ -2,7 +2,7 @@
 function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder)
 {
 	//Constants
-	this.minimumSampleSizeForGeneralization = 3;
+	this.minimumSampleSizeForGeneralization = 2;
 	
 	//Parts
 	this.flattenizer = flattenizer;
@@ -82,6 +82,7 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//the majority of isa animal is madeof blood
 		//maybe animal always madeof blood
 		this.produceTheoriesGeneralizationToParent(theorySet, false, subject);
+		this.produceTheoriesGeneralizationToParent(theorySet, true, subject);
 		
 		//generalization to brother (argument from analogy)
 		//the majority of madeof long_hair and isa human like pot
@@ -203,12 +204,15 @@ Thinker.prototype.produceTheoriesGeneralizationToParent = function Thinker_produ
 					
 					if (probability > 0)
 					{
-						if (this.objectionFinder.findObjection(subject, theoryVerb, theoryComplement) == null)
-						{					
-							var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know about also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement;
-							var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);						
-							if (!theorySet.hasItem(theory.getUniqueKey()))
-								theorySet.setItem(theory.getUniqueKey(), theory);
+						if (!this.flattenizer.testConnection(subject, theoryVerb, theoryComplement))
+						{
+							if (this.objectionFinder.findObjection(subject, theoryVerb, theoryComplement) == null)
+							{					
+								var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know about also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement + '</span>';
+								var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);						
+								if (!theorySet.hasItem(theory.getUniqueKey()))
+									theorySet.setItem(theory.getUniqueKey(), theory);
+							}
 						}
 					}
 				}
