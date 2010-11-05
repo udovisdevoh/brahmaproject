@@ -1614,6 +1614,7 @@ UnitTest.prototype.testThinker = function UnitTest_testThinker()
 	talkingRouter.talkTo("insect isa animal madeof blood");
 	talkingRouter.talkTo("fish isa animal madeof blood");
 	talkingRouter.talkTo("kangaroo isa animal madeof blood");
+	talkingRouter.talkTo("squid isa animal");
 	
 	alert(talkingRouter.talkTo("thinkabout animal"));
 }
