@@ -71,6 +71,10 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//donut madeof trans_fat
 		//maybe donut cause obesity too
 		
+		//Human madeof big brain
+		//big brain make (or allow) inductive_reasoning
+		//maybe human make inductive_reasoning
+		
 		//very generic
 		//we find a concept's closest relative and try to import a property from it
 		//a isa, madeof, from,	partof, madeby, contradict, need, allow, make, like, likedby, originof,	destroyedby or destroy

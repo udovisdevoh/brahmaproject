@@ -14,7 +14,8 @@ UnitTest.prototype.testAll = function UnitTest_testAll()
 	this.testEvaluationCache();
 	this.testFlattenizer();
 	this.testHumanStatementSplitter();
-	this.testTalkingRouter();	
+	this.testTalkingRouter();
+	this.testThinker();
 	alert("Unit tests completed.");
 }
 
@@ -1589,4 +1590,21 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 
 	if (talkingRouter.talkTo("define pine")['output'] != '<span class="AiConcept">pine</span>: <ul> <li><span class="AiOperator">isa</span><ul> <li><span class="AiConcept">tree</span></li> <li><span class="AiConcept">plant</span></li> <li><span class="AiConcept">lifeform</span></li> </ul></li> <li><span class="AiOperator">madeof</span><ul> <li><span class="AiConcept">wood</span></li> <li><span class="AiConcept">carbon</span></li> <li><span class="AiConcept">material</span></li> <li><span class="AiConcept">water</span></li> </ul></li> <li><span class="AiOperator">contradict</span><ul> <li><span class="AiConcept">animal</span></li> <li><span class="AiConcept">dog</span></li> </ul></li> <li><span class="AiOperator">someare</span><ul> <li><span class="AiConcept">christmas_tree</span></li> </ul></li></ul>')
 		throw 'Wrong answer';
+}
+
+//Test thinker
+UnitTest.prototype.testThinker = function UnitTest_testThinker()
+{
+	var talkingRouter = new TalkingRouter();
+	talkingRouter.talkTo("me isa human make you which isa artificial_intelligence which isa software which is madeof of boolean_logic");
+	talkingRouter.talkTo("human isa mammal which isa animal which isa organic_lifeform contradict plant which isa organic_lifeform");
+	talkingRouter.talkTo("google isa search_engine which isa software and web_site which partof internet");
+	talkingRouter.talkTo("windows madeby microsoft isa operating_system which isa sofware");
+	talkingRouter.talkTo("microsoft isa corporation");
+	talkingRouter.talkTo("monsanto isa corporation make gmo which isa poison which destroy health");
+	talkingRouter.talkTo("organic_lifeform need health");
+	talkingRouter.talkTo("you make logic_derivation and question and inductive_reasoning");
+	talkingRouter.talkTo("human madeof big_brain which isa brain make critical_thinking and inductive_reasoning and logic_derivation and creativity");
+	
+	alert(talkingRouter.talkTo("thinkabout you"));
 }
