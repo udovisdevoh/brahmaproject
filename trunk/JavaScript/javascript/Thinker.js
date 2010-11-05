@@ -1,5 +1,5 @@
 //Creates induction reasoning theories based on statistical inference
-function Thinker(flattenizer, instinct, conceptNameMapper)
+function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder)
 {
 	//Constants
 	this.minimumSampleSizeForGeneralization = 3;
@@ -8,6 +8,7 @@ function Thinker(flattenizer, instinct, conceptNameMapper)
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
+	this.objectionFinder = objectionFinder;
 	this.theoryCache = new Hash();//As theoryCache[subject]theory[]
 }
 
@@ -21,7 +22,27 @@ Thinker.prototype.getTheory = function Thinker_getTheory()
 Thinker.prototype.getTheoryAbout = function Thinker_getTheoryAbout(subject)
 {
 	this.produceTheoriesAbout(subject);
-	throw 'Implement Thinker.getTheoryAbout(subject)';
+	
+	if (!this.theoryCache.hasItem(subject))
+		return null;
+		
+	var theorySet = this.theoryCache.getItem(subject);
+	var bestTheory = null;
+	var bestWeight = 0;
+	
+	for (var theoryIndex = 0; theoryIndex < theorySet.keys.length; theoryIndex++)
+	{
+		var theoryKey = theorySet.keys[theoryIndex];
+		var theory = theorySet.getItem(theoryKey);
+		
+		if (bestTheory == null || theory.weight > bestWeight)
+		{
+			bestWeight = theory.weight;
+			bestTheory = theory;
+		}
+	}
+
+	return bestTheory;
 }
 
 //(Void)
@@ -31,7 +52,7 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 {
 	if (!this.theoryCache.hasItem(subject))
 	{
-		var theorySet = Array();
+		var theorySet = new Hash();
 		
 		/*
 		Approximate list of operator sorted by there relevance in describing a concept
@@ -182,9 +203,13 @@ Thinker.prototype.produceTheoriesGeneralizationToParent = function Thinker_produ
 					
 					if (probability > 0)
 					{
-						var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know about also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement;
-						var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);
-						alert(theory);
+						if (this.objectionFinder.findObjection(subject, theoryVerb, theoryComplement) == null)
+						{					
+							var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know about also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement;
+							var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);						
+							if (!theorySet.hasItem(theory.getUniqueKey()))
+								theorySet.setItem(theory.getUniqueKey(), theory);
+						}
 					}
 				}
 			}

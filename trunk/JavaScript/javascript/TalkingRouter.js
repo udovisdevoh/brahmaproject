@@ -13,15 +13,15 @@ function TalkingRouter(humanName, aiName)
 	this.complementaryOperatorManager = new ComplementaryOperatorManager(this.conceptNameMapper)
 	this.instinct = new Instinct(this.complementaryOperatorManager);
 	this.flattenizer = new Flattenizer(this.instinct);
+	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.proofCache = this.flattenizer.proofCache;
-	this.thinker = new Thinker(this.flattenizer, this.instinct, this.conceptNameMapper);
+	this.thinker = new Thinker(this.flattenizer, this.instinct, this.conceptNameMapper, this.objectionFinder);
 	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache, this.thinker);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
 	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
 	this.teachViewer = new TeachViewer(this.flattenizer, this.instinct, this.conceptNameMapper, this.proofViewer);
 	this.askViewer = new AskViewer(this.flattenizer, this.instinct, this.conceptNameMapper);
-	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
 	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
