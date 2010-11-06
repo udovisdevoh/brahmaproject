@@ -7,6 +7,7 @@ function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proo
 	
 	//Parts
 	this.thinkerGeneralizationToParent = new ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator);
+	this.thinkerGeneralizationToBrother = new ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator);
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
@@ -123,12 +124,14 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//generalization to parent (strong or weak induction)		
 		//the majority of isa animal is madeof blood
 		//maybe animal always madeof blood
-		this.thinkerGeneralizationToParent.produceTheoriesAbout(theorySet, subject);
+		//this.thinkerGeneralizationToParent.produceTheoriesAbout(theorySet, subject);
+		//warning! uncomment ^^^^************************************************************************
 		
-		//generalization to brother (argument from analogy)
+		//generalization to brothers (argument from analogy)
 		//the majority of madeof long_hair and isa human like pot
 		//you madeof long_hair and isa human
 		//maybe you like pot too
+		this.thinkerGeneralizationToBrother.produceTheoriesAbout(theorySet, subject);
 		
 		//enemy brothers
 		//cold isa temperature and contradict hot
