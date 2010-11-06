@@ -1,18 +1,19 @@
 //Creates induction reasoning theories based on statistical inference
-function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator)
+function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager)
 {
 	//Constants
 	this.maxIgnoreListLength = 20;
 	this.maxRandomConceptTheorySamplingSize = 200;
 	
 	//Parts
-	this.thinkerGeneralizationToParent = new ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator);
-	this.thinkerGeneralizationToBrother = new ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator);
+	this.thinkerGeneralizationToParent = new ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
+	this.thinkerGeneralizationToBrother = new ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
 	this.proofLengthEvaluator = proofLengthEvaluator;
+	this.firstSecondPersonManager = firstSecondPersonManager;
 	this.theoryCache = new Hash();//As theoryCache[subject]theory[]
 	this.ignoreList = Array();//Array of strings (as unique keys of theories)
 }
@@ -159,7 +160,6 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//a isa, madeof, from,	partof, madeby, contradict, need, allow, make, like, likedby, originof,	destroyedby or destroy
 		//similar to b (very specific)
 		//maybe a has [random very short proof connection] too
-		
 		
 		this.theoryCache.setItem(subject, theorySet);
 	}

@@ -29,6 +29,9 @@ function Instinct(complementaryOperatorManager)
 	this.like = this.conceptNameMapper.getConcept("like");
 	this.likedby = this.conceptNameMapper.getConcept("likedby");
 	
+	//Some operator cannot be applied to unique concepts like "you" and "me"
+	this.someare.isVerbAllowedForUniqueSubject = false;
+	
 	//We set the relevence of operators when it gets to describing concepts
 	this.isa.conceptDescriptionRelevance = 1.0;
 	this.madeof.conceptDescriptionRelevance = 0.75;

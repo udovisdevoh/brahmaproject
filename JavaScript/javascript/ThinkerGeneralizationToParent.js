@@ -2,7 +2,7 @@
 //generalization to parent (strong or weak induction)		
 //the majority of isa animal is madeof blood
 //maybe animal always madeof blood
-function ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator)
+function ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager)
 {
 	//Constants
 	this.minimumSampleSizeForGeneralization = 2;
@@ -13,6 +13,7 @@ function ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper,
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
 	this.proofLengthEvaluator = proofLengthEvaluator;
+	this.firstSecondPersonManager = firstSecondPersonManager;
 }
 
 //(Void)
@@ -118,9 +119,13 @@ ThinkerGeneralizationToParent.prototype.produceTheoriesAbout = function ThinkerG
 								var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement + '</span>';
 								//var argumentString = null;
 								var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);
-								theory.style = theory.styleParentGeneralization;
-								if (!theorySet.hasItem(theory.getUniqueKey()))
-									theorySet.setItem(theory.getUniqueKey(), theory);
+								
+								if (this.firstSecondPersonManager.isTheoryValidIfFirstOrSecondPerson(theory))
+								{								
+									theory.style = theory.styleParentGeneralization;
+									if (!theorySet.hasItem(theory.getUniqueKey()))
+										theorySet.setItem(theory.getUniqueKey(), theory);
+								}
 							}
 						}
 					}

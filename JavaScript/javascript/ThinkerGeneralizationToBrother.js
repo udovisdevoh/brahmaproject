@@ -2,7 +2,7 @@
 //the majority of madeof long_hair and isa human like pot
 //you madeof long_hair and isa human
 //maybe you like pot too
-function ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator)
+function ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager)
 {
 	//Parts
 	this.flattenizer = flattenizer;
@@ -10,6 +10,7 @@ function ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
 	this.proofLengthEvaluator = proofLengthEvaluator;
+	this.firstSecondPersonManager = firstSecondPersonManager;
 }
 
 //(Void)
@@ -74,18 +75,21 @@ ThinkerGeneralizationToBrother.prototype._produceTheoryFromBrotherConcept = func
 							var argumentString = '<span class="AiConcept">' + subject.toString() + '</span> ' + Math.round(weight * 100) + '% similar to <span class="AiConcept">' + brother.toString() + '</span>';
 							
 							var theory = new Theory(subject, verb, complement, weight, argumentString);						
-							theory.style = theory.styleBrotherGeneralization;
-							if (theorySet.hasItem(theory.getUniqueKey()))
-							{
-								var oldTheory = theorySet.getItem(theory.getUniqueKey());
-								if (theory.weight > oldTheory.weight)
+							if (this.firstSecondPersonManager.isTheoryValidIfFirstOrSecondPerson(theory))
+							{	
+								theory.style = theory.styleBrotherGeneralization;
+								if (theorySet.hasItem(theory.getUniqueKey()))
+								{
+									var oldTheory = theorySet.getItem(theory.getUniqueKey());
+									if (theory.weight > oldTheory.weight)
+									{
+										theorySet.setItem(theory.getUniqueKey(), theory);
+									}
+								}
+								else
 								{
 									theorySet.setItem(theory.getUniqueKey(), theory);
 								}
-							}
-							else
-							{
-								theorySet.setItem(theory.getUniqueKey(), theory);
 							}
 						}
 					}
