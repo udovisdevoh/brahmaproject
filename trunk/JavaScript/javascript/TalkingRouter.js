@@ -15,8 +15,9 @@ function TalkingRouter(humanName, aiName)
 	this.flattenizer = new Flattenizer(this.instinct);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.proofCache = this.flattenizer.proofCache;
-	this.thinker = new Thinker(this.flattenizer, this.instinct, this.conceptNameMapper, this.objectionFinder);
-	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache, this.thinker);
+	this.proofLengthEvaluator = new ProofLengthEvaluator(this.flattenizer, this.proofCache);
+	this.thinker = new Thinker(this.flattenizer, this.instinct, this.conceptNameMapper, this.objectionFinder, this.proofLengthEvaluator);
+	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache, this.thinker, this.proofLengthEvaluator);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
 	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);

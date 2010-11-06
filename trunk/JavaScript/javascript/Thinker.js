@@ -1,5 +1,5 @@
 //Creates induction reasoning theories based on statistical inference
-function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder)
+function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator)
 {
 	//Constants
 	this.minimumSampleSizeForGeneralization = 2;
@@ -11,6 +11,7 @@ function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder)
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
+	this.proofLengthEvaluator = proofLengthEvaluator;
 	this.theoryCache = new Hash();//As theoryCache[subject]theory[]
 	this.ignoreList = Array();//Array of strings (as unique keys of theories)
 }
@@ -249,7 +250,7 @@ Thinker.prototype.produceTheoriesGeneralizationToParent = function Thinker_produ
 						{
 							if (this.objectionFinder.findObjection(subject, theoryVerb, theoryComplement) == null)
 							{					
-								var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know about also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement + '</span>';
+								var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement + '</span>';
 								var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);						
 								if (!theorySet.hasItem(theory.getUniqueKey()))
 									theorySet.setItem(theory.getUniqueKey(), theory);

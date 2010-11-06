@@ -1,14 +1,17 @@
 //To invalidate branches
-function Invalidator(conceptList, proofCache, thinker)
+function Invalidator(conceptList, proofCache, thinker, proofLengthEvaluator)
 {
 	this.conceptList = conceptList;
 	this.proofCache = proofCache;
 	this.thinker = thinker;
+	this.proofLengthEvaluator = proofLengthEvaluator;
 }
 
+//(Void)
 Invalidator.prototype.invalidateAll = function Invalidator_invalidateAll()
 {
 	this.proofCache.cachedData = new Hash();
+	this.proofLengthEvaluator.cachedData = new Hash();
 	this.thinker.theoryCache = new Hash();
 	for (var index = 0; index < this.conceptList.length; index++)
 	{
