@@ -74,6 +74,7 @@ ThinkerGeneralizationToBrother.prototype._produceTheoryFromBrotherConcept = func
 							var argumentString = '<span class="AiConcept">' + subject.toString() + '</span> ' + Math.round(weight * 100) + '% similar to <span class="AiConcept">' + brother.toString() + '</span>';
 							
 							var theory = new Theory(subject, verb, complement, weight, argumentString);						
+							theory.style = theory.styleBrotherGeneralization;
 							if (theorySet.hasItem(theory.getUniqueKey()))
 							{
 								var oldTheory = theorySet.getItem(theory.getUniqueKey());
