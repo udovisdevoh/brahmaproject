@@ -1,4 +1,28 @@
-ThinkerGeneralizationToBrother: fish contradict mammal: must make brotherhood impossible
+thinker
+{
+	split two thinking systems so they have their own stored
+	theories and chances using one instead of the other is equal (random)
+	if one method can't work for now, use the next one
+	
+	(same logic when adding new thinking methods)
+}
+
+new thinking methods
+{
+	enemy brother 1
+	{
+		both reptile, mammal and insect are animals
+		insect is very differnt from mammal
+		maybe insect contradict mammal
+	}
+	
+	enemy brother 2
+	{
+		reptile contradict mammal
+		mammal isa animal
+		reptile could be an animal too
+	}
+}
 
 
 
