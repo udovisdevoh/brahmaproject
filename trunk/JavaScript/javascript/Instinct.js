@@ -31,20 +31,20 @@ function Instinct(complementaryOperatorManager)
 	
 	//We set the relevence of operators when it gets to describing concepts
 	this.isa.conceptDescriptionRelevance = 1.0;
-	this.madeof.conceptDescriptionRelevance = 0.5;
-	this.make.conceptDescriptionRelevance = 0.25;
-	this.allow.conceptDescriptionRelevance = 0.2;
-	this.need.conceptDescriptionRelevance = 0.2;
-	this.contradict.conceptDescriptionRelevance = 0.2;
-	this.like.conceptDescriptionRelevance = 0.16;
-	this.from.conceptDescriptionRelevance = 0.125;
-	this.partof.conceptDescriptionRelevance = 0.125;
-	this.madeby.conceptDescriptionRelevance = 0.125;
-	this.likedby.conceptDescriptionRelevance = 0.125;
-	this.someare.conceptDescriptionRelevance = 0.05;
-	this.originof.conceptDescriptionRelevance = 0.05;
-	this.destroyedby.conceptDescriptionRelevance = 0.05;
-	this.destroy.conceptDescriptionRelevance = 0.05;
+	this.madeof.conceptDescriptionRelevance = 0.75;
+	this.make.conceptDescriptionRelevance = 0.5;
+	this.allow.conceptDescriptionRelevance = 0.33;
+	this.need.conceptDescriptionRelevance = 0.33;
+	this.contradict.conceptDescriptionRelevance = 0.33;
+	this.like.conceptDescriptionRelevance = 0.25;
+	this.from.conceptDescriptionRelevance = 0.2;
+	this.partof.conceptDescriptionRelevance = 0.2;
+	this.madeby.conceptDescriptionRelevance = 0.2;
+	this.likedby.conceptDescriptionRelevance = 0.2;
+	this.someare.conceptDescriptionRelevance = 0.2;
+	this.originof.conceptDescriptionRelevance = 0.1;
+	this.destroyedby.conceptDescriptionRelevance = 0.1;
+	this.destroy.conceptDescriptionRelevance = 0.1;
 	this.largerthan.conceptDescriptionRelevance = 0;
 	this.smallerthan.conceptDescriptionRelevance = 0;
 	
