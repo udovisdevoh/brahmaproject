@@ -45,3 +45,29 @@ FirstSecondPersonManager.prototype.formatAiOutput = function FirstSecondPersonMa
 	
 	return statementString;
 }
+
+//(Bool) whether verb's theory is valid considering the subject that can be "you" or "me"
+//for instance: "maybe me someare pine" is not a valid theory because someare cannot be applied to unique concepts
+FirstSecondPersonManager.prototype.isTheoryValidIfFirstOrSecondPerson = function FirstSecondPersonManager_isTheoryValidIfFirstOrSecondPerson(theory)
+{
+	if (theory.subject.toString() == this.humanName || theory.subject.toString() == this.aiName)
+	{
+		if (!theory.verb.isVerbAllowedForUniqueSubject)
+		{
+			return false;
+		}
+	}
+	else if (theory.complement.toString() == this.humanName || theory.complement.toString() == this.aiName)
+	{
+		for (var complementaryVerbIndex = 0 ; complementaryVerbIndex < theory.verb.complementaryOperators.length; complementaryVerbIndex++)
+		{
+			var complementaryVerb = theory.verb.complementaryOperators[complementaryVerbIndex];
+			if (!complementaryVerb.isVerbAllowedForUniqueSubject)
+			{
+				return false;
+			}
+		}
+	}
+	
+	return true;
+}

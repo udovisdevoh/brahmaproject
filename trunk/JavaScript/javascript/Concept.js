@@ -19,6 +19,9 @@ function Concept(defaultConceptName)
 	//(Bool) (stuff like isa, but not someare)
 	this.isNaturalOperator = false;
 	
+	//(Bool) Some operator cannot be applied to unique concepts like "you" and "me"
+	this.isVerbAllowedForUniqueSubject = true;
+	
 	//(Float) conceptDescriptionRelevance (how much a verb can be relevant to describe a concept)
 	this.conceptDescriptionRelevance = 0;
 }

@@ -16,14 +16,14 @@ function TalkingRouter(humanName, aiName)
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.proofCache = this.flattenizer.proofCache;
 	this.proofLengthEvaluator = new ProofLengthEvaluator(this.flattenizer, this.proofCache);
-	this.thinker = new Thinker(this.flattenizer, this.instinct, this.conceptNameMapper, this.objectionFinder, this.proofLengthEvaluator);
+	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
+	this.thinker = new Thinker(this.flattenizer, this.instinct, this.conceptNameMapper, this.objectionFinder, this.proofLengthEvaluator, this.firstSecondPersonManager);
 	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache, this.thinker, this.proofLengthEvaluator);
 	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
 	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
 	this.teachViewer = new TeachViewer(this.flattenizer, this.instinct, this.conceptNameMapper, this.proofViewer);
 	this.askViewer = new AskViewer(this.flattenizer, this.instinct, this.conceptNameMapper);
-	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
 	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
 	this.io = Array();//['input']: human's input, ['output']: ai's output
