@@ -9,7 +9,7 @@ function Theory(subject, verb, complement, weight, argumentString)
 	this._stringRepresentation = null;
 	this._uniqueKey = null;
 	
-	if (!this.verb.isNaturalOperator)
+	if (!this.verb.isNaturalOperator && this.verb.complementaryOperators.length > 0)
 	{
 		var temp = this.complement;
 		this.complement = this.subject;
@@ -22,7 +22,17 @@ function Theory(subject, verb, complement, weight, argumentString)
 Theory.prototype.toString = function Theory_toString()
 {
 	if (this._stringRepresentation == null)
-		this._stringRepresentation = 'Since ' + this.argumentString + ', does <span class="AiConcept">' + this.subject.toString() + '</span> always <span class="AiOperator">' + this.verb.toString() + '</span> <span class="AiConcept">' + this.complement.toString() + '</span>?';
+	{
+		this._stringRepresentation = 'does <span class="AiConcept">' + this.subject.toString() + '</span> always <span class="AiOperator">' + this.verb.toString() + '</span> <span class="AiConcept">' + this.complement.toString() + '</span>';
+
+		/*if (this.verb.complementaryOperators.length > 0)
+			this._stringRepresentation += ' and <span class="AiConcept">' + this.complement.toString() + '</span> always <span class="AiOperator">' + this.verb.complementaryOperators[0].toString() + '</span> <span class="AiConcept">' + this.subject.toString() + '</span>';*/
+
+		this._stringRepresentation += '?';
+		
+		if (this.argumentString != null)
+			this._stringRepresentation = 'Since ' + this.argumentString + ', ' + this._stringRepresentation;
+	}
 	return this._stringRepresentation;
 }
 
