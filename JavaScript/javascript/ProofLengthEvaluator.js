@@ -14,15 +14,25 @@ ProofLengthEvaluator.prototype.evaluate = function ProofLengthEvaluator_evaluate
 	
 	if (!this.cachedData.hasItem(key))
 	{
-		var proof = this.proofCache.getProof(subject, verb, complement);
+		var implicitBranch = subject.getImplicitBranch(verb);
+		if (!implicitBranch.isFlat)
+			if (!implicitBranch.isLocked)
+				this.flattenizer.flattenBranch(implicitBranch, subject, verb);
+	
 		var proofLength = 0;
-
-		for (var index = 0; index < proof.length; index++)
+		var proof = this.proofCache.getProof(subject, verb, complement);
+		if (proof != null)
 		{
-			var statement = proof[index];
-			proofLength += this.evaluate(statement.subject, statement.verb, statement.complement);
+			for (var index = 0; index < proof.length; index++)
+			{
+				var statement = proof[index];
+				var subProofLength = this.evaluate(statement.subject, statement.verb, statement.complement);
+				if (subProofLength == 0)
+					proofLength += 1;
+				else
+					proofLength += subProofLength;
+			}
 		}
-		
 		this.cachedData.setItem(key, proofLength);
 		return proofLength;
 	}
