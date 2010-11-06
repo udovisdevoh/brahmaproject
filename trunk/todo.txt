@@ -1,3 +1,8 @@
+ThinkerGeneralizationToBrother: fish contradict mammal: must make brotherhood impossible
+
+
+
+
 fix bug: theory about concept1 isa aliasOfConcept1
 thinker: must make theories form flat connection but put larger weight on connection that have few intermediates (short proof length)
 
