@@ -73,6 +73,7 @@ ThinkerGeneralizationToBrother.prototype._produceTheoryFromBrotherConcept = func
 						{	
 							var weight = brotherLikeness / (this.proofLengthEvaluator.evaluate(brother, verb, complement) + 1);
 							var argumentString = '<span class="AiConcept">' + subject.toString() + '</span> ' + Math.round(weight * 100) + '% similar to <span class="AiConcept">' + brother.toString() + '</span>';
+
 							
 							var theory = new Theory(subject, verb, complement, weight, argumentString);						
 							if (this.firstSecondPersonManager.isTheoryValidIfFirstOrSecondPerson(theory))
@@ -81,7 +82,7 @@ ThinkerGeneralizationToBrother.prototype._produceTheoryFromBrotherConcept = func
 								if (theorySet.hasItem(theory.getUniqueKey()))
 								{
 									var oldTheory = theorySet.getItem(theory.getUniqueKey());
-									if (theory.weight > oldTheory.weight)
+									if (theory.weight > oldTheory.weight && oldTheory.style == theory.style)
 									{
 										theorySet.setItem(theory.getUniqueKey(), theory);
 									}
@@ -126,7 +127,7 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 		for (var complementIndex = 0; complementIndex < concept1implicitBranch.complementList.length; complementIndex++)
 		{
 			var complement = concept1implicitBranch.complementList[complementIndex];
-			var weight = weightForVerb;// / (this.proofLengthEvaluator.evaluate(concept1, verb, complement) + 1);
+			var weight = weightForVerb / (this.proofLengthEvaluator.evaluate(concept1, verb, complement) + 1);
 			if (concept2implicitBranch.complementList.indexOf(complement) != -1)
 			{
 				totalInConcept2 += weight;
@@ -137,7 +138,7 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 		for (var complementIndex = 0; complementIndex < concept2implicitBranch.complementList.length; complementIndex++)
 		{
 			var complement = concept2implicitBranch.complementList[complementIndex];
-			var weight = weightForVerb;// / (this.proofLengthEvaluator.evaluate(concept2, verb, complement) + 1);
+			var weight = weightForVerb / (this.proofLengthEvaluator.evaluate(concept2, verb, complement) + 1);
 			if (concept1implicitBranch.complementList.indexOf(complement) != -1)
 			{
 				totalInConcept1 += weight;
