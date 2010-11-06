@@ -4,7 +4,7 @@ function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proo
 	//Constants
 	this.minimumSampleSizeForGeneralization = 2;
 	this.maxIgnoreListLength = 20;
-	this.maxRandomConceptTheorySamplingSize = 20;
+	this.maxRandomConceptTheorySamplingSize = 200;
 	
 	//Parts
 	this.flattenizer = flattenizer;
@@ -30,7 +30,7 @@ Thinker.prototype.getTheory = function Thinker_getTheory()
 		
 		if (theory != null)
 		{
-			if (bestTheory == null || theory.weight > bestTheory)
+			if (bestTheory == null || theory.weight > bestTheory.weight)
 			{
 				bestTheory = theory;
 			}
@@ -180,6 +180,7 @@ Thinker.prototype.produceTheoriesGeneralizationToParent = function Thinker_produ
 		
 		//We count the connections stubs on child concept (verb + complement)
 		var connectionCounter = new Hash();
+		var weightCounter = new Hash();
 		for (var childConceptIndex = 0; childConceptIndex < childConceptList.length; childConceptIndex++)
 		{					
 			var childConcept = childConceptList[childConceptIndex];
@@ -200,17 +201,26 @@ Thinker.prototype.produceTheoriesGeneralizationToParent = function Thinker_produ
 					
 					if (!connectionCounter.hasItem(childVerb))
 						connectionCounter.setItem(childVerb, new Hash());
-					var connectionCounterForVerb = connectionCounter.getItem(childVerb);
+						
+					if (!weightCounter.hasItem(childVerb))
+						weightCounter.setItem(childVerb, new Hash());
 					
+					var connectionCounterForVerb = connectionCounter.getItem(childVerb);
 					if (!connectionCounterForVerb.hasItem(childComplement))
 						connectionCounterForVerb.setItem(childComplement, 0);
 						
+					var weightCounterForVerb = weightCounter.getItem(childVerb);
+					if (!weightCounterForVerb.hasItem(childComplement))
+						weightCounterForVerb.setItem(childComplement, 0);
+						
 					var connectionCounterForVerbComplement = connectionCounterForVerb.getItem(childComplement);
+					var weightCounterForVerbComplement = weightCounterForVerb.getItem(childComplement);
 					
 					var proofLength = this.proofLengthEvaluator.evaluate(childConcept, childVerb, childComplement);
 					var valueToAdd = 1 / (proofLength + 1);
 					
-					connectionCounterForVerb.setItem(childComplement, connectionCounterForVerbComplement + valueToAdd);
+					connectionCounterForVerb.setItem(childComplement, connectionCounterForVerbComplement + 1);
+					weightCounterForVerb.setItem(childComplement, weightCounterForVerbComplement + valueToAdd);
 				}
 			}
 		}
@@ -220,6 +230,7 @@ Thinker.prototype.produceTheoriesGeneralizationToParent = function Thinker_produ
 		for (var theoryVerbIndex = 0 ; theoryVerbIndex < connectionCounter.keys.length ; theoryVerbIndex++)
 		{
 			var theoryVerb = connectionCounter.keys[theoryVerbIndex];
+			var weightCounterForVerb = weightCounter.getItem(theoryVerb);
 			var connectionCounterForVerb = connectionCounter.getItem(theoryVerb);
 			
 			//alert(connectionCounterForVerb.keys.length + " " + theoryVerb);
@@ -230,11 +241,12 @@ Thinker.prototype.produceTheoriesGeneralizationToParent = function Thinker_produ
 				
 				if (theoryComplement != subject)
 				{				
-					var howManyConnection = connectionCounterForVerb.getItem(theoryComplement);
+					var connectionsWeight = weightCounterForVerb.getItem(theoryComplement);
+					var howManyConnections = connectionCounterForVerb.getItem(theoryComplement);
 					
 					var probability = 0;
-					if (childConceptList.length > 0 && howManyConnection >= this.minimumSampleSizeForGeneralization)
-						probability = howManyConnection / childConceptList.length;
+					if (childConceptList.length > 0 && howManyConnections >= this.minimumSampleSizeForGeneralization)
+						probability = connectionsWeight / childConceptList.length;
 					
 					if (probability > 0)
 					{
@@ -243,6 +255,7 @@ Thinker.prototype.produceTheoriesGeneralizationToParent = function Thinker_produ
 							if (this.objectionFinder.findObjection(subject, theoryVerb, theoryComplement) == null)
 							{					
 								var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement + '</span>';
+								//var argumentString = null;
 								var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);						
 								if (!theorySet.hasItem(theory.getUniqueKey()))
 									theorySet.setItem(theory.getUniqueKey(), theory);
