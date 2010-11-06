@@ -133,8 +133,7 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//generalization to parent (strong or weak induction)		
 		//the majority of isa animal is madeof blood
 		//maybe animal always madeof blood
-		//this.thinkerGeneralizationToParent.produceTheoriesAbout(theorySet, subject);
-		//warning! uncomment ^^^^************************************************************************
+		this.thinkerGeneralizationToParent.produceTheoriesAbout(theorySet, subject);
 		
 		//generalization to brothers (argument from analogy)
 		//the majority of madeof long_hair and isa human like pot
@@ -160,7 +159,7 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//a isa, madeof, from,	partof, madeby, contradict, need, allow, make, like, likedby, originof,	destroyedby or destroy
 		//similar to b (very specific)
 		//maybe a has [random very short proof connection] too
-		
+			
 		this.theoryCache.setItem(subject, theorySet);
 	}
 }
