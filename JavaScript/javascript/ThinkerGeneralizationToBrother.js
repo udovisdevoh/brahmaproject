@@ -70,8 +70,10 @@ ThinkerGeneralizationToBrother.prototype._produceTheoryFromBrotherConcept = func
 					{
 						if (this.objectionFinder.findObjection(subject, verb, complement) == null)
 						{	
-							var argumentString = '<span class="AiConcept">' + subject.toString() + '</span> ' + Math.round(brotherLikeness * 100) + '% similar to <span class="AiConcept">' + brother.toString() + '</span>';
-							var theory = new Theory(subject, verb, complement, brotherLikeness, argumentString);						
+							var weight = brotherLikeness / (this.proofLengthEvaluator.evaluate(brother, verb, complement) + 1);
+							var argumentString = '<span class="AiConcept">' + subject.toString() + '</span> ' + Math.round(weight * 100) + '% similar to <span class="AiConcept">' + brother.toString() + '</span>';
+							
+							var theory = new Theory(subject, verb, complement, weight, argumentString);						
 							if (theorySet.hasItem(theory.getUniqueKey()))
 							{
 								var oldTheory = theorySet.getItem(theory.getUniqueKey());
