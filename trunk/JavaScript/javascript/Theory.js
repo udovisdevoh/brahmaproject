@@ -1,6 +1,12 @@
 //Theory
 function Theory(subject, verb, complement, weight, argumentString)
 {
+	//Constants
+	this.styleParentGeneralization = 0;
+	this.styleBrotherGeneralization = 1;
+
+	//Parts and fields
+	this.style;
 	this.subject = subject; //(Concept)
 	this.verb = verb; //(Concept)
 	this.complement = complement; //(Concept)
@@ -23,15 +29,25 @@ Theory.prototype.toString = function Theory_toString()
 {
 	if (this._stringRepresentation == null)
 	{
-		this._stringRepresentation = 'does <span class="AiConcept">' + this.subject.toString() + '</span> always <span class="AiOperator">' + this.verb.toString() + '</span> <span class="AiConcept">' + this.complement.toString() + '</span>';
-
-		/*if (this.verb.complementaryOperators.length > 0)
-			this._stringRepresentation += ' and <span class="AiConcept">' + this.complement.toString() + '</span> always <span class="AiOperator">' + this.verb.complementaryOperators[0].toString() + '</span> <span class="AiConcept">' + this.subject.toString() + '</span>';*/
-
-		this._stringRepresentation += '?';
-		
-		if (this.argumentString != null)
-			this._stringRepresentation = 'Since ' + this.argumentString + ', ' + this._stringRepresentation;
+		if (this.style == this.styleParentGeneralization)
+		{
+			this._stringRepresentation = 'does <span class="AiConcept">' + this.subject.toString() + '</span> always <span class="AiOperator">' + this.verb.toString() + '</span> <span class="AiConcept">' + this.complement.toString() + '</span>?';
+			
+			/*if (this.verb.complementaryOperators.length > 0)
+				this._stringRepresentation += ' and <span class="AiConcept">' + this.complement.toString() + '</span> always <span class="AiOperator">' + this.verb.complementaryOperators[0].toString() + '</span> <span class="AiConcept">' + this.subject.toString() + '</span>';*/
+			
+			if (this.argumentString != null)
+				this._stringRepresentation = 'Since ' + this.argumentString + ', ' + this._stringRepresentation;
+		}
+		else if (this.style == this.styleBrotherGeneralization)
+		{
+			this._stringRepresentation = 'does <span class="AiConcept">' + this.subject.toString() + '</span> <span class="AiOperator">' + this.verb.toString() + '</span> <span class="AiConcept">' + this.complement.toString() + '</span>';
+			
+			if (this.argumentString != null)
+				this._stringRepresentation = 'Since ' + this.argumentString + ', ' + this._stringRepresentation + ' too';
+				
+			this._stringRepresentation += '?';
+		}
 	}
 	return this._stringRepresentation;
 }

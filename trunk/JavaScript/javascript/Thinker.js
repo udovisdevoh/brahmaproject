@@ -54,6 +54,14 @@ Thinker.prototype.getTheoryAbout = function Thinker_getTheoryAbout(subject)
 
 	if (bestTheory != null)
 		this.ignoreList.push(bestTheory.getUniqueKey());
+		
+	if (bestTheory.subject != subject && bestTheory.verb.complementaryOperators.length > 0)
+	{
+		var temp = bestTheory.subject;
+		bestTheory.subject = bestTheory.complement;
+		bestTheory.complement = temp;
+		bestTheory.verb = bestTheory.verb.complementaryOperators[0];
+	}
 	
 	return bestTheory;
 }

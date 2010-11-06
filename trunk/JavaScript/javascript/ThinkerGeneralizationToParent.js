@@ -117,7 +117,8 @@ ThinkerGeneralizationToParent.prototype.produceTheoriesAbout = function ThinkerG
 							{					
 								var argumentString = Math.round(probability * 100) + '% of <span class="AiOperator">' + verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + subject + '</span> I know also <span class="AiOperator">' + theoryVerb + '</span> <span class="AiConcept">' + theoryComplement + '</span>';
 								//var argumentString = null;
-								var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);						
+								var theory = new Theory(subject, theoryVerb, theoryComplement, probability, argumentString);
+								theory.style = theory.styleParentGeneralization;
 								if (!theorySet.hasItem(theory.getUniqueKey()))
 									theorySet.setItem(theory.getUniqueKey(), theory);
 							}
