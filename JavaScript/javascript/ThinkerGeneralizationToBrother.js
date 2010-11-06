@@ -126,25 +126,23 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 		for (var complementIndex = 0; complementIndex < concept1implicitBranch.complementList.length; complementIndex++)
 		{
 			var complement = concept1implicitBranch.complementList[complementIndex];
-			
+			var weight = weightForVerb;// / (this.proofLengthEvaluator.evaluate(concept1, verb, complement) + 1);
 			if (concept2implicitBranch.complementList.indexOf(complement) != -1)
 			{
-				totalInConcept2 += weightForVerb;
+				totalInConcept2 += weight;
 			}
-			
-			totalInEitherConcept += weightForVerb;
+			totalInEitherConcept += weight;
 		}
 		
 		for (var complementIndex = 0; complementIndex < concept2implicitBranch.complementList.length; complementIndex++)
 		{
 			var complement = concept2implicitBranch.complementList[complementIndex];
-			
+			var weight = weightForVerb;// / (this.proofLengthEvaluator.evaluate(concept2, verb, complement) + 1);
 			if (concept1implicitBranch.complementList.indexOf(complement) != -1)
 			{
-				totalInConcept1 += weightForVerb;
-			}
-			
-			totalInEitherConcept += weightForVerb;
+				totalInConcept1 += weight;
+			}			
+			totalInEitherConcept += weight;
 		}
 	}
 	
