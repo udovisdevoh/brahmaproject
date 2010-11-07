@@ -1,11 +1,13 @@
 thinker
 {
-	split two thinking systems so they have their own stored
+	split all thinking systems so they have their own stored
 	theories and chances using one instead of the other is equal (random)
 	if one method can't work for now, use the next one
 	
 	(same logic when adding new thinking methods)
 }
+
+when thinking, could add theories to complement concept too
 
 new thinking methods
 {
@@ -15,14 +17,7 @@ new thinking methods
 		insect is very differnt from mammal
 		maybe insect contradict mammal
 	}
-	
-	enemy brothers 2
-	{
-		since new_france isa colony and new_france contradict new_england,
-		(and there is no concept from which both new_france and new_england inherit)
-		maybe new_england isa colony too
-	}
-	
+
 	animal madeof reproductive organ which allow reproduction, maybe animal make reproduction
 }
 

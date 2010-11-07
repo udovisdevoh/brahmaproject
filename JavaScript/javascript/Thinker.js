@@ -148,9 +148,9 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//maybe new_england isa colony too
 		this.thinkerFindParentOfEnemyBrother.produceTheoriesAbout(theorySet, subject);
 
-		//enemy brothers
-		//cold isa temperature and contradict hot
-		//maybe hot isa temperature too
+		//both reptile, mammal and insect are animals
+		//insect is very differnt from mammal
+		//maybe insect contradict mammal
 		
 		//things madeof same thing cause same things
 		//french_fry madeof trans_fat and cause obesity

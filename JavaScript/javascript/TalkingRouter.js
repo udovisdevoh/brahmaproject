@@ -27,6 +27,7 @@ function TalkingRouter(humanName, aiName)
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
 	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
 	this.io = Array();//['input']: human's input, ['output']: ai's output
+	this.latestTheory = null;//Latest theory postulated by Ai
 }
 
 //(String (HTML)) Talk to left brain's talking interface
@@ -352,7 +353,10 @@ TalkingRouter.prototype.talkToThinkAbout = function TalkingRouter_talkToThinkAbo
 {
 	var theory = this.thinker.getTheoryAbout(subject);
 	if (theory != null)
+	{
+		this.latestTheory = theory;
 		return theory.toString();
+	}
 	else
 		return 'Please teach me more first';
 }
@@ -362,7 +366,10 @@ TalkingRouter.prototype.talkToThink = function TalkingRouter_talkToThink()
 {
 	var theory = this.thinker.getTheory();
 	if (theory != null)
+	{
+		this.latestTheory = theory;
 		return theory.toString();
+	}
 	else
 		return 'Please teach me more first';
 }
