@@ -16,20 +16,19 @@ new thinking methods
 		maybe insect contradict mammal
 	}
 	
-	enemy brother 2
+	enemy brothers 2
 	{
-		reptile contradict mammal
-		mammal isa animal
-		reptile could be an animal too
+		since new_france isa colony and new_france contradict new_england,
+		(and there is no concept from which both new_france and new_england inherit)
+		maybe new_england isa colony too
 	}
+	
+	animal madeof reproductive organ which allow reproduction, maybe animal make reproduction
 }
 
 
 
-
-fix bug: theory about concept1 isa aliasOfConcept1
-thinker: must make theories form flat connection but put larger weight on connection that have few intermediates (short proof length)
-
+fix bug: theory about concept1 isa aliasOfConcept1: probably fixed: test
 
 
 
@@ -47,7 +46,7 @@ exceptions (when in production): must be catched and outputed by AI
 rename like to love, and likedby to lovedby
 
 
-?rename allow to neededby?
+?rename allow to neededby or something?
 
 
 "from" must be implicit to "madeby", "originof" must be implicit to "make"
@@ -97,7 +96,7 @@ doskey
 autocomplete
 
 
-must not ask stuff like: you !someare! what
+
 
 when AI asks question, it must be possible to answer with one word,
 for instance: me madeof what? programming_code
@@ -107,20 +106,13 @@ when in conversation: have a 50% bias torward: you, me and concepts that are fla
 
 
 
-prevent double message sending (double event handling)
+prevent double message sending (double event handling): probably fixed, test
 
 
 think
 {
 	heuristics
-	{
-		Enemy brothers
-		{
-			since new_france isa colony and new_france contradict new_england,
-			(and there is no concept from which both new_france and new_england inherit)
-			maybe new_england isa colony too
-		}
-		
+	{		
 		Composition -> Essence inference (ducktyping)
 		{
 			//Could work with "make"
