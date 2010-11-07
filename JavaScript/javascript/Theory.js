@@ -4,6 +4,7 @@ function Theory(subject, verb, complement, weight, argumentString)
 	//Constants
 	this.styleParentGeneralization = 0;
 	this.styleBrotherGeneralization = 1;
+	this.styleFindParentOfEnemyBrother = 2;
 
 	//Parts and fields
 	this.style;
@@ -45,6 +46,15 @@ Theory.prototype.toString = function Theory_toString()
 			
 			if (this.argumentString != null)
 				this._stringRepresentation = 'Since ' + this.argumentString + ', ' + this._stringRepresentation + ' too';
+				
+			this._stringRepresentation += '?';
+		}
+		else /*if (this.style == this.styleFindParentOfEnemyBrother)*/
+		{
+			this._stringRepresentation = 'does <span class="AiConcept">' + this.subject.toString() + '</span> <span class="AiOperator">' + this.verb.toString() + '</span> <span class="AiConcept">' + this.complement.toString() + '</span>';
+			
+			if (this.argumentString != null)
+				this._stringRepresentation += ' ' + this.argumentString;
 				
 			this._stringRepresentation += '?';
 		}

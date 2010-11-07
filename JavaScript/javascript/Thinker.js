@@ -8,6 +8,7 @@ function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proo
 	//Parts
 	this.thinkerGeneralizationToParent = new ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
 	this.thinkerGeneralizationToBrother = new ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
+	this.thinkerFindParentOfEnemyBrother = new ThinkerFindParentOfEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
@@ -54,14 +55,15 @@ Thinker.prototype.getTheoryAbout = function Thinker_getTheoryAbout(subject)
 	var bestTheory = this._getTheoryAbout(subject);
 
 	if (bestTheory != null)
-		this.ignoreList.push(bestTheory.getUniqueKey());
-		
-	if (bestTheory.subject != subject && bestTheory.verb.complementaryOperators.length > 0)
 	{
-		var temp = bestTheory.subject;
-		bestTheory.subject = bestTheory.complement;
-		bestTheory.complement = temp;
-		bestTheory.verb = bestTheory.verb.complementaryOperators[0];
+		this.ignoreList.push(bestTheory.getUniqueKey());		
+		if (bestTheory.subject != subject && bestTheory.verb.complementaryOperators.length > 0)
+		{
+			var temp = bestTheory.subject;
+			bestTheory.subject = bestTheory.complement;
+			bestTheory.complement = temp;
+			bestTheory.verb = bestTheory.verb.complementaryOperators[0];
+		}
 	}
 	
 	return bestTheory;
@@ -141,6 +143,11 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//maybe you like pot too
 		this.thinkerGeneralizationToBrother.produceTheoriesAbout(theorySet, subject);
 		
+		//since new_france isa colony and new_france contradict new_england,
+		//(and there is no concept from which both new_france and new_england inherit)
+		//maybe new_england isa colony too
+		this.thinkerFindParentOfEnemyBrother.produceTheoriesAbout(theorySet, subject);
+
 		//enemy brothers
 		//cold isa temperature and contradict hot
 		//maybe hot isa temperature too
