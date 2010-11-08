@@ -108,6 +108,7 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 	var totalInEitherConcept = 0;
 	var totalInConcept1 = 0;
 	var totalInConcept2 = 0;
+	var commonConnectionCountForBrotherhood = 0;
 	
 	for (var verbIndex = 0; verbIndex < this.instinct.verbList.length; verbIndex++)
 	{
@@ -130,6 +131,7 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 			var weight = weightForVerb / (this.proofLengthEvaluator.evaluate(concept1, verb, complement) + 1);
 			if (concept2implicitBranch.complementList.indexOf(complement) != -1)
 			{
+				commonConnectionCountForBrotherhood += 0.5
 				totalInConcept2 += weight;
 			}
 			totalInEitherConcept += weight;
@@ -141,6 +143,7 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 			var weight = weightForVerb / (this.proofLengthEvaluator.evaluate(concept2, verb, complement) + 1);
 			if (concept1implicitBranch.complementList.indexOf(complement) != -1)
 			{
+				commonConnectionCountForBrotherhood += 0.5
 				totalInConcept1 += weight;
 			}			
 			totalInEitherConcept += weight;
@@ -151,7 +154,10 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 	
 	//We reduce the brother likeness weight if they contradict each others
 	/*if (this.flattenizer.testConnection(concept1, this.instinct.contradict, concept2))
-		brotherLikenessWeight */
+	{
+		var proofLengthPlusTwo = this.proofLengthEvaluator.evaluate(concept1, this.instinct.contradict, concept2) + 2;
+		brotherLikenessWeight -= (brotherLikenessWeight / proofLengthPlusTwo);
+	}*/
 	
 	return brotherLikenessWeight;
 }
