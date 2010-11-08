@@ -3,7 +3,7 @@ function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proo
 {
 	//Constants
 	this.maxIgnoreListLength = 50;
-	this.maxRandomConceptTheorySamplingSize = 7;
+	this.maxRandomConceptTheorySamplingSize = 200;
 	
 	//Parts
 	this.thinkerGeneralizationToParent = new ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
