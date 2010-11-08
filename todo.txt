@@ -22,6 +22,12 @@ new thinking methods
 }
 
 
+specific formatting for each operator
+{
+	not good: Since 100% of isa colony I know also originof canada, does canada always from colony
+	should be does canada from all colony
+}
+
 
 fix bug: theory about concept1 isa aliasOfConcept1: probably fixed: test
 

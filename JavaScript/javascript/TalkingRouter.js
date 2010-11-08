@@ -411,3 +411,18 @@ TalkingRouter.prototype.talkToUnAlias = function TalkingRouter_talkToAlias(conce
 	this.invalidator.invalidateAll();
 	return 'Alright, <span class="AiConcept">' + conceptName1 + '</span> is not the same thing as <span class="AiConcept">' + conceptName2 + '</span> anymore';
 }
+
+//(String (HTML))
+TalkingRouter.prototype.talkToYes = function TalkingRouter_talkToYes()
+{
+	if (this.latestTheory == null)
+	{
+		return 'Yes to what?';
+	}
+	else
+	{
+		var theory = this.latestTheory;
+		this.latestTheory = null;
+		return this.talkToStatement(theory.subject, theory.verb, theory.complement, true, false);
+	}
+}

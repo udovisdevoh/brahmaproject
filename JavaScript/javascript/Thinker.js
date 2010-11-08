@@ -2,8 +2,8 @@
 function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager)
 {
 	//Constants
-	this.maxIgnoreListLength = 20;
-	this.maxRandomConceptTheorySamplingSize = 200;
+	this.maxIgnoreListLength = 50;
+	this.maxRandomConceptTheorySamplingSize = 7;
 	
 	//Parts
 	this.thinkerGeneralizationToParent = new ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
@@ -137,16 +137,16 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//maybe animal always madeof blood
 		this.thinkerGeneralizationToParent.produceTheoriesAbout(theorySet, subject);
 		
+		//since new_france isa colony and new_france contradict new_england,
+		//(and there is no concept from which both new_france and new_england inherit)
+		//maybe new_england isa colony too
+		this.thinkerFindParentOfEnemyBrother.produceTheoriesAbout(theorySet, subject);
+		
 		//generalization to brothers (argument from analogy)
 		//the majority of madeof long_hair and isa human like pot
 		//you madeof long_hair and isa human
 		//maybe you like pot too
 		this.thinkerGeneralizationToBrother.produceTheoriesAbout(theorySet, subject);
-		
-		//since new_france isa colony and new_france contradict new_england,
-		//(and there is no concept from which both new_france and new_england inherit)
-		//maybe new_england isa colony too
-		this.thinkerFindParentOfEnemyBrother.produceTheoriesAbout(theorySet, subject);
 
 		//both reptile, mammal and insect are animals
 		//insect is very differnt from mammal

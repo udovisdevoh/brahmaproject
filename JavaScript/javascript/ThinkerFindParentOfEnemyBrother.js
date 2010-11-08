@@ -114,7 +114,8 @@ ThinkerFindParentOfEnemyBrother.prototype._adjustWeightAccordingToCommonIsaParen
 		for (var parentIndex = 0; parentIndex < commonIsaParentList.length; parentIndex++)
 		{
 			var commonIsaParent = commonIsaParentList[parentIndex];
-			weight /= (this.proofLengthEvaluator.evaluate(enemyBrother, this.instinct.isa, commonIsaParent) + 1);
+			var proofLengthPlusTwo = this.proofLengthEvaluator.evaluate(enemyBrother, this.instinct.isa, commonIsaParent) + 2;
+			weight -= (weight / proofLengthPlusTwo);
 		}
 		
 		enemyBrotherList.setItem(enemyBrother, weight);
