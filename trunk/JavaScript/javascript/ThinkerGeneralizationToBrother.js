@@ -147,7 +147,13 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 		}
 	}
 	
-	return (totalInConcept1 + totalInConcept2) / totalInEitherConcept;
+	var brotherLikenessWeight = (totalInConcept1 + totalInConcept2) / totalInEitherConcept;
+	
+	//We reduce the brother likeness weight if they contradict each others
+	/*if (this.flattenizer.testConnection(concept1, this.instinct.contradict, concept2))
+		brotherLikenessWeight */
+	
+	return brotherLikenessWeight;
 }
 
 //(Void)
