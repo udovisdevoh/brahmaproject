@@ -1,5 +1,5 @@
 //Makes AI ask questions in order to learn
-function AskViewer(flattenizer, instinct, conceptNameMapper)
+function AskViewer(flattenizer, instinct, conceptNameMapper, firstSecondPersonManager)
 {
 	//Constants
 	this.maxIgnoreListLength = 10;
@@ -8,6 +8,7 @@ function AskViewer(flattenizer, instinct, conceptNameMapper)
 	this.instinct = instinct;
 	this.flattenizer = flattenizer;
 	this.conceptNameMapper = conceptNameMapper;
+	this.firstSecondPersonManager = firstSecondPersonManager;
 	this.ignoreList = Array();
 }
 
@@ -34,20 +35,23 @@ AskViewer.prototype.getRandomSubject = function AskViewer_getRandomSubject()
 AskViewer.prototype.askAbout = function AskViewer_askAbout(subject)
 {
 	var verb;
-	
-	var methodId = Math.floor(Math.random() * 3);
-	if (methodId == 0)
+	var timeOut = 0;
+	do
 	{
-		verb = this.getLeastDocumentedVerbNotInIgnoreList(subject);
-	}
-	else if (methodId == 1)
-	{
-		verb = this.getRandomVerbNotInIgnoreList(subject);
-	}
-	else
-	{
-		verb = this.getMostAsymetricVerbNotInIgnoreList(subject);
-	}
+		var methodId = Math.floor(Math.random() * 3);
+		if (methodId == 0)
+		{
+			verb = this.getLeastDocumentedVerbNotInIgnoreList(subject);
+		}
+		else if (methodId == 1)
+		{
+			verb = this.getRandomVerbNotInIgnoreList(subject);
+		}
+		else
+		{
+			verb = this.getMostAsymetricVerbNotInIgnoreList(subject);
+		}
+	} while (timeOut < 10 && !this.firstSecondPersonManager.isQuestionValidIfFirstOrSecondPerson(subject, verb));
 	
 	while (this.ignoreList.length > this.maxIgnoreListLength)
 		this.ignoreList.splice(0,1);

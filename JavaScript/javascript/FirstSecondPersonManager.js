@@ -46,7 +46,7 @@ FirstSecondPersonManager.prototype.formatAiOutput = function FirstSecondPersonMa
 	return statementString;
 }
 
-//(Bool) whether verb's theory is valid considering the subject that can be "you" or "me"
+//(Bool) whether theory's verb is valid considering the subject that can be "you" or "me"
 //for instance: "maybe me someare pine" is not a valid theory because someare cannot be applied to unique concepts
 FirstSecondPersonManager.prototype.isTheoryValidIfFirstOrSecondPerson = function FirstSecondPersonManager_isTheoryValidIfFirstOrSecondPerson(theory)
 {
@@ -69,5 +69,19 @@ FirstSecondPersonManager.prototype.isTheoryValidIfFirstOrSecondPerson = function
 		}
 	}
 	
+	return true;
+}
+
+//(Bool) whether question's verb is valid considering the subject that can be "you" or "me"
+//for instance: "maybe me someare pine" is not a valid theory because someare cannot be applied to unique concepts
+FirstSecondPersonManager.prototype.isQuestionValidIfFirstOrSecondPerson = function FirstSecondPersonManager_isQuestionValidIfFirstOrSecondPerson(subject, verb)
+{
+	if (subject.toString() == this.humanName || subject.toString() == this.aiName)
+	{
+		if (!verb.isVerbAllowedForUniqueSubject)
+		{
+			return false;
+		}
+	}
 	return true;
 }
