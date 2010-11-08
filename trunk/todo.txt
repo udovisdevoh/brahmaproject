@@ -1,25 +1,9 @@
-must not ask stuff like: "you someare what", or "me someare what"
-
-
-when thinking, could add theories to complement concept too
-
-
 when asking stuff like: "you madeof what",
 must say, in a whatis look and feel, what you is madeof (with define (recursive) content)
 
 
 must make theories using each method equally
 
-
-
-thinker
-{
-	split all thinking systems so they have their own stored
-	theories and chances using one instead of the other is equal (random)
-	if one method can't work for now, use the next one
-	
-	(same logic when adding new thinking methods)
-}
 
 
 
