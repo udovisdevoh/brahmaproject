@@ -56,18 +56,22 @@ ThinkerFindParentOfEnemyBrother.prototype.produceTheoriesAbout = function Thinke
 						{	
 							var argumentString = 'like (' + Math.round(weight * 100) + '%) <span class="AiConcept">' + enemyBrother.toString() + '</span>';
 							var theory = new Theory(subject, this.instinct.isa, complement, weight, argumentString);
-							theory.style = theory.styleFindParentOfEnemyBrother;
-							if (theorySet.hasItem(theory.getUniqueKey()))
-							{
-								var oldTheory = theorySet.getItem(theory.getUniqueKey());
-								if (theory.weight > oldTheory.weight && oldTheory.style == theory.style)
+							
+							if (this.firstSecondPersonManager.isTheoryValidIfFirstOrSecondPerson(theory))
+							{	
+								theory.style = theory.styleFindParentOfEnemyBrother;
+								if (theorySet.hasItem(theory.getUniqueKey()))
+								{
+									var oldTheory = theorySet.getItem(theory.getUniqueKey());
+									if (theory.weight > oldTheory.weight && oldTheory.style == theory.style)
+									{
+										theorySet.setItem(theory.getUniqueKey(), theory);
+									}
+								}
+								else
 								{
 									theorySet.setItem(theory.getUniqueKey(), theory);
 								}
-							}
-							else
-							{
-								theorySet.setItem(theory.getUniqueKey(), theory);
 							}
 						}
 					}
