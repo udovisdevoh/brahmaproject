@@ -9,6 +9,7 @@ function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proo
 	this.thinkerGeneralizationToParent = new ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
 	this.thinkerGeneralizationToBrother = new ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
 	this.thinkerFindParentOfEnemyBrother = new ThinkerFindParentOfEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
+	this.thinkerFindEnemyBrother = new ThinkerFindEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
@@ -151,6 +152,7 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//both reptile, mammal and insect are animals
 		//insect is very differnt from mammal
 		//maybe insect contradict mammal
+		//this.thinkerFindEnemyBrother.produceTheoriesAbout(theorySet, subject);
 		
 		//things madeof same thing cause same things
 		//french_fry madeof trans_fat and cause obesity
