@@ -1,9 +1,40 @@
+thinker:
+{
+	Parent assimilation
+	{
+		human_dude: chicken isa bird
+		bird madeof feather
+		bird make egg
+		ai_dude: Alright, chicken now isa bird
+		Alright, bird now madeof feather
+		Alright, bird now make egg
+		human_dude: duck madeof feather
+		duck make egg
+		ai_dude: Alright, duck now madeof feather
+		Alright, duck now make egg
+		human_dude: thinkabout duck
+		ai_dude: Since duck 46% similar to bird, does duck isa animal too?
+		human_dude: yes
+		ai_dude: Alright, duck now isa animal
+		human_dude: thinkabout duck
+		ai_dude: Since duck 87% similar to bird, does duck madeof blood too?
+		human_dude: yes
+		ai_dude: Alright, duck now madeof blood
+		human_dude: thinkabout duck
+		ai_dude: Since duck 98% similar to bird, does duck someare chicken too?
+	}
+}
+
+
 when asking stuff like: "you madeof what",
 must say, in a whatis look and feel, what you is madeof (with define (recursive) content)
 
 
 must make theories using each method equally
 
+
+
+add ignore list for "ask" and "askabout"
 
 
 
@@ -23,7 +54,7 @@ new thinking methods
 
 
 
-specific formatting for each operator
+theory viewer: specific formatting for each operator
 {
 	not good: Since 100% of isa colony I know also originof canada, does canada always from colony
 	should be does canada from all colony
