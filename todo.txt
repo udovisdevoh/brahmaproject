@@ -13,6 +13,12 @@ fix bug (in proof viewer and proof length evaluator)
 }
 
 
+fix bug: me need you and you need me:
+{
+	should be parsed correctly
+}
+
+
 flattenizer:
 {
 	Mcdonalds destroy you
