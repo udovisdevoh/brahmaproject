@@ -210,9 +210,16 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 		{
 			var proof = this.talkToWhyStatement(subject, verb, complement); 
 			if (proof)
+			{
 				return proof;
+			}
 			else
-				return this.someoneToldMe;
+			{
+				if (this.flattenizer.testConnection(subject, verb, complement))
+					return this.someoneToldMe;
+				else
+					return this.notThatIKnow;
+			}
 		}
 		else
 		{
