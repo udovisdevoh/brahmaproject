@@ -464,6 +464,8 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var japan = conceptNameMapper.getConcept("japan");
 	var dragon_ball = conceptNameMapper.getConcept("dragon_ball");
 	var england = conceptNameMapper.getConcept("england");
+	var tintin = conceptNameMapper.getConcept("tintin");
+	var herge = conceptNameMapper.getConcept("herge");
 	
 	
 	tautologyManager.learnStatement("joe isa human");	
@@ -545,6 +547,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	tautologyManager.learnStatement("usa isa country");
 	tautologyManager.learnStatement("england isa country");
 	tautologyManager.learnStatement("usa from england");
+	tautologyManager.learnStatement("herge make tintin");
 	
 	//Test tautology
 	if (!tautologyManager.testConnection(pine, isa, tree))
@@ -1291,6 +1294,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
+	if (!flattenizer.testConnection(tintin, from, herge))
+	{
+		throw 'Statement should be true';
+	}
+	
 	//originof
 	if (!flattenizer.testConnection(japan, originof, manga))
 	{
@@ -1318,6 +1326,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	}
 	
 	if (!flattenizer.testConnection(england, originof, grunge))
+	{
+		throw 'Statement should be true';
+	}
+	
+	if (!flattenizer.testConnection(herge, originof, tintin))
 	{
 		throw 'Statement should be true';
 	}
