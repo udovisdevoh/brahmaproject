@@ -3,7 +3,7 @@ rename like to love, and likedby to lovedby
 
 
 
-fix bug
+fix bug (in proof viewer and proof length evaluator)
 {
 	money need neoliberalism
 	neoliberalism need money
