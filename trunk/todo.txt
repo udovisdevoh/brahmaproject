@@ -1,6 +1,5 @@
-?add new operator promote and promotedby, they must be implicit to make and madeby?
-
 ?rename make to cause and madeby to causedby?
+rename like to love, and likedby to lovedby
 
 
 
@@ -24,15 +23,6 @@ flattenizer:
 		
 		if trans_fat destroy you and mcnuggets allowed by mcdonalds then
 		mcdonalds destroy you
-		
-		
-		promote must promote itself
-		promotedby must promotedby itself
-	}
-	
-	Pollution destroy you
-	{
-		if pollution destroy nature and you like nature then pollution destroy you
 	}
 }
 
@@ -117,7 +107,6 @@ exceptions (when in production): must be catched and outputed by AI
 
 
 
-rename like to love, and likedby to lovedby
 
 
 ?rename allow to neededby or something?
