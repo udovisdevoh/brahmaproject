@@ -1,23 +1,40 @@
-"originof" must be implicit to "make"
+?add new operator promote and promotedby, they must be implicit to make and madeby?
+
+?rename make to cause and madeby to causedby?
 
 
-add new operator promote and promotedby, they must be implicit to make and madeby
+
+fix bug
+{
+	money need neoliberalism
+	neoliberalism need money
+	mcdonalds destroy money
+	why mcdonalds destroy neoliberalism?
+	why mcdonalds destroy money?
+}
 
 
 flattenizer:
 {
-	must do stuff like:
-	if mcdonalds make mcnuggets and mcnuggets madeof trans_fat then
-	mcdonalds promote trans_fat
+	Mcdonalds destroy you
+	{
+		must do stuff like:
+		if mcdonalds make mcnuggets and mcnuggets madeof trans_fat then
+		mcdonalds allow trans_fat
+		
+		if trans_fat destroy you and mcnuggets allowed by mcdonalds then
+		mcdonalds destroy you
+		
+		
+		promote must promote itself
+		promotedby must promotedby itself
+	}
 	
-	if trans_fat destroy you and mcnuggets promoted by mcdonalds then
-	mcdonalds destroy you
-	
-	
-	promote must promote itself
-	promotedby must promotedby itself
+	Pollution destroy you
+	{
+		if pollution destroy nature and you like nature then pollution destroy you
+	}
 }
-
 
 
 
