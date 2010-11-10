@@ -1,3 +1,23 @@
+"from" must be implicit to "madeby", "originof" must be implicit to "make"
+
+
+add new operator promote and promotedby, they must be implicit to make and madeby
+
+
+flattenizer:
+{
+	must do stuff like:
+	if mcdonalds make mcnuggets and mcnuggets madeof trans_fat then
+	mcdonalds promote trans_fat
+	
+	if trans_fat destroy you and mcnuggets promoted by mcdonalds then
+	mcdonalds destroy you
+}
+
+
+
+
+
 thinker:
 {
 	Parent assimilation
@@ -40,7 +60,7 @@ add ignore list for "ask" and "askabout"
 
 new thinking methods
 {
-	enemy brother 1
+	?enemy brother 1?: already implemented, but commented
 	{
 		both reptile, mammal and insect are animals
 		insect is very differnt from mammal
@@ -82,7 +102,7 @@ rename like to love, and likedby to lovedby
 ?rename allow to neededby or something?
 
 
-"from" must be implicit to "madeby", "originof" must be implicit to "make"
+
 
 
 
