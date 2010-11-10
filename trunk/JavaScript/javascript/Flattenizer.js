@@ -200,7 +200,7 @@ Flattenizer.prototype.renderFromCopyFromOperator = function Flattenizer_renderFr
 		var complement = remoteImplicitBranch.complementList[index2];
 		
 		//We will not flatten operations when they depend on [subject] [verb] [subject] propositions
-		if (subjectToRender != complement)
+		if (subjectToRender != complement && verbToRender != verbToCopy)
 		{	
 			var proof = this.getProof(subjectToRender, verbToRender, complement, true);
 			if (proof == null || proof.length == 0)
