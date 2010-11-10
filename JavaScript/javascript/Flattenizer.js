@@ -130,6 +130,9 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			
 			//Render stuff as: if [monsanto] destroy [health] and [health] [allow] [human] then [monsanto] [destroy] [human]
 			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.allow, implicitBranch);
+			
+			//Render stuff as: if [monsanto] destroy [health] and [health] [likedby] [human] then [monsanto] [destroy] [human]
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.likedby, implicitBranch);
 		}
 		else if (verb == this.instinct.destroyedby)
 		{
@@ -144,6 +147,9 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			
 			//Render stuff as: if [monsanto] destroy [health] and [health] [allow] [human] then [monsanto] [destroy] [human]
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.need, implicitBranch);
+			
+			//Render stuff as: if [monsanto] destroy [health] and [health] [likedby] [human] then [monsanto] [destroy] [human]
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.like, implicitBranch);
 		}		
 		else if (verb == this.instinct.largerthan) //For operators like "largerthan" and "smallerthan"
 		{

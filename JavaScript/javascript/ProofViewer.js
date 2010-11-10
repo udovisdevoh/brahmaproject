@@ -32,7 +32,14 @@ ProofViewer.prototype.viewProof = function ProofViewer_viewProof(subject, verb, 
 			
 			if (subProof == null)
 			{
-				htmlProof += '<span class="AiConcept">' + statement.subject + '</span> <span class="AiOperator">' + statement.verb + '</span> <span class="AiConcept">' + statement.complement + '</span>,<br />';
+				if (!statement.verb.isNaturalOperator && statement.verb.complementaryOperators.length > 0)
+				{
+					htmlProof += '<span class="AiConcept">' + statement.complement + '</span> <span class="AiOperator">' + statement.verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + statement.subject + '</span>,<br />';
+				}
+				else
+				{
+					htmlProof += '<span class="AiConcept">' + statement.subject + '</span> <span class="AiOperator">' + statement.verb + '</span> <span class="AiConcept">' + statement.complement + '</span>,<br />';
+				}
 			}
 			else
 			{
