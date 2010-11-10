@@ -1589,8 +1589,6 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 	if (talkingRouter.talkTo("why pine madeof water")['output'] != 'because<br /><span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>,<br /><span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span>,<br /><span class="AiConcept">plant</span> <span class="AiOperator">isa</span> <span class="AiConcept">lifeform</span>,<br /><span class="AiConcept">lifeform</span> <span class="AiOperator">madeof</span> <span class="AiConcept">water</span>,<br />therefore, <span class="AiConcept">pine</span> <span class="AiOperator">madeof</span> <span class="AiConcept">water</span>')
 		throw 'Wrong answer';
 
-	alert(talkingRouter.talkTo("why pine isa animal")['output']);
-		
 	if (talkingRouter.talkTo("why pine isa animal")['output'] != 'because<br /><span class="AiConcept">pine</span> <span class="AiOperator">isa</span> <span class="AiConcept">tree</span>,<br /><span class="AiConcept">tree</span> <span class="AiOperator">isa</span> <span class="AiConcept">plant</span>,<br /><span class="AiConcept">plant</span> <span class="AiOperator">contradict</span> <span class="AiConcept">animal</span>,<br />therefore, <span class="AiConcept">pine</span> <span class="AiOperator">contradict</span> <span class="AiConcept">animal</span>')
 		throw 'Wrong answer';
 		
