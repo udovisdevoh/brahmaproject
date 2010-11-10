@@ -159,11 +159,17 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		{
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
 			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.partof, implicitBranch);
+			
+			//Render stuff as if [me] madeby [mom] then [me] from [mom]
+			this.renderFromCopyFromOperator(subject, verb, this.instinct.madeby, implicitBranch);
 		}
 		else if (verb == this.instinct.originof)
 		{
 			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.someare, implicitBranch);
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.madeof, implicitBranch);
+			
+			//Render stuff as if [mom] make [me] then [mom] originof [me]
+			this.renderFromCopyFromOperator(subject, verb, this.instinct.make, implicitBranch);
 		}
 		
 	} while (howManyComplement < implicitBranch.complementList.length);
@@ -172,6 +178,32 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 	
 	implicitBranch.isFlat = true;
 	implicitBranch.isLocked = false;
+}
+
+//Render stuff as if [me] madeby [mom] then [me] from [mom]
+Flattenizer.prototype.renderFromCopyFromOperator = function Flattenizer_renderFromCopyFromOperator(subjectToRender, verbToRender, verbToCopy, implicitBranch)
+{
+	var remoteImplicitBranch = subjectToRender.getImplicitBranch(verbToCopy);
+	
+	if (!remoteImplicitBranch.isFlat)
+		if (!remoteImplicitBranch.isLocked)
+			this.flattenBranch(remoteImplicitBranch, subjectToRender, verbToCopy);
+			
+	for (var index2 = 0; index2 < remoteImplicitBranch.complementList.length; index2++)
+	{
+		var complement = remoteImplicitBranch.complementList[index2];
+		
+		//We will not flatten operations when they depend on [subject] [verb] [subject] propositions
+		if (subjectToRender != complement)
+		{	
+			var proof = this.getProof(subjectToRender, verbToRender, complement, true);
+			if (proof == null || proof.length == 0)
+			{		
+				this.proofCache.addProofArgument(subjectToRender, verbToRender, complement, subjectToRender, verbToCopy, complement, true);
+			}
+			implicitBranch.addComplement(complement);
+		}
+	}
 }
 
 //(Void) Render stuff as: if [tree] [madeof] [wood] and [wood] isa [matter] then [tree] [madeof] [matter]
