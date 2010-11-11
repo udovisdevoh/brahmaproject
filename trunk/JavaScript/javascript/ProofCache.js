@@ -94,6 +94,33 @@ ProofCache.prototype.isProofContainArgument = function ProofCache_isProofContain
 			}
 		}
 	}
+	
+	if (proofVerb.complementaryOperators.length > 0)
+	{
+		var complementaryProof = this.getProof(proofComplement, proofVerb.complementaryOperators[0], proofSubject, true);
+		if (complementaryProof != null)
+		{
+			
+			
+			for (var index = 0; index < complementaryProof.length; index++)
+			{
+				var argument = complementaryProof[index];
+				if (argument.subject == argumentSubject && argument.verb == argumentVerb && argument.complement == argumentComplement)
+				{
+					return true;
+				}
+				else if (argumentVerb.complementaryOperators.length > 0)
+				{
+					if (argument.subject == argumentComplement && argument.verb == argumentVerb.complementaryOperators[0] && argument.complement == argumentSubject)
+					{
+						return true;
+					}
+				}
+			}
+			
+			
+		}
+	}
 
 	return false;
 	//Must return true if proof contains argument or complement of argument
