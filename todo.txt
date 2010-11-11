@@ -3,7 +3,7 @@ rename like to love, and likedby to lovedby
 
 
 
-fix bug
+fix bug: most probably already fixed
 {
 	(probably in flattenizer instead of proof viewer and proof length evaluator)
 
