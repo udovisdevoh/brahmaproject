@@ -205,6 +205,7 @@ Flattenizer.prototype.renderFromCopyFromOperator = function Flattenizer_renderFr
 			var proof = this.getProof(subjectToRender, verbToRender, complement, true);
 			if (proof == null || proof.length == 0)
 			{
+				//We must make sure we don't use a proof that contains what we're trying to proove
 				if (!this.proofCache.isProofContainArgument(subjectToRender, verbToCopy, complement, subjectToRender, verbToRender, complement))
 				{
 					this.proofCache.addProofArgument(subjectToRender, verbToRender, complement, subjectToRender, verbToCopy, complement, true);
@@ -239,6 +240,7 @@ Flattenizer.prototype.renderFromPreRecursiveOperator = function Flattenizer_rend
 					var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
 					if (proof == null || proof.length == 0)
 					{								
+						//We must make sure we don't use a proof that contains what we're trying to proove
 						if (!this.proofCache.isProofContainArgument(subjectToRender, verbToRender, immediateComplement, subjectToRender, verbToRender, remoteComplement)
 						&& !this.proofCache.isProofContainArgument(immediateComplement, recursiveVerb, remoteComplement, subjectToRender, verbToRender, remoteComplement))
 						{
@@ -283,6 +285,7 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 					var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
 					if (proof == null || proof.length == 0)
 					{
+						//We must make sure we don't use a proof that contains what we're trying to proove
 						if (!this.proofCache.isProofContainArgument(subjectToRender, recursiveVerb, immediateComplement, subjectToRender, verbToRender, remoteComplement)
 						&& !this.proofCache.isProofContainArgument(immediateComplement, verbToRender, remoteComplement, subjectToRender, verbToRender, remoteComplement))
 						{

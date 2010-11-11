@@ -75,6 +75,27 @@ ProofCache.prototype.getProof = function ProofCache_getProof(subject, verb, comp
 //Return true if proof contains argument or complement of argument
 ProofCache.prototype.isProofContainArgument = function ProofCache_isProofContainArgument(proofSubject, proofVerb, proofComplement, argumentSubject, argumentVerb, argumentComplement)
 {
+	var proof = this.getProof(proofSubject, proofVerb, proofComplement, true);
+	if (proof == null)
+		return false;
+		
+	for (var index = 0; index < proof.length; index++)
+	{
+		var argument = proof[index];
+		if (argument.subject == argumentSubject && argument.verb == argumentVerb && argument.complement == argumentComplement)
+		{
+			return true;
+		}
+		else if (argumentVerb.complementaryOperators.length > 0)
+		{
+			if (argument.subject == argumentComplement && argument.verb == argumentVerb.complementaryOperators[0] && argument.complement == argumentSubject)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
 	//Must return true if proof contains argument or complement of argument
 	throw 'Implement ProofCache.isProofContainArgument()';
 }
