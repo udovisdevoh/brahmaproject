@@ -423,7 +423,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var parrot = conceptNameMapper.getConcept("parrot");
 	var contradict = conceptNameMapper.getConcept("contradict");
 	var helpedby = conceptNameMapper.getConcept("helpedby");
-	var allow = conceptNameMapper.getConcept("allow");
+	var help = conceptNameMapper.getConcept("help");
 	var make = conceptNameMapper.getConcept("make");
 	var madeby = conceptNameMapper.getConcept("madeby");
 	var animal = conceptNameMapper.getConcept("animal");
@@ -851,7 +851,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	if (!flattenizer.getProof(joe, contradict, girl, true)[1].equals(new Statement(man, contradict, girl, true)))
 		throw 'Wrong proof';
 		
-	//Testing helpedby and Allow
+	//Testing helpedby and help
 	//helpedby
 	if (!flattenizer.testConnection(bird, helpedby, tree))
 	{
@@ -888,43 +888,43 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 
-	//allow
-	if (!flattenizer.testConnection(tree, allow, bird))
+	//help
+	if (!flattenizer.testConnection(tree, help, bird))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(tree, allow, parrot))
+	if (!flattenizer.testConnection(tree, help, parrot))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (flattenizer.testConnection(tree, allow, animal))
+	if (flattenizer.testConnection(tree, help, animal))
 	{
 		throw 'Statement should be false';
 	}
 	
-	if (flattenizer.testConnection(pine, allow, bird))
+	if (flattenizer.testConnection(pine, help, bird))
 	{
 		throw 'Statement should be false';
 	}
 	
-	if (!flattenizer.testConnection(plant, allow, bird))
+	if (!flattenizer.testConnection(plant, help, bird))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(light, allow, bird))
+	if (!flattenizer.testConnection(light, help, bird))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(light, allow, parrot))
+	if (!flattenizer.testConnection(light, help, parrot))
 	{
 		throw 'Statement should be true';
 	}
 	
-	//helpedby and Allow Proofs
+	//helpedby and help Proofs
 	if (!flattenizer.getProof(parrot, helpedby, light, true)[0].equals(new Statement(parrot, isa, bird, true)))
 		throw 'Wrong proof';
 	if (!flattenizer.getProof(parrot, helpedby, light, true)[1].equals(new Statement(bird, helpedby, light, true)))
@@ -1162,7 +1162,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(health, allow, human))
+	if (!flattenizer.testConnection(health, help, human))
 	{
 		throw 'Statement should be true';
 	}
@@ -1369,7 +1369,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	
 	//Isa must cant contradict
 	//?Isa must unlikely contradict?
-	//?Allow must unlikely destroy?
+	//?help must unlikely destroy?
 	//?Make must unlikely destroy?
 	//unit test double helpedby and double oppress
 	//smallerthan cant largerthan

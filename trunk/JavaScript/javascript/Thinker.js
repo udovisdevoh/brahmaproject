@@ -114,7 +114,7 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		isa
 		madeof
 		make
-		allow
+		help
 		helpedby
 		contradict
 		like
@@ -160,12 +160,12 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		//maybe donut cause obesity too
 		
 		//Human madeof big brain
-		//big brain make (or allow) inductive_reasoning
+		//big brain make (or help) inductive_reasoning
 		//maybe human make inductive_reasoning
 		
 		//very generic
 		//we find a concept's closest relative and try to import a property from it
-		//a isa, madeof, from,	partof, madeby, contradict, helpedby, allow, make, like, likedby, originof,	destroyedby or destroy
+		//a isa, madeof, from,	partof, madeby, contradict, helpedby, help, make, like, likedby, originof,	destroyedby or destroy
 		//similar to b (very specific)
 		//maybe a has [random very short proof connection] too
 			
