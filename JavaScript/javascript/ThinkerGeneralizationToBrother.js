@@ -2,14 +2,14 @@
 //the majority of madeof long_hair and isa human like pot
 //you madeof long_hair and isa human
 //maybe you like pot too
-function ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager)
+function ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofManager, firstSecondPersonManager)
 {
 	//Parts
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
-	this.proofLengthEvaluator = proofLengthEvaluator;
+	this.proofManager = proofManager;
 	this.firstSecondPersonManager = firstSecondPersonManager;
 }
 
@@ -71,7 +71,7 @@ ThinkerGeneralizationToBrother.prototype._produceTheoryFromBrotherConcept = func
 					{
 						if (this.objectionFinder.findObjection(subject, verb, complement) == null)
 						{	
-							var weight = brotherLikeness / (this.proofLengthEvaluator.evaluate(brother, verb, complement) + 1);
+							var weight = brotherLikeness / (this.proofManager.evaluateLength(brother, verb, complement) + 1);
 							var argumentString = '<span class="AiConcept">' + subject.toString() + '</span> ' + Math.round(weight * 100) + '% similar to <span class="AiConcept">' + brother.toString() + '</span>';
 
 							
@@ -128,7 +128,7 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 		for (var complementIndex = 0; complementIndex < concept1implicitBranch.complementList.length; complementIndex++)
 		{
 			var complement = concept1implicitBranch.complementList[complementIndex];
-			var weight = weightForVerb / (this.proofLengthEvaluator.evaluate(concept1, verb, complement) + 1);
+			var weight = weightForVerb / (this.proofManager.evaluateLength(concept1, verb, complement) + 1);
 			if (concept2implicitBranch.complementList.indexOf(complement) != -1)
 			{
 				commonConnectionCountForBrotherhood += 0.5
@@ -140,7 +140,7 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 		for (var complementIndex = 0; complementIndex < concept2implicitBranch.complementList.length; complementIndex++)
 		{
 			var complement = concept2implicitBranch.complementList[complementIndex];
-			var weight = weightForVerb / (this.proofLengthEvaluator.evaluate(concept2, verb, complement) + 1);
+			var weight = weightForVerb / (this.proofManager.evaluateLength(concept2, verb, complement) + 1);
 			if (concept1implicitBranch.complementList.indexOf(complement) != -1)
 			{
 				commonConnectionCountForBrotherhood += 0.5
@@ -155,7 +155,7 @@ ThinkerGeneralizationToBrother.prototype._evaluateBrotherLikeness = function Thi
 	//We reduce the brother likeness weight if they contradict each others
 	/*if (this.flattenizer.testConnection(concept1, this.instinct.contradict, concept2))
 	{
-		var proofLengthPlusTwo = this.proofLengthEvaluator.evaluate(concept1, this.instinct.contradict, concept2) + 2;
+		var proofLengthPlusTwo = this.proofManager.evaluateLength(concept1, this.instinct.contradict, concept2) + 2;
 		brotherLikenessWeight -= (brotherLikenessWeight / proofLengthPlusTwo);
 	}*/
 	

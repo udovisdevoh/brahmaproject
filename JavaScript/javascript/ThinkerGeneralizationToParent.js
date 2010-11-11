@@ -2,7 +2,7 @@
 //generalization to parent (strong or weak induction)		
 //the majority of isa animal is madeof blood
 //maybe animal always madeof blood
-function ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager)
+function ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofManager, firstSecondPersonManager)
 {
 	//Constants
 	this.minimumSampleSizeForGeneralization = 2;
@@ -12,7 +12,7 @@ function ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper,
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
-	this.proofLengthEvaluator = proofLengthEvaluator;
+	this.proofManager = proofManager;
 	this.firstSecondPersonManager = firstSecondPersonManager;
 }
 
@@ -78,7 +78,7 @@ ThinkerGeneralizationToParent.prototype.produceTheoriesAbout = function ThinkerG
 					var connectionCounterForVerbComplement = connectionCounterForVerb.getItem(childComplement);
 					var weightCounterForVerbComplement = weightCounterForVerb.getItem(childComplement);
 					
-					var proofLength = this.proofLengthEvaluator.evaluate(childConcept, childVerb, childComplement);
+					var proofLength = this.proofManager.evaluateLength(childConcept, childVerb, childComplement);
 					var valueToAdd = 1 / (proofLength + 1);
 					
 					connectionCounterForVerb.setItem(childComplement, connectionCounterForVerbComplement + 1);

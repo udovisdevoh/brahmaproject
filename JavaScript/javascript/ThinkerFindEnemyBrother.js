@@ -1,14 +1,14 @@
 //both reptile, mammal and insect are animals
 //insect is very differnt from mammal
 //maybe insect contradict mammal
-function ThinkerFindEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager)
+function ThinkerFindEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofManager, firstSecondPersonManager)
 {
 	//Parts
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
-	this.proofLengthEvaluator = proofLengthEvaluator;
+	this.proofManager = proofManager;
 	this.firstSecondPersonManager = firstSecondPersonManager;
 }
 
@@ -119,7 +119,7 @@ ThinkerFindEnemyBrother.prototype._getShortestContradictProof = function Thinker
 	for (var index = 0; index < implicitBranch.complementList.length; index++)
 	{
 		var complement = implicitBranch.complementList[index];
-		var currentProofLength = this.proofLengthEvaluator.evaluate(concept, this.instinct.contradict, complement)
+		var currentProofLength = this.proofManager.evaluateLength(concept, this.instinct.contradict, complement)
 		
 		if (currentProofLength < shortestProofLength || shortestProofLength == -1)
 		{
@@ -175,7 +175,7 @@ ThinkerFindEnemyBrother.prototype._evaluateBrotherLikeness = function ThinkerFin
 			for (var complementIndex = 0; complementIndex < concept1implicitBranch.complementList.length; complementIndex++)
 			{
 				var complement = concept1implicitBranch.complementList[complementIndex];
-				var weight = weightForVerb / (this.proofLengthEvaluator.evaluate(concept1, verb, complement) + 1);
+				var weight = weightForVerb / (this.proofManager.evaluateLength(concept1, verb, complement) + 1);
 				if (concept2implicitBranch.complementList.indexOf(complement) != -1)
 				{
 					commonConnectionCountForBrotherhood += 0.5
@@ -187,7 +187,7 @@ ThinkerFindEnemyBrother.prototype._evaluateBrotherLikeness = function ThinkerFin
 			for (var complementIndex = 0; complementIndex < concept2implicitBranch.complementList.length; complementIndex++)
 			{
 				var complement = concept2implicitBranch.complementList[complementIndex];
-				var weight = weightForVerb / (this.proofLengthEvaluator.evaluate(concept2, verb, complement) + 1);
+				var weight = weightForVerb / (this.proofManager.evaluateLength(concept2, verb, complement) + 1);
 				if (concept1implicitBranch.complementList.indexOf(complement) != -1)
 				{
 					commonConnectionCountForBrotherhood += 0.5
@@ -203,7 +203,7 @@ ThinkerFindEnemyBrother.prototype._evaluateBrotherLikeness = function ThinkerFin
 	//We reduce the brother likeness weight if they contradict each others
 	/*if (this.flattenizer.testConnection(concept1, this.instinct.contradict, concept2))
 	{
-		var proofLengthPlusTwo = this.proofLengthEvaluator.evaluate(concept1, this.instinct.contradict, concept2) + 2;
+		var proofLengthPlusTwo = this.proofManager.evaluateLength(concept1, this.instinct.contradict, concept2) + 2;
 		brotherLikenessWeight -= (brotherLikenessWeight / proofLengthPlusTwo);
 	}*/
 	
@@ -226,7 +226,7 @@ ThinkerFindEnemyBrother.prototype._reduceWeightAccordingToCommonIsaParentArgumen
 		for (var parentIndex = 0; parentIndex < commonIsaParentList.length; parentIndex++)
 		{
 			var commonIsaParent = commonIsaParentList[parentIndex];
-			var proofLength = this.proofLengthEvaluator.evaluate(brother, this.instinct.isa, commonIsaParent);
+			var proofLength = this.proofManager.evaluateLength(brother, this.instinct.isa, commonIsaParent);
 			
 			if (shortestProofLength == -1 || proofLength < shortestProofLength)
 			{

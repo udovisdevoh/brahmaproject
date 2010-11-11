@@ -1,14 +1,14 @@
 //since new_france isa colony and new_france contradict new_england,
 //(and there is no concept from which both new_france and new_england inherit)
 //maybe new_england isa colony too
-function ThinkerFindParentOfEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager)
+function ThinkerFindParentOfEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofManager, firstSecondPersonManager)
 {
 	//Parts
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
-	this.proofLengthEvaluator = proofLengthEvaluator;
+	this.proofManager = proofManager;
 	this.firstSecondPersonManager = firstSecondPersonManager;
 }
 
@@ -96,7 +96,7 @@ ThinkerFindParentOfEnemyBrother.prototype._getEnemyBrotherList = function Thinke
 	for (var enemyBrotherIndex = 0; enemyBrotherIndex < implicitBranch.complementList.length; enemyBrotherIndex++)
 	{
 		var enemyBrother = implicitBranch.complementList[enemyBrotherIndex];
-		var weight = 1 / (this.proofLengthEvaluator.evaluate(subject, this.instinct.contradict, enemyBrother) + 1);
+		var weight = 1 / (this.proofManager.evaluateLength(subject, this.instinct.contradict, enemyBrother) + 1);
 		enemyBrotherList.setItem(enemyBrother, weight);
 	}
 	
@@ -118,7 +118,7 @@ ThinkerFindParentOfEnemyBrother.prototype._adjustWeightAccordingToCommonIsaParen
 		for (var parentIndex = 0; parentIndex < commonIsaParentList.length; parentIndex++)
 		{
 			var commonIsaParent = commonIsaParentList[parentIndex];
-			var proofLengthPlusTwo = this.proofLengthEvaluator.evaluate(enemyBrother, this.instinct.isa, commonIsaParent) + 2;
+			var proofLengthPlusTwo = this.proofManager.evaluateLength(enemyBrother, this.instinct.isa, commonIsaParent) + 2;
 			weight -= (weight / proofLengthPlusTwo);
 		}
 		
@@ -178,7 +178,7 @@ ThinkerFindParentOfEnemyBrother.prototype._getNewIsaParentList = function Thinke
 		
 		if (implicitBranch1.complementList.indexOf(parent) == -1)
 		{
-			var weight = 1 / (this.proofLengthEvaluator.evaluate(concept2, this.instinct.isa, parent) + 1);
+			var weight = 1 / (this.proofManager.evaluateLength(concept2, this.instinct.isa, parent) + 1);
 			newIsaParentList.setItem(parent, weight);
 		}
 	}

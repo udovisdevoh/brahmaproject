@@ -1,5 +1,5 @@
 //Picks random proofs
-function TeachViewer(flattenizer, instinct, conceptNameMapper, proofViewer)
+function TeachViewer(flattenizer, instinct, conceptNameMapper, proofManager)
 {
 	//Constants
 	this.couldntTeach = "Couldn't find anything to teach";
@@ -8,7 +8,7 @@ function TeachViewer(flattenizer, instinct, conceptNameMapper, proofViewer)
 	this.flattenizer = flattenizer
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
-	this.proofViewer = proofViewer;
+	this.proofManager = proofManager;
 }
 
 //(String (HTML)) Find a random connection and make proof about it
@@ -49,7 +49,7 @@ TeachViewer.prototype.teachAbout = function teachAbout(subject)
 	if (complement == null)
 		return 'I tried to teach about <span class="AiConcept">' + subject + '</span> <span class="AiOperator">' + verb + "</span> but I couldn't find anything interesting";
 		
-	var proof = this.proofViewer.viewProof(subject, verb, complement);
+	var proof = this.proofManager.viewProof(subject, verb, complement);
 
 	if (proof == null)
 		return this.couldntTeach;
