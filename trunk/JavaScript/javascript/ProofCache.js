@@ -71,6 +71,14 @@ ProofCache.prototype.getProof = function ProofCache_getProof(subject, verb, comp
 	return proof;
 }
 
+//(Bool)
+//Return true if proof contains argument or complement of argument
+ProofCache.prototype.isProofContainArgument = function ProofCache_isProofContainArgument(proofSubject, proofVerb, proofComplement, argumentSubject, argumentVerb, argumentComplement)
+{
+	//Must return true if proof contains argument or complement of argument
+	throw 'Implement ProofCache.isProofContainArgument()';
+}
+
 /*//(Void) Reset proof
 ProofCache.prototype.resetProof = function ProofCache_resetProof(subject, verb, complement)
 {

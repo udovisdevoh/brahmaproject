@@ -204,8 +204,11 @@ Flattenizer.prototype.renderFromCopyFromOperator = function Flattenizer_renderFr
 		{	
 			var proof = this.getProof(subjectToRender, verbToRender, complement, true);
 			if (proof == null || proof.length == 0)
-			{		
-				this.proofCache.addProofArgument(subjectToRender, verbToRender, complement, subjectToRender, verbToCopy, complement, true);
+			{
+				if (!this.proofCache.isProofContainArgument(subjectToRender, verbToCopy, complement, subjectToRender, verbToRender, complement))
+				{
+					this.proofCache.addProofArgument(subjectToRender, verbToRender, complement, subjectToRender, verbToCopy, complement, true);
+				}
 			}
 			implicitBranch.addComplement(complement);
 		}
@@ -235,9 +238,13 @@ Flattenizer.prototype.renderFromPreRecursiveOperator = function Flattenizer_rend
 				{	
 					var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
 					if (proof == null || proof.length == 0)
-					{		
-						this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, verbToRender, immediateComplement, true);
-						this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, recursiveVerb, remoteComplement, true);
+					{								
+						if (!this.proofCache.isProofContainArgument(subjectToRender, verbToRender, immediateComplement, subjectToRender, verbToRender, remoteComplement)
+						&& !this.proofCache.isProofContainArgument(immediateComplement, recursiveVerb, remoteComplement, subjectToRender, verbToRender, remoteComplement))
+						{
+							this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, verbToRender, immediateComplement, true);
+							this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, recursiveVerb, remoteComplement, true);
+						}
 					}
 					implicitBranch.addComplement(remoteComplement);
 				}
@@ -276,8 +283,12 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 					var proof = this.getProof(subjectToRender, verbToRender, remoteComplement, true);
 					if (proof == null || proof.length == 0)
 					{
-						this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, recursiveVerb, immediateComplement, true);
-						this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, verbToRender, remoteComplement, true);
+						if (!this.proofCache.isProofContainArgument(subjectToRender, recursiveVerb, immediateComplement, subjectToRender, verbToRender, remoteComplement)
+						&& !this.proofCache.isProofContainArgument(immediateComplement, verbToRender, remoteComplement, subjectToRender, verbToRender, remoteComplement))
+						{
+							this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, subjectToRender, recursiveVerb, immediateComplement, true);
+							this.proofCache.addProofArgument(subjectToRender, verbToRender, remoteComplement, immediateComplement, verbToRender, remoteComplement, true);
+						}
 					}
 					implicitBranch.addComplement(remoteComplement);
 				}
