@@ -16,8 +16,8 @@ function Instinct(complementaryOperatorManager)
 	this.madeof = this.conceptNameMapper.getConcept("madeof");
 	this.partof = this.conceptNameMapper.getConcept("partof");
 	this.contradict = this.conceptNameMapper.getConcept("contradict");
-	this.helpedby = this.conceptNameMapper.getConcept("helpedby");
 	this.help = this.conceptNameMapper.getConcept("help");
+	this.helpedby = this.conceptNameMapper.getConcept("helpedby");
 	this.make = this.conceptNameMapper.getConcept("make");
 	this.madeby = this.conceptNameMapper.getConcept("madeby");
 	this.destroy = this.conceptNameMapper.getConcept("destroy");
