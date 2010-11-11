@@ -3,16 +3,6 @@ rename like to love, and likedby to lovedby
 
 
 
-fix bug: most probably already fixed
-{
-	(probably in flattenizer instead of proof viewer and proof length evaluator)
-
-	money need neoliberalism
-	neoliberalism need money
-	mcdonalds destroy money
-	why mcdonalds destroy neoliberalism?
-	why mcdonalds destroy money?
-}
 
 
 fix bug: me need you and you need me:
@@ -24,6 +14,7 @@ fix bug: me need you and you need me:
 flattenizer:
 {
 	Mcdonalds destroy you
+	Possiblilty 1
 	{
 		must do stuff like:
 		if mcdonalds make mcnuggets and mcnuggets madeof trans_fat then
@@ -32,8 +23,30 @@ flattenizer:
 		if trans_fat destroy you and mcnuggets allowed by mcdonalds then
 		mcdonalds destroy you
 	}
+	
+	Possiblilty 2
+	{
+		must do stuff like:
+		if mcdonalds cause mcnuggets and mcnuggets cause trans_fat then
+		mcdonalds cause trans_fat
+		
+		if trans_fat destroy you and mcnuggets causedby mcdonalds then
+		mcdonalds destroy you
+	}
 }
 
+
+
+fix bug: most probably already fixed
+{
+	(probably in flattenizer instead of proof viewer and proof length evaluator)
+
+	money need neoliberalism
+	neoliberalism need money
+	mcdonalds destroy money
+	why mcdonalds destroy neoliberalism?
+	why mcdonalds destroy money?
+}
 
 
 
