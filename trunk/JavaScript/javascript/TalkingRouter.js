@@ -15,14 +15,13 @@ function TalkingRouter(humanName, aiName)
 	this.flattenizer = new Flattenizer(this.instinct);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.proofCache = this.flattenizer.proofCache;
-	this.proofLengthEvaluator = new ProofLengthEvaluator(this.flattenizer, this.proofCache);
 	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
-	this.thinker = new Thinker(this.flattenizer, this.instinct, this.conceptNameMapper, this.objectionFinder, this.proofLengthEvaluator, this.firstSecondPersonManager);
-	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache, this.thinker, this.proofLengthEvaluator);
-	this.proofViewer = new ProofViewer(this.flattenizer, this.proofCache);
+	this.proofManager = new ProofManager(this.flattenizer, this.proofCache);
+	this.thinker = new Thinker(this.flattenizer, this.instinct, this.conceptNameMapper, this.objectionFinder, this.proofManager, this.firstSecondPersonManager);
+	this.invalidator = new Invalidator(this.conceptNameMapper.conceptList, this.flattenizer.proofCache, this.thinker, this.proofManager);
 	this.whatisViewer = new WhatisViewer(this.flattenizer, this.instinct);
 	this.defineViewer = new DefineViewer(this.flattenizer, this.instinct);
-	this.teachViewer = new TeachViewer(this.flattenizer, this.instinct, this.conceptNameMapper, this.proofViewer);
+	this.teachViewer = new TeachViewer(this.flattenizer, this.instinct, this.conceptNameMapper, this.proofManager);
 	this.askViewer = new AskViewer(this.flattenizer, this.instinct, this.conceptNameMapper, this.firstSecondPersonManager);
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
 	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
@@ -288,7 +287,7 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 //(String (HTML))
 TalkingRouter.prototype.talkToWhyStatement = function TalkingRouter_talkToWhyStatement(subject, verb, complement)
 {
-	var proof = this.proofViewer.viewProof(subject, verb, complement);
+	var proof = this.proofManager.viewProof(subject, verb, complement);
 	if (proof)
 		return proof;
 		
@@ -297,7 +296,7 @@ TalkingRouter.prototype.talkToWhyStatement = function TalkingRouter_talkToWhySta
 	if (objectionStatement == null)
 		return null;
 	
-	proof = this.proofViewer.viewProof(objectionStatement.subject, objectionStatement.verb, objectionStatement.complement, 0);
+	proof = this.proofManager.viewProof(objectionStatement.subject, objectionStatement.verb, objectionStatement.complement, 0);
 	
 	if (proof)
 		return proof;

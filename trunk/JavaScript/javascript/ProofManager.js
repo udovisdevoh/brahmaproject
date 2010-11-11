@@ -1,12 +1,13 @@
 //To produce output from proofs
-function ProofViewer(flattenizer, proofCache)
+function ProofManager(flattenizer, proofCache)
 {
 	this.flattenizer = flattenizer;
 	this.proofCache = proofCache;
+	this.lengthCachedData = new Hash();
 }
 
 //(String (HTML) view the proof
-ProofViewer.prototype.viewProof = function ProofViewer_viewProof(subject, verb, complement, depth)
+ProofManager.prototype.viewProof = function ProofManager_viewProof(subject, verb, complement, depth)
 {
 	if (depth == null)
 		depth = 0;
@@ -32,14 +33,6 @@ ProofViewer.prototype.viewProof = function ProofViewer_viewProof(subject, verb, 
 			
 			if (subProof == null)
 			{
-				/*if (!statement.verb.isNaturalOperator && statement.verb.complementaryOperators.length > 0)
-				{
-					htmlProof += '<span class="AiConcept">' + statement.complement + '</span> <span class="AiOperator">' + statement.verb.complementaryOperators[0] + '</span> <span class="AiConcept">' + statement.subject + '</span>,<br />';
-				}
-				else
-				{
-					htmlProof += '<span class="AiConcept">' + statement.subject + '</span> <span class="AiOperator">' + statement.verb + '</span> <span class="AiConcept">' + statement.complement + '</span>,<br />';
-				}*/
 				htmlProof += '<span class="AiConcept">' + statement.subject + '</span> <span class="AiOperator">' + statement.verb + '</span> <span class="AiConcept">' + statement.complement + '</span>,<br />';
 			}
 			else
@@ -57,4 +50,39 @@ ProofViewer.prototype.viewProof = function ProofViewer_viewProof(subject, verb, 
 		htmlProof += 'therefore, <span class="AiConcept">' + subject + '</span> <span class="AiOperator">' + verb + '</span> <span class="AiConcept">' + complement + '</span>';
 	
 	return htmlProof;
+}
+
+//(Int) length of a proof
+ProofManager.prototype.evaluateLength = function ProofManager_evaluateLength(subject, verb, complement)
+{
+	var key = subject.toString() + ' ' + verb.toString() + ' ' + complement.toString();
+	
+	if (!this.lengthCachedData.hasItem(key))
+	{
+		var implicitBranch = subject.getImplicitBranch(verb);
+		if (!implicitBranch.isFlat)
+			if (!implicitBranch.isLocked)
+				this.flattenizer.flattenBranch(implicitBranch, subject, verb);
+	
+		var proofLength = 0;
+		var proof = this.proofCache.getProof(subject, verb, complement);
+		if (proof != null)
+		{
+			for (var index = 0; index < proof.length; index++)
+			{
+				var statement = proof[index];
+				var subProofLength = this.evaluateLength(statement.subject, statement.verb, statement.complement);
+				if (subProofLength == 0)
+					proofLength += 1;
+				else
+					proofLength += subProofLength;
+			}
+		}
+		this.lengthCachedData.setItem(key, proofLength);
+		return proofLength;
+	}
+	else
+	{
+		return this.lengthCachedData.getItem(key);
+	}
 }

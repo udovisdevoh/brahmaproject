@@ -1,20 +1,20 @@
 //Creates induction reasoning theories based on statistical inference
-function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager)
+function Thinker(flattenizer, instinct, conceptNameMapper, objectionFinder, proofManager, firstSecondPersonManager)
 {
 	//Constants
 	this.maxIgnoreListLength = 50;
 	this.maxRandomConceptTheorySamplingSize = 200;
 	
 	//Parts
-	this.thinkerGeneralizationToParent = new ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
-	this.thinkerGeneralizationToBrother = new ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
-	this.thinkerFindParentOfEnemyBrother = new ThinkerFindParentOfEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
-	this.thinkerFindEnemyBrother = new ThinkerFindEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofLengthEvaluator, firstSecondPersonManager);
+	this.thinkerGeneralizationToParent = new ThinkerGeneralizationToParent(flattenizer, instinct, conceptNameMapper, objectionFinder, proofManager, firstSecondPersonManager);
+	this.thinkerGeneralizationToBrother = new ThinkerGeneralizationToBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofManager, firstSecondPersonManager);
+	this.thinkerFindParentOfEnemyBrother = new ThinkerFindParentOfEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofManager, firstSecondPersonManager);
+	this.thinkerFindEnemyBrother = new ThinkerFindEnemyBrother(flattenizer, instinct, conceptNameMapper, objectionFinder, proofManager, firstSecondPersonManager);
 	this.flattenizer = flattenizer;
 	this.instinct = instinct;
 	this.conceptNameMapper = conceptNameMapper;
 	this.objectionFinder = objectionFinder;
-	this.proofLengthEvaluator = proofLengthEvaluator;
+	this.proofManager = proofManager;
 	this.firstSecondPersonManager = firstSecondPersonManager;
 	this.theoryCache = new Hash();//As theoryCache[subject]theory[]
 	this.ignoreList = Array();//Array of strings (as unique keys of theories)
