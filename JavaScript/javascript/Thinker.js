@@ -115,7 +115,7 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		madeof
 		make
 		allow
-		need
+		helpedby
 		contradict
 		like
 		from
@@ -165,7 +165,7 @@ Thinker.prototype.produceTheoriesAbout = function Thinker_produceTheoriesAbout(s
 		
 		//very generic
 		//we find a concept's closest relative and try to import a property from it
-		//a isa, madeof, from,	partof, madeby, contradict, need, allow, make, like, likedby, originof,	destroyedby or destroy
+		//a isa, madeof, from,	partof, madeby, contradict, helpedby, allow, make, like, likedby, originof,	destroyedby or destroy
 		//similar to b (very specific)
 		//maybe a has [random very short proof connection] too
 			

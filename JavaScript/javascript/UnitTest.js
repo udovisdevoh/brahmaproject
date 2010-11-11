@@ -422,7 +422,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	var bird = conceptNameMapper.getConcept("bird");
 	var parrot = conceptNameMapper.getConcept("parrot");
 	var contradict = conceptNameMapper.getConcept("contradict");
-	var need = conceptNameMapper.getConcept("need");
+	var helpedby = conceptNameMapper.getConcept("helpedby");
 	var allow = conceptNameMapper.getConcept("allow");
 	var make = conceptNameMapper.getConcept("make");
 	var madeby = conceptNameMapper.getConcept("madeby");
@@ -513,10 +513,10 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	tautologyManager.learnStatement("woman isa female");
 	tautologyManager.learnStatement("girl isa woman");
 	tautologyManager.learnStatement("banana isa vegetable");
-	tautologyManager.learnStatement("bird need tree");
+	tautologyManager.learnStatement("bird helpedby tree");
 	tautologyManager.learnStatement("bird isa animal");
 	tautologyManager.learnStatement("parrot isa bird");
-	tautologyManager.learnStatement("plant need light");
+	tautologyManager.learnStatement("plant helpedby light");
 	tautologyManager.learnStatement("billy make jazz");
 	tautologyManager.learnStatement("jazz isa music");
 	tautologyManager.learnStatement("music isa art");
@@ -528,11 +528,11 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	tautologyManager.learnStatement("gmo isa poison");
 	tautologyManager.learnStatement("poison destroy human");
 	tautologyManager.learnStatement("mcdonalds destroy health");
-	tautologyManager.learnStatement("human need health");
+	tautologyManager.learnStatement("human helpedby health");
 	tautologyManager.learnStatement("monsanto isa corporation");
 	tautologyManager.learnStatement("human isa concept");
-	tautologyManager.learnStatement("bee need flower");
-	tautologyManager.learnStatement("flower need bee");
+	tautologyManager.learnStatement("bee helpedby flower");
+	tautologyManager.learnStatement("flower helpedby bee");
 	tautologyManager.learnStatement("lewis isa programmer");
 	tautologyManager.learnStatement("programmer make program");
 	tautologyManager.learnStatement("star largerthan planet");
@@ -851,39 +851,39 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	if (!flattenizer.getProof(joe, contradict, girl, true)[1].equals(new Statement(man, contradict, girl, true)))
 		throw 'Wrong proof';
 		
-	//Testing Need and Allow
-	//need
-	if (!flattenizer.testConnection(bird, need, tree))
+	//Testing helpedby and Allow
+	//helpedby
+	if (!flattenizer.testConnection(bird, helpedby, tree))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(parrot, need, tree))
+	if (!flattenizer.testConnection(parrot, helpedby, tree))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (flattenizer.testConnection(animal, need, tree))
+	if (flattenizer.testConnection(animal, helpedby, tree))
 	{
 		throw 'Statement should be false';
 	}
 	
-	if (flattenizer.testConnection(bird, need, pine))
+	if (flattenizer.testConnection(bird, helpedby, pine))
 	{
 		throw 'Statement should be false';
 	}
 	
-	if (!flattenizer.testConnection(bird, need, plant))
+	if (!flattenizer.testConnection(bird, helpedby, plant))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(bird, need, light))
+	if (!flattenizer.testConnection(bird, helpedby, light))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(parrot, need, light))
+	if (!flattenizer.testConnection(parrot, helpedby, light))
 	{
 		throw 'Statement should be true';
 	}
@@ -924,10 +924,10 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
-	//Need and Allow Proofs
-	if (!flattenizer.getProof(parrot, need, light, true)[0].equals(new Statement(parrot, isa, bird, true)))
+	//helpedby and Allow Proofs
+	if (!flattenizer.getProof(parrot, helpedby, light, true)[0].equals(new Statement(parrot, isa, bird, true)))
 		throw 'Wrong proof';
-	if (!flattenizer.getProof(parrot, need, light, true)[1].equals(new Statement(bird, need, light, true)))
+	if (!flattenizer.getProof(parrot, helpedby, light, true)[1].equals(new Statement(bird, helpedby, light, true)))
 		throw 'Wrong proof';
 	
 	
@@ -1096,7 +1096,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(human, need, health))
+	if (!flattenizer.testConnection(human, helpedby, health))
 	{
 		throw 'Statement should be true';
 	}
@@ -1177,12 +1177,12 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(flower, need, flower))
+	if (!flattenizer.testConnection(flower, helpedby, flower))
 	{
 		throw 'Statement should be true';
 	}
 	
-	if (!flattenizer.testConnection(bee, need, bee))
+	if (!flattenizer.testConnection(bee, helpedby, bee))
 	{
 		throw 'Statement should be true';
 	}
@@ -1371,7 +1371,7 @@ UnitTest.prototype.testFlattenizer = function UnitTest_testFlattenizer()
 	//?Isa must unlikely contradict?
 	//?Allow must unlikely destroy?
 	//?Make must unlikely destroy?
-	//unit test double need and double oppress
+	//unit test double helpedby and double oppress
 	//smallerthan cant largerthan
 	//Thinker: do stuff like: if all galaxies contain stuff that are isa star, then maybe galaxies all contain stars
 }
@@ -1609,7 +1609,7 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 UnitTest.prototype.testThinker = function UnitTest_testThinker()
 {
 	var talkingRouter = new TalkingRouter();	
-	talkingRouter.talkTo("me isa human make you which isa artificial_intelligence which isa program which madeof boolean_logic . human isa mammal which isa animal which isa organic_lifeform contradict plant which isa organic_lifeform . google isa search_engine which isa program and web_site which partof internet . windows madeby microsoft isa operating_system which isa sofware . microsoft isa corporation . monsanto isa corporation make gmo which isa poison which destroy health . organic_lifeform need health . you make logic_derivation and question and inductive_reasoning . human madeof big_brain which isa brain make critical_thinking and inductive_reasoning and logic_derivation and creativity . pine isa tree which madeof wood isa plant which isa organic_lifeform . organic_lifeform isa lifeform . artificial_intelligence isa electronic_lifeform which isa lifeform . reptile isa animal madeof blood . bird isa animal madeof blood . mammal isa animal madeof blood . insect isa animal madeof blood . fish isa animal madeof blood . kangaroo isa animal madeof blood . squid isa animal . google isa web_site which isa program . apple_computer isa corporation make mac_os_x which isa operating_system . new_france originof canada from france which isa country which someare england . new_england from england originof usa which isa country which someare canada . new_england isa colony contradict new_france . vertebrate isa animal contradict invertebrate which isa lifeform");
+	talkingRouter.talkTo("me isa human make you which isa artificial_intelligence which isa program which madeof boolean_logic . human isa mammal which isa animal which isa organic_lifeform contradict plant which isa organic_lifeform . google isa search_engine which isa program and web_site which partof internet . windows madeby microsoft isa operating_system which isa sofware . microsoft isa corporation . monsanto isa corporation make gmo which isa poison which destroy health . organic_lifeform helpedby health . you make logic_derivation and question and inductive_reasoning . human madeof big_brain which isa brain make critical_thinking and inductive_reasoning and logic_derivation and creativity . pine isa tree which madeof wood isa plant which isa organic_lifeform . organic_lifeform isa lifeform . artificial_intelligence isa electronic_lifeform which isa lifeform . reptile isa animal madeof blood . bird isa animal madeof blood . mammal isa animal madeof blood . insect isa animal madeof blood . fish isa animal madeof blood . kangaroo isa animal madeof blood . squid isa animal . google isa web_site which isa program . apple_computer isa corporation make mac_os_x which isa operating_system . new_france originof canada from france which isa country which someare england . new_england from england originof usa which isa country which someare canada . new_england isa colony contradict new_france . vertebrate isa animal contradict invertebrate which isa lifeform");
 
 	alert(talkingRouter.talkTo("thinkabout animal")['output']);
 }

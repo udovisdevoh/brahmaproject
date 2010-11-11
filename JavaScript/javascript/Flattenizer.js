@@ -67,7 +67,7 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		// or if [wood] [partof] [tree] and [water] [partof] [wood] then [water] [partof] [tree]
 		if (verb == this.instinct.madeof
 		|| verb == this.instinct.partof
-		|| verb == this.instinct.need
+		|| verb == this.instinct.helpedby
 		|| verb == this.instinct.allow
 		|| verb == this.instinct.make
 		|| verb == this.instinct.madeby
@@ -82,17 +82,17 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 		//For some operators (like madeof) the [operator] is, it must use ISA recursively to expand its connections
 		if (verb == this.instinct.isa
 		|| verb == this.instinct.madeof
-		|| verb == this.instinct.need
+		|| verb == this.instinct.helpedby
 		|| verb == this.instinct.make)
 		{
 			//Render stuff as: if [tree] [madeof] [wood] and [wood] isa [matter] then [tree] [madeof] [matter]
-			//and if [bird] [need] [tree] and [tree] isa [plant] then [bird] [need] [plant]
+			//and if [bird] [helpedby] [tree] and [tree] isa [plant] then [bird] [helpedby] [plant]
 			//BUT NOT: if [tree] [partof] [forest] and [forest] isa [ecosystem] then [tree] [partof] [ecosystem]
 			//because it would mean that all ecosystems contain tree
 			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
 			
 			//Render stuff as: if [pine] isa [tree] and [tree] [madeof] [wood] then [pine] [madeof] [wood]
-			//and if [parrot] isa [bird] and [bird] [need] [tree] then [parrot] [need] [tree]
+			//and if [parrot] isa [bird] and [bird] [helpedby] [tree] then [parrot] [helpedby] [tree]
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
 		}
 		//For some operators (like partof) the [operator] is, it must use someare recursively to expand its connections
@@ -146,7 +146,7 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.isa, implicitBranch);
 			
 			//Render stuff as: if [monsanto] destroy [health] and [health] [allow] [human] then [monsanto] [destroy] [human]
-			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.need, implicitBranch);
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.helpedby, implicitBranch);
 			
 			//Render stuff as: if [monsanto] destroy [health] and [health] [likedby] [human] then [monsanto] [destroy] [human]
 			//this.renderFromPostRecursiveOperator(subject, verb, this.instinct.like, implicitBranch);
@@ -176,6 +176,20 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			
 			//Render stuff as if [mom] make [me] then [mom] originof [me]
 			this.renderFromCopyFromOperator(subject, verb, this.instinct.make, implicitBranch);
+		}
+		
+
+		if (verb == this.instinct.allow)
+		{
+			//todo:
+			//render stuff as: if [mcdonalds] make [mcnugget] and [mcnugget] madeof [trans_fat] then [mcdonalds] allow [trans_fat]
+			this.renderTernaryMetaOperation(subject, verb, this.instinct.make, this.instinct.madeof, implicitBranch);
+		}
+		else if (verb == this.instinct.helpedby)
+		{
+			//todo:
+			//render stuff as: if [mcnugget] madeby [mcdonalds] and [trans_fat] partof [mcnugget] then [trans_fat] helpedby [mcdonalds]
+			this.renderTernaryMetaOperation(subject, verb, this.instinct.partof, this.instinct.madeby, implicitBranch);
 		}
 		
 	} while (howManyComplement < implicitBranch.complementList.length);
@@ -298,4 +312,10 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 			}
 		}
 	}
+}
+
+//render stuff as: if [mcdonalds] make [mcnugget] and [mcnugget] madeof [trans_fat] then [mcdonalds] allow [trans_fat]
+// and if [mcnugget] madeby [mcdonalds] and [trans_fat] partof [mcnugget] then [trans_fat] helpedby [mcdonalds]
+Flattenizer.prototype.renderTernaryMetaOperation = function Flattenizer_renderTernaryMetaOperation(subjectToRender, verbToRender, recursiveVerb1, recursiveVerb2, implicitBranch)
+{
 }

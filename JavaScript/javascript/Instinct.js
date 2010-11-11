@@ -16,7 +16,7 @@ function Instinct(complementaryOperatorManager)
 	this.madeof = this.conceptNameMapper.getConcept("madeof");
 	this.partof = this.conceptNameMapper.getConcept("partof");
 	this.contradict = this.conceptNameMapper.getConcept("contradict");
-	this.need = this.conceptNameMapper.getConcept("need");
+	this.helpedby = this.conceptNameMapper.getConcept("helpedby");
 	this.allow = this.conceptNameMapper.getConcept("allow");
 	this.make = this.conceptNameMapper.getConcept("make");
 	this.madeby = this.conceptNameMapper.getConcept("madeby");
@@ -37,7 +37,7 @@ function Instinct(complementaryOperatorManager)
 	this.madeof.conceptDescriptionRelevance = 0.75;
 	this.make.conceptDescriptionRelevance = 0.5;
 	this.allow.conceptDescriptionRelevance = 0.33;
-	this.need.conceptDescriptionRelevance = 0.33;
+	this.helpedby.conceptDescriptionRelevance = 0.33;
 	this.contradict.conceptDescriptionRelevance = 0.33;
 	this.like.conceptDescriptionRelevance = 0.25;
 	this.from.conceptDescriptionRelevance = 0.2;
@@ -60,7 +60,7 @@ function Instinct(complementaryOperatorManager)
 	this.madeby,
 	this.contradict,
 	this.someare,
-	this.need,
+	this.helpedby,
 	this.allow,
 	this.make,
 	this.originof,
@@ -104,7 +104,7 @@ function Instinct(complementaryOperatorManager)
 	this.complementaryOperatorManager.add("contradict","contradict");
 	this.complementaryOperatorManager.add("isa","someare");
 	this.complementaryOperatorManager.add("madeof","partof");
-	this.complementaryOperatorManager.add("need","allow");
+	this.complementaryOperatorManager.add("helpedby","allow");
 	this.complementaryOperatorManager.add("make","madeby");
 	this.complementaryOperatorManager.add("destroy","destroyedby");	
 	this.complementaryOperatorManager.add("from","originof");
