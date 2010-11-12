@@ -28,15 +28,27 @@
 	font-family:Tahoma;
 	font-size:8pt;
 	border-style:solid;
-	/*border-width:2px;*/
-	border-width:1px;
-	/*border-color:#d4d0c8 #808080 #808080 #d4d0c8;*/
-	width:144px;
-	border-color:#88F;
+	border-width:2px;
+	border-color:#d4d0c8 #808080 #808080 #d4d0c8;
+	width:192px;
 	background-color:#FFF;
 	height:152px;
 	overflow-y:scroll;
 	position:relative;
 	z-index:1;
 	visibility:hidden;
+}
+
+#autoComplete div
+{
+	padding:2px;
+}
+
+#autoComplete div.Selected
+{
+	background-color:#0a246a;
+	color:#FFF;
+	border-style:dotted;
+	border-width:1px;
+	border-color:#f5db95;
 }

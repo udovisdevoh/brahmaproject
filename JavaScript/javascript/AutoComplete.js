@@ -1,9 +1,11 @@
 //Completes input
 function AutoComplete(conceptNameMapper)
 {
-	//Parts
+	//Parts and fields
 	this.conceptNameMapper = conceptNameMapper;
 	this.currentPosition = 0;
+	this.isVisible = false;
+	this.selection; //List of words
 }
 
 //(String) get stub of last word
@@ -31,14 +33,14 @@ AutoComplete.prototype.getWordList = function AutoComplete_getWordList(wordStub)
 	if (startPosition == -1)
 		return null;
 	
-	var selection = Array();
+	this.selection = Array();
 	
 	for (var index = startPosition; index < this.conceptNameMapper.mapNameToConcept.keys.length; index++)
 	{
 		var name = this.conceptNameMapper.mapNameToConcept.keys[index];
 		if (name.startsWith(wordStub))
 		{
-			selection.push(name);
+			this.selection.push(name);
 		}
 		else
 		{
@@ -46,7 +48,7 @@ AutoComplete.prototype.getWordList = function AutoComplete_getWordList(wordStub)
 		}
 	}
 	
-	return selection;
+	return this.selection;
 }
 
 //(int) Position of first word starting with word stub
@@ -77,4 +79,17 @@ AutoComplete.prototype.getFirstWordPositionStartWith = function AutoComplete_get
 		return this.getFirstWordPositionStartWith(wordStub, wordList, startPosition, pivot);
 	else
 		return this.getFirstWordPositionStartWith(wordStub, wordList, pivot + 1, endPosition);
+}
+
+//(Void) Move up in autocomplete
+AutoComplete.prototype.moveUp = function AutoComplete_moveUp()
+{
+	if (this.currentPosition > 0)
+		this.currentPosition--;
+}
+
+//(Void) Move down in autocomplete
+AutoComplete.prototype.moveDown = function AutoComplete_moveDown()
+{
+	this.currentPosition++;
 }
