@@ -102,6 +102,13 @@ function print_r(theObj)
 	}
 }
 
+function getKeyCode(e)
+{
+	if (is_ie)
+		return event.keyCode; 
+	return e.which;
+}
+
 function Hash()
 {
 	this.length = 0;
