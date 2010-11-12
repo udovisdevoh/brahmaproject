@@ -100,8 +100,6 @@ ProofCache.prototype.isProofContainArgument = function ProofCache_isProofContain
 		var complementaryProof = this.getProof(proofComplement, proofVerb.complementaryOperators[0], proofSubject, true);
 		if (complementaryProof != null)
 		{
-			
-			
 			for (var index = 0; index < complementaryProof.length; index++)
 			{
 				var argument = complementaryProof[index];
@@ -117,14 +115,10 @@ ProofCache.prototype.isProofContainArgument = function ProofCache_isProofContain
 					}
 				}
 			}
-			
-			
 		}
 	}
 
 	return false;
-	//Must return true if proof contains argument or complement of argument
-	throw 'Implement ProofCache.isProofContainArgument()';
 }
 
 /*//(Void) Reset proof
