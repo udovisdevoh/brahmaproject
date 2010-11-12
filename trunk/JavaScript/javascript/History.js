@@ -1,5 +1,5 @@
-//Remembers previous entries and provide autocomplete
-function AutoComplete(conceptNameMapper)
+//Remembers previous entries
+function History(conceptNameMapper)
 {
 	//Parts
 	this.conceptNameMapper = conceptNameMapper;
@@ -8,7 +8,7 @@ function AutoComplete(conceptNameMapper)
 }
 
 //(Void) remember statement so it can be retrieved in a doskey-like way
-AutoComplete.prototype.remember = function AutoComplete_remember(statementString)
+History.prototype.remember = function History_remember(statementString)
 {
 	if (this.previousStatements.length - 1 < 0 || statementString != this.previousStatements[this.previousStatements.length - 1])
 		this.previousStatements.push(statementString);
@@ -18,7 +18,7 @@ AutoComplete.prototype.remember = function AutoComplete_remember(statementString
 
 //(String) get remembered statement
 //null if nothing left
-AutoComplete.prototype.getStatement = function AutoComplete_getStatement()
+History.prototype.getStatement = function History_getStatement()
 {
 	if (this.previousStatementsPointer < this.previousStatements.length && this.previousStatementsPointer > -1)
 		return this.previousStatements[this.previousStatementsPointer];
@@ -26,14 +26,14 @@ AutoComplete.prototype.getStatement = function AutoComplete_getStatement()
 }
 
 //(Void) move up in remembered statements
-AutoComplete.prototype.moveUp = function AutoComplete_moveUp()
+History.prototype.moveUp = function History_moveUp()
 {
 	if (this.previousStatementsPointer > 0)
 		this.previousStatementsPointer--;
 }
 
 //(Void) move down in remembered statements
-AutoComplete.prototype.moveDown = function AutoComplete_moveDown()
+History.prototype.moveDown = function History_moveDown()
 {
 	if (this.previousStatementsPointer < this.previousStatements.length - 1)
 		this.previousStatementsPointer++;
