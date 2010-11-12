@@ -17,9 +17,9 @@ flattenizer:
 	{
 		must do stuff like:
 		if mcdonalds make mcnuggets and mcnuggets madeof trans_fat then
-		mcdonalds allow trans_fat
+		mcdonalds help trans_fat
 		
-		if trans_fat destroy you and mcnuggets allowed by mcdonalds then
+		if trans_fat destroy you and mcnuggets helpedby mcdonalds then
 		mcdonalds destroy you
 	}
 	

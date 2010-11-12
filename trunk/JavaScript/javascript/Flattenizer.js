@@ -318,4 +318,40 @@ Flattenizer.prototype.renderFromPostRecursiveOperator = function Flattenizer_ren
 // and if [mcnugget] madeby [mcdonalds] and [trans_fat] partof [mcnugget] then [trans_fat] helpedby [mcdonalds]
 Flattenizer.prototype.renderTernaryMetaOperation = function Flattenizer_renderTernaryMetaOperation(subjectToRender, verbToRender, recursiveVerb1, recursiveVerb2, implicitBranch)
 {
+	var recursiveVerbBranch1 = subjectToRender.getImplicitBranch(recursiveVerb1);
+	if (!recursiveVerbBranch1.isFlat)
+		if (!recursiveVerbBranch1.isLocked)
+			this.flattenBranch(recursiveVerbBranch1, subjectToRender, recursiveVerb1);
+
+	for (var index1 = 0; index1 < recursiveVerbBranch1.complementList.length; index1++)
+	{
+		var complement1 = recursiveVerbBranch1.complementList[index1];
+		
+		var recursiveVerbBranch2 = complement1.getImplicitBranch(recursiveVerb2);	
+		if (!recursiveVerbBranch2.isFlat)
+			if (!recursiveVerbBranch2.isLocked)
+				this.flattenBranch(recursiveVerbBranch2, complement1, recursiveVerb2);
+				
+		for (var index2 = 0; index2 < recursiveVerbBranch2.complementList.length; index2++)
+		{
+			var complement2 = recursiveVerbBranch2.complementList[index2];
+			
+			//We will not flatten operations when they depend on [subject] [verb] [subject] propositions
+			if (subjectToRender != complement1 && complement1 != complement2)
+			{
+				var proof = this.getProof(subjectToRender, verbToRender, complement2, true);
+				if (proof == null || proof.length == 0)
+				{
+					//We must make sure we don't use a proof that contains what we're trying to proove
+					if (!this.proofCache.isProofContainArgument(subjectToRender, recursiveVerb1, complement1, subjectToRender, verbToRender, complement2)
+					&& !this.proofCache.isProofContainArgument(complement1, recursiveVerb2, complement2, subjectToRender, verbToRender, complement2))
+					{
+						this.proofCache.addProofArgument(subjectToRender, verbToRender, complement2, subjectToRender, recursiveVerb1, complement1, true);
+						this.proofCache.addProofArgument(subjectToRender, verbToRender, complement2, complement1, recursiveVerb2, complement2, true);			
+					}
+				}
+				implicitBranch.addComplement(complement2);
+			}
+		}
+	}
 }
