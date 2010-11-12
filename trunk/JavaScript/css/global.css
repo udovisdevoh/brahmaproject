@@ -22,3 +22,17 @@
 {
 	color: #ff8c00;
 }
+
+#autoComplete
+{
+	border-style:solid;
+	border-width:1px;
+	width:144px;
+	border-color:#88F;
+	background-color:#FFF;
+	height:152px;
+	overflow-y:scroll;
+	position:relative;
+	z-index:1;
+	/*visibility:hidden;*/
+}
