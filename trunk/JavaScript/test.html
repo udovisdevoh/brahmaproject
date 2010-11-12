@@ -56,6 +56,7 @@
 			var humanName = "human_dude";
 			var aiName = "ai_dude";
 			var inputField = document.getElementById('humanStatementField');
+			var autoCompleteDom = document.getElementById('autoComplete');
 			inputField.focus();
 			inputField.onkeyup = keyUpHandling;
 			
@@ -102,6 +103,17 @@
 					{
 						inputField.value = rememberedStatement;
 						talkingRouter.history.moveDown();
+					}
+				}
+				else
+				{
+					var lastWordStub = talkingRouter.autoComplete.getLastWordStub(inputField.value);
+					if (lastWordStub != null)
+					{
+						var wordList = talkingRouter.autoComplete.getWordList(lastWordStub);
+						autoCompleteDom.innerHTML = '';
+						for (var wordIndex = 0; wordIndex < wordList.length; wordIndex++)
+							autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '">' + wordList[wordIndex] + '</div>';
 					}
 				}
 			}
