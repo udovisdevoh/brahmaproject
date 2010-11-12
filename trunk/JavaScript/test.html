@@ -59,6 +59,7 @@
 			var autoCompleteDom = document.getElementById('autoComplete');
 			inputField.focus();
 			inputField.onkeyup = keyUpHandling;
+			inputField.onkeydown = keyDownHandling;
 			
 			var talkingRouter = new TalkingRouter(humanName, aiName);
 			
@@ -79,7 +80,7 @@
 				return false;
 			}
 			
-			//Handles key press events
+			//Handles key up events
 			function keyUpHandling(e)
 			{
 				var unicode = getKeyCode(e);
@@ -87,25 +88,7 @@
 
 				var rememberedStatement;
 				
-				if (unicode == 38) //up
-				{			
-					rememberedStatement = talkingRouter.history.getStatement();
-					if (rememberedStatement != null)
-					{
-						inputField.value = rememberedStatement;
-						talkingRouter.history.moveUp();
-					}
-				}
-				else if (unicode == 40) //down
-				{
-					rememberedStatement = talkingRouter.history.getStatement();
-					if (rememberedStatement != null)
-					{
-						inputField.value = rememberedStatement;
-						talkingRouter.history.moveDown();
-					}
-				}
-				else
+				if (unicode != 38 && unicode != 40 && unicode != 27)
 				{
 					var lastWordStub = talkingRouter.autoComplete.getLastWordStub(inputField.value);
 					if (lastWordStub != null/* && lastWordStub.length > 1*/)
@@ -114,18 +97,78 @@
 						if (wordList == null)
 						{
 							autoCompleteDom.style.visibility = 'hidden';
+							talkingRouter.autoComplete.isVisible = false;
 						}
 						else
 						{
+							talkingRouter.autoComplete.isVisible = true;
 							autoCompleteDom.style.visibility = 'visible';
 							autoCompleteDom.innerHTML = '';
 							for (var wordIndex = 0; wordIndex < wordList.length; wordIndex++)
-								autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '">' + wordList[wordIndex] + '</div>';
+							{
+								if (wordIndex == talkingRouter.autoComplete.currentPosition)
+									autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '" class="Selected">' + wordList[wordIndex] + '</div>';
+								else
+									autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '">' + wordList[wordIndex] + '</div>';
+							}
 						}
 					}
 					else
 					{
 						autoCompleteDom.style.visibility = 'hidden';
+					}
+				}
+			}
+			
+			//Handles key down events
+			function keyDownHandling(e)
+			{
+				var unicode = getKeyCode(e);
+				var key = String.fromCharCode(unicode);
+
+				var rememberedStatement;
+				
+				if (unicode == 38) //up
+				{			
+					if (talkingRouter.autoComplete.isVisible)
+					{
+						talkingRouter.autoComplete.moveUp();
+					}
+					else
+					{
+						rememberedStatement = talkingRouter.history.getStatement();
+						if (rememberedStatement != null)
+						{
+							inputField.value = rememberedStatement;
+							talkingRouter.history.moveUp();
+						}
+					}
+					return false;
+				}
+				else if (unicode == 40) //down
+				{
+					if (talkingRouter.autoComplete.isVisible)
+					{
+						talkingRouter.autoComplete.moveDown(autoCompleteDom);
+					}
+					else
+					{
+						rememberedStatement = talkingRouter.history.getStatement();
+						if (rememberedStatement != null)
+						{
+							inputField.value = rememberedStatement;
+							talkingRouter.history.moveDown(autoCompleteDom);
+						}
+					}
+					return false;
+				}
+				else if (unicode == 27)
+				{
+					if (talkingRouter.autoComplete.isVisible)
+					{
+						talkingRouter.autoComplete.isVisible = false;
+						autoCompleteDom.style.visibility = 'hidden';
+						return false;
 					}
 				}
 			}
