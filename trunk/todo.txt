@@ -1,9 +1,3 @@
-rename like to love, and likedby to lovedby
-
-
-
-
-
 fix bug: me need you and you need me:
 {
 	should be parsed correctly
@@ -19,7 +13,7 @@ flattenizer:
 		if mcdonalds make mcnuggets and mcnuggets madeof trans_fat then
 		mcdonalds help trans_fat
 		
-		if trans_fat destroy you and mcnuggets helpedby mcdonalds then
+		if trans_fat destroy you and trans_fat helpedby mcdonalds then
 		mcdonalds destroy you
 	}
 	
