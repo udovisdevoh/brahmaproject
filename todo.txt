@@ -4,29 +4,6 @@ fix bug: me need you and you need me:
 }
 
 
-flattenizer:
-{
-	Mcdonalds destroy you
-	Possiblilty 1
-	{
-		must do stuff like:
-		if mcdonalds make mcnuggets and mcnuggets madeof trans_fat then
-		mcdonalds help trans_fat
-		
-		if trans_fat destroy you and trans_fat helpedby mcdonalds then
-		mcdonalds destroy you
-	}
-	
-	Possiblilty 2
-	{
-		must do stuff like:
-		if mcdonalds cause mcnuggets and mcnuggets cause trans_fat then
-		mcdonalds cause trans_fat
-		
-		if trans_fat destroy you and mcnuggets causedby mcdonalds then
-		mcdonalds destroy you
-	}
-}
 
 
 
