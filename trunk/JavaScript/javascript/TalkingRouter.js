@@ -6,8 +6,8 @@ function TalkingRouter(humanName, aiName)
 	this.notThatIKnow = 'Not that I know';
 	this.iDonTKnow = "I don't know";
 	this.someoneToldMe = "That's what I've been told";
-	
-	//Members
+		
+	//Model Members
 	this.conceptNameMapper = new ConceptNameMapper();
 	this.tautologyManager = new TautologyManager(this.conceptNameMapper);
 	this.complementaryOperatorManager = new ComplementaryOperatorManager(this.conceptNameMapper)
@@ -25,6 +25,7 @@ function TalkingRouter(humanName, aiName)
 	this.askViewer = new AskViewer(this.flattenizer, this.instinct, this.conceptNameMapper, this.firstSecondPersonManager);
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
 	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
+	this.autoComplete = new AutoComplete(this.conceptNameMapper);
 	this.io = Array();//['input']: human's input, ['output']: ai's output
 	this.latestTheory = null;//Latest theory postulated by Ai
 }
@@ -34,6 +35,8 @@ function TalkingRouter(humanName, aiName)
 //Aware of "you", "me", human's name and ai's name
 TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 {
+	this.autoComplete.remember(statementString.hardTrim());
+
 	var statementList = this.humanStatementSplitter.split(statementString);
 	var output = "";
 	var input = "";

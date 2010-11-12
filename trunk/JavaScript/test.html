@@ -36,12 +36,30 @@
 		<script type="text/javascript" src="./javascript/HumanStatementSplitter.js"></script>
 		<script type="text/javascript" src="./javascript/HumanStatementColorizer.js"></script>
 		<script type="text/javascript" src="./javascript/AskViewer.js"></script>
+		<script type="text/javascript" src="./javascript/AutoComplete.js"></script>
 		<script type="text/javascript" src="./javascript/TalkingRouter.js"></script>
+		<title>Testing</title>
+	</head>
+	<body>
+		<form method="post" onsubmit='sendMessage(talkingRouter);return false;'>
+			<div style="overflow:scroll;height:460px" id="conversation"></div>
+			<div>
+				<input style="width:88%" type="text" id="humanStatementField" name="conversation" autocomplete="off" />
+				<button style="width:8%" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
+			</div>
+		</form>
+		
 		<script type="text/javascript">
 			<!--
 			var humanName = "human_dude";
 			var aiName = "ai_dude";
-			var talkingRouter = new TalkingRouter(humanName,aiName);
+			var inputField = document.getElementById('humanStatementField');
+			inputField.focus();
+			inputField.onkeyup = keyUpHandling;
+			
+			var talkingRouter = new TalkingRouter(humanName, aiName);
+			
+			//Send message to Ai
 			function sendMessage(talkingRouter)
 			{
 				var conversationDom = document.getElementById('conversation');
@@ -57,17 +75,35 @@
 				humanStatementField.value = "";
 				return false;
 			}
+			
+			//Handles key press events
+			function keyUpHandling(e)
+			{
+				var unicode = getKeyCode(e);
+				var key = String.fromCharCode(unicode);
+				
+				var rememberedStatement;
+				
+				if (unicode == 38) //up
+				{			
+					rememberedStatement = talkingRouter.autoComplete.getStatement();
+					if (rememberedStatement != null)
+					{
+						inputField.value = rememberedStatement;
+						talkingRouter.autoComplete.moveUp();
+					}
+				}
+				else if (unicode == 40) //down
+				{
+					rememberedStatement = talkingRouter.autoComplete.getStatement();
+					if (rememberedStatement != null)
+					{
+						inputField.value = rememberedStatement;
+						talkingRouter.autoComplete.moveDown();
+					}
+				}
+			}
 			-->
 		</script>
-		<title>Testing</title>
-	</head>
-	<body>
-		<form method="post" onsubmit='sendMessage(talkingRouter);return false;'>
-			<div style="overflow:scroll;height:460px" id="conversation"></div>
-			<div>
-				<input style="width:88%" type="text" id="humanStatementField" name="conversation" />
-				<button style="width:8%" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
-			</div>
-		</form>
 	</body>
 </html>
