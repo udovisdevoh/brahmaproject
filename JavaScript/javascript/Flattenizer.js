@@ -133,6 +133,9 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			
 			//Render stuff as: if [monsanto] destroy [health] and [health] [likedby] [human] then [monsanto] [destroy] [human]
 			//this.renderFromPreRecursiveOperator(subject, verb, this.instinct.likedby, implicitBranch);
+			
+			//render stuff as: if [mcdonalds] help [trans_fat] and [trans_fat] destroy [me] then [mcdonalds] destroy [me]
+			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.help, implicitBranch);
 		}
 		else if (verb == this.instinct.destroyedby)
 		{
@@ -150,6 +153,9 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			
 			//Render stuff as: if [monsanto] destroy [health] and [health] [likedby] [human] then [monsanto] [destroy] [human]
 			//this.renderFromPostRecursiveOperator(subject, verb, this.instinct.like, implicitBranch);
+			
+			//render stuff as: if [mcdonalds] help [trans_fat] and [trans_fat] destroy [me] then [mcdonalds] destroy [me]
+			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.helpedby, implicitBranch);
 		}		
 		else if (verb == this.instinct.largerthan) //For operators like "largerthan" and "smallerthan"
 		{
@@ -181,13 +187,11 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 
 		if (verb == this.instinct.help)
 		{
-			//todo:
 			//render stuff as: if [mcdonalds] make [mcnugget] and [mcnugget] madeof [trans_fat] then [mcdonalds] help [trans_fat]
 			this.renderTernaryMetaOperation(subject, verb, this.instinct.make, this.instinct.madeof, implicitBranch);
 		}
 		else if (verb == this.instinct.helpedby)
 		{
-			//todo:
 			//render stuff as: if [mcnugget] madeby [mcdonalds] and [trans_fat] partof [mcnugget] then [trans_fat] helpedby [mcdonalds]
 			this.renderTernaryMetaOperation(subject, verb, this.instinct.partof, this.instinct.madeby, implicitBranch);
 		}
