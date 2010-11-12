@@ -23,7 +23,9 @@ ConceptNameMapper.prototype.getConcept = function ConceptNameMapper_getConcept(c
 	if (!this.mapNameToConcept.hasItem(conceptName))
 	{
 		concept = new Concept(conceptName);
-		this.mapNameToConcept.setItem(conceptName, concept);		
+		this.mapNameToConcept.setItem(conceptName, concept);
+		this.mapNameToConcept.keys.sort();
+		
 		var conceptNameList = Array();
 		conceptNameList.push(conceptName);
 		this.mapConceptToName.setItem(concept, conceptNameList);
@@ -130,6 +132,8 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	}
 	
 	this.mapNameToConcept.setItem(conceptName2, concept1);
+	this.mapNameToConcept.keys.sort();
+	
 	var nameList = new Array();
 	nameList.push(conceptName2);
 	this.mapConceptToName.setItem(concept1, nameList);
@@ -192,6 +196,8 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	}
 	
 	this.mapNameToConcept.setItem(conceptName2, concept2);
+	this.mapNameToConcept.keys.sort();
+	
 	var nameList = Array();
 	nameList.push(conceptName2);
 	this.mapConceptToName.setItem(concept2, nameList);
@@ -210,6 +216,8 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 	var concept2 = this.getConcept(conceptName2);
 	
 	this.mapNameToConcept.removeItem(conceptName1);
+	this.mapNameToConcept.keys.sort();
+	
 	var nameList = this.mapConceptToName.getItem(concept2);
 	
 	concept2.defaultConceptName = conceptName2;

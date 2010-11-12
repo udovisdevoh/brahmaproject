@@ -108,12 +108,24 @@
 				else
 				{
 					var lastWordStub = talkingRouter.autoComplete.getLastWordStub(inputField.value);
-					if (lastWordStub != null)
+					if (lastWordStub != null/* && lastWordStub.length > 1*/)
 					{
 						var wordList = talkingRouter.autoComplete.getWordList(lastWordStub);
-						autoCompleteDom.innerHTML = '';
-						for (var wordIndex = 0; wordIndex < wordList.length; wordIndex++)
-							autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '">' + wordList[wordIndex] + '</div>';
+						if (wordList == null)
+						{
+							autoCompleteDom.style.visibility = 'hidden';
+						}
+						else
+						{
+							autoCompleteDom.style.visibility = 'visible';
+							autoCompleteDom.innerHTML = '';
+							for (var wordIndex = 0; wordIndex < wordList.length; wordIndex++)
+								autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '">' + wordList[wordIndex] + '</div>';
+						}
+					}
+					else
+					{
+						autoCompleteDom.style.visibility = 'hidden';
 					}
 				}
 			}
