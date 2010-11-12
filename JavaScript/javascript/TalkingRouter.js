@@ -25,7 +25,8 @@ function TalkingRouter(humanName, aiName)
 	this.askViewer = new AskViewer(this.flattenizer, this.instinct, this.conceptNameMapper, this.firstSecondPersonManager);
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
 	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
-	this.history = new History(this.conceptNameMapper);
+	this.history = new History();
+	this.autoComplete = new AutoComplete(this.conceptNameMapper);
 	this.io = Array();//['input']: human's input, ['output']: ai's output
 	this.latestTheory = null;//Latest theory postulated by Ai
 }

@@ -1,8 +1,7 @@
 //Remembers previous entries
-function History(conceptNameMapper)
+function History()
 {
 	//Parts
-	this.conceptNameMapper = conceptNameMapper;
 	this.previousStatements = Array();
 	this.previousStatementsPointer = -1;
 }
