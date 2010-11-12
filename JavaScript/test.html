@@ -36,7 +36,7 @@
 		<script type="text/javascript" src="./javascript/HumanStatementSplitter.js"></script>
 		<script type="text/javascript" src="./javascript/HumanStatementColorizer.js"></script>
 		<script type="text/javascript" src="./javascript/AskViewer.js"></script>
-		<script type="text/javascript" src="./javascript/AutoComplete.js"></script>
+		<script type="text/javascript" src="./javascript/History.js"></script>
 		<script type="text/javascript" src="./javascript/TalkingRouter.js"></script>
 		<title>Testing</title>
 	</head>
@@ -46,6 +46,7 @@
 			<div>
 				<input style="width:88%" type="text" id="humanStatementField" name="conversation" autocomplete="off" />
 				<button style="width:8%" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
+				<div class="AutoComplete"></div>
 			</div>
 		</form>
 		
@@ -81,25 +82,25 @@
 			{
 				var unicode = getKeyCode(e);
 				var key = String.fromCharCode(unicode);
-				
+
 				var rememberedStatement;
 				
 				if (unicode == 38) //up
 				{			
-					rememberedStatement = talkingRouter.autoComplete.getStatement();
+					rememberedStatement = talkingRouter.history.getStatement();
 					if (rememberedStatement != null)
 					{
 						inputField.value = rememberedStatement;
-						talkingRouter.autoComplete.moveUp();
+						talkingRouter.history.moveUp();
 					}
 				}
 				else if (unicode == 40) //down
 				{
-					rememberedStatement = talkingRouter.autoComplete.getStatement();
+					rememberedStatement = talkingRouter.history.getStatement();
 					if (rememberedStatement != null)
 					{
 						inputField.value = rememberedStatement;
-						talkingRouter.autoComplete.moveDown();
+						talkingRouter.history.moveDown();
 					}
 				}
 			}
