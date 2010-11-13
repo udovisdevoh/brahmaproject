@@ -105,12 +105,7 @@
 							autoCompleteDom.style.visibility = 'visible';
 							autoCompleteDom.innerHTML = '';
 							for (var wordIndex = 0; wordIndex < wordList.length; wordIndex++)
-							{
-								if (wordIndex == talkingRouter.autoComplete.currentPosition)
-									autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '" class="Selected">' + wordList[wordIndex] + '</div>';
-								else
-									autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '">' + wordList[wordIndex] + '</div>';
-							}
+								talkingRouter.autoComplete.addViewElement(autoCompleteDom, wordIndex, wordList[wordIndex], wordIndex == talkingRouter.autoComplete.currentPosition);
 						}
 					}
 					else
@@ -171,7 +166,7 @@
 						return false;
 					}
 				}
-				else if (unicode == 13) //esc
+				else if (unicode == 13) //enter
 				{
 					if (talkingRouter.autoComplete.isVisible)
 					{
@@ -180,6 +175,27 @@
 						inputField.value = talkingRouter.autoComplete.replaceLastWordWithSelectedWord(inputField.value);
 						return false;
 					}
+				}
+			}
+			
+			function autoCompleteClick(elementId)
+			{
+				if (talkingRouter.autoComplete.isVisible)
+				{
+					talkingRouter.autoComplete.moveTo(autoCompleteDom, elementId);
+				}
+			}
+			
+			function autoCompleteDoubleClick()
+			{
+				if (talkingRouter.autoComplete.isVisible)
+				{
+					inputField.focus();
+					talkingRouter.autoComplete.isVisible = false;
+					autoCompleteDom.style.visibility = 'hidden';
+					inputField.value = talkingRouter.autoComplete.replaceLastWordWithSelectedWord(inputField.value);
+					
+					return false;
 				}
 			}
 			-->

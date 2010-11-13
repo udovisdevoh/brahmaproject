@@ -42,6 +42,10 @@
 #autoComplete div
 {
 	padding:2px;
+	cursor:default;
+	border-width:1px;
+	border-color:#FFF;
+	border-style:solid;
 }
 
 #autoComplete div.Selected
