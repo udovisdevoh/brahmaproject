@@ -88,7 +88,7 @@
 
 				var rememberedStatement;
 				
-				if (unicode != 38 && unicode != 40 && unicode != 27)
+				if (unicode != 38 && unicode != 40 && unicode != 27 && unicode != 13)
 				{
 					var lastWordStub = talkingRouter.autoComplete.getLastWordStub(inputField.value);
 					if (lastWordStub != null/* && lastWordStub.length > 1*/)
@@ -162,12 +162,22 @@
 					}
 					return false;
 				}
-				else if (unicode == 27)
+				else if (unicode == 27) //esc
 				{
 					if (talkingRouter.autoComplete.isVisible)
 					{
 						talkingRouter.autoComplete.isVisible = false;
 						autoCompleteDom.style.visibility = 'hidden';
+						return false;
+					}
+				}
+				else if (unicode == 13) //esc
+				{
+					if (talkingRouter.autoComplete.isVisible)
+					{
+						talkingRouter.autoComplete.isVisible = false;
+						autoCompleteDom.style.visibility = 'hidden';
+						inputField.value = talkingRouter.autoComplete.replaceLastWordWithSelectedWord(inputField.value);
 						return false;
 					}
 				}
