@@ -45,7 +45,7 @@
 		<form method="post" onsubmit='sendMessage(talkingRouter);return false;'>
 			<div style="overflow:scroll;height:460px" id="conversation"></div>
 			<div>
-				<input style="width:88%" type="text" id="humanStatementField" name="conversation" autocomplete="off" />
+				<input style="width:88%" type="text" id="humanStatementField" autocomplete="off" />
 				<button style="width:8%" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
 				<div id="autoComplete"></div>
 			</div>
@@ -110,6 +110,7 @@
 					}
 					else
 					{
+						talkingRouter.autoComplete.isVisible = false;
 						autoCompleteDom.style.visibility = 'hidden';
 					}
 				}

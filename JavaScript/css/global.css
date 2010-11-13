@@ -1,6 +1,10 @@
 #conversation
 {
-	font-family:"Courier New", "Lucida Console", Monaco
+	font-family:"Courier New", "Lucida Console", Monaco;
+	border: 1px solid #999;
+	-webkit-box-shadow: 0 3px 3px rgba(0,0,0,0.20), rgba(0,0,0,0.22) 0px 0px 10px inset;
+	-moz-box-shadow: 0 3px 3px rgba(0,0,0,0.20), rgba(0,0,0,0.22) 0px 0px 10px inset;
+	padding:8px;
 }
 
 #conversation .AiConcept
@@ -37,6 +41,8 @@
 	position:relative;
 	z-index:1;
 	visibility:hidden;
+	-webkit-box-shadow:1px 1px 10px #000;
+	-moz-box-shadow:1px 1px 10px #000;
 }
 
 #autoComplete div
