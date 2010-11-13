@@ -26,7 +26,7 @@ function TalkingRouter(humanName, aiName)
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
 	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
 	this.history = new History();
-	this.conversationManager = new ConversationManager();
+	this.conversationManager = new ConversationManager(this.flattenizer, this.instinct, this.thinker, this.conceptNameMapper, this.firstSecondPersonManager);
 	this.autoComplete = new AutoComplete(this.flattenizer, this.conceptNameMapper, this.proofCache);
 	this.io = Array();//['input']: human's input, ['output']: ai's output
 	this.latestTheory = null;//Latest theory postulated by Ai
@@ -43,14 +43,6 @@ TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 	var output = "";
 	var input = "";
 	
-	if (this.conversationManager.isStarted || statementString == 'start')
-	{
-		var hiddenHumanConversationInsentiveStatement = this.conversationManager.getHiddenHumanConversationInsentiveStatement();
-		var contextFreeHumanStatement = this.firstSecondPersonManager.formatHumanInput(hiddenHumanConversationInsentiveStatement);
-		var contextFreeAiStatement = this.talkToContextFree(contextFreeHumanStatement);
-		output += this.firstSecondPersonManager.formatAiOutput(contextFreeAiStatement) + '<br />';
-	}
-	
 	for (var index = 0; index < statementList.length; index++)
 	{
 		var subStatement = statementList[index];
@@ -65,6 +57,14 @@ TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 			input += '<br />';
 			output += '<br />';
 		}
+	}
+	
+	if (this.conversationManager.isStarted || statementString == 'start')
+	{
+		var hiddenHumanConversationInsentiveStatement = this.conversationManager.getHiddenHumanConversationInsentiveStatement();
+		var contextFreeHumanStatement = this.firstSecondPersonManager.formatHumanInput(hiddenHumanConversationInsentiveStatement);
+		var contextFreeAiStatement = this.talkToContextFree(contextFreeHumanStatement);
+		output += '<br />' + this.firstSecondPersonManager.formatAiOutput(contextFreeAiStatement);
 	}
 	
 	this.io['input'] = input;
