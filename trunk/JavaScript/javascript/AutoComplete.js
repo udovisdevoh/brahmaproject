@@ -287,3 +287,12 @@ AutoComplete.prototype.getMostReleventConcept = function AutoComplete_getMostRel
 
 	return mostReleventConcept;
 }
+
+//(Void) resize width 
+AutoComplete.prototype.resizeTextFields = function AutoComplete_resizeTextFields(conversationDom)
+{
+	if (is_ie)
+		conversationDom.style.height = Math.max(0, document.documentElement.clientHeight - 232) + 'px';
+	else
+		conversationDom.style.height = Math.max(0, self.innerHeight - 219) + 'px';
+}

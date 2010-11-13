@@ -41,7 +41,7 @@
 		<script type="text/javascript" src="./javascript/TalkingRouter.js"></script>
 		<title>Testing</title>
 	</head>
-	<body onresize="resizeTextFields()">
+	<body onresize="talkingRouter.autoComplete.resizeTextFields(conversationDom)">
 		<form method="post" onsubmit='sendMessage(talkingRouter);return false;'>
 			<div style="overflow:scroll;height:460px" id="conversation"></div>
 			<div>
@@ -52,25 +52,19 @@
 		</form>
 		
 		<script type="text/javascript">
-			<!--
-			function resizeTextFields()
-			{
-				if (is_ie)
-					conversationDom.style.height = Math.max(0, document.documentElement.clientHeight - 232) + 'px';
-				else
-					conversationDom.style.height = Math.max(0, self.innerHeight - 219) + 'px';
-			}
-			
+			<!--		
 			var humanName = "human_dude";
 			var aiName = "ai_dude";
+			var talkingRouter = new TalkingRouter(humanName, aiName);
+			
 			var inputField = document.getElementById('humanStatementField');
 			var autoCompleteDom = document.getElementById('autoComplete');
 			var conversationDom = document.getElementById('conversation');
 			inputField.focus();
 			inputField.onkeyup = keyUpHandling;
 			document.onkeydown = keyDownHandling;		
-			resizeTextFields();
-			var talkingRouter = new TalkingRouter(humanName, aiName);
+			talkingRouter.autoComplete.resizeTextFields(conversationDom);
+			
 			
 			//Send message to Ai
 			function sendMessage(talkingRouter)
