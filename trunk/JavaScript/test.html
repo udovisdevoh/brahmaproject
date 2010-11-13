@@ -175,13 +175,17 @@
 						return false;
 					}
 				}
-				else if (unicode == 13) //enter
+				else if (unicode == 13 || unicode == 32) //enter or space
 				{
 					if (talkingRouter.autoComplete.isVisible)
 					{
 						talkingRouter.autoComplete.isVisible = false;
 						autoCompleteDom.style.visibility = 'hidden';
 						inputField.value = talkingRouter.autoComplete.replaceLastWordWithSelectedWord(inputField.value);
+						
+						if (unicode == 32)
+							inputField.value += ' ';
+						
 						return false;
 					}
 				}
