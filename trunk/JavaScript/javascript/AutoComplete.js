@@ -1,7 +1,7 @@
 //Completes input
 function AutoComplete(flattenizer, conceptNameMapper, proofCache)
 {
-	//Parts and fields
+	//Parts, fields and constants
 	this.flattenizer = flattenizer;
 	this.conceptNameMapper = conceptNameMapper;
 	this.proofCache = proofCache;
@@ -10,6 +10,7 @@ function AutoComplete(flattenizer, conceptNameMapper, proofCache)
 	this.selection = Array(); //List of words
 	this.selectionWithReferenceConcept = Array(); //List of words with reference concepts
 	this.paranthesesConceptCache = new Hash(); //list of reference concept, for instance: race (contest) [key: race, value: contest]
+	this.halfHeightOfWidget = 68;
 }
 
 //(String) get stub of last word
@@ -100,27 +101,41 @@ AutoComplete.prototype.getFirstWordPositionStartWith = function AutoComplete_get
 //(Void) Move up in autocomplete
 AutoComplete.prototype.moveUp = function AutoComplete_moveUp(autoCompleteDom)
 {
-	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("class","");
-	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("className","");
-	
 	if (this.currentPosition > 0)
+	{
+		var selectedElement;
+		var selectedElement = document.getElementById('autoCompleteWord_' + this.currentPosition);
+		selectedElement.setAttribute("class","");
+		selectedElement.setAttribute("className","");
+		
 		this.currentPosition--;
-	
-	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("class","Selected");	
-	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("className","Selected");
+		
+		selectedElement = document.getElementById('autoCompleteWord_' + this.currentPosition);
+		selectedElement.setAttribute("class","Selected");	
+		selectedElement.setAttribute("className","Selected");
+		
+		autoCompleteDom.scrollTop = selectedElement.offsetTop - this.halfHeightOfWidget;
+	}
 }
 
 //(Void) Move down in autocomplete
 AutoComplete.prototype.moveDown = function AutoComplete_moveDown(autoCompleteDom)
 {
-	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("class","");
-	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("className","");
-
 	if (this.currentPosition < this.selection.length -1)
-		this.currentPosition++;
+	{
+		var selectedElement;
+		selectedElement = document.getElementById('autoCompleteWord_' + this.currentPosition);
+		selectedElement.setAttribute("class","");
+		selectedElement.setAttribute("className","");
 	
-	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("class","Selected");	
-	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("className","Selected");
+		this.currentPosition++;
+		
+		selectedElement = document.getElementById('autoCompleteWord_' + this.currentPosition);
+		selectedElement.setAttribute("class","Selected");	
+		selectedElement.setAttribute("className","Selected");
+		
+		autoCompleteDom.scrollTop = selectedElement.offsetTop - this.halfHeightOfWidget;
+	}
 }
 
 //(String)

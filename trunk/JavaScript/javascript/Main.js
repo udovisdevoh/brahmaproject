@@ -76,7 +76,14 @@ function stripTags(oldString)
 
 String.prototype.startsWith = function String_startsWith(str)
 {
-	return (this.match("^"+str)==str);
+	try
+	{
+		return (this.match("^"+str)==str);
+	}
+	catch (err)
+	{
+		return false;
+	}
 }
 
 function print_r(theObj)
