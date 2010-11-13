@@ -5,7 +5,7 @@ function AutoComplete(conceptNameMapper)
 	this.conceptNameMapper = conceptNameMapper;
 	this.currentPosition = 0;
 	this.isVisible = false;
-	this.selection; //List of words
+	this.selection = Array(); //List of words
 }
 
 //(String) get stub of last word
@@ -91,5 +91,24 @@ AutoComplete.prototype.moveUp = function AutoComplete_moveUp()
 //(Void) Move down in autocomplete
 AutoComplete.prototype.moveDown = function AutoComplete_moveDown()
 {
-	this.currentPosition++;
+	if (this.currentPosition < this.selection.length -1)
+		this.currentPosition++;
+}
+
+//(String)
+AutoComplete.prototype.replaceLastWordWithSelectedWord = function AutoComplete_replaceLastWordWithSelectedWord(textString)
+{
+	var lastSpacePosition = textString.lastIndexOf(' ');
+	
+	if (lastSpacePosition != -1)
+	{
+		textString = textString.substr(0, lastSpacePosition + 1);
+		textString += this.selection[this.currentPosition];
+	}
+	else
+	{
+		textString = this.selection[this.currentPosition];
+	}
+	
+	return textString;
 }
