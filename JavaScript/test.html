@@ -41,7 +41,7 @@
 		<script type="text/javascript" src="./javascript/TalkingRouter.js"></script>
 		<title>Testing</title>
 	</head>
-	<body>
+	<body onresize="resizeTextFields()">
 		<form method="post" onsubmit='sendMessage(talkingRouter);return false;'>
 			<div style="overflow:scroll;height:460px" id="conversation"></div>
 			<div>
@@ -53,20 +53,28 @@
 		
 		<script type="text/javascript">
 			<!--
+			function resizeTextFields()
+			{
+				if (is_ie)
+					conversationDom.style.height = document.documentElement.clientHeight - 232 + 'px';
+				else
+					conversationDom.style.height = self.innerHeight - 218 + 'px';
+			}
+			
 			var humanName = "human_dude";
 			var aiName = "ai_dude";
 			var inputField = document.getElementById('humanStatementField');
 			var autoCompleteDom = document.getElementById('autoComplete');
+			var conversationDom = document.getElementById('conversation');
 			inputField.focus();
 			inputField.onkeyup = keyUpHandling;
-			inputField.onkeydown = keyDownHandling;
-			
+			inputField.onkeydown = keyDownHandling;		
+			resizeTextFields();
 			var talkingRouter = new TalkingRouter(humanName, aiName);
 			
 			//Send message to Ai
 			function sendMessage(talkingRouter)
 			{
-				var conversationDom = document.getElementById('conversation');
 				var humanStatementField = document.getElementById('humanStatementField');
 				var humanStatement = humanStatementField.value;
 				
@@ -199,6 +207,7 @@
 					return false;
 				}
 			}
+			
 			-->
 		</script>
 	</body>
