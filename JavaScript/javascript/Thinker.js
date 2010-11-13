@@ -26,6 +26,17 @@ Thinker.prototype.getTheory = function Thinker_getTheory()
 	while (this.ignoreList.length > this.maxIgnoreListLength)
 		this.ignoreList.splice(0,1);
 		
+	var bestTheory = this._getTheory();
+	
+	if (bestTheory != null)
+		this.ignoreList.push(bestTheory.getUniqueKey());
+	
+	return bestTheory;
+}
+
+//(Theory)
+Thinker.prototype._getTheory = function Thinker__getTheory()
+{
 	var bestTheory = null;
 	for (var counter = 0; counter < this.maxRandomConceptTheorySamplingSize; counter++)
 	{
@@ -39,11 +50,7 @@ Thinker.prototype.getTheory = function Thinker_getTheory()
 				bestTheory = theory;
 			}
 		}
-	}
-	
-	if (bestTheory != null)
-		this.ignoreList.push(bestTheory.getUniqueKey());
-	
+	}	
 	return bestTheory;
 }
 

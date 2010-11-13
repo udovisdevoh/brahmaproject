@@ -173,7 +173,7 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			this.renderFromPreRecursiveOperator(subject, verb, this.instinct.partof, implicitBranch);
 			
 			//Render stuff as if [me] madeby [mom] then [me] from [mom]
-			this.renderFromCopyFromOperator(subject, verb, this.instinct.madeby, implicitBranch);
+			//this.renderFromCopyFromOperator(subject, verb, this.instinct.madeby, implicitBranch);	//creates bug, produces stuff like: you make lifeform, therefore you originof frog
 		}
 		else if (verb == this.instinct.originof)
 		{
@@ -181,7 +181,7 @@ Flattenizer.prototype.flattenBranch = function Flattenizer_flattenBranch(implici
 			this.renderFromPostRecursiveOperator(subject, verb, this.instinct.madeof, implicitBranch);
 			
 			//Render stuff as if [mom] make [me] then [mom] originof [me]
-			this.renderFromCopyFromOperator(subject, verb, this.instinct.make, implicitBranch);
+			//this.renderFromCopyFromOperator(subject, verb, this.instinct.make, implicitBranch); //creates bug, produces stuff like: you make lifeform, therefore you originof frog
 		}
 		
 
