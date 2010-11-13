@@ -2,7 +2,7 @@
 function AskViewer(flattenizer, instinct, conceptNameMapper, firstSecondPersonManager)
 {
 	//Constants
-	this.maxIgnoreListLength = 50;
+	this.maxIgnoreListLength = 20;
 	
 	//Parts
 	this.instinct = instinct;
@@ -35,23 +35,16 @@ AskViewer.prototype.getRandomSubject = function AskViewer_getRandomSubject()
 AskViewer.prototype.askAbout = function AskViewer_askAbout(subject)
 {
 	var verb;
-	var timeOut = 0;
-	do
-	{
-		var methodId = Math.floor(Math.random() * 3);
-		if (methodId == 0)
-		{
-			verb = this.getLeastDocumentedVerbNotInIgnoreList(subject);
-		}
-		else if (methodId == 1)
-		{
-			verb = this.getRandomVerbNotInIgnoreList(subject);
-		}
-		else
-		{
-			verb = this.getMostAsymetricVerbNotInIgnoreList(subject);
-		}
-	} while (timeOut < 10 && !this.firstSecondPersonManager.isQuestionValidIfFirstOrSecondPerson(subject, verb));
+
+	verb = this.getLeastDocumentedVerbNotInIgnoreList(subject);
+	if (verb == null)
+		verb = this.getMostAsymetricVerbNotInIgnoreList(subject);
+	if (verb == null)
+		verb = this.getRandomVerbNotInIgnoreList(subject);
+	if (verb == null)
+		verb = this.instinct.verbList[Math.floor(Math.random() * this.instinct.verbList.length)];
+		
+	
 	
 	while (this.ignoreList.length > this.maxIgnoreListLength)
 		this.ignoreList.splice(0,1);
@@ -69,16 +62,17 @@ AskViewer.prototype.getRandomVerbNotInIgnoreList = function AskViewer_getRandomV
 	{
 		verb = this.instinct.verbList[Math.floor(Math.random() * this.instinct.verbList.length)];
 		limit++;
-	} while (limit < 10 && this.ignoreList.indexOf(subject + ' ' + verb) != -1);
+	} while (limit < 15 && (this.ignoreList.indexOf(subject + ' ' + verb) != -1 || !this.firstSecondPersonManager.isQuestionValidIfFirstOrSecondPerson(subject, verb)));
 	
 	return verb;
 }
 
 //(Concept)
+//Can be null
 AskViewer.prototype.getLeastDocumentedVerbNotInIgnoreList = function AskViewer_getLeastDocumentedVerbNotInIgnoreList(subject)
 {
 	var leastConnectionCount = -1;
-	var leastDocumentedVerb;
+	var leastDocumentedVerb = null;
 	
 	for (var index = 0; index < this.instinct.verbList.length; index++)
 	{
@@ -95,8 +89,11 @@ AskViewer.prototype.getLeastDocumentedVerbNotInIgnoreList = function AskViewer_g
 			
 			if ((leastConnectionCount == -1 || tautologicBranch.complementList.length < leastConnectionCount) && this.ignoreList.indexOf(subject + ' ' + verb) == -1)
 			{
-				leastConnectionCount = tautologicBranch.complementList.length;
-				leastDocumentedVerb = verb;
+				if (this.firstSecondPersonManager.isQuestionValidIfFirstOrSecondPerson(subject, verb))
+				{
+					leastConnectionCount = tautologicBranch.complementList.length;
+					leastDocumentedVerb = verb;
+				}
 			}
 		}
 	}
@@ -105,10 +102,11 @@ AskViewer.prototype.getLeastDocumentedVerbNotInIgnoreList = function AskViewer_g
 }
 
 //(Concept)
+//Can be null
 AskViewer.prototype.getMostAsymetricVerbNotInIgnoreList = function AskViewer_getMostAsymetricVerbNotInIgnoreList(subject)
 {
 	var mostConnectionCount = -1;
-	var mostAsymmetricVerb;
+	var mostAsymmetricVerb = null;
 	
 	for (var index = 0; index < this.instinct.verbList.length; index++)
 	{
@@ -127,8 +125,11 @@ AskViewer.prototype.getMostAsymetricVerbNotInIgnoreList = function AskViewer_get
 			{
 				if (verb.complementaryOperators.length > 0)
 				{
-					mostConnectionCount = tautologicBranch.complementList.length;
-					mostAsymmetricVerb = verb.complementaryOperators[0];
+					if (this.firstSecondPersonManager.isQuestionValidIfFirstOrSecondPerson(subject, verb))
+					{
+						mostConnectionCount = tautologicBranch.complementList.length;
+						mostAsymmetricVerb = verb.complementaryOperators[0];
+					}
 				}
 			}
 		}

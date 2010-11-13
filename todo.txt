@@ -13,7 +13,7 @@ click on concept: whatis concept
 
 
 
-shouldn't allow stuff like: pine isa pine (when it's a tautologic statement)
+conversation: must talk about immediate connection of you and me
 
 
 

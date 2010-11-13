@@ -22,6 +22,9 @@ function Concept(defaultConceptName)
 	//(Bool) Some operator cannot be applied to unique concepts like "you" and "me"
 	this.isVerbAllowedForUniqueSubject = true;
 	
+	//(Bool) Some operator cannot be used in AI question
+	this.isVerbAllowedForAiSubjectQuestion = true;
+	
 	//(Float) conceptDescriptionRelevance (how much a verb can be relevant to describe a concept)
 	this.conceptDescriptionRelevance = 0;
 }
