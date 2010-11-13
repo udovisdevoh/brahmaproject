@@ -3,13 +3,25 @@ must say, in a whatis look and feel, what you is madeof (with define (recursive)
 
 
 
-thinker: must add theories to complents too
-
 
 
 must think in background
 
 
+
+click on concept: whatis concept
+
+
+
+shouldn't allow stuff like: pine isa pine (when it's a tautologic statement)
+
+
+
+ask must not ask: smallerthan nor largerthan because it's annoying
+
+
+
+must not ask you/me partof what, because it makes no sense
 
 
 

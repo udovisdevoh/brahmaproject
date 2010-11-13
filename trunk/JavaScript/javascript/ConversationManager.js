@@ -40,7 +40,10 @@ ConversationManager.prototype.getHiddenHumanConversationInsentiveStatement = fun
 		if (theory.weight > (Math.random() * Math.random()))
 		//if (Math.floor(Math.random() * 2) == 0)
 		{
-			return 'thinkabout ' + theory.subject.toString();
+			if (this.thinker._getTheoryAbout(theory.subject) != null)
+				return 'thinkabout ' + theory.subject.toString();
+			else
+				return 'thinkabout ' + theory.complement.toString();
 		}
 	}
 

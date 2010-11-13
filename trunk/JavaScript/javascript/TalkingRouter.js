@@ -253,6 +253,9 @@ TalkingRouter.prototype.talkToStatement = function TalkingRouter_talkToStatement
 	var objectionStatement = null;
 	var wasPositive = this.flattenizer.testConnection(subject, verb, complement);
 	
+	if (!wasPositive && isPositive && !isQuestion && subject == complement && (verb == this.instinct.isa || verb == this.instinct.someare || verb == this.instinct.madeof || verb == this.instinct.partof))
+		return "this is tautologic";
+	
 	if (isPositive != wasPositive && !isQuestion)
 	{
 		if (isPositive)
