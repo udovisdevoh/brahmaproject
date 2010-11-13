@@ -6,7 +6,6 @@ function AutoComplete(conceptNameMapper)
 	this.currentPosition = 0;
 	this.isVisible = false;
 	this.selection = Array(); //List of words
-	this.specialKeyWords = Array('whatis','what','not','and','define','which');
 }
 
 //(String) get stub of last word
