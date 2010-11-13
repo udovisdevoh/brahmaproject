@@ -186,10 +186,13 @@
 						autoCompleteDom.style.visibility = 'hidden';
 						inputField.value = talkingRouter.autoComplete.replaceLastWordWithSelectedWord(inputField.value);
 						
-						if (unicode == 32)
+						if (unicode == 32)//space
 							inputField.value += ' ';
-						
-						return false;
+
+						if (unicode == 13 && talkingRouter.autoComplete.isCompleteStatement(inputField.value))//enter
+							return true;//don't cancel enter button, send message to ai
+							
+						return false; //cancel enter button
 					}
 				}
 			}
