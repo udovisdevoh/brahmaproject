@@ -132,7 +132,7 @@
 				{			
 					if (talkingRouter.autoComplete.isVisible)
 					{
-						talkingRouter.autoComplete.moveUp();
+						talkingRouter.autoComplete.moveUp(autoCompleteDom);
 					}
 					else
 					{
@@ -157,7 +157,7 @@
 						if (rememberedStatement != null)
 						{
 							inputField.value = rememberedStatement;
-							talkingRouter.history.moveDown(autoCompleteDom);
+							talkingRouter.history.moveDown();
 						}
 					}
 					return false;
