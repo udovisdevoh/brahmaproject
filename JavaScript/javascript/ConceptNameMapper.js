@@ -10,6 +10,9 @@ function ConceptNameMapper()
 	//(Array) List of concepts
 	this.conceptList = Array();
 	
+	//(Array) List of all possible names (concepts and special keywords
+	this.allNames = Array('you','me','start','stop','think','ask','teach','talk','yes','no','whatis','define','thinkabout','askabout','teachabout','what','not','talkabout','which','alias','unalias','rename','why','how','and');
+	
 	//(TautologyManager)
 	this.tautologyManager = new TautologyManager();
 }
@@ -24,7 +27,11 @@ ConceptNameMapper.prototype.getConcept = function ConceptNameMapper_getConcept(c
 	{
 		concept = new Concept(conceptName);
 		this.mapNameToConcept.setItem(conceptName, concept);
-		this.mapNameToConcept.keys.sort();
+		if (this.allNames.indexOf(conceptName) == -1);
+		{
+			this.allNames.push(conceptName);
+			this.allNames.sort();
+		}
 		
 		var conceptNameList = Array();
 		conceptNameList.push(conceptName);
@@ -132,7 +139,11 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	}
 	
 	this.mapNameToConcept.setItem(conceptName2, concept1);
-	this.mapNameToConcept.keys.sort();
+	if (this.allNames.indexOf(conceptName2) == -1);
+	{
+		this.allNames.push(conceptName2);
+		this.allNames.sort();
+	}
 	
 	var nameList = new Array();
 	nameList.push(conceptName2);
@@ -196,7 +207,11 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	}
 	
 	this.mapNameToConcept.setItem(conceptName2, concept2);
-	this.mapNameToConcept.keys.sort();
+	if (this.allNames.indexOf(conceptName2) == -1);
+	{
+		this.allNames.push(conceptName2);
+		this.allNames.sort();
+	}
 	
 	var nameList = Array();
 	nameList.push(conceptName2);
@@ -216,7 +231,13 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 	var concept2 = this.getConcept(conceptName2);
 	
 	this.mapNameToConcept.removeItem(conceptName1);
-	this.mapNameToConcept.keys.sort();
+	
+	var positionOfConceptNameOne = this.allNames.indexOf(conceptName1);
+	if (positionOfConceptNameOne != -1);
+	{
+		this.allNames.slice(positionOfConceptNameOne, 1);
+		this.allNames.sort();
+	}
 	
 	var nameList = this.mapConceptToName.getItem(concept2);
 	

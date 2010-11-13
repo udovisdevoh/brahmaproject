@@ -6,6 +6,7 @@ function AutoComplete(conceptNameMapper)
 	this.currentPosition = 0;
 	this.isVisible = false;
 	this.selection = Array(); //List of words
+	this.specialKeyWords = Array('whatis','what','not','and','define','which');
 }
 
 //(String) get stub of last word
@@ -28,16 +29,16 @@ AutoComplete.prototype.getWordList = function AutoComplete_getWordList(wordStub)
 {
 	this.currentPosition = 0;
 	
-	var startPosition = this.getFirstWordPositionStartWith(wordStub, this.conceptNameMapper.mapNameToConcept.keys, 0, this.conceptNameMapper.mapNameToConcept.keys.length - 1);
+	var startPosition = this.getFirstWordPositionStartWith(wordStub, this.conceptNameMapper.allNames, 0, this.conceptNameMapper.allNames.length - 1);
 
 	if (startPosition == -1)
 		return null;
 	
 	this.selection = Array();
 	
-	for (var index = startPosition; index < this.conceptNameMapper.mapNameToConcept.keys.length; index++)
+	for (var index = startPosition; index < this.conceptNameMapper.allNames.length; index++)
 	{
-		var name = this.conceptNameMapper.mapNameToConcept.keys[index];
+		var name = this.conceptNameMapper.allNames[index];
 		if (name.startsWith(wordStub))
 		{
 			this.selection.push(name);
@@ -82,17 +83,29 @@ AutoComplete.prototype.getFirstWordPositionStartWith = function AutoComplete_get
 }
 
 //(Void) Move up in autocomplete
-AutoComplete.prototype.moveUp = function AutoComplete_moveUp()
+AutoComplete.prototype.moveUp = function AutoComplete_moveUp(autoCompleteDom)
 {
+	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("class","");
+	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("className","");
+	
 	if (this.currentPosition > 0)
 		this.currentPosition--;
+	
+	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("class","Selected");	
+	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("className","Selected");
 }
 
 //(Void) Move down in autocomplete
-AutoComplete.prototype.moveDown = function AutoComplete_moveDown()
+AutoComplete.prototype.moveDown = function AutoComplete_moveDown(autoCompleteDom)
 {
+	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("class","");
+	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("className","");
+
 	if (this.currentPosition < this.selection.length -1)
 		this.currentPosition++;
+	
+	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("class","Selected");	
+	document.getElementById('autoCompleteWord_' + this.currentPosition).setAttribute("className","Selected");
 }
 
 //(String)
