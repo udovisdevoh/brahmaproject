@@ -1,14 +1,21 @@
+autocomplete: if press enter and no further words needed, send message
+
+
+
+
 when asking stuff like: "you madeof what",
 must say, in a whatis look and feel, what you is madeof (with define (recursive) content)
 
 
 
+thinker: must add theories to complents too
 
-add
-{
-	start
-	stop
-}
+
+
+must think in background
+
+
+
 
 
 theory viewer: specific formatting for each operator
@@ -18,6 +25,16 @@ theory viewer: specific formatting for each operator
 }
 
 
+
+
+
+Since you 12% similar to universite_de_montreal, does you madeof human too?
+human 40% similar to universite_de_montreal, does human madeof you too?
+me 3% similar to cyberspace, does me madeof artificial_intelligence too?
+internet 35% similar to program, does internet someare web_site too?
+{
+	isa unlikely madeof
+}
 
 
 
