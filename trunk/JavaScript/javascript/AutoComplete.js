@@ -138,6 +138,26 @@ AutoComplete.prototype.moveDown = function AutoComplete_moveDown(autoCompleteDom
 	}
 }
 
+//(Void) Move to element Id in autocomplete
+AutoComplete.prototype.moveTo = function AutoComplete_moveTo(autoCompleteDom, newPositionId)
+{
+	if (newPositionId >= 0 && newPositionId <= this.selection.length -1)
+	{
+		var selectedElement;
+		var selectedElement = document.getElementById('autoCompleteWord_' + this.currentPosition);
+		selectedElement.setAttribute("class","");
+		selectedElement.setAttribute("className","");
+		
+		this.currentPosition = newPositionId;
+		
+		selectedElement = document.getElementById('autoCompleteWord_' + this.currentPosition);
+		selectedElement.setAttribute("class","Selected");	
+		selectedElement.setAttribute("className","Selected");
+		
+		autoCompleteDom.scrollTop = selectedElement.offsetTop - this.halfHeightOfWidget;
+	}
+}
+
 //(String)
 AutoComplete.prototype.replaceLastWordWithSelectedWord = function AutoComplete_replaceLastWordWithSelectedWord(textString)
 {
@@ -154,6 +174,16 @@ AutoComplete.prototype.replaceLastWordWithSelectedWord = function AutoComplete_r
 	}
 	
 	return textString;
+}
+
+//(Void)
+//Add view (dom) element to autocomplete
+AutoComplete.prototype.addViewElement = function AutoComplete_addViewElement(autoCompleteDom, wordIndex, wordName, isSelected)
+{
+	if (isSelected)		
+		autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '" class="Selected" onclick="autoCompleteClick(' + wordIndex + ')" ondblclick="autoCompleteDoubleClick()">' + wordName + '</div>';
+	else
+		autoCompleteDom.innerHTML += '<div id="autoCompleteWord_' + wordIndex + '" onclick="autoCompleteClick(' + wordIndex + ')" ondblclick="autoCompleteDoubleClick()">' + wordName + '</div>';
 }
 
 //(String)
