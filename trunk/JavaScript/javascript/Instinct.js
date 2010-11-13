@@ -31,6 +31,8 @@ function Instinct(complementaryOperatorManager)
 	
 	//Some operator cannot be applied to unique concepts like "you" and "me"
 	this.someare.isVerbAllowedForUniqueSubject = false;
+	this.partof.isVerbAllowedForUniqueSubject = false;
+	this.like.isVerbAllowedForAiSubjectQuestion = false;
 	
 	//We set the relevence of operators when it gets to describing concepts
 	this.isa.conceptDescriptionRelevance = 1.0;
@@ -55,12 +57,13 @@ function Instinct(complementaryOperatorManager)
 	this.verbList = new Array(
 	this.isa,
 	this.madeof,
+	this.someare,
+	this.madeby,
+	this.make,
+	this.like,
 	this.from,
 	this.partof,
-	this.madeby,
 	this.contradict,
-	this.someare,
-	this.make,
 	this.help,
 	this.originof,
 	this.helpedby,
@@ -68,7 +71,6 @@ function Instinct(complementaryOperatorManager)
 	this.smallerthan,
 	this.destroyedby,
 	this.destroy,
-	this.like,
 	this.likedby
 	);
 	

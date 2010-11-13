@@ -76,9 +76,16 @@ FirstSecondPersonManager.prototype.isTheoryValidIfFirstOrSecondPerson = function
 //for instance: "maybe me someare pine" is not a valid theory because someare cannot be applied to unique concepts
 FirstSecondPersonManager.prototype.isQuestionValidIfFirstOrSecondPerson = function FirstSecondPersonManager_isQuestionValidIfFirstOrSecondPerson(subject, verb)
 {
+	if (verb == null)
+		return false;
+	
 	if (subject.toString() == this.humanName || subject.toString() == this.aiName)
 	{
 		if (!verb.isVerbAllowedForUniqueSubject)
+		{
+			return false;
+		}
+		else if (!verb.isVerbAllowedForAiSubjectQuestion && subject.toString() == this.aiName)
 		{
 			return false;
 		}
