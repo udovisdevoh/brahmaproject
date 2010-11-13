@@ -26,6 +26,7 @@ function TalkingRouter(humanName, aiName)
 	this.humanStatementSplitter = new HumanStatementSplitter(this.instinct, this.conceptNameMapper);
 	this.humanStatementColorizer = new HumanStatementColorizer(this.instinct, this.conceptNameMapper);
 	this.history = new History();
+	this.conversationManager = new ConversationManager();
 	this.autoComplete = new AutoComplete(this.flattenizer, this.conceptNameMapper, this.proofCache);
 	this.io = Array();//['input']: human's input, ['output']: ai's output
 	this.latestTheory = null;//Latest theory postulated by Ai
@@ -41,6 +42,15 @@ TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 	var statementList = this.humanStatementSplitter.split(statementString);
 	var output = "";
 	var input = "";
+	
+	if (this.conversationManager.isStarted || statementString == 'start')
+	{
+		var hiddenHumanConversationInsentiveStatement = this.conversationManager.getHiddenHumanConversationInsentiveStatement();
+		var contextFreeHumanStatement = this.firstSecondPersonManager.formatHumanInput(hiddenHumanConversationInsentiveStatement);
+		var contextFreeAiStatement = this.talkToContextFree(contextFreeHumanStatement);
+		output += this.firstSecondPersonManager.formatAiOutput(contextFreeAiStatement) + '<br />';
+	}
+	
 	for (var index = 0; index < statementList.length; index++)
 	{
 		var subStatement = statementList[index];
@@ -82,11 +92,13 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 	{
 		if (wordList[0] == 'start')
 		{
-			return this.talkToStart();
+			this.conversationManager.isStarted = true;
+			return 'type stop to end conversation';
 		}
 		else if (wordList[0] == 'stop')
 		{
-			return this.talkToStop();
+			this.conversationManager.isStarted = false;
+			return 'ok';
 		}
 		else if (wordList[0] == 'think')
 		{
