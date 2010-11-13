@@ -360,6 +360,18 @@ TalkingRouter.prototype.talkToAskAbout = function TalkingRouter_talkToAskAbout(s
 }
 
 //(String (HTML))
+TalkingRouter.prototype.talkToTalk = function TalkingRouter_talkToTalk()
+{
+	var randomBehavior = Math.floor(Math.random() * 3);
+	if (randomBehavior == 0)
+		return this.talkToAsk();
+	else if (randomBehavior == 1)
+		return this.talkToTeach();
+	else if (randomBehavior == 2)
+		return this.talkToThink();
+}
+
+//(String (HTML))
 TalkingRouter.prototype.talkToAsk = function TalkingRouter_talkToAsk()
 {
 	var subject = this.askViewer.getRandomSubject();

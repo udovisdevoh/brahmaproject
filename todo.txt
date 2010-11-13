@@ -6,8 +6,6 @@ must say, in a whatis look and feel, what you is madeof (with define (recursive)
 
 add
 {
-	talk
-	talkabout
 	start
 	stop
 }
