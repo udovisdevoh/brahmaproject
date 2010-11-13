@@ -10,6 +10,8 @@ function AutoComplete(flattenizer, conceptNameMapper, proofCache)
 	this.selection = Array(); //List of words
 	this.selectionWithReferenceConcept = Array(); //List of words with reference concepts
 	this.paranthesesConceptCache = new Hash(); //list of reference concept, for instance: race (contest) [key: race, value: contest]
+	this.singleWordList = Array('start','stop','think','ask','teach','talk','yes','no');
+	this.doubleWordList = Array('whatis','define','thinkabout','askabout','teachabout','talkabout');
 	this.halfHeightOfWidget = 68;
 }
 
@@ -213,6 +215,20 @@ AutoComplete.prototype.getWordWithReference = function AutoComplete_getWordWithR
 	}
 	
 	return conceptName;
+}
+
+//(Bool)
+//whether statement is certainly complete
+AutoComplete.prototype.isCompleteStatement = function AutoComplete_isCompleteStatement(textStatement)
+{
+	if (this.singleWordList.indexOf(textStatement) != -1)
+		return true;
+	
+	for (var index = 0; index < this.doubleWordList.length; index++)
+		if (textStatement.startsWith(this.doubleWordList[index] + ' ') && textStatement[textStatement.length - 1] != ' ')
+			return true;
+	
+	return false;
 }
 
 //(Concept)
