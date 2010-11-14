@@ -11,5 +11,5 @@ class UserProfile extends Model
 	private $last_name;
 	private $is_active;
 	private $user_profile_id;
-)
+}
 ?>
