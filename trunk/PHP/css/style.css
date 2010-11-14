@@ -1,7 +1,7 @@
 body
 {
 	font:12px Verdana, Geneva, sans-serif;
-	background-color:#52327a;
+	background-color:#FFF;
 	background-image:url('../images/gradientbackground.png');
 	background-repeat:repeat-x;
 	background-position:top;
@@ -19,26 +19,75 @@ a:hover
 
 ul.Menu
 {
-	height:32px;
-	background-image:url('../images/menubackground.png');
-	background-repeat:repeat-x;
+	list-style-type:none;
 }
 
 ul.Menu li
 {
-	display:inline;
-	height:32px;
-	line-height:32px;
+	display:block;
+	float:left;
+	line-height:26px;
 }
 
 ul.Menu li a
 {
+	z-index:1;
+	position:relative;
+	-moz-border-radius-topleft:10px;
+	-webkit-border-top-left-radius:10px;
+	-moz-border-radius-topright:10px;
+	-webkit-border-top-right-radius:10px;
+	border-radius: 10px 10px 0px 0px;
+	
+	border-color:#FFF #888 #FFF #FFF;
+	border-style:solid;
+	border-width:1px;
+	border-bottom-width:0;
+	
+	-webkit-box-shadow: -1px -3px 3px #888;
+	-moz-box-shadow: -1px -3px 3px #888;
+	box-shadow: -1px -3px 3px #888;
+	
 	color:#000;
-	font-weight:bold;
-	padding:0px 5px;
+	/*font-weight:bold;*/
+	padding:5px;
+	
+	background-color:#FFF;
+	text-decoration:none;
+	
+	background:-webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFF),
+		color-stop(1, #fef5e0)
+	);
+	background:-moz-linear-gradient(
+		center top,
+		#FFF 0%,
+		#fef5e0 100%
+	);
+
 }
 
 ul.Menu li a:hover
 {
-	color:#444;
+	color:#00F;
+	
+	-webkit-box-shadow: -1px -6px 6px #FFF;
+	-moz-box-shadow: -1px -6px 6px #FFF;
+	box-shadow: -1px -6px 6px #FFF;
+	
+	background:-webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFF),
+		color-stop(1, #e0e7fe)
+	);
+	background:-moz-linear-gradient(
+		center top,
+		#FFF 0%,
+		#e0e7fe 100%
+	);
 }
