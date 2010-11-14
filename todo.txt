@@ -11,6 +11,20 @@ click on concept: whatis concept
 
 
 
+battles
+{
+	ai fight one other,
+	
+	for n turns
+		ai1 tells someting to virtual ai2
+		
+	for n turns
+		ai2 tells someting to virtual ai1
+		
+	victorious is the one that converted the virtual one to be the most like himself
+}
+
+
 
 thinker: find closest brother: isa must be much more important than make
 OR
