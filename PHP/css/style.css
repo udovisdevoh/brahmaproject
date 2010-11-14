@@ -140,6 +140,12 @@ ul.BotList li
 	border-color:#888;
 	border-style:solid;
 	border-width:1px;
-	
+}
 
+.SigninForm
+{
+	float:left;
+	height:80px;
+	width:220px;
+	margin:10px;
 }

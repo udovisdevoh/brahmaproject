@@ -16,9 +16,6 @@
 	<li>
 		<a href="createaccount.php">Create account</a>
 	</li>
-	<li>
-		<a href="signin.php">Sign in</a>
-	</li>
 	<?php endif ?>
 	<li>
 		<a href="description.php">Project description</a>
