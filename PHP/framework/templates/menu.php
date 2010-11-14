@@ -3,10 +3,10 @@
 		<a href="chat.php">Chat with Brahma</a>
 	</li>
 	<li>
-		<a href="bot.php">Chat with a bot</a>
+		<a href="createbot.php">Create your bot</a>
 	</li>
 	<li>
-		<a href="create.php">Create your bot</a>
+		<a href="bot.php">Find a bot</a>
 	</li>
 	<?php if (isset($isLogged) && $isLogged):?>
 	<li>
@@ -24,3 +24,4 @@
 		<a href="howto.php">How to</a>
 	</li>
 </ul>
+<div style="clear:both"></div>
