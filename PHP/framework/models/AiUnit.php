@@ -10,10 +10,9 @@ class AiUnit extends Model
 	private $rating;
 	private $user_profile_id;
 	
-	public static function getTopRatedList($count)
+	public static function getTopRatedList($offset, $limit)
 	{
-		$topRatedList = Array();
-		return $topRatedList;
+		return parent::getObjectList('ai_unit', null, 'rating DESC', $offset, $limit);
 	}
 }
 ?>

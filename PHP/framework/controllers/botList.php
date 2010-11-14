@@ -1,5 +1,7 @@
 <?php
 require_once("./framework/models/AiUnit.php");
 
-$aiUnitList = AiUnit::getTopRatedList(20);
+$offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
+
+$aiUnitList = AiUnit::getTopRatedList($offset, 20);
 ?>
