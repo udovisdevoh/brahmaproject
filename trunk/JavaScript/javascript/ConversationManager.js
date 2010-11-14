@@ -77,11 +77,9 @@ ConversationManager.prototype.getHiddenHumanConversationInsentiveStatement = fun
 	return 'ask';
 }
 
-//(Concept) least document concept related to human or ai
+//(Concept) concept related to human or ai
 ConversationManager.prototype._getRelatedConcept = function ConversationManager__getRelatedConcept(human, ai)
 {
-	//todo: get least documented related concept
-	
 	var relatedConceptList = Array();
 	this._populateRelatedConceptList(human, relatedConceptList);
 	this._populateRelatedConceptList(ai, relatedConceptList);
@@ -98,27 +96,6 @@ ConversationManager.prototype._getRelatedConcept = function ConversationManager_
 		return null;
 		
 	return relatedConceptList[Math.floor(Math.random() * relatedConceptList.length)];
-	/*var leastConnectionCount = -1;
-	var leastDocumentedConcept = null;
-	for (var index = 0; index < relatedConceptList.length; index++)
-	{
-		var concept = relatedConceptList[index];
-		if (concept != human && concept != ai)
-		{
-			var connectionCount = this._getConnectionCount(concept);
-			
-			if (connectionCount == 0)
-				return concept;
-			
-			if (leastConnectionCount == -1 || connectionCount < leastConnectionCount)
-			{
-				leastConnectionCount = connectionCount;
-				leastDocumentedConcept = concept;
-			}
-		}
-	}
-	
-	return leastDocumentedConcept;*/
 }
 
 //(Concept) least document concept related to human or ai
@@ -142,23 +119,3 @@ ConversationManager.prototype._populateRelatedConceptList = function Conversatio
 		}
 	}
 }
-
-//(Int) how many direct connections
-/*ConversationManager.prototype._getConnectionCount = function ConversationManager__getConnectionCount(subject)
-{
-	var count = 0;
-	
-	for (var index = 0; index < this.instinct.verbList.length; index++)
-	{
-		var verb = this.instinct.verbList[index];
-		var implicitBranch = subject.getImplicitBranch(verb);
-		if (!implicitBranch.isFlat)
-			if (!implicitBranch.isLocked)
-				this.flattenizer.flattenBranch(implicitBranch, subject, verb);					
-		var tautologicBranch = subject.getTautologicBranch(verb);
-		
-		count += tautologicBranch.complementList.length
-	}
-	
-	return count;
-}*/
