@@ -133,10 +133,5 @@ ul.BotList li
 	border-style:solid;
 	border-width:1px;
 	
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	border-radius: 10px 10px 10px 10px;
-	
-	background:-moz-radial-gradient(43% 40% 360deg,ellipse closest-corner, #FFF, #DDD);
-	background:-webkit-gradient(radial, 206 118, 29, 206 206, 221, from(#FFFFFF), to(#DDDDDD));
+
 }
