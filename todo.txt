@@ -21,6 +21,9 @@ OR
 make must nut muct make
 
 
+reduce padding of conversation window: more like VS2008
+
+
 
 ask must not ask: smallerthan nor largerthan because it's annoying
 
