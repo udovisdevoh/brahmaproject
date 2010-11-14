@@ -52,7 +52,7 @@ ul.Menu li a
 	/*font-weight:bold;*/
 	padding:5px;
 	
-	background-color:#FFF;
+	background-color:#fef5e0;
 	text-decoration:none;
 	
 	background:-webkit-gradient(
@@ -78,6 +78,7 @@ ul.Menu li a:hover
 	-moz-box-shadow: -1px -6px 6px #FFF;
 	box-shadow: -1px -6px 6px #FFF;
 	
+	background-color:#e0e7fe;
 	background:-webkit-gradient(
 		linear,
 		left top,
