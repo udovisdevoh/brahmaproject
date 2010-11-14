@@ -21,7 +21,10 @@
 	</li>
 	<?php endif ?>
 	<li>
-		<a href="howto.php">How to</a>
+		<a href="description.php">Project description</a>
+	</li>
+	<li>
+		<a href="howto.php">How to use</a>
 	</li>
 </ul>
 <div style="clear:both"></div>
