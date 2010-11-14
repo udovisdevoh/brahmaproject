@@ -21,12 +21,12 @@ p
 
 a
 {
-	color:#97d4df;
+	color:#00F;
 }
 
 a:hover
 {
-	color:#FFF;
+	color:#698bf9;
 }
 
 ul.Menu
@@ -39,6 +39,7 @@ ul.Menu li
 	display:block;
 	float:left;
 	line-height:26px;
+	white-space:nowrap;
 }
 
 ul.Menu li a
@@ -118,4 +119,24 @@ div.Header
 {
 	margin-top:15px;
 	float:left;
+}
+
+ul.BotList li
+{
+	background-color:#EEE;
+	width:290px;
+	min-height:50px;
+	padding:10px;
+	margin:5px;
+	
+	border-color:#888;
+	border-style:solid;
+	border-width:1px;
+	
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius: 10px 10px 10px 10px;
+	
+	background:-moz-radial-gradient(43% 40% 360deg,ellipse closest-corner, #FFF, #DDD);
+	background:-webkit-gradient(radial, 206 118, 29, 206 206, 221, from(#FFFFFF), to(#DDDDDD));
 }
