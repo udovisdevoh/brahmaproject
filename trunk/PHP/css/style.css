@@ -121,6 +121,13 @@ div.Header
 	float:left;
 }
 
+.Copyright
+{
+	font-size:10px;
+	margin-right:auto;
+	margin-left:auto;
+}
+
 ul.BotList li
 {
 	background-color:#EEE;
