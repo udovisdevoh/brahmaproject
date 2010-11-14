@@ -81,8 +81,8 @@
 				
 				var inputAndOutput = talkingRouter.talkTo(humanStatement);
 				
-				conversationDom.innerHTML += humanName + ": " + inputAndOutput['input'] + '<br />';
-				conversationDom.innerHTML += aiName + ": " + inputAndOutput['output'] + '<br />';
+				conversationDom.innerHTML += '<div class="HumanBlock">' + humanName + ": " + inputAndOutput['input'] + '</div>';
+				conversationDom.innerHTML += '<div class="AiBlock">' + aiName + ": " + inputAndOutput['output'] + '</div>';
 				
 				conversationDom.scrollTop = conversationDom.scrollHeight;
 				humanStatementField.value = "";
