@@ -17,20 +17,30 @@ ConversationManager.prototype.getHiddenHumanConversationInsentiveStatement = fun
 {
 	var human = this.conceptNameMapper.getConcept(this.firstSecondPersonManager.humanName);
 	var ai = this.conceptNameMapper.getConcept(this.firstSecondPersonManager.aiName);
-
+	var relatedConcept;
+	
 	var theory = null;
-	if (Math.floor(Math.random() * 2) == 0)
+	
+	var topicId = Math.floor(Math.random() * 3);
+	if (topicId == 0)
 	{
 		theory = this.thinker._getTheoryAbout(human);
 		if (theory == null)
 			theory = this.thinker._getTheoryAbout(ai);	
 	}
-	else
+	else if (topicId == 1)
 	{
 		theory = this.thinker._getTheoryAbout(ai);
 		if (theory == null)
 			theory = this.thinker._getTheoryAbout(human);	
 	}
+	else if (topicId == 2)
+	{
+		relatedConcept = this._getRelatedConcept(human, ai);
+		if (relatedConcept != null)
+			theory = this.thinker._getTheoryAbout(relatedConcept);
+	}
+	
 	
 	if (theory == null)
 		theory = this.thinker._getTheory();
@@ -38,7 +48,6 @@ ConversationManager.prototype.getHiddenHumanConversationInsentiveStatement = fun
 	if (theory != null)
 	{
 		if (theory.weight > (Math.random() * Math.random()))
-		//if (Math.floor(Math.random() * 2) == 0)
 		{
 			if (this.thinker._getTheoryAbout(theory.subject) != null)
 				return 'thinkabout ' + theory.subject.toString();
@@ -48,33 +57,108 @@ ConversationManager.prototype.getHiddenHumanConversationInsentiveStatement = fun
 	}
 
 	
-	var topicId = Math.floor(Math.random() * 3);
-	var relatedConcept;
+	topicId = Math.floor(Math.random() * 3);
 	
 	if (topicId == 0)
 	{
 		return 'askabout me';
-	
-		/*relatedConcept = this.getRelatedConcept(human);
-		
-		if (relatedConcept == null || Math.floor(Math.random() * 2) == 0)
-			return 'askabout me';
-		else
-			return 'askabout ' + relatedConcept.toString();*/
 	}
 	else if (topicId == 1)
 	{
 		return 'askabout you';
-
-		/*relatedConcept = this.getRelatedConcept(ai);
-	
-		if (relatedConcept == null || Math.floor(Math.random() * 2) == 0)
-			return 'askabout you';
-		else
-			return 'askabout ' + relatedConcept.toString();*/
 	}
 	else if (topicId == 2)
 	{
-		return 'ask';
+		relatedConcept = this._getRelatedConcept(human, ai);
+		if (relatedConcept != null)
+			return 'askabout ' + relatedConcept.toString();
+	}
+	
+	return 'ask';
+}
+
+//(Concept) least document concept related to human or ai
+ConversationManager.prototype._getRelatedConcept = function ConversationManager__getRelatedConcept(human, ai)
+{
+	//todo: get least documented related concept
+	
+	var relatedConceptList = Array();
+	this._populateRelatedConceptList(human, relatedConceptList);
+	this._populateRelatedConceptList(ai, relatedConceptList);
+	
+	var positionOfHuman = relatedConceptList.indexOf(human);
+	if (positionOfHuman != -1)
+		relatedConceptList.splice(positionOfHuman,1);
+	
+	var positionOfAi = relatedConceptList.indexOf(ai);
+	if (positionOfAi != -1)
+		relatedConceptList.splice(positionOfAi,1);
+		
+	if (relatedConceptList.length <= 0)
+		return null;
+		
+	return relatedConceptList[Math.floor(Math.random() * relatedConceptList.length)];
+	/*var leastConnectionCount = -1;
+	var leastDocumentedConcept = null;
+	for (var index = 0; index < relatedConceptList.length; index++)
+	{
+		var concept = relatedConceptList[index];
+		if (concept != human && concept != ai)
+		{
+			var connectionCount = this._getConnectionCount(concept);
+			
+			if (connectionCount == 0)
+				return concept;
+			
+			if (leastConnectionCount == -1 || connectionCount < leastConnectionCount)
+			{
+				leastConnectionCount = connectionCount;
+				leastDocumentedConcept = concept;
+			}
+		}
+	}
+	
+	return leastDocumentedConcept;*/
+}
+
+//(Concept) least document concept related to human or ai
+ConversationManager.prototype._populateRelatedConceptList = function ConversationManager__populateRelatedConceptList(subject, relatedConceptList)
+{
+	for (var index = 0; index < this.instinct.verbList.length; index++)
+	{
+		var verb = this.instinct.verbList[index];
+		
+		var implicitBranch = subject.getImplicitBranch(verb);
+		if (!implicitBranch.isFlat)
+			if (!implicitBranch.isLocked)
+				this.flattenizer.flattenBranch(implicitBranch, subject, verb);					
+		var tautologicBranch = subject.getTautologicBranch(verb);
+		
+		for (var complementIndex = 0; complementIndex < tautologicBranch.complementList.length; complementIndex++)
+		{
+			var complement = tautologicBranch.complementList[complementIndex];
+			if (relatedConceptList.indexOf(complement) == -1)
+				relatedConceptList.push(complement);
+		}
 	}
 }
+
+//(Int) how many direct connections
+/*ConversationManager.prototype._getConnectionCount = function ConversationManager__getConnectionCount(subject)
+{
+	var count = 0;
+	
+	for (var index = 0; index < this.instinct.verbList.length; index++)
+	{
+		var verb = this.instinct.verbList[index];
+		var implicitBranch = subject.getImplicitBranch(verb);
+		if (!implicitBranch.isFlat)
+			if (!implicitBranch.isLocked)
+				this.flattenizer.flattenBranch(implicitBranch, subject, verb);					
+		var tautologicBranch = subject.getTautologicBranch(verb);
+		
+		count += tautologicBranch.complementList.length
+	}
+	
+	return count;
+}*/
