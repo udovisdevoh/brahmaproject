@@ -68,7 +68,11 @@ ConversationManager.prototype.getHiddenHumanConversationInsentiveStatement = fun
 	}
 	else if (topicId == 2)
 	{
-		relatedConcept = this._getRelatedConcept(human, ai);
+		if (Math.floor(Math.random() * 2) == 0)
+			relatedConcept = this._getRelatedConcept(human, human, ai);
+		else
+			relatedConcept = this._getRelatedConcept(ai, human, ai);
+			
 		if (relatedConcept != null)
 			return 'askabout ' + relatedConcept.toString();
 	}
@@ -76,12 +80,11 @@ ConversationManager.prototype.getHiddenHumanConversationInsentiveStatement = fun
 	return 'ask';
 }
 
-//(Concept) concept related to human or ai
-ConversationManager.prototype._getRelatedConcept = function ConversationManager__getRelatedConcept(human, ai)
+//(Concept) concept related to subject, but it must not be human nor ai
+ConversationManager.prototype._getRelatedConcept = function ConversationManager__getRelatedConcept(subject, human, ai)
 {
 	var relatedConceptList = Array();
-	this._populateRelatedConceptList(human, relatedConceptList);
-	this._populateRelatedConceptList(ai, relatedConceptList);
+	this._populateRelatedConceptList(subject, relatedConceptList);
 	
 	var positionOfHuman = relatedConceptList.indexOf(human);
 	if (positionOfHuman != -1)

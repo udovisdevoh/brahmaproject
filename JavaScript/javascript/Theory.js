@@ -67,7 +67,7 @@ Theory.prototype.toString = function Theory_toString()
 				this._stringRepresentation = 'Since ' + this.argumentString + ', ' + this._stringRepresentation;
 		}
 		
-		this._stringRepresentation = '<span class="Commented">//It must be true for everything that <span class="AiOperator">isa</span> <span class="AiConcept">' + this.subject.toString() + '</span><br/>' + this._stringRepresentation;
+		this._stringRepresentation += ' <span class="Commented">//It must be true for everything that <span class="AiOperator">isa</span> <span class="AiConcept">' + this.subject.toString() + '</span></span>';
 	}
 	
 	return this._stringRepresentation;
