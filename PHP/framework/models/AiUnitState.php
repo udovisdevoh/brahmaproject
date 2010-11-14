@@ -6,5 +6,5 @@ class AiUnitState extends Model
 	private $data;
 	private $modified;
 	private $ai_unit_id;
-)
+}
 ?>
