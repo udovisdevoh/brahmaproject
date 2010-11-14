@@ -7,6 +7,12 @@ body
 	background-position:top;
 }
 
+p
+{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
 a
 {
 	color:#97d4df;
@@ -78,6 +84,8 @@ ul.Menu li a:hover
 	-moz-box-shadow: -1px -6px 6px #FFF;
 	box-shadow: -1px -6px 6px #FFF;
 	
+	border-color:#E4E4E4 #888 #FFF #FFF;
+	
 	background-color:#e0e7fe;
 	background:-webkit-gradient(
 		linear,
@@ -91,4 +99,17 @@ ul.Menu li a:hover
 		#FFF 0%,
 		#e0e7fe 100%
 	);
+}
+
+img.SiteLogo
+{
+	float:left;
+	margin-bottom:-50px;
+}
+
+div.Header
+{
+	margin-top:50px;
+	margin-left:10px;
+	float:left;
 }
