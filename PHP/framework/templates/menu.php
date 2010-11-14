@@ -1,12 +1,12 @@
 <ul class="Menu">
 	<li>
-		<a href="chatwithbrahma.php">Chat with Brahma</a>
+		<a href="chat.php">Chat with Brahma</a>
 	</li>
 	<li>
-		<a href="viewavatars.php">Chat with a bot</a>
+		<a href="bot.php">Chat with a bot</a>
 	</li>
 	<li>
-		<a href="viewavatars.php">Create your bot</a>
+		<a href="create.php">Create your bot</a>
 	</li>
 	<?php if (isset($isLogged) && $isLogged):?>
 	<li>
@@ -20,4 +20,7 @@
 		<a href="signin.php">Sign in</a>
 	</li>
 	<?php endif ?>
+	<li>
+		<a href="howto.php">How to</a>
+	</li>
 </ul>
