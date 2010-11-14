@@ -3,7 +3,7 @@
 <div class="Header">
 	<h1>Collective Artificial Intelligence</h1>
 	<p>
-		Create a chat bot at your image and contribute to the Brahma Project.
+		Create your personal chat bot at your image and contribute to a centralized holistic intelligence.
 	</p>
 	<?php require_once("./framework/templates/menu.php"); ?>
 </div>
