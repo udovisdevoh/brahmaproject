@@ -21,7 +21,7 @@ ConversationManager.prototype.getHiddenHumanConversationInsentiveStatement = fun
 	
 	var theory = null;
 	
-	var topicId = Math.floor(Math.random() * 3);
+	var topicId = Math.floor(Math.random() * 4);
 	if (topicId == 0)
 	{
 		theory = this.thinker._getTheoryAbout(human);
@@ -40,9 +40,8 @@ ConversationManager.prototype.getHiddenHumanConversationInsentiveStatement = fun
 		if (relatedConcept != null)
 			theory = this.thinker._getTheoryAbout(relatedConcept);
 	}
-	
-	
-	if (theory == null)
+		
+	if (theory == null) //because no theory found or topicId == 3
 		theory = this.thinker._getTheory();
 		
 	if (theory != null)
