@@ -14,5 +14,9 @@ class AiUnit extends Model
 	{
 		return parent::getObjectList('ai_unit', null, 'rating DESC', $offset, $limit);
 	}
+	public static function getAiUnit($where)
+	{
+		return parent::getObject('ai_unit', $where);
+	}
 }
 ?>

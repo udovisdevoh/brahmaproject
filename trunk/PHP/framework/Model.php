@@ -38,5 +38,29 @@ abstract class Model
 		
 		return $sqlRowList;
 	}
+	
+	public static function getObject($tableName = null, $where = null)
+	{
+		if ($tableName == null)
+			throw new Exception('Table name cannot be null');
+		
+		$sqlExpression = 'SELECT * FROM '.$tableName;
+		
+		if ($where != null)
+			$sqlExpression .= ' WHERE '.$where;
+			
+		$sqlExpression .= ' LIMIT 1';
+		
+
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		$query = mysql_query($sqlExpression);
+		$sqlRow = mysql_fetch_array($query);
+		
+		mysql_close($link);
+		
+		return $sqlRow;
+	}
 }
 ?>
