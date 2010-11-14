@@ -37,11 +37,11 @@ function Instinct(complementaryOperatorManager)
 	//We set the relevence of operators when it gets to describing concepts
 	this.isa.conceptDescriptionRelevance = 1.0;
 	this.madeof.conceptDescriptionRelevance = 0.75;
-	this.make.conceptDescriptionRelevance = 0.5;
 	this.help.conceptDescriptionRelevance = 0.33;
 	this.helpedby.conceptDescriptionRelevance = 0.33;
 	this.contradict.conceptDescriptionRelevance = 0.33;
 	this.like.conceptDescriptionRelevance = 0.33;
+	this.make.conceptDescriptionRelevance = 0.2;
 	this.from.conceptDescriptionRelevance = 0.2;
 	this.partof.conceptDescriptionRelevance = 0.2;
 	this.madeby.conceptDescriptionRelevance = 0.2;

@@ -2,7 +2,7 @@
 function AskViewer(flattenizer, instinct, conceptNameMapper, firstSecondPersonManager)
 {
 	//Constants
-	this.maxIgnoreListLength = 50;
+	this.maxIgnoreListLength = 15;
 	
 	//Parts
 	this.instinct = instinct;

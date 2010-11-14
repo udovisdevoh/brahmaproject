@@ -227,7 +227,10 @@ AutoComplete.prototype.isCompleteStatement = function AutoComplete_isCompleteSta
 	for (var index = 0; index < this.doubleWordList.length; index++)
 		if (textStatement.startsWith(this.doubleWordList[index] + ' ') && textStatement[textStatement.length - 1] != ' ')
 			return true;
-	
+		
+	if (textStatement.substr(textStatement.length - 5, 5) == " what")
+		return true;
+			
 	return false;
 }
 
