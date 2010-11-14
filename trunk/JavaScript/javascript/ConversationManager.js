@@ -119,3 +119,11 @@ ConversationManager.prototype._populateRelatedConceptList = function Conversatio
 		}
 	}
 }
+
+//(Bool)
+//Whether statement is a punctuated request for conversational element
+ConversationManager.prototype.isConversationRequest = function ConversationManager_isConversationRequest(statement)
+{
+	if (statement == "ask" || statement.startsWith("askabout ") || statement == "think" || statement.startsWith("thinkabout ") || statement == "talk" || statement.startsWith("talkabout ") || statement == "teach" || statement.startsWith("teachabout "))
+		return false;
+}

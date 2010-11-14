@@ -22,6 +22,16 @@
 	color: #808000;
 }
 
+#conversation .Commented
+{
+	color:#008000;
+}
+
+#conversation .Commented .AiConcept, #conversation .Commented .AiOperator
+{
+	color:inherit;
+}
+
 #conversation .HumanOperator
 {
 	color: #ff8c00;

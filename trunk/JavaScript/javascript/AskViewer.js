@@ -44,11 +44,16 @@ AskViewer.prototype.askAbout = function AskViewer_askAbout(subject)
 	if (verb == null)
 		verb = this.instinct.verbList[Math.floor(Math.random() * this.instinct.verbList.length)];
 		
-	
-	
+		
 	while (this.ignoreList.length > this.maxIgnoreListLength)
 		this.ignoreList.splice(0,1);
-	var question = '<span class="AiConcept">' + subject + '</span> <span class="AiOperator">' + verb + '</span> what?';
+	
+	var question = '<span class="AiConcept">' + subject.toString() + '</span> <span class="AiOperator">' + verb.toString() + '</span> what?';
+	
+	if (subject.toString() != this.firstSecondPersonManager.aiName && subject.toString() != this.firstSecondPersonManager.humanName)
+		question += ' <span class="Commented">//It must be true for everything that <span class="AiOperator">isa</span> <span class="AiConcept">' + subject.toString() + '</span>';
+
+	
 	this.ignoreList.push(subject + ' ' + verb);
 	return question;
 }
