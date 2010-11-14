@@ -72,3 +72,20 @@
 	border-width:1px;
 	border-color:#f5db95;
 }
+
+#conversation div.HumanBlock
+{
+	margin: 12px 0px;
+	background-color:#f7f9ef;
+	/*background:-webkit-gradient(linear, left bottom, left top, color-stop(0.4, #FFF), color-stop(0.5, #f7f9ef), color-stop(1, #FFF));
+	background:-moz-linear-gradient(center bottom, #FFF 40%, #f7f9ef 50%, #FFF 100%);*/
+
+}
+
+#conversation div.AiBlock
+{
+	margin: 12px 0px;
+	background-color:#f7fafb;
+	/*background:-webkit-gradient(linear, left bottom, left top, color-stop(0.4, #FFF), color-stop(0.5, #f7fafb), color-stop(1, #FFF));
+	background:-moz-linear-gradient(center bottom, #FFF 40%, #f7fafb 50%, #FFF 100%);*/
+}
