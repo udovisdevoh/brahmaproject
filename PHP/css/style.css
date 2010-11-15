@@ -150,27 +150,6 @@ div.SiteLogo
 	text-align:center;
 }
 
-ul.BotList li
-{
-	background-color:#EEE;
-	width:288px;
-	min-height:50px;
-	padding:10px;
-	margin:5px;
-	
-	list-style:none;
-	
-	float:left;
-	
-	border-color:#888;
-	border-style:solid;
-	border-width:1px;
-	
-	/*-webkit-box-shadow: 6px 6px 26px #888;
-	-moz-box-shadow: 6px 6px 26px #888;
-	box-shadow: 6px 6px 26px #888;*/
-}
-
 .SigninForm
 {
 	float:right;
@@ -199,28 +178,35 @@ ul.BotList li
 .Welcome
 {
 	float:right;
-	
+	height:100px;
 	min-width:120px;
 	margin:10px;
-	
-	margin-top:10px;
-	margin-left:30px;
-	margin-bottom:30px;
-	
-	position:relative;
-	left:-25px;
-	
-	
-	
-	padding:10px;
-	
-	-webkit-box-shadow: 6px 6px 26px #888;
-	-moz-box-shadow: 6px 6px 26px #888;
-	box-shadow: 6px 6px 26px #888;
 }
 
 .Welcome a
 {
 	margin-top:8px;
 	display:block;
+	text-decoration:none;
+}
+
+.Welcome a img
+{
+	padding-right:5px;
+	position:relative;
+	top:5px;
+}
+
+ul.BotList li
+{
+	background: #FFF;	
+	width:288px;
+	min-height:50px;
+	padding:10px;
+	margin:5px;
+	list-style:none;
+	float:left;
+	border-color:#888;
+	border-style:solid;
+	border-width:1px;
 }

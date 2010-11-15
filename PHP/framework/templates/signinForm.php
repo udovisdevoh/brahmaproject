@@ -1,8 +1,8 @@
 <?php if ($userProfile): ?>
 	<div class="Welcome">
 		Welcome <b><?php echo $userProfile['name']; ?></b>
-		<a href="account.php">My account</a>
-		<a href="signout.php">Sign out</a>
+		<a href="account.php"><img src="./images/myaccount.png" alt="My account" />My account</a>
+		<a href="signout.php"><img src="./images/signout.png" alt="Sign out" />Sign out</a>
 	</div>
 <?php else: ?>
 	<form class="SigninForm" method="post" action="./">
