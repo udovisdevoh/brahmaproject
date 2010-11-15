@@ -10,6 +10,8 @@
 	<?php require_once("./framework/templates/menu.php"); ?>
 </div>
 
+<?php require_once("./framework/templates/menu.php"); ?>
+
 <?php require_once("./framework/templates/signinForm.php"); ?>
 
 <!--<div style="clear:both"></div>-->
