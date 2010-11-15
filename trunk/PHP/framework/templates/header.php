@@ -1,4 +1,6 @@
-<img class="SiteLogo" src="./images/brahmaproject.png" alt="Brahma Project" />
+<div class="SiteLogo">
+	<img src="./images/brahmaproject.png" alt="Brahma Project" />
+</div>
 
 <div class="Header">
 	<h1>Collective Artificial Intelligence</h1>
