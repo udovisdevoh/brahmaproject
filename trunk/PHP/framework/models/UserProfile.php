@@ -13,8 +13,8 @@ class UserProfile extends Model
 	
 	public static function getCurrentUser()
 	{
-		if (isset($_SESSION['userProfileId']) && $_SESSION['userProfileId'])
-			return $_SESSION['userProfileId'];
+		if (isset($_SESSION['userProfile']) && $_SESSION['userProfile'])
+			return $_SESSION['userProfile'];
 			
 		if (isset($_POST['user']) && isset($_POST['password']))
 		{
@@ -31,7 +31,7 @@ class UserProfile extends Model
 		{
 			$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 			mysql_select_db(MYSQL_DB);
-			$query = mysql_query('SELECT id FROM `user_profile` WHERE `key_name` = \''.addslashes($user).'\' AND `password` = \''.addslashes($password).'\' LIMIT 1');
+			$query = mysql_query('SELECT * FROM `user_profile` WHERE `key_name` = \''.addslashes($user).'\' AND `password` = \''.addslashes($password).'\' LIMIT 1');
 			$sqlRow = mysql_fetch_array($query);
 			
 			mysql_close($link);
@@ -41,12 +41,12 @@ class UserProfile extends Model
 				setcookie('user', $user, time()+3600);
 				setcookie('password', $password, time()+3600);
 			
-				$_SESSION['userProfileId'] = $sqlRow['id'];
-				return $sqlRow['id'];
+				$_SESSION['userProfile'] = $sqlRow;
+				return $sqlRow;
 			}
 		}
 		
-		return 0;
+		return null;
 	}
 }
 ?>
