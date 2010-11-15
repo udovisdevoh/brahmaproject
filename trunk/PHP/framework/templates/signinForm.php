@@ -17,7 +17,7 @@
 			</div>
 		</fieldset>
 		<p>
-			<input type="submit" name="submit" value="Sign in" />
+			<input type="submit" name="signIn" value="Sign in" />
 			<a class="CreateAccount" href="createaccount.php">Create account</a>
 		</p>
 		

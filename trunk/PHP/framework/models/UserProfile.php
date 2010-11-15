@@ -16,7 +16,7 @@ class UserProfile extends Model
 		if (isset($_SESSION['userProfile']) && $_SESSION['userProfile'])
 			return $_SESSION['userProfile'];
 			
-		if (isset($_POST['user']) && isset($_POST['password']))
+		if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['signIn']))
 		{
 			$user = $_POST['user'];
 			$password = md5($_POST['password']);
