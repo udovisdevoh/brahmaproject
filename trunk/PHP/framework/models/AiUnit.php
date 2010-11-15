@@ -1,6 +1,4 @@
 <?php
-require_once("./framework/Model.php");
-
 //Represents a client side AI unit (left brain)
 class AiUnit extends Model
 {

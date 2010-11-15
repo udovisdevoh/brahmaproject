@@ -1,5 +1,5 @@
 <?php
-require_once("./framework/models/AiUnit.php");
+require_once("./framework/settings.php");
 
 if (isset($_GET['ai']))
 {

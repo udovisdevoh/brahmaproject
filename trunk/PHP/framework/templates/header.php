@@ -8,7 +8,5 @@
 	<?php require_once("./framework/templates/menu.php"); ?>
 </div>
 
-
-<?php require_once("./framework/templates/signinForm.php"); ?>
-
+<?php if (!isset($userProfileId) || !$userProfileId) {require_once("./framework/templates/signinForm.php");} ?>
 

@@ -8,7 +8,7 @@
 	<li>
 		<a href="./">Find bot</a>
 	</li>
-	<?php if (isset($isLogged) && $isLogged):?>
+	<?php if (isset($userProfileId) && $userProfileId):?>
 	<li>
 		<a href="signout.php">Sign out</a>
 	</li>
