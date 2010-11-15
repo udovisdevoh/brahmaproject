@@ -2,8 +2,8 @@ body
 {
 	font:12px Verdana, Geneva, sans-serif;
 	background-color:#FFF;
-	background-image:url('../images/gradientbackground.png');
-	background-repeat:repeat-x;
+	background-image:url('../images/patternbackground.png');
+	/*background-repeat:repeat-x;*/
 	background-position:top;
 }
 
