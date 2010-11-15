@@ -210,3 +210,9 @@ ul.BotList li
 	border-style:solid;
 	border-width:1px;
 }
+
+.Error
+{
+	color:#F00;
+	font-weight:bold;
+}
