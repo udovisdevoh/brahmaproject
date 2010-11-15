@@ -10,5 +10,5 @@
 
 <?php require_once("./framework/templates/signinForm.php"); ?>
 
-<div style="clear:both"></div>
+<!--<div style="clear:both"></div>-->
 
