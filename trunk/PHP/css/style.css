@@ -11,7 +11,7 @@ body
 {
 	float:left;
 	max-width:561px;
-	min-height:103px;
+	min-height:115px;
 }
 
 h1
@@ -127,15 +127,16 @@ ul.Menu li a img
 
 div.SiteLogo
 {
-	float:left;
-	margin-right:10px;
-	
+	text-align:center;
+	min-width:318px;
+	padding-top:10px;
+	float:left;	
 }
 
 .Copyright
 {
 	font-size:10px;
-	min-width:320px;
+	min-width:318px;
 	margin-right:auto;
 	margin-left:auto;
 	text-align:center;
@@ -144,7 +145,7 @@ div.SiteLogo
 ul.BotList li
 {
 	background-color:#EEE;
-	width:290px;
+	width:288px;
 	min-height:50px;
 	padding:10px;
 	margin:5px;
