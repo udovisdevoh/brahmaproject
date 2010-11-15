@@ -1,6 +1,5 @@
-<h2>Create an account</h2>
-
 <form class="CreateAccount" method="post" action="./createaccount.php">
+	<h2>Create an account</h2>
 	<fieldset>
 		<div>
 			<label for="name">Display name</label>
