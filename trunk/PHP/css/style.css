@@ -135,7 +135,7 @@ div.SiteLogo
 .Copyright
 {
 	font-size:10px;
-	width:400px;
+	min-width:320px;
 	margin-right:auto;
 	margin-left:auto;
 	text-align:center;
