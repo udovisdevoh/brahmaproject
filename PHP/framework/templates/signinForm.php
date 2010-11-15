@@ -20,5 +20,9 @@
 			<input type="submit" name="submit" value="Sign in" />
 			<a class="CreateAccount" href="createaccount.php">Create account</a>
 		</p>
+		
+		<?php if (isset($_POST['user']) || isset($_POST['password'])): ?>
+			<p class="Error">Wrong username or password</p>
+		<?php endif ?>
 	</form>
 <?php endif ?>
