@@ -9,14 +9,16 @@
 		<fieldset>
 			<div>
 				<label for="user">User</label>
-				<input type="text" name="user" value="<?php echo isset($_POST['user']) ? strip_tags($_POST['user']) : '' ?>" />
+				<input type="text" id="user" name="user" value="<?php echo isset($_POST['user']) ? strip_tags($_POST['user']) : '' ?>" />
 			</div>
 			<div>
 				<label for="password">Password</label>
-				<input type="password" name="password" />
+				<input type="password" id="password" name="password" />
 			</div>
 		</fieldset>
-		<input type="submit" name="submit" value="Sign in" />
-		<a class="CreateAccount" href="createaccount.php">Create account</a>
+		<p>
+			<input type="submit" name="submit" value="Sign in" />
+			<a class="CreateAccount" href="createaccount.php">Create account</a>
+		</p>
 	</form>
 <?php endif ?>

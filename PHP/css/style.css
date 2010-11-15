@@ -125,7 +125,7 @@ ul.Menu li a img
 	margin-left:-3px;
 }
 
-img.SiteLogo
+div.SiteLogo
 {
 	float:left;
 	margin-right:10px;
@@ -135,8 +135,10 @@ img.SiteLogo
 .Copyright
 {
 	font-size:10px;
+	width:400px;
 	margin-right:auto;
 	margin-left:auto;
+	text-align:center;
 }
 
 ul.BotList li
@@ -175,10 +177,10 @@ ul.BotList li
 
 .SigninForm a.CreateAccount
 {
-	float:right;
-	display:block;
+	margin-left:10px;
 	margin-right:15px;
-	margin-top:5px;
+	position:relative;
+	top:-4px;
 }
 
 .Welcome
