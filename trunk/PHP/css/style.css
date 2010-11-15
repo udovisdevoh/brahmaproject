@@ -10,7 +10,7 @@ body
 .Header
 {
 	float:left;
-	max-width:490px;
+	max-width:561px;
 	min-height:103px;
 }
 
@@ -117,6 +117,13 @@ ul.Menu li a:hover
 	);
 }
 
+ul.Menu li a img
+{
+	margin-bottom:-7px;
+	padding-right:4px;
+	margin-left:-3px;
+}
+
 img.SiteLogo
 {
 	float:left;
@@ -181,7 +188,7 @@ ul.BotList li
 	margin:10px;
 }
 
-.Welcome a.EditProfile
+.Welcome a
 {
 	margin-top:8px;
 	display:block;
