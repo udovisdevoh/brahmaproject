@@ -9,7 +9,7 @@ define('MYSQL_SERVER', 'localhost');
 define('MYSQL_USER', 'brahmavisitor');
 define('MYSQL_DB', 'brahmaproject');
 define('MYSQL_PW', 'nxmNKDfpp3HeeUmN');
-
+define('PW_SALT', 'ft56yrthj');
 
 $userProfile = UserProfile::getCurrentUser();
 
