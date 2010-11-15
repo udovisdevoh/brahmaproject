@@ -19,7 +19,7 @@ class UserProfile extends Model
 		if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['signIn']))
 		{
 			$user = $_POST['user'];
-			$password = md5($_POST['password']);
+			$password = md5(PW_SALT.$_POST['password']);
 		}
 		else if (isset($_COOKIE['user']) && isset($_COOKIE['password']))
 		{
@@ -31,7 +31,7 @@ class UserProfile extends Model
 		{
 			$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 			mysql_select_db(MYSQL_DB);
-			$query = mysql_query('SELECT * FROM `user_profile` WHERE `key_name` = \''.addslashes($user).'\' AND `password` = \''.addslashes($password).'\' LIMIT 1');
+			$query = mysql_query('SELECT * FROM `user_profile` WHERE `key_name` = \''.addslashes($user).'\' AND `password` = \''.addslashes($password).'\' AND `is_active` = 1 LIMIT 1');
 			$sqlRow = mysql_fetch_array($query);
 			
 			mysql_close($link);

@@ -3,11 +3,11 @@
 		<a href="chat.php"><img src="./images/chatwithbrahma.png" alt="Chat with Brahma" />Chat with Brahma</a>
 	</li>
 	<li>
-		<a href="createbot.php"><img src="./images/createbot.png" alt="Create bot" />Create bot</a>
+		<a href="./"><img src="./images/createbot.png" alt="Bots" />Chat with Bots</a>
 	</li>
-	<li>
+	<!--<li>
 		<a href="./"><img src="./images/findbot.png" alt="Find bot" />Find bot</a>
-	</li>
+	</li>-->
 	<li>
 		<a href="aboutus.php"><img src="./images/aboutus.png" alt="About us" />About us</a>
 	</li>

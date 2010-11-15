@@ -19,6 +19,12 @@ h1
 	font-size:17px;
 }
 
+h2
+{
+	margin:10px;
+	font-size:14px;
+}
+
 p
 {
 	margin-top:10px;
@@ -215,4 +221,16 @@ ul.BotList li
 {
 	color:#F00;
 	font-weight:bold;
+}
+
+.CreateAccount
+{
+	max-width:768px;
+	text-align:right;
+	margin:10px;
+}
+
+.CreateAccount div
+{
+	margin:10px 0;
 }
