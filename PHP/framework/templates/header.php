@@ -8,5 +8,5 @@
 	<?php require_once("./framework/templates/menu.php"); ?>
 </div>
 
-<?php if (!isset($userProfileId) || !$userProfileId) {require_once("./framework/templates/signinForm.php");} else {echo '<div style="clear:both"></div>';} ?>
+<?php require_once("./framework/templates/signinForm.php"); ?>
 

@@ -8,15 +8,6 @@
 	<li>
 		<a href="./">Find bot</a>
 	</li>
-	<?php if (isset($userProfileId) && $userProfileId):?>
-	<li>
-		<a href="signout.php">Sign out</a>
-	</li>
-	<?php else: ?>
-	<li>
-		<a href="createaccount.php">Create account</a>
-	</li>
-	<?php endif ?>
 	<li>
 		<a href="description.php">Project description</a>
 	</li>

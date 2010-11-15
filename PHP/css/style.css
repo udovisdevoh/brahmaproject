@@ -10,7 +10,7 @@ body
 .Header
 {
 	float:left;
-	max-width:600px;
+	max-width:490px;
 	min-height:103px;
 }
 
@@ -148,17 +148,41 @@ ul.BotList li
 	border-width:1px;
 }
 
-.SigninForm label
-{
-	float:left;
-	width:60px;
-	margin-right:10px;
-}
-
 .SigninForm
 {
 	float:left;
 	height:100px;
 	width:230px;
 	margin:10px;
+}
+
+.SigninForm label
+{
+	float:left;
+	width:60px;
+	margin-right:10px;
+	position:relative;
+	top:3px;
+}
+
+.SigninForm a.CreateAccount
+{
+	float:right;
+	display:block;
+	margin-right:15px;
+	margin-top:5px;
+}
+
+.Welcome
+{
+	float:left;
+	height:100px;
+	min-width:120px;
+	margin:10px;
+}
+
+.Welcome a.EditProfile
+{
+	margin-top:8px;
+	display:block;
 }
