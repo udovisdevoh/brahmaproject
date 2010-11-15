@@ -38,10 +38,12 @@ class UserProfile extends Model
 			
 			if ($sqlRow['id'] > 0)
 			{
-				setcookie('user', $user, time()+3600);
-				setcookie('password', $password, time()+3600);
+				setcookie('user', $user, time()+86400);
+				setcookie('password', $password, time()+86400);
 			
 				$_SESSION['userProfile'] = $sqlRow;
+				
+				header('Location: ./');
 				return $sqlRow;
 			}
 		}

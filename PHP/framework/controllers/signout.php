@@ -2,6 +2,6 @@
 require_once("./framework/settings.php");
 setcookie('user', null);
 setcookie('password', null);
-$_SESSION['userProfileId'] = 0;
+unset($_SESSION['userProfile']);
 header('Location: ./');
 ?>

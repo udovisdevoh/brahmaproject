@@ -1,7 +1,8 @@
 <?php if ($userProfile): ?>
 	<div class="Welcome">
 		Welcome <b><?php echo $userProfile['name']; ?></b>
-		<a class="EditProfile" href="profile.php">My profile</a>
+		<a href="profile.php">My profile</a>
+		<a href="signout.php">Sign out</a>
 	</div>
 <?php else: ?>
 	<form class="SigninForm" method="post" action="./">
