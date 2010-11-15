@@ -3,7 +3,6 @@ body
 	font:12px Verdana, Geneva, sans-serif;
 	background-color:#FFF;
 	background-image:url('../images/patternbackground.png');
-	/*background-repeat:repeat-x;*/
 	background-position:top;
 }
 
@@ -36,6 +35,15 @@ a:hover
 {
 	color:#698bf9;
 	text-decoration:none;
+}
+
+input[type="text"],input[type="password"]
+{
+	background-image:url('../images/field.gif');
+	border-width:1px;
+	border-color:#999;
+	border-style:solid;
+	margin:2px
 }
 
 ul.Menu
@@ -157,6 +165,10 @@ ul.BotList li
 	border-color:#888;
 	border-style:solid;
 	border-width:1px;
+	
+	/*-webkit-box-shadow: 6px 6px 26px #888;
+	-moz-box-shadow: 6px 6px 26px #888;
+	box-shadow: 6px 6px 26px #888;*/
 }
 
 .SigninForm
@@ -187,9 +199,24 @@ ul.BotList li
 .Welcome
 {
 	float:right;
-	height:100px;
+	
 	min-width:120px;
 	margin:10px;
+	
+	margin-top:10px;
+	margin-left:30px;
+	margin-bottom:30px;
+	
+	position:relative;
+	left:-25px;
+	
+	
+	
+	padding:10px;
+	
+	-webkit-box-shadow: 6px 6px 26px #888;
+	-moz-box-shadow: 6px 6px 26px #888;
+	box-shadow: 6px 6px 26px #888;
 }
 
 .Welcome a

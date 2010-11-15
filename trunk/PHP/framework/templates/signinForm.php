@@ -1,7 +1,7 @@
 <?php if ($userProfile): ?>
 	<div class="Welcome">
 		Welcome <b><?php echo $userProfile['name']; ?></b>
-		<a href="profile.php">My profile</a>
+		<a href="account.php">My account</a>
 		<a href="signout.php">Sign out</a>
 	</div>
 <?php else: ?>
