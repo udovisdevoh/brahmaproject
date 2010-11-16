@@ -223,6 +223,12 @@ ul.BotList li
 	font-weight:bold;
 }
 
+.Success
+{
+	color:#0F0;
+	font-weight:bold;
+}
+
 .CreateAccount
 {
 	max-width:768px;

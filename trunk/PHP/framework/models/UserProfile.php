@@ -3,7 +3,6 @@
 class UserProfile extends Model
 {
 	private $id;
-	private $key_name;
 	private $name;
 	private $password;
 	private $email;
@@ -31,7 +30,7 @@ class UserProfile extends Model
 		{
 			$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 			mysql_select_db(MYSQL_DB);
-			$query = mysql_query('SELECT * FROM `user_profile` WHERE `key_name` = \''.addslashes($user).'\' AND `password` = \''.addslashes($password).'\' AND `is_active` = 1 LIMIT 1');
+			$query = mysql_query('SELECT * FROM `user_profile` WHERE `name` = \''.addslashes($user).'\' AND `password` = \''.addslashes($password).'\' AND `is_active` = 1 LIMIT 1');
 			$sqlRow = mysql_fetch_array($query);
 			
 			mysql_close($link);
@@ -49,6 +48,71 @@ class UserProfile extends Model
 		}
 		
 		return null;
+	}
+	
+	public static function newUserProfile($name, $password, $email, $first_name, $last_name)
+	{
+		if (!self::isValidEmail($email))
+			throw new Exception("Please use a valid email address");
+			
+		if (!self::isValidPassword($password))
+			throw new Exception("Password must be at least 8 chars, must contain a lower case, a capital, a number and a symbol ($%&* etc)");
+	
+		$password = md5(PW_SALT.$password);
+	
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+			
+		if (!mysql_query("INSERT INTO user_profile
+		(
+			`id`,
+			`name`,
+			`password`,
+			`email`,
+			`first_name`,
+			`last_name`,
+			`is_active`
+		)
+		values (
+			'',
+			'".addslashes($name)."',
+			'".addslashes($password)."',
+			'".addslashes($email)."',
+			'".addslashes($first_name)."',
+			'".addslashes($last_name)."',
+			'1')"))
+		{
+			mysql_close($link);
+			throw new Exception("This username already exist");
+		}
+		
+		mysql_close($link);
+		
+		setcookie('user', $name, time()+86400);
+		setcookie('password', $password, time()+86400);
+		
+		header('Location: ./myaccount.php');
+	}
+	
+	public static function isValidEmail($email)
+	{
+		return true;
+	}
+	
+	public static function isValidPassword($password)
+	{
+		if (strlen($password) < 8)
+			return false;
+		else if (!preg_match("#[a-z]+#", $password))
+			return false;
+		else if (!preg_match("#[A-Z]+#", $password))
+			return false;
+		else if (!preg_match("#[0-9]+#", $password))
+			return false;
+		else if (!preg_match("#\W+#", $password))
+			return false;
+		
+		return true;
 	}
 }
 ?>
