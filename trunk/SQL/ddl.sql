@@ -64,5 +64,6 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `is_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`name`),
+  UNIQUE KEY `email` (`email`),
   KEY `user_name_and_password` (`name`,`password`,`is_active`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
