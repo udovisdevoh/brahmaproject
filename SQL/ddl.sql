@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `ai_unit` (
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `key_name` (`key_name`),
   KEY `user_profile_id` (`user_profile_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 
 CREATE TABLE IF NOT EXISTS `ai_unit_state` (
@@ -56,7 +56,6 @@ CREATE TABLE IF NOT EXISTS `user_daily_rating` (
 
 CREATE TABLE IF NOT EXISTS `user_profile` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `key_name` varchar(248) NOT NULL,
   `name` varchar(248) NOT NULL,
   `password` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -65,6 +64,5 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `is_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`name`),
-  UNIQUE KEY `key_name` (`key_name`),
-  KEY `user_name_and_password` (`name`,`password`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `user_name_and_password` (`name`,`password`,`is_active`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
