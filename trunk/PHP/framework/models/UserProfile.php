@@ -91,7 +91,7 @@ class UserProfile extends Model
 		setcookie('user', $name, time()+86400);
 		setcookie('password', $password, time()+86400);
 		
-		header('Location: ./myaccount.php');
+		header('Location: ./account.php');
 	}
 	
 	function isValidEmail($email)
