@@ -13,7 +13,7 @@
 		<h2>What's the concept here?</h2>
 		
 		<p>
-			By creating an account, you can train artificial intelligence chat bots and create them at your image.
+			By creating an account, you can train artificial intelligence chat bots at your image. We call them "left brains".
 			People can chat with them and rate them. Doing so contributes to the building of a society of AI bots.
 			Besides of chatting with individual bots, you can also chat with Brahma, the synthesis of all these chat bots.
 		<p>
