@@ -30,6 +30,7 @@ class UserProfile extends Model
 		{
 			$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 			mysql_select_db(MYSQL_DB);
+
 			$query = mysql_query('SELECT * FROM `user_profile` WHERE `name` = \''.addslashes($user).'\' AND `password` = \''.addslashes($password).'\' AND `is_active` = 1 LIMIT 1');
 			$sqlRow = mysql_fetch_array($query);
 			
@@ -41,6 +42,8 @@ class UserProfile extends Model
 				setcookie('password', $password, time()+86400);
 			
 				$_SESSION['userProfile'] = $sqlRow;
+				
+				
 				
 				header('Location: ./account.php');
 				return $sqlRow;
@@ -83,7 +86,7 @@ class UserProfile extends Model
 			'1')"))
 		{
 			mysql_close($link);
-			throw new Exception("This username already exist");
+			throw new Exception("This username or email already exist");
 		}
 		
 		mysql_close($link);
