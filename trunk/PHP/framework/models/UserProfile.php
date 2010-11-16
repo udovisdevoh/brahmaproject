@@ -94,9 +94,9 @@ class UserProfile extends Model
 		header('Location: ./myaccount.php');
 	}
 	
-	public static function isValidEmail($email)
+	function isValidEmail($email)
 	{
-		return true;
+		return eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email); 
 	}
 	
 	public static function isValidPassword($password)
