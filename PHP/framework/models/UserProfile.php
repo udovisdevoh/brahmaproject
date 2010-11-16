@@ -42,7 +42,7 @@ class UserProfile extends Model
 			
 				$_SESSION['userProfile'] = $sqlRow;
 				
-				header('Location: ./');
+				header('Location: ./account.php');
 				return $sqlRow;
 			}
 		}
@@ -56,7 +56,7 @@ class UserProfile extends Model
 			throw new Exception("Please use a valid email address");
 			
 		if (!self::isValidPassword($password))
-			throw new Exception("Password must be at least 8 chars, must contain a lower case, a capital, a number and a symbol ($%&* etc)");
+			throw new Exception("Password must be at least 8 chars, must contain a lower case, a capital, a number and a symbol ($%&*!? etc)");
 	
 		$password = md5(PW_SALT.$password);
 	
@@ -91,7 +91,7 @@ class UserProfile extends Model
 		setcookie('user', $name, time()+86400);
 		setcookie('password', $password, time()+86400);
 		
-		header('Location: ./account.php');
+		header('Location: ./');
 	}
 	
 	function isValidEmail($email)
