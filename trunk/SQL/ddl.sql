@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `connection` (
   `subject_id` int(11) NOT NULL,
   `verb_id` int(11) NOT NULL,
   `complement_id` int(11) NOT NULL,
-  `is_true` tinyint(1) NOT NULL,
-  `is_flat` tinyint(1) NOT NULL,
+  `is_true` tinyint(1) NOT NULL DEFAULT '1',
+  `is_tautologic` tinyint(1) NOT NULL DEFAULT '0',
   UNIQUE KEY `ai_unit_id` (`ai_unit_id`,`subject_id`,`verb_id`,`complement_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `email` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`name`),
   UNIQUE KEY `email` (`email`),
