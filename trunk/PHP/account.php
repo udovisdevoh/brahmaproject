@@ -10,7 +10,9 @@
 		<?php require_once("./framework/templates/header.php"); ?>
 		<div style="clear:both"></div>
 
-		<h2>My Account</h2>
+		<div class="Container">
+			<h2>My Account</h2>
+		</div>
 		
 		<?php require_once("./framework/templates/footer.php"); ?>
 		

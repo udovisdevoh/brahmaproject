@@ -4,6 +4,7 @@ body
 	background-color:#FFF;
 	background-image:url('../images/patternbackground.png');
 	background-position:top;
+	color:#2b2b2b;
 }
 
 .Header
@@ -21,7 +22,9 @@ h1
 
 h2
 {
-	margin:10px;
+	border-top:solid 1px #BBB;
+	margin:0px 0px 0px 0px;
+	padding-top:3px;
 	font-size:15px;
 }
 
@@ -239,4 +242,15 @@ ul.BotList li
 .CreateAccount div
 {
 	margin:10px 0;
+}
+
+.Container
+{
+	padding:0 10px;
+}
+
+#faq.Container strong
+{
+	font-weight:normal;
+	color:#000;
 }

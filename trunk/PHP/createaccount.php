@@ -9,10 +9,11 @@
 	<body>
 		<?php require_once("./framework/templates/header.php"); ?>
 		<div style="clear:both"></div>
-
-		<?php require_once("./framework/templates/createAccountForm.php"); ?>
+		
+		<div class="Container">
+			<?php require_once("./framework/templates/createAccountForm.php"); ?>
+		</div>
 		
 		<?php require_once("./framework/templates/footer.php"); ?>
-		
 	</body>
 </html>
