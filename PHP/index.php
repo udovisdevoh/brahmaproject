@@ -9,12 +9,14 @@
 	<body>
 		<?php require_once("./framework/templates/header.php"); ?>
 		
-		<?php
-		if (isset($aiUnitList))
-			require_once("./framework/templates/botList.php");
-		else if (isset($aiUnit))
-			require_once("./framework/templates/bot.php");
-		?>
+		<div class="Container">
+			<?php
+			if (isset($aiUnitList))
+				require_once("./framework/templates/botList.php");
+			else if (isset($aiUnit))
+				require_once("./framework/templates/bot.php");
+			?>
+		</div>
 		
 		<?php require_once("./framework/templates/footer.php"); ?>
 		
