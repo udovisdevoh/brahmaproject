@@ -1,8 +1,8 @@
 <?php if (isset($successMessage)): ?>
 	<p class="Success"><?php echo $successMessage ?></p>
 <?php else: ?>	
+	<h2>Create an account</h2>
 	<form class="CreateAccount" method="post" action="./createaccount.php">
-		<h2>Create an account</h2>
 		<fieldset>		
 			<?php if (isset($errorMessage)): ?>
 				<p class="Error"><?php echo $errorMessage ?></p>
