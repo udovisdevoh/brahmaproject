@@ -12,7 +12,7 @@
 		<a href="./faq.php"><img src="./images/aboutus.png" alt="FAQ" />WTF???</a>
 	</li>
 	<li>
-		<a href="./tutorial.php"><img src="./images/videotutorial.png" alt="Video tutorial" />Video tutorial</a>
+		<a href="./videotutorial.php"><img src="./images/videotutorial.png" alt="Video tutorial" />Video tutorial</a>
 	</li>
 </ul>
 <div style="clear:both"></div>

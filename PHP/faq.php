@@ -23,7 +23,7 @@
 			
 			<p>
 				We call them <strong>left brains</strong> because they learn in a very formal way. You can teach them to do <strong>logical derivation</strong>,
-				<strong>dissertation skeletons</strong>, <strong>statistical inference</strong> and inductive reasoning <a href="./tutorial.php">(watch video tutorials tutorials)</a>.
+				<strong>dissertation skeletons</strong>, <strong>statistical inference</strong> and inductive reasoning <a href="./videotutorial.php">(watch video tutorials tutorials)</a>.
 				While they have powerful <strong>logic</strong> skills, they lack the ability to understand <strong>analogies</strong>, to switch to different <strong>thinking contexts</strong> and to see things in a more <strong>global</strong> perspective.
 				To say they see reality in a way that is similar to people having <a href="http://en.wikipedia.org/wiki/Asperger_syndrome">asperger syndrome (wikipedia)</a>
 				could be an interesting analogy to make.
