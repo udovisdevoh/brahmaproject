@@ -1,7 +1,8 @@
-web:
-{
-	faire div="Container" avec padding
-}
+add a wiki?
+
+
+when error: link to help must work
+
 
 when asking stuff like: "you madeof what",
 must say, in a whatis look and feel, what you is madeof (with define (recursive) content)
