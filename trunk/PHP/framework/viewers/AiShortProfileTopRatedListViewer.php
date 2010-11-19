@@ -17,15 +17,16 @@ class AiShortProfileTopRatedListViewer
 		foreach ($aiUnitList as $aiUnit)
 		{
 			$name = $aiUnit['name'];
-			if (strlen($name) > 32);
+			if (strlen($name) > 32)
 				$name = substr($name, 0,32).'...';
 				
 			$userName = $aiUnit['user_name'];
-			if (strlen($userName) > 24);
-				$userName = substr($userName, 0,24).'...';
+			if (strlen($userName) > 24)
+				$userName = substr($userName, 0, 24).'...';
 		
 			$html .= '<li>';
 			$html .= '<p><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></p>';
+			$html .= '<p><a class="ChatWith" href="./leftBrainChat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat!</a></p>';
 			$html .= '<p>rating: '.$aiUnit['rating'].'</p>';
 			$html .= '<p>owner: <a href="?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></p>';
 			$html .= '</li>';

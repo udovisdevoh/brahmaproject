@@ -212,7 +212,7 @@ ul.BotList li
 {
 	background: #FFF;	
 	width:238px;
-	height:100px;
+	height:130px;
 	padding:10px;
 	margin:0 10px 10px 0;
 	list-style:none;
@@ -355,6 +355,53 @@ ul.BotList li
 	box-shadow: 0px 0px 15px #FC0;
 }
 
-.BreadCrump span
+.AiProfile
 {
+	border:1px #AAA solid;
+	background-color:#FFF;
+	padding:10px;
+}
+
+.AiProfile h2
+{
+	border-top-style:none;
+}
+
+.ChatWith img
+{
+	position:relative;
+	top:8px;
+	padding-right:5px;
+}
+
+.ChatWith
+{
+	border:1px solid #686868;
+	padding:6px;
+	border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	text-decoration:none;
+	background-color:#ffeec5;
+	
+	background:-webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFF),
+		color-stop(1, #ffeec5)
+	);
+	background:-moz-linear-gradient(
+		center top,
+		#FFF 0%,
+		#ffeec5 100%
+	);
+}
+
+.ChatWith:hover
+{
+	-moz-box-shadow: 0px 0px 15px #FC0;
+	-webkit-box-shadow: 0px 0px 15px #FC0;
+	box-shadow: 0px 0px 15px #FC0;
+	color:#000;
 }
