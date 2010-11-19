@@ -27,7 +27,7 @@ class AiShortProfileTopRatedListViewer
 			$ratingBar = RatingBarViewer::view($aiUnit['rating'], $bestRating, 150);
 		
 			$html .= '<li>';
-			$html .= '<p><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></p>';
+			$html .= '<p><strong><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></strong></p>';
 			$html .= '<p><a class="ChatWith" href="./leftBrainChat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat!</a></p>';
 			$html .= '<div><div class="RatingLabel">rating: '.$aiUnit['rating'].'</div>'.$ratingBar.'</div>';
 			$html .= '<div style="clear:both"></div>';
