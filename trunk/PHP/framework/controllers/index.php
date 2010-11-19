@@ -10,7 +10,8 @@ if (isset($_GET['ai'])) //Single AI
 	if ($renderedView == null)
 	{
 		$aiUnit = AiUnit::getAiUnit($aiUnitKey);
-		$renderedView = AiProfileViewer::view($aiUnit);
+		$bestRating = AiUnit::getBestRating();
+		$renderedView = AiProfileViewer::view($aiUnit, $bestRating);
 		Cache::set('ai_profile_'.$aiUnitKey, $renderedView);
 	}
 }
@@ -34,7 +35,8 @@ else //List of AI
 	{
 		$aiUnitList = AiUnit::getTopRatedList($offset, AI_SHORT_PROFILE_COUNT_PER_PAGE);
 		$aiUnitCount = AiUnit::count();
-		$renderedView = AiShortProfileTopRatedListViewer::view($aiUnitList, $offset, AI_SHORT_PROFILE_COUNT_PER_PAGE, $aiUnitCount);
+		$bestRating = AiUnit::getBestRating();
+		$renderedView = AiShortProfileTopRatedListViewer::view($aiUnitList, $offset, AI_SHORT_PROFILE_COUNT_PER_PAGE, $aiUnitCount, $bestRating);
 		Cache::set('ai_short_profile_top_rated_list_'.$offset, $renderedView);
 	}	
 }
