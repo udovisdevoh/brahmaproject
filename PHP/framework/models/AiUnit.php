@@ -10,7 +10,9 @@ class AiUnit extends Model
 	
 	public static function getTopRatedList($offset, $limit)
 	{
-		return parent::getObjectList('ai_unit', null, 'rating DESC', $offset, $limit);
+		$selectWhat = 'ai_unit.id, ai_unit.name, ai_unit.rating, ai_unit.name, ai_unit.user_profile_id, user_profile.name as `user_name`';
+		$where = 'ai_unit.user_profile_id = user_profile.id and user_profile.is_active = 1';
+		return parent::getObjectList('ai_unit, user_profile', $selectWhat, $where, 'rating DESC', $offset, $limit);
 	}
 	public static function getAiUnit($where)
 	{
