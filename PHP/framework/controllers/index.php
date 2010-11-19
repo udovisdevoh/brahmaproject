@@ -1,7 +1,7 @@
 <?php
 require_once("./framework/settings.php");
 
-define('AI_SHORT_PROFILE_COUNT_PER_PAGE', 5);
+define('AI_SHORT_PROFILE_COUNT_PER_PAGE', 12);
 
 if (isset($_GET['ai'])) //Single AI
 {
@@ -17,7 +17,7 @@ if (isset($_GET['ai'])) //Single AI
 else //List of AI
 {
 	$offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
-	$offset = ((int)$offset / AI_SHORT_PROFILE_COUNT_PER_PAGE) * AI_SHORT_PROFILE_COUNT_PER_PAGE;
+	$offset = ((int)($offset / AI_SHORT_PROFILE_COUNT_PER_PAGE)) * AI_SHORT_PROFILE_COUNT_PER_PAGE;
 
 	
 	$renderedView = Cache::get('ai_short_profile_top_rated_list_'.$offset, 300);

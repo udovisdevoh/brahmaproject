@@ -13,17 +13,17 @@ class BreadCrumpViewer
 		$pageIndex = 0;
 		
 		if ($offset == 0)
-			$html .= '<span>&laquo; Previous</span>';
+			$html .= ' <span>&laquo; Previous</span> ';
 		else
-			$html .= '<a href="'.$urlStub.($offset - $countPerPage).'">&laquo; Previous</a>';
+			$html .= ' <a href="'.$urlStub.($offset - $countPerPage).'">&laquo; Previous</a> ';
 		
 		
 		for ($currentOffset = 0; $currentOffset < $totalCount; $currentOffset+= $countPerPage)
 		{
 			if ($currentOffset == $offset)
-				$html .= '<span class="Selected">'.$pageIndex.'</span>';
+				$html .= ' <span class="Selected">'.$pageIndex.'</span> ';
 			else
-				$html .= '<a href="'.$urlStub.$currentOffset.'">'.$pageIndex.'</a>';
+				$html .= ' <a href="'.$urlStub.$currentOffset.'">'.$pageIndex.'</a> ';
 			
 			
 			$pageIndex++;
@@ -31,9 +31,9 @@ class BreadCrumpViewer
 		
 		
 		if ($offset + $countPerPage >= $totalCount)
-			$html .= '<span>Next &raquo;</span>';
+			$html .= ' <span>Next &raquo;</span> ';
 		else
-			$html .= '<a href="'.$urlStub.($offset + $countPerPage).'">Next &raquo;</a>';
+			$html .= ' <a href="'.$urlStub.($offset + $countPerPage).'">Next &raquo;</a> ';
 		
 		$html .= '</div>';
 		
