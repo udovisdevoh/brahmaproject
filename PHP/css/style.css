@@ -440,4 +440,6 @@ ul.BotList li
 	border-radius:4px 4px 4px 4px;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
+	position:relative;
+	top:3px;
 }
