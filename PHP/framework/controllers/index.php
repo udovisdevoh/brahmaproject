@@ -6,12 +6,23 @@ define('AI_SHORT_PROFILE_COUNT_PER_PAGE', 12);
 if (isset($_GET['ai'])) //Single AI
 {
 	$aiUnitKey = (int)$_GET['ai'];
-	$renderedView = Cache::get('ai_short_profile_'.$aiUnitKey, 300);
+	$renderedView = Cache::get('ai_profile_'.$aiUnitKey, 300);
 	if ($renderedView == null)
 	{
 		$aiUnit = AiUnit::getAiUnit('`id` = '.$aiUnitKey);
-		$renderedView = AiShortProfileViewer::view($aiUnit);
-		Cache::set('ai_short_profile_'.$aiUnitKey, $renderedView);
+		$renderedView = AiProfileViewer::view($aiUnit);
+		Cache::set('ai_profile_'.$aiUnitKey, $renderedView);
+	}
+}
+else if (isset($_GET['user'])) //Single User
+{
+	$userKey = (int)$_GET['user'];
+	$renderedView = Cache::get('user_profile_'.$userKey, 300);
+	if ($renderedView == null)
+	{
+		$userProfile = UserProfile::getUser('`id` = '.$userKey);
+		$renderedView = UserProfileViewer::view($userProfile);
+		Cache::set('user_profile_'.$userKey, $renderedView);
 	}
 }
 else //List of AI
