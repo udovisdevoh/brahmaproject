@@ -2,7 +2,7 @@
 function TalkingRouter(humanName, aiName)
 {
 	//Constants
-	this.helpLinkString = 'Unrecognized statement, use <a href="./help.php" target="_blank">help</a>';
+	this.helpLinkString = 'Unrecognized statement, use <a href="./documentation.php" target="_blank">quick documentation</a> (this link will open a new tab or window)';
 	this.notThatIKnow = 'Not that I know';
 	this.iDonTKnow = "I don't know";
 	this.someoneToldMe = "That's what I've been told";

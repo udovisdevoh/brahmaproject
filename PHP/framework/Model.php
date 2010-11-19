@@ -62,5 +62,26 @@ abstract class Model
 		
 		return $sqlRow;
 	}
+	
+	public static function count($tableName = null, $columnName = 'id', $where = null)
+	{
+		if ($tableName == null)
+			throw new Exception('Table name cannot be null');
+		
+		$sqlExpression = 'SELECT count('.$columnName.') FROM '.$tableName;
+		
+		if ($where != null)
+			$sqlExpression .= ' WHERE '.$where;
+			
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		$query = mysql_query($sqlExpression);
+		$sqlRow = mysql_fetch_array($query);
+		
+		mysql_close($link);
+		
+		return $sqlRow[0];
+	}
 }
 ?>

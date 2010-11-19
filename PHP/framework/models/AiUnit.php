@@ -14,6 +14,12 @@ class AiUnit extends Model
 		$where = 'ai_unit.user_profile_id = user_profile.id and user_profile.is_active = 1';
 		return parent::getObjectList('ai_unit, user_profile', $selectWhat, $where, 'rating DESC', $offset, $limit);
 	}
+	
+	public static function count()
+	{
+		return parent::count('ai_unit','id');
+	}
+	
 	public static function getAiUnit($where)
 	{
 		return parent::getObject('ai_unit', $where);

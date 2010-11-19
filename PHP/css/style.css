@@ -11,7 +11,7 @@ body
 {
 	float:left;
 	/*max-width:690px;*/
-	min-height:115px;
+	min-height:113px;
 }
 
 h1
@@ -162,9 +162,10 @@ div.SiteLogo
 .SigninForm
 {
 	float:right;
-	height:100px;
-	width:230px;
-	margin:10px;
+	width:240px;
+	min-height:93px;
+	padding-top:10px;
+	padding-bottom:10px;
 }
 
 .SigninForm label
@@ -187,9 +188,10 @@ div.SiteLogo
 .Welcome
 {
 	float:right;
-	height:100px;
-	min-width:120px;
-	margin:10px;
+	min-height:113px;
+	width:240px;
+	margin:5px;
+	padding:10px;
 }
 
 .Welcome a
@@ -209,10 +211,10 @@ div.SiteLogo
 ul.BotList li
 {
 	background: #FFF;	
-	width:288px;
-	min-height:50px;
+	width:238px;
+	height:100px;
 	padding:10px;
-	margin:5px;
+	margin:0 10px 10px 0;
 	list-style:none;
 	float:left;
 	border-color:#888;
