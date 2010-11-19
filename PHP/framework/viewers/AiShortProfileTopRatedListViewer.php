@@ -3,7 +3,7 @@ class AiShortProfileTopRatedListViewer
 {
 	//(String)
 	//Return HTML from SQL Query output
-	public static function view($aiUnitList, $offset, $countPerPage, $totalCount)
+	public static function view($aiUnitList, $offset, $countPerPage, $totalCount, $bestRating)
 	{
 		$breadCrump = BreadCrumpViewer::view('./?offset=', $offset, $countPerPage, $totalCount);
 	
@@ -24,10 +24,13 @@ class AiShortProfileTopRatedListViewer
 			if (strlen($userName) > 24)
 				$userName = substr($userName, 0, 24).'...';
 		
+			$ratingBar = RatingBarViewer::view($aiUnit['rating'], $bestRating, 150);
+		
 			$html .= '<li>';
 			$html .= '<p><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></p>';
 			$html .= '<p><a class="ChatWith" href="./leftBrainChat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat!</a></p>';
-			$html .= '<p>rating: '.$aiUnit['rating'].'</p>';
+			$html .= '<div><div class="RatingLabel">rating: '.$aiUnit['rating'].'</div>'.$ratingBar.'</div>';
+			$html .= '<div style="clear:both"></div>';
 			$html .= '<p>owner: <a href="?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></p>';
 			$html .= '</li>';
 		}

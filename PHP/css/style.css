@@ -419,3 +419,25 @@ ul.BotList li
 	
 	color:#000;
 }
+
+.Rating
+{
+	height:32px;
+}
+
+.RatingLabel
+{
+	width:60px;
+	float:left;
+}
+
+.RatingBar
+{
+	float:left;
+	height:8px;
+	background-color:#8AF;
+	border: 1px #000 solid;	
+	border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
