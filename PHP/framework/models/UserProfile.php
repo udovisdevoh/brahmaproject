@@ -99,7 +99,7 @@ class UserProfile extends Model
 	
 	function isValidEmail($email)
 	{
-		return eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email); 
+		return preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email); 
 	}
 	
 	public static function isValidPassword($password)
