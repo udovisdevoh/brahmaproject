@@ -383,7 +383,6 @@ ul.BotList li
 	-webkit-border-radius:4px;
 	text-decoration:none;
 	background-color:#ffeec5;
-	
 	background:-webkit-gradient(
 		linear,
 		left top,
@@ -403,5 +402,20 @@ ul.BotList li
 	-moz-box-shadow: 0px 0px 15px #FC0;
 	-webkit-box-shadow: 0px 0px 15px #FC0;
 	box-shadow: 0px 0px 15px #FC0;
+	
+		background-color:#e0e7fe;
+	background:-webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFF),
+		color-stop(1, #e0e7fe)
+	);
+	background:-moz-linear-gradient(
+		center top,
+		#FFF 0%,
+		#e0e7fe 100%
+	);
+	
 	color:#000;
 }
