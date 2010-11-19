@@ -4,12 +4,12 @@ require_once("./framework/settings.php");
 //Represent an abstract model
 abstract class Model
 {
-	public static function getObjectList($tableName = null, $where = null, $orderBy = null, $offset = 0, $limit = -1)
+	public static function getObjectList($tableName = null, $selectWhat = '*', $where = null, $orderBy = null, $offset = 0, $limit = -1)
 	{
 		if ($tableName == null)
 			throw new Exception('Table name cannot be null');
 		
-		$sqlExpression = 'SELECT * FROM '.$tableName;
+		$sqlExpression = 'SELECT '.$selectWhat.' FROM '.$tableName;
 		
 		if ($where != null)
 			$sqlExpression .= ' WHERE '.$where;
