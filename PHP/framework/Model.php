@@ -39,18 +39,20 @@ abstract class Model
 		return $sqlRowList;
 	}
 	
-	public static function getObject($tableName = null, $where = null)
+	public static function getObject($tableName = null, $selectWhat = '*', $where = null, $orderBy = null)
 	{
 		if ($tableName == null)
 			throw new Exception('Table name cannot be null');
 		
-		$sqlExpression = 'SELECT * FROM '.$tableName;
+		$sqlExpression = 'SELECT '.$selectWhat.' FROM '.$tableName;
 		
 		if ($where != null)
 			$sqlExpression .= ' WHERE '.$where;
 			
+		if ($orderBy != null)
+			$sqlExpression .= ' ORDER BY '.$orderBy;
+			
 		$sqlExpression .= ' LIMIT 1';
-		
 
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 		mysql_select_db(MYSQL_DB);

@@ -3,7 +3,7 @@ require_once("./framework/Model.php");
 require_once("./framework/Cache.php");
 require_once("./framework/models/AiUnit.php");
 require_once("./framework/models/UserProfile.php");
-require_once("./framework/viewers/AiShortProfileViewer.php");
+require_once("./framework/viewers/AiProfileViewer.php");
 require_once("./framework/viewers/AiShortProfileTopRatedListViewer.php");
 require_once("./framework/viewers/BreadCrumpViewer.php");
 

@@ -20,9 +20,11 @@ class AiUnit extends Model
 		return parent::count('ai_unit','id');
 	}
 	
-	public static function getAiUnit($where)
+	public static function getAiUnit($id)
 	{
-		return parent::getObject('ai_unit', $where);
+		$selectWhat = 'ai_unit.id, ai_unit.name, ai_unit.rating, ai_unit.name, ai_unit.user_profile_id, user_profile.name as `user_name`';
+		$where = 'ai_unit.id = '.$id.' and ai_unit.user_profile_id = user_profile.id and user_profile.is_active = 1';
+		return parent::getObject('ai_unit, user_profile', $selectWhat, $where);
 	}
 }
 ?>
