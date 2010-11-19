@@ -256,3 +256,77 @@ ul.BotList li
 	font-weight:normal;
 	color:#000;
 }
+
+.BreadCrump
+{
+	background-color:#FFF;
+	border-top:solid 1px #AAA;
+	border-bottom:solid 1px #AAA;
+	margin-bottom:10px;
+	padding-left:5px;
+	margin-left:-10px;
+	margin-right:-10px;
+	
+	background:-webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, rgb(250,250,250)),
+    color-stop(0.48, rgb(255,255,255)),
+    color-stop(0.52, rgb(245,245,245)),
+    color-stop(1, rgb(207,207,207))
+	);
+	background:-moz-linear-gradient(
+		center top,
+		rgb(250,250,250) 0%,
+		rgb(255,255,255) 48%,
+		rgb(245,245,245) 52%,
+		rgb(207,207,207) 100%
+	);
+
+}
+
+.BreadCrump *
+{
+	padding:3px 6px;
+	margin:0 6px 0 0;
+	height:32px;
+	line-height:32px;
+	border: 1px solid #000;
+	min-width:32px;
+	text-decoration:none;
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.BreadCrump span
+{
+	background-color:#AAA;
+	color:#000;
+}
+
+.BreadCrump span.Selected
+{
+	color:#F00;
+}
+
+.BreadCrump a
+{
+	background-color:#3ba3f3;
+	color:#FFF;
+}
+
+.BreadCrump a:hover
+{
+	border-color:#FF0;
+	color:#FF0;
+	
+	-moz-box-shadow: 0px 0px 15px #FC0;
+	-webkit-box-shadow: 0px 0px 15px #FC0;
+	box-shadow: 0px 0px 15px #FC0;
+}
+
+.BreadCrump span
+{
+}
