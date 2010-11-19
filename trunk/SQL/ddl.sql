@@ -3,13 +3,11 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `ai_unit` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `key_name` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `rating` int(10) unsigned NOT NULL,
   `user_profile_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
-  UNIQUE KEY `key_name` (`key_name`),
   KEY `user_profile_id` (`user_profile_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
