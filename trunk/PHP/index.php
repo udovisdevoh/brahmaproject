@@ -9,6 +9,8 @@
 	<body>
 		<?php require_once("./framework/templates/header.php"); ?>
 		
+		<div style="clear:both"></div>
+		
 		<div class="Container">
 			<?php echo $renderedView ?>
 		</div>
