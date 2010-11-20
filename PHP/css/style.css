@@ -212,7 +212,7 @@ ul.BotList li
 {
 	background: #FFF;	
 	width:238px;
-	height:130px;
+	height:135px;
 	padding:10px;
 	margin:0 10px 10px 0;
 	list-style:none;
@@ -220,6 +220,23 @@ ul.BotList li
 	border-color:#888;
 	border-style:solid;
 	border-width:1px;
+}
+
+ul.BotList li p
+{
+	margin-top:3px;
+	margin-bottom:3px;
+}
+
+ul.BotList li p.BotName
+{
+	margin-bottom:10px;
+}
+
+ul.BotList li div.Owner
+{
+	margin-top:10px;
+	margin-bottom:3px;
 }
 
 .Error
@@ -378,6 +395,8 @@ ul.BotList li
 {
 	border:1px solid #686868;
 	padding:6px;
+
+	
 	border-radius:4px 4px 4px 4px;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
@@ -422,7 +441,8 @@ ul.BotList li
 
 .Rating
 {
-	height:32px;
+	height:12px;
+	padding-top:10px;
 }
 
 .RatingLabel
@@ -435,11 +455,109 @@ ul.BotList li
 {
 	float:left;
 	height:8px;
-	background-color:#8AF;
 	border: 1px #000 solid;	
 	border-radius:4px 4px 4px 4px;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
 	position:relative;
 	top:3px;
+}
+
+.RatingBarUp
+{
+	background-color:#0B0;
+	background:-webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFF),
+		color-stop(0.5, #0F0),
+		color-stop(1, #000)
+	);
+	background:-moz-linear-gradient(
+		center top,
+		#FFF 0%,
+		#0F0 50%,
+		#000 100%
+	);
+}
+
+.RatingBarDown
+{
+	background-color:#F00;
+	background:-webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFF),
+		color-stop(0.5, #F00),
+		color-stop(1, #000)
+	);
+	background:-moz-linear-gradient(
+		center top,
+		#FFF 0%,
+		#F00 50%,
+		#000 100%
+	);
+}
+
+.RatingButton
+{
+	margin-left:5px;
+	position:relative;
+	top:-4px;
+	cursor:pointer;
+	border:1px solid #686868;
+	padding:1px;
+	border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	text-decoration:none;
+	background-color:#DDD;
+	margin-right:7px;
+	
+	background:-webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #EEE),
+    color-stop(1, #CCC)
+	);
+	background:-moz-linear-gradient(
+		center top,
+		#EEE 0%,
+		#CCC 100%
+	);
+}
+
+.RatingButton:hover
+{
+	background-color:#EEE;
+	background:-webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #FFF),
+    color-stop(1, #DDD)
+	);
+	background:-moz-linear-gradient(
+		center top,
+		#FFF 0%,
+		#DDD 100%
+	);
+}
+
+.RatingButton#rateUp:hover
+{
+	border-color:#0A0;
+}
+
+.RatingButton#rateDown:hover
+{
+	border-color:#F00;
+}
+
+.RatingThumbs #ratingMessageOutput
+{
+	display:none;
 }

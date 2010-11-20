@@ -3,11 +3,13 @@ class AiProfileViewer
 {
 	//(String)
 	//Return HTML from SQL Query output
-	public static function view($aiUnit, $bestRating)
+	public static function view($aiUnit, $bestUpRating, $worstDownRating)
 	{
-		$ratingBar = RatingBarViewer::view($aiUnit['rating'], $bestRating, 300);
+		$ratingBarUp = RatingBarViewer::view($aiUnit['rate_up'], $bestUpRating, 170, true);
+		$ratingBarDown = RatingBarViewer::view($aiUnit['rate_down'], $worstDownRating, 170, false);
 		
-		$thumb = RatingThumbViewer::view($aiUnit['id']);
+		$thumbUp = RatingThumbViewer::view($aiUnit['id'],true);
+		$thumbDown = RatingThumbViewer::view($aiUnit['id'],false);
 	
 		$html = '';
 	
@@ -23,8 +25,11 @@ class AiProfileViewer
 		
 		$html .= '<p><a class="ChatWith" href="./leftBrainChat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat with <strong>\''.$name.'\'</strong></a></p>';
 		
-		$html .= '<div><div class="RatingLabel">rating: '.$aiUnit['rating'].'</div>'.$ratingBar.$thumb.'</div>';
+		$html .= '<div class="Rating"><div class="RatingLabel">up: '.$aiUnit['rate_up'].'</div>'.$ratingBarUp.$thumbUp.'</div>';
 		$html .= '<div style="clear:both"></div>';
+		$html .= '<div class="Rating"><div class="RatingLabel">down: '.$aiUnit['rate_down'].'</div>'.$ratingBarDown.$thumbDown.'</div>';
+		$html .= '<div style="clear:both"></div>';
+		
 		
 		$html .= '<p>owner: <a href="?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></p>';		
 		$html .= '</div>';
