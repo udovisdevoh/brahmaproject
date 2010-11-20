@@ -7,6 +7,7 @@ require_once("./framework/viewers/AiProfileViewer.php");
 require_once("./framework/viewers/AiShortProfileTopRatedListViewer.php");
 require_once("./framework/viewers/BreadCrumpViewer.php");
 require_once("./framework/viewers/RatingBarViewer.php");
+require_once("./framework/viewers/RatingThumbViewer.php");
 
 session_start();
 

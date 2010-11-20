@@ -6,6 +6,8 @@ class AiProfileViewer
 	public static function view($aiUnit, $bestRating)
 	{
 		$ratingBar = RatingBarViewer::view($aiUnit['rating'], $bestRating, 300);
+		
+		$thumb = RatingThumbViewer::view($aiUnit['id']);
 	
 		$html = '';
 	
@@ -21,7 +23,7 @@ class AiProfileViewer
 		
 		$html .= '<p><a class="ChatWith" href="./leftBrainChat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat with <strong>\''.$name.'\'</strong></a></p>';
 		
-		$html .= '<div><div class="RatingLabel">rating: '.$aiUnit['rating'].'</div>'.$ratingBar.'</div>';
+		$html .= '<div><div class="RatingLabel">rating: '.$aiUnit['rating'].'</div>'.$ratingBar.$thumb.'</div>';
 		$html .= '<div style="clear:both"></div>';
 		
 		$html .= '<p>owner: <a href="?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></p>';		
