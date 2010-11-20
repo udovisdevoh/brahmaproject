@@ -1,11 +1,9 @@
-<?php if ($userProfile): ?>
-	<div class="Welcome">
-		Welcome <b><?php echo $userProfile['name']; ?></b>
-		<a href="account.php"><img src="./images/myaccount.png" alt="My account" />My account</a>
-		<a href="signout.php"><img src="./images/signout.png" alt="Sign out" />Sign out</a>
-	</div>
-<?php elseif (!isset($isCreateUserProfile)): ?>
-	<form class="SigninForm" method="post" action="./">
+<form class="SigninForm" method="post" action="./">
+	<?php if ($userProfile): ?>
+		<p>Welcome <b><?php echo $userProfile['name']; ?></b></p>
+		<p><a href="account.php"><img src="./images/myaccount.png" alt="My account" />My account</a></p>
+		<p><a href="signout.php"><img src="./images/signout.png" alt="Sign out" />Sign out</a></p>
+	<?php elseif (!isset($isCreateUserProfile)): ?>
 		<fieldset>
 			<div>
 				<label for="user">User</label>
@@ -24,5 +22,5 @@
 		<?php if (isset($_POST['user']) || isset($_POST['password'])): ?>
 			<p class="Error">Wrong username or password</p>
 		<?php endif ?>
-	</form>
-<?php endif ?>
+	<?php endif ?>
+</form>
