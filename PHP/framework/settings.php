@@ -16,7 +16,7 @@ define('MYSQL_USER', 'brahmavisitor');
 define('MYSQL_DB', 'brahmaproject');
 define('MYSQL_PW', 'nxmNKDfpp3HeeUmN');
 define('PW_SALT', 'ft56yrthj');
-define('DISABLE_CACHE', true);
+define('DISABLE_CACHE', false);
 define('AI_SHORT_PROFILE_COUNT_PER_PAGE', 20);
 
 $userProfile = UserProfile::getCurrentUser();
