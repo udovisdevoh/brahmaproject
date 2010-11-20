@@ -35,15 +35,16 @@ p
 	line-height:18px;
 }
 
-a
+a, .Link
 {
 	color:#00F;
 }
 
-a:hover
+a:hover, .Link:hover
 {
 	color:#698bf9;
 	text-decoration:none;
+	cursor:pointer;
 }
 
 input[type="text"],input[type="password"]
@@ -205,7 +206,7 @@ div.SiteLogo
 	text-decoration:none;
 }
 
-.SigninForm a img
+.SigninForm a img, .SigninForm span.Link img
 {
 	padding-right:5px;
 	position:relative;
