@@ -51,7 +51,6 @@ class AiUnit extends Model
 		$bestRating = 0;
 		$sqlExpression = 'SELECT rate_down FROM ai_unit ORDER BY rate_down DESC LIMIT 1';
 		
-		
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 		mysql_select_db(MYSQL_DB);
 		
@@ -62,6 +61,37 @@ class AiUnit extends Model
 		mysql_close($link);
 		
 		return $bestRating;
+	}
+	
+	public static function rate($userProfileId, $aiBotId, $ip, $todayTimeStamp, $isUp)
+	{
+		$sqlExpression = 'SELECT user_profile_rater_id FROM user_daily_rating WHERE `user_profile_rater_id` = '.$userProfileId.' and `ai_unit_rated_id` = '.$aiBotId;
+		
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		
+		$query = mysql_query($sqlExpression);
+		$isFound = ($sqlRow = mysql_fetch_array($query));
+		
+		
+		if ($isFound)
+		{
+			mysql_query('UPDATE `user_daily_rating` SET `ip` = \''.$ip.'\', `modified` = FROM_UNIXTIME('.$todayTimeStamp.'), `is_up` = '.$isUp.' WHERE `user_profile_rater_id` = '.$userProfileId.' and `ai_unit_rated_id` = '.$aiBotId);
+		}
+		else
+		{
+			mysql_query('INSERT INTO `user_daily_rating` SET `ip` = \''.$ip.'\', `modified` = FROM_UNIXTIME('.$todayTimeStamp.'), `is_up` = '.$isUp.', `user_profile_rater_id` = '.$userProfileId.', `ai_unit_rated_id` = '.$aiBotId);
+		}
+		
+		
+		if ($isUp)
+			mysql_query('UPDATE `ai_unit` SET `rate_up` = `rate_up` + 1 WHERE `id` = '.$aiBotId);
+		else
+			mysql_query('UPDATE `ai_unit` SET `rate_down` = `rate_down` + 1 WHERE `id` = '.$aiBotId);
+		
+		
+		mysql_close($link);
 	}
 }
 ?>

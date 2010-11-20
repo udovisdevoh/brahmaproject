@@ -43,13 +43,13 @@ CREATE TABLE IF NOT EXISTS `connection` (
 
 
 CREATE TABLE IF NOT EXISTS `user_daily_rating` (
-  `user_profile_rater` int(10) unsigned NOT NULL,
-  `user_profile_rated` int(10) unsigned NOT NULL,
+  `user_profile_rater_id` int(10) unsigned NOT NULL,
+  `ai_unit_rated_id` int(10) unsigned NOT NULL,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_up` tinyint(1) NOT NULL,
-  KEY `rater_rated` (`user_profile_rater`,`user_profile_rated`),
-  KEY `rated` (`user_profile_rated`),
-  KEY `rater` (`user_profile_rater`)
+  `ip` varchar(255) NOT NULL,
+  UNIQUE KEY `rater_rated_ip` (`user_profile_rater_id`,`ai_unit_rated_id`,`ip`),
+  KEY `rater_rated_timestamp` (`user_profile_rater_id`,`ai_unit_rated_id`,`modified`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 

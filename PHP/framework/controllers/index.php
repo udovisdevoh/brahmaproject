@@ -1,8 +1,6 @@
 <?php
 require_once("./framework/settings.php");
 
-define('AI_SHORT_PROFILE_COUNT_PER_PAGE', 12);
-
 if (isset($_GET['ai'])) //Single AI
 {
 	$aiUnitKey = (int)$_GET['ai'];

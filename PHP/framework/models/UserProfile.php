@@ -117,5 +117,18 @@ class UserProfile extends Model
 		
 		return true;
 	}
+	
+	public static function isCanRate($userId, $aiBotId, $ip, $todayTimeStamp)
+	{
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		$query = mysql_query('SELECT user_profile_rater_id FROM `user_daily_rating` WHERE (`user_profile_rater_id` = '.$userId.' or `ip` = \''.$ip.'\') and `ai_unit_rated_id` = '.$aiBotId.' and `modified` = FROM_UNIXTIME('.$todayTimeStamp.') LIMIT 1');
+		$isFound = ($sqlRow = mysql_fetch_array($query));
+			
+		mysql_close($link);
+		
+		return !$isFound;
+	}
 }
 ?>
