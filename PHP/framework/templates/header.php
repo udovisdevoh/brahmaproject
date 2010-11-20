@@ -12,5 +12,8 @@
 
 <?php require_once("./framework/templates/menu.php"); ?>
 
-<?php require_once("./framework/templates/signinForm.php"); ?>
+
+<form id="signinForm" class="SigninForm" method="post" action="./" onSubmit="return false;">
+	<?php require_once("./framework/templates/signinFormContents.php"); ?>
+</form>
 
