@@ -8,6 +8,8 @@ if (isset($_GET['ai'])) //Single AI
 	if ($renderedView == null)
 	{
 		$aiUnit = AiUnit::getAiUnit($aiUnitKey);
+		if ($aiUnit == null)
+			die();			
 		$bestUpRating = AiUnit::getBestUpRating();
 		$worstDownRating = AiUnit::getWorstDownRating();
 		$renderedView = AiProfileViewer::view($aiUnit, $bestUpRating, $worstDownRating);
@@ -20,11 +22,17 @@ else if (isset($_GET['user'])) //Single User
 	$renderedView = Cache::get('user_profile_'.$userKey, 300);
 	if ($renderedView == null)
 	{
-		$viewedUserProfile = UserProfile::getUser('`id` = '.$userKey.' and `is_active` = 1');
+		$viewedUserProfile = UserProfile::getUser('`id` = '.$userKey.' and `is_active` = 1');	
+		if ($viewedUserProfile == null)
+			die();	
 		$aiUnitList = AiUnit::getAiUnitListForUser($userKey);
 		$bestUpRating = AiUnit::getBestUpRating();
 		$worstDownRating = AiUnit::getWorstDownRating();
-		$renderedView = UserProfileViewer::view($viewedUserProfile, $aiUnitList, $bestUpRating, $worstDownRating);
+		
+		$totalUpRating = UserProfile::getTotalUpRating($userKey);
+		$totalDownRating = UserProfile::getTotalDownRating($userKey);
+		
+		$renderedView = UserProfileViewer::view($viewedUserProfile, $aiUnitList, $bestUpRating, $worstDownRating, $totalUpRating, $totalDownRating);
 		Cache::set('user_profile_'.$userKey, $renderedView);
 	}
 }
@@ -36,6 +44,8 @@ else //List of AI
 	if ($renderedView == null)
 	{
 		$aiUnitList = AiUnit::getTopRatedList($offset, AI_SHORT_PROFILE_COUNT_PER_PAGE);
+		if ($aiUnitList == null)
+			die();	
 		$aiUnitCount = AiUnit::count();
 		$bestUpRating = AiUnit::getBestUpRating();
 		$worstDownRating = AiUnit::getWorstDownRating();

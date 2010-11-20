@@ -121,11 +121,6 @@ class UserProfile extends Model
 		header('Location: ./');
 	}
 	
-	function isValidEmail($email)
-	{
-		return preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email); 
-	}
-	
 	public static function isValidPassword($password)
 	{
 		if (strlen($password) < 8)
@@ -153,6 +148,37 @@ class UserProfile extends Model
 		mysql_close($link);
 		
 		return !$isFound;
+	}
+	
+	public static function getTotalUpRating($userId)
+	{
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		$query = mysql_query('SELECT sum(`rate_up`) FROM `ai_unit` WHERE `user_profile_id` = '.$userId);
+		$sqlRow = mysql_fetch_array($query);
+			
+		mysql_close($link);
+		
+		return $sqlRow[0];
+	}
+	
+	public static function getTotalDownRating($userId)
+	{
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		$query = mysql_query('SELECT sum(`rate_down`) FROM `ai_unit` WHERE `user_profile_id` = '.$userId);
+		$sqlRow = mysql_fetch_array($query);
+			
+		mysql_close($link);
+		
+		return $sqlRow[0];
+	}
+	
+	private static function isValidEmail($email)
+	{
+		return preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email); 
 	}
 }
 ?>
