@@ -72,6 +72,11 @@ class UserProfile extends Model
 		return null;
 	}
 	
+	public static function getUser($where)
+	{
+		return parent::getObject('user_profile', '*', $where, null);
+	}
+	
 	public static function newUserProfile($name, $password, $email, $first_name, $last_name)
 	{
 		if (!self::isValidEmail($email))

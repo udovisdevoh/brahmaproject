@@ -455,8 +455,11 @@ ul.BotList li div.Owner
 
 .RatingLabel
 {
-	width:60px;
+	font-size:9px;
+	width:40px;
 	float:left;
+	text-align:right;
+	padding-right:10px;
 }
 
 .RatingBar

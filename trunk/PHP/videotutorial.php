@@ -15,10 +15,13 @@
 			
 			<ul>
 				<li>
-					Train your first left brain bot
+					How to train your first "left brain" bot
 				</li>
 				<li>
-					Advanced use of the left brain interface
+					Advanced use of the "left brain" interface
+				</li>
+				<li>
+					How to chat with Brahma
 				</li>
 			</ul>
 			
