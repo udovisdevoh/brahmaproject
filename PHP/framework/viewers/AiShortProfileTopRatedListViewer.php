@@ -17,8 +17,8 @@ class AiShortProfileTopRatedListViewer
 		foreach ($aiUnitList as $aiUnit)
 		{
 			$name = $aiUnit['name'];
-			if (strlen($name) > 28)
-				$name = substr($name, 0,28).'...';
+			if (strlen($name) > 32)
+				$name = substr($name, 0,32).'...';
 				
 			$userName = $aiUnit['user_name'];
 			if (strlen($userName) > 24)
