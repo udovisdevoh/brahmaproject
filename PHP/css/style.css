@@ -185,23 +185,27 @@ div.SiteLogo
 	top:-4px;
 }
 
-.Welcome
+.SigninForm
 {
 	float:right;
-	min-height:113px;
-	width:240px;
+	min-height:83px;
+	width:230px;
 	margin:5px;
 	padding:10px;
 }
 
-.Welcome a
+.SigninForm p
 {
-	margin-top:8px;
-	display:block;
+	margin:0px;
+	padding:0px;
+}
+
+.SigninForm a
+{
 	text-decoration:none;
 }
 
-.Welcome a img
+.SigninForm a img
 {
 	padding-right:5px;
 	position:relative;
