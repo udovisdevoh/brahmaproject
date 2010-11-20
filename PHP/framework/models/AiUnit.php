@@ -93,5 +93,12 @@ class AiUnit extends Model
 		
 		mysql_close($link);
 	}
+
+	public static function getAiUnitListForUser($userId)
+	{
+		$selectWhat = 'id, name, rate_up, rate_down';
+		$where = 'user_profile_id = '.$userId;
+		return parent::getObjectList('ai_unit', $selectWhat, $where, '(rate_up - rate_down) DESC', 0, AI_COUNT_LIMIT_PER_USER);
+	}
 }
 ?>

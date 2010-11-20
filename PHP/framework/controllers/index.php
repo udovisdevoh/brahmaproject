@@ -20,8 +20,11 @@ else if (isset($_GET['user'])) //Single User
 	$renderedView = Cache::get('user_profile_'.$userKey, 300);
 	if ($renderedView == null)
 	{
-		$userProfile = UserProfile::getUser('`id` = '.$userKey);
-		$renderedView = UserProfileViewer::view($userProfile);
+		$viewedUserProfile = UserProfile::getUser('`id` = '.$userKey.' and `is_active` = 1');
+		$aiUnitList = AiUnit::getAiUnitListForUser($userKey);
+		$bestUpRating = AiUnit::getBestUpRating();
+		$worstDownRating = AiUnit::getWorstDownRating();
+		$renderedView = UserProfileViewer::view($viewedUserProfile, $aiUnitList, $bestUpRating, $worstDownRating);
 		Cache::set('user_profile_'.$userKey, $renderedView);
 	}
 }
