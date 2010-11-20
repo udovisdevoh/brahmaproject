@@ -28,8 +28,11 @@ class AiProfileViewer
 		$html .= '<div class="Rating"><div class="RatingLabel">up: '.$aiUnit['rate_up'].'</div>'.$ratingBarUp.$thumbUp.'</div>';
 		$html .= '<div style="clear:both"></div>';
 		$html .= '<div class="Rating"><div class="RatingLabel">down: '.$aiUnit['rate_down'].'</div>'.$ratingBarDown.$thumbDown.'</div>';
-		$html .= '<div style="clear:both"></div>';
 		
+		$html .= '<div style="clear:both"></div>';
+		$html .= '<div id="ratingMessageOutput"></div>';
+		
+		$html .= '<div style="clear:both"></div>';
 		
 		$html .= '<p>owner: <a href="?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></p>';		
 		$html .= '</div>';

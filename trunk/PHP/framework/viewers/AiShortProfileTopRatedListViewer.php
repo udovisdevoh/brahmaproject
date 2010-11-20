@@ -36,7 +36,7 @@ class AiShortProfileTopRatedListViewer
 			$html .= '<div class="Rating"><div class="RatingLabel">down: '.$aiUnit['rate_down'].'</div>'.$ratingBarDown.'</div>';
 			$html .= '<div style="clear:both"></div>';
 			
-			$html .= '<div style="clear:both"></div>';
+			
 			$html .= '<div class="Owner">owner: <a href="?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></div>';
 			$html .= '</li>';
 		}
