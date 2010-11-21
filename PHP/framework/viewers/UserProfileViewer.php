@@ -31,5 +31,37 @@ class UserProfileViewer
 		
 		return $html;
 	}
+	
+	public static function viewAccountSettings($user, $aiUnitList)
+	{
+		$html = '';
+		
+		$newBotLink = '<a class="Icon" href="./newbot.php" /><img src="./images/new.png" alt="Create new Left Brain Bot" /><span>Create new Left Brain Bot</span></a>';
+		
+		$html .= '<h2>My Account ('.$user['name'].')</h2>';
+		
+		$html .= $newBotLink;
+		
+		$html .= '<a class="Icon" href="./user.php?user='.$user['id'].'"><img src="./images/userpublicprofile.png" alt="View public profile" /><span>View public profile</span></a>';		
+		
+		$html .= '<div style="clear:both"></div>';
+		
+		$html .= '<h3>My left brain bots</h3>';
+		
+		foreach ($aiUnitList as $aiUnit)
+		{
+			$html .= '<div class="AccountSettingsAiUnit">';
+			$html .= '<div class="Name">'.$aiUnit['name'].'</div>';
+			$html .= '<a href="./?ai='.$aiUnit['id'].'" class="ViewProfile"><span>view profile</span></a>';
+			$html .= '<a href="./leftbrainchat.php?ai='.$aiUnit['id'].'" class="Train"><span>train</span></a>';
+			$html .= '<a href="./editbot.php?ai='.$aiUnit['id'].'" class="Settings"><span>settings</span></a>';
+			$html .= '<a href="./deletebot.php?ai='.$aiUnit['id'].'" class="Delete"><span>delete</span></a>';
+			$html .= '</div>';
+		}
+			
+		$html .= '<div style="clear:both"></div>';
+		
+		return $html;
+	}
 }
 ?>
