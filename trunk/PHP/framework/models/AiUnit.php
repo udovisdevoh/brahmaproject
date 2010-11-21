@@ -65,6 +65,7 @@ class AiUnit extends Model
 	
 	public static function rate($userProfileId, $aiBotId, $ip, $todayTimeStamp, $isUp)
 	{
+		$isUp = (int)$isUp;
 		$sqlExpression = 'SELECT user_profile_rater_id FROM user_daily_rating WHERE `user_profile_rater_id` = '.$userProfileId.' and `ai_unit_rated_id` = '.$aiBotId;
 		
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
