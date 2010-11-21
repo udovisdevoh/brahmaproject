@@ -28,6 +28,9 @@ class Cache
 	//Add something to cache: key, value
 	public static function set($key, $value)
 	{
+		if (DISABLE_CACHE)
+			return false;
+	
 		$fileName = CACHE_DIRECTORY.$key;
 		$filePointer = fopen($fileName, 'w');
 		fwrite($filePointer, $value);
