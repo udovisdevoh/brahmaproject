@@ -15,6 +15,10 @@ must need captcha to create Ai and to delete AI
 
 
 
+when delete: add cascade
+
+
+
 
 prod: IE: test with unicode user and pw with ' and weird chars
 
