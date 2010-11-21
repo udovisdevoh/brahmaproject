@@ -85,5 +85,21 @@ abstract class Model
 		
 		return $sqlRow[0];
 	}
+	
+	public static function delete($tableName, $where, $limit = 1)
+	{
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		$sqlExpression = 'delete from '.$tableName.' where '.$where.' limit '.$limit;
+
+		
+		$query = mysql_query($sqlExpression);
+		
+		mysql_close($link);		
+	
+		
+		return $query;
+	}
 }
 ?>
