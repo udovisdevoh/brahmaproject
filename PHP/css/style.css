@@ -503,19 +503,19 @@ ul.BotList li div.Owner
 
 .RatingBarDown
 {
-	background-color:#F00;
+	background-color:#F50;
 	background:-webkit-gradient(
 		linear,
 		left top,
 		left bottom,
 		color-stop(0, #FFF),
-		color-stop(0.5, #F00),
+		color-stop(0.5, #F50),
 		color-stop(1, #000)
 	);
 	background:-moz-linear-gradient(
 		center top,
 		#FFF 0%,
-		#F00 50%,
+		#F50 50%,
 		#000 100%
 	);
 }
@@ -629,6 +629,12 @@ a.Icon:hover
 	color:#F80;
 }
 
+.AvatarAccountSettings
+{
+	float:left;
+	margin-right:10px;
+}
+
 .AccountSettingsAiUnit
 {
 	display:block;
@@ -717,4 +723,34 @@ a.Icon:hover
 ul.BotList li .Avatar
 {
 	float:right;
+}
+
+#avatarForm
+{
+	margin-top:15px;
+}
+
+#avatarForm div.AvatarRadioButton
+{
+	float:left;
+	padding:5px;
+	width:69px;
+	height:50px;
+	border:1px #888 solid;
+	margin-left:4px;
+	margin-bottom:4px;
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#avatarForm div.Checked
+{
+	background-color:#ADF;
+	border-color:#FFF;
+}
+
+#avatarForm div *
+{
+	float:left;
 }

@@ -48,8 +48,8 @@ class AiProfileViewer
 	{
 		$html = '';
 		$name = $aiUnit['name'];
-		if (strlen($name) > 32)
-			$name = substr($name, 0,32).'...';
+		if (strlen($name) > 28)
+			$name = substr($name, 0,28).'...';
 	
 		$ratingBarUp = RatingBarViewer::view($aiUnit['rate_up'], $bestUpRating, 170, true);
 		$ratingBarDown = RatingBarViewer::view($aiUnit['rate_down'], $worstDownRating, 170, false);
@@ -73,6 +73,35 @@ class AiProfileViewer
 			$html .= '<div class="Owner">owner: <a href="./user.php?user='.$aiUnit['user_profile_id'].'">'.$aiUnit['user_name'].'</a></div>';
 			$html .= '</li>';
 		}
+		
+		return $html;
+	}
+	
+	public static function viewEditProfileForm($aiUnit)
+	{
+		$html = '';
+		
+		$html .= '<h2>\''.$aiUnit['name'].'\' settings</h2>';
+		
+		$html .= '<form id="avatarForm" method="post" action="./editbot.php?ai='.$aiUnit['id'].'">';
+		
+		
+		for ($avatarId = 1; $avatarId <= LAST_AI_AVATAR_ID; $avatarId++)
+		{
+			if ($avatarId == $aiUnit['avatar_id'])
+				$html .= '<div class="Checked AvatarRadioButton"><input type="radio" name="avatar_id" value="'.$avatarId.'" checked="checked" />';
+			else
+				$html .= '<div class="AvatarRadioButton"><input type="radio" name="avatar_id" value="'.$avatarId.'"/>';
+			$html .= '<img src="./images/avatars/ai/'.$avatarId.'.png" alt="Avatar" />';
+			
+			$html .= '</div>';
+		}
+		
+		$html .= '<div style="clear:both"></div>';
+		
+		$html .= '<p><input type="Submit" value="Choose avatar" name="chooseAvatar" /></p>';
+		
+		$html .= '</form>';
 		
 		return $html;
 	}

@@ -21,6 +21,8 @@ define('DISABLE_CACHE', true);
 define('AI_SHORT_PROFILE_COUNT_PER_PAGE', 12);
 define('AI_COUNT_LIMIT_PER_USER', 100);
 define('DEFAULT_CACHE_TIMEOUT', 300);
+define('LAST_AI_AVATAR_ID', 70);
+
 
 $userProfile = UserProfile::getCurrentUser();
 

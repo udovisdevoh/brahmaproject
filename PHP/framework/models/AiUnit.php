@@ -33,6 +33,13 @@ class AiUnit extends Model
 		return parent::getObject('ai_unit, user_profile', $selectWhat, $where);
 	}
 	
+	public static function getAiUnitForUser($aiUnitId, $userKey)
+	{
+		$selectWhat = '*';
+		$where = 'ai_unit.id = '.$aiUnitId.' and ai_unit.user_profile_id = '.$userKey;
+		return parent::getObject('ai_unit', $selectWhat, $where);
+	}
+	
 	public static function getName($id)
 	{
 		$selectWhat = 'ai_unit.name';
@@ -131,6 +138,11 @@ class AiUnit extends Model
 		$selectWhat = 'id, name, rate_up, rate_down, avatar_id';
 		$where = 'user_profile_id = '.$userId;
 		return parent::getObjectList('ai_unit', $selectWhat, $where, '(rate_up - rate_down) DESC', $offset, $limit);
+	}
+	
+	public static function setAvatar($aiUnitId, $userProfileId, $avatarId)
+	{
+		return parent::update('ai_unit','`avatar_id` = '.$avatarId,'`id` = '.$aiUnitId.' and `user_profile_id` = '.$userProfileId);
 	}
 }
 ?>
