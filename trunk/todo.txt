@@ -17,6 +17,8 @@ must need captcha to create Ai
 
 
 
+prod: IE: test with unicode user and pw with ' and weird chars
+
 
 add a wiki?
 
