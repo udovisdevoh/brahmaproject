@@ -21,6 +21,11 @@ class AiUnit extends Model
 		return parent::count('ai_unit','id');
 	}
 	
+	public static function countForUser($userKey)
+	{
+		return parent::count('ai_unit','id','user_profile_id = '.$userKey);
+	}
+	
 	public static function getAiUnit($id)
 	{
 		$selectWhat = 'ai_unit.id, ai_unit.name, ai_unit.rate_up, ai_unit.rate_down, ai_unit.name, ai_unit.user_profile_id, user_profile.name as `user_name`';
@@ -95,11 +100,11 @@ class AiUnit extends Model
 		mysql_close($link);
 	}
 
-	public static function getAiUnitListForUser($userId)
+	public static function getAiUnitListForUser($userId, $offset, $limit)
 	{
 		$selectWhat = 'id, name, rate_up, rate_down';
 		$where = 'user_profile_id = '.$userId;
-		return parent::getObjectList('ai_unit', $selectWhat, $where, '(rate_up - rate_down) DESC', 0, AI_COUNT_LIMIT_PER_USER);
+		return parent::getObjectList('ai_unit', $selectWhat, $where, '(rate_up - rate_down) DESC', $offset, $limit);
 	}
 }
 ?>

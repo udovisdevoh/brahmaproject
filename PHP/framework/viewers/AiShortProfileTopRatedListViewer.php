@@ -10,7 +10,7 @@ class AiShortProfileTopRatedListViewer
 		$html = '';
 	
 		$html .= '<div style="clear:both"></div>';
-		
+	
 		$html .= $breadCrump;
 		$html .= '<ul class="BotList">';
 		
