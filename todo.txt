@@ -1,3 +1,23 @@
+Bot profile
+2 most conformistic statements
+2 most controversial statements
+2 most original statements
+stats for conformity, controverse and originality
+
+Avatar : bot and user
+
+
+index separate controllers
+
+create page: list of users
+
+must need captcha to create Ai
+
+
+
+
+
+
 add a wiki?
 
 
