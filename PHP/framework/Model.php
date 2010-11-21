@@ -118,5 +118,20 @@ abstract class Model
 		
 		mysql_close($link);
 	}
+	
+	public static function newObject($tableName, $fieldsString)
+	{
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+				
+		$sqlExpression = 'insert into '.$tableName.' set '.$fieldsString;
+		
+		if (!mysql_query($sqlExpression))
+		{
+			throw new Exception("Couldn't insert row");
+		}
+				
+		mysql_close($link);
+	}
 }
 ?>
