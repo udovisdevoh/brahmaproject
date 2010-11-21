@@ -45,7 +45,18 @@ class AiUnit extends Model
 	{
 		$aiUnitId = (int)$aiUnitId;
 		$userId = (int)$userId;
-		return parent::delete('ai_unit','`id` = '.$aiUnitId.' and `user_profile_id` = '.$userId, 1);
+		
+		$aiUnit = parent::getObject('ai_unit','id','`id` = '.$aiUnitId.' and `user_profile_id` = '.$userId);
+		
+		if ($aiUnit != null)
+		{
+			parent::delete('connection','`ai_unit_id` = '.$aiUnitId);
+			return parent::delete('ai_unit','`id` = '.$aiUnitId.' and `user_profile_id` = '.$userId, 1);
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public static function getBestUpRating()
