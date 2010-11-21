@@ -28,6 +28,14 @@ h2
 	font-size:15px;
 }
 
+h3
+{
+	border-top:solid 1px #BBB;
+	margin:0px 0px 0px 0px;
+	padding-top:3px;
+	font-size:13px;
+}
+
 p
 {
 	margin-top:10px;
@@ -430,7 +438,7 @@ ul.BotList li div.Owner
 	-webkit-box-shadow: 0px 0px 15px #FC0;
 	box-shadow: 0px 0px 15px #FC0;
 	
-		background-color:#e0e7fe;
+	background-color:#e0e7fe;
 	background:-webkit-gradient(
 		linear,
 		left top,
@@ -581,4 +589,118 @@ ul.BotList li div.Owner
 	-webkit-border-radius:4px;
 	overflow-y:scroll;
 	overflow-x:hidden;
+}
+
+a.Icon
+{
+	margin-top:10px;
+	margin-bottom:5px;
+	margin-right:10px;
+	height:48px;
+	display:block;
+	float:left;
+	width:240px;
+	text-decoration:none;
+	
+	border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border:solid 1px #888;
+	background-color:#FFF;
+	padding:4px;
+}
+
+a.Icon img
+{
+	padding-right:10px;
+}
+
+a span
+{
+	position:relative;
+	top:-17px;
+}
+
+a.Icon:hover
+{
+	-moz-box-shadow: 0px 0px 15px #FC0;
+	-webkit-box-shadow: 0px 0px 15px #FC0;
+	box-shadow: 0px 0px 15px #FC0;
+	color:#F80;
+}
+
+.AccountSettingsAiUnit
+{
+	display:block;
+	float:left;
+	min-width:300px;
+	min-height:20px;
+	padding:5px;
+	border:1px solid #AAA;
+	
+	margin-top:10px;
+	margin-bottom:10px;
+	clear:both;
+	
+	background-color:#FFF;
+	border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
+
+.AccountSettingsAiUnit div
+{
+	display:block;
+	float:left;
+	width:260px;
+	padding-right:20px;
+	
+	min-height:20px;
+}
+
+.AccountSettingsAiUnit a
+{
+	display:block;
+	float:left;
+	min-height:20px;
+	min-width:60px;
+	text-align:center;
+	background-repeat:no-repeat;
+	background-position:center;
+	min-height:32px;
+	text-decoration:none;
+}
+
+.AccountSettingsAiUnit a span
+{
+	visibility:hidden;
+}
+
+.AccountSettingsAiUnit a:hover span
+{
+	visibility:visible;
+	z-index:2;
+	position:static;
+	background-color:#000;
+	color:#FC3;
+}
+
+.AccountSettingsAiUnit a.Delete
+{
+	background-image:url('../images/delete.png');
+}
+
+.AccountSettingsAiUnit a.Settings
+{
+	background-image:url('../images/settings.png');
+}
+
+.AccountSettingsAiUnit a.Train
+{
+	background-image:url('../images/train.png');
+}
+
+.AccountSettingsAiUnit a.ViewProfile
+{
+	background-image:url('../images/profile.png');
 }

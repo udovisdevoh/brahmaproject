@@ -11,8 +11,7 @@ index separate controllers
 
 create page: list of users
 
-must need captcha to create Ai
-
+must need captcha to create Ai and to delete AI
 
 
 
