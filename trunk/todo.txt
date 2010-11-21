@@ -11,11 +11,11 @@ index separate controllers
 
 create page: list of users
 
-must need captcha to create Ai and to delete AI
+must need captcha to create Ai and to delete AI, create account, delete account
 
 
 
-when delete: add cascade
+when delete: must delete concept names if they are not used
 
 
 
