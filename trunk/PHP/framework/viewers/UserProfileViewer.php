@@ -51,6 +51,10 @@ class UserProfileViewer
 		foreach ($aiUnitList as $aiUnit)
 		{
 			$html .= '<div class="AccountSettingsAiUnit">';
+			
+			if (isset($aiUnit['avatar_id']) && $aiUnit['avatar_id'])
+				$html .= '<img class="AvatarAccountSettings" src="./images/avatars/ai/'.$aiUnit['avatar_id'].'.png" alt="Avatar" />';
+			
 			$html .= '<div class="Name">'.$aiUnit['name'].'</div>';
 			$html .= '<a href="./?ai='.$aiUnit['id'].'" class="ViewProfile"><span>view profile</span></a>';
 			$html .= '<a href="./leftbrainchat.php?ai='.$aiUnit['id'].'" class="Train"><span>train</span></a>';

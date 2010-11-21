@@ -14,6 +14,9 @@ create page: list of users
 must need captcha to create Ai and to delete AI, create account, delete account
 
 
+h1, h2 h3 etc... more like a tab style
+
+
 
 when delete: must delete concept names if they are not used
 

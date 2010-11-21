@@ -103,5 +103,20 @@ abstract class Model
 		
 		return $query;
 	}
+	
+	public static function update($tableName, $fieldsString, $where)
+	{
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+				
+		$sqlExpression = 'update '.$tableName.' set '.$fieldsString.' where '.$where;
+		
+
+		$query = mysql_query($sqlExpression);
+		
+		$sqlRow = mysql_fetch_array($query);
+		
+		mysql_close($link);
+	}
 }
 ?>
