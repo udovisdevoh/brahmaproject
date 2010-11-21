@@ -6,13 +6,16 @@ if (isset($_GET['user'])) //Single User
 	$offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
 	$offset = ((int)($offset / AI_SHORT_PROFILE_COUNT_PER_PAGE)) * AI_SHORT_PROFILE_COUNT_PER_PAGE;
 	
+	if ($offset > AI_COUNT_LIMIT_PER_USER || $offset < 0)
+		die();
+	
 	$userKey = (int)$_GET['user'];
 	$renderedView = Cache::get('user_profile_'.$userKey.'_'.$offset, DEFAULT_CACHE_TIMEOUT);
 	if ($renderedView == null)
 	{
 		$viewedUserProfile = UserProfile::getUser('`id` = '.$userKey.' and `is_active` = 1');	
 		if ($viewedUserProfile == null)
-			die();	
+			die();			
 		$aiUnitList = AiUnit::getAiUnitListForUser($userKey, $offset, AI_SHORT_PROFILE_COUNT_PER_PAGE);
 		$bestUpRating = AiUnit::getBestUpRating();
 		$worstDownRating = AiUnit::getWorstDownRating();
@@ -32,5 +35,6 @@ if (isset($_GET['user'])) //Single User
 else
 {
 	//Implement list of users
+	die();
 }
 ?>
