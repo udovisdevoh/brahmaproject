@@ -139,6 +139,11 @@ class UserProfile extends Model
 	
 	public static function isCanRate($userId, $aiBotId, $ip, $todayTimeStamp)
 	{
+		$userId = (int)$userId;
+		$aiBotId = (int)$aiBotId;
+		$todayTimeStamp = (int)$todayTimeStamp;
+		$ip = addslashes($ip);
+		
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 		mysql_select_db(MYSQL_DB);
 		
@@ -152,6 +157,8 @@ class UserProfile extends Model
 	
 	public static function getTotalUpRating($userId)
 	{
+		$userId = (int)$userId;
+		
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 		mysql_select_db(MYSQL_DB);
 		
@@ -165,6 +172,8 @@ class UserProfile extends Model
 	
 	public static function getTotalDownRating($userId)
 	{
+		$userId = (int)$userId;
+	
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 		mysql_select_db(MYSQL_DB);
 		
@@ -174,6 +183,41 @@ class UserProfile extends Model
 		mysql_close($link);
 		
 		return $sqlRow[0];
+	}
+	
+	public static function getRank($userId)
+	{
+		$userId = (int)$userId;
+
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+			
+		$scoreQuery = mysql_query('SELECT sum(ai_unit.rate_up) - sum(ai_unit.rate_down) FROM ai_unit WHERE ai_unit.user_profile_id = '.$userId);
+
+		$sqlRow = mysql_fetch_array($scoreQuery);
+		
+		$score = $sqlRow[0];
+
+		$rankQuery = mysql_query('SELECT
+			count( id )
+		FROM (
+			SELECT
+				user_profile.id,
+				sum( ai_unit.rate_up ) - sum( ai_unit.rate_down ) AS \'score\'
+			FROM
+				`ai_unit`,
+				`user_profile`
+			WHERE
+				ai_unit.user_profile_id = user_profile.id
+			GROUP BY user_profile.id) AS sub_query
+		WHERE sub_query.score > '.$score);
+		
+		
+		$sqlRow = mysql_fetch_array($rankQuery);
+			
+		mysql_close($link);
+		
+		return $sqlRow[0] + 1;
 	}
 	
 	private static function isValidEmail($email)
