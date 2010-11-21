@@ -1,8 +1,10 @@
 <?php
 class UserProfileViewer
 {
-	public static function view($user, $aiUnitList, $bestUpRating, $worstDownRating, $totalUpRating, $totalDownRating, $rank)
+	public static function view($user, $aiUnitList, $offset, $countPerPage, $totalCount, $bestUpRating, $worstDownRating, $totalUpRating, $totalDownRating, $rank)
 	{
+		$breadCrump = BreadCrumpViewer::view('./?user='.$user['id'].'&offset=', $offset, $countPerPage, $totalCount);
+	
 		$html = '';
 		
 		$html .= '<div class="UserInfo">';
@@ -13,7 +15,7 @@ class UserProfileViewer
 		$html .= '<p>Total down rating: <strong>'.$totalDownRating.'</strong></p>';
 		$html .= '</div>';
 		
-
+		$html .= $breadCrump;
 		$html .= '<ul class="BotList">';
 		
 		foreach ($aiUnitList as $aiUnit)
@@ -23,6 +25,9 @@ class UserProfileViewer
 		
 		$html .= '</ul>';
 
+		$html .= '<div style="clear:both"></div>';
+		
+		$html .= $breadCrump;
 		
 		return $html;
 	}
