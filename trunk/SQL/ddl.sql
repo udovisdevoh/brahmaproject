@@ -6,21 +6,12 @@ CREATE TABLE IF NOT EXISTS `ai_unit` (
   `name` varchar(255) NOT NULL,
   `rate_up` int(10) NOT NULL,
   `rate_down` int(10) NOT NULL,
+  `avatar_id` int(10) unsigned NOT NULL,
   `user_profile_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `user_profile_id` (`user_profile_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
-
-
-CREATE TABLE IF NOT EXISTS `ai_unit_state` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `data` longblob NOT NULL,
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ai_unit_id` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ai_unit_id` (`ai_unit_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 CREATE TABLE IF NOT EXISTS `concept_name` (
@@ -65,4 +56,4 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   UNIQUE KEY `user_name` (`name`),
   UNIQUE KEY `email` (`email`),
   KEY `user_name_and_password` (`name`,`password`,`is_active`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
