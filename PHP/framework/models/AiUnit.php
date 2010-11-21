@@ -33,6 +33,21 @@ class AiUnit extends Model
 		return parent::getObject('ai_unit, user_profile', $selectWhat, $where);
 	}
 	
+	public static function getName($id)
+	{
+		$selectWhat = 'ai_unit.name';
+		$where = 'ai_unit.id = '.$id;
+		$row = parent::getObject('ai_unit, user_profile', $selectWhat, $where);
+		return $row['name'];
+	}
+	
+	public static function delete($aiUnitId, $userId)
+	{
+		$aiUnitId = (int)$aiUnitId;
+		$userId = (int)$userId;
+		return parent::delete('ai_unit','`id` = '.$aiUnitId.' and `user_profile_id` = '.$userId, 1);
+	}
+	
 	public static function getBestUpRating()
 	{
 		$bestRating = 0;
