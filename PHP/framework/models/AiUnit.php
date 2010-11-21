@@ -11,7 +11,7 @@ class AiUnit extends Model
 	
 	public static function getTopRatedList($offset, $limit)
 	{
-		$selectWhat = 'ai_unit.id, ai_unit.name, ai_unit.rate_up, ai_unit.rate_down, ai_unit.name, ai_unit.user_profile_id, user_profile.name as `user_name`';
+		$selectWhat = 'ai_unit.id, ai_unit.name, ai_unit.rate_up, ai_unit.rate_down, ai_unit.name, ai_unit.user_profile_id, ai_unit.avatar_id, user_profile.name as `user_name`';
 		$where = 'ai_unit.user_profile_id = user_profile.id and user_profile.is_active = 1';
 		return parent::getObjectList('ai_unit, user_profile', $selectWhat, $where, '(rate_up - rate_down) DESC', $offset, $limit);
 	}
@@ -28,7 +28,7 @@ class AiUnit extends Model
 	
 	public static function getAiUnit($id)
 	{
-		$selectWhat = 'ai_unit.id, ai_unit.name, ai_unit.rate_up, ai_unit.rate_down, ai_unit.name, ai_unit.user_profile_id, user_profile.name as `user_name`';
+		$selectWhat = 'ai_unit.id, ai_unit.name, ai_unit.rate_up, ai_unit.rate_down, ai_unit.name, ai_unit.avatar_id, ai_unit.user_profile_id, user_profile.name as `user_name`';
 		$where = 'ai_unit.id = '.$id.' and ai_unit.user_profile_id = user_profile.id and user_profile.is_active = 1';
 		return parent::getObject('ai_unit, user_profile', $selectWhat, $where);
 	}
@@ -128,7 +128,7 @@ class AiUnit extends Model
 
 	public static function getAiUnitListForUser($userId, $offset, $limit)
 	{
-		$selectWhat = 'id, name, rate_up, rate_down';
+		$selectWhat = 'id, name, rate_up, rate_down, avatar_id';
 		$where = 'user_profile_id = '.$userId;
 		return parent::getObjectList('ai_unit', $selectWhat, $where, '(rate_up - rate_down) DESC', $offset, $limit);
 	}

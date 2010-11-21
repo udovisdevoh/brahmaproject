@@ -704,3 +704,17 @@ a.Icon:hover
 {
 	background-image:url('../images/profile.png');
 }
+
+.AiProfile .Avatar
+{
+	float:left;
+	display:block;
+	position:relative;
+	top:-15px;
+	left:-8px;
+}
+
+ul.BotList li .Avatar
+{
+	float:right;
+}

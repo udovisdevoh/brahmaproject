@@ -19,12 +19,15 @@ class AiProfileViewer
 		
 		$name = $aiUnit['name'];		
 		$userName = $aiUnit['user_name'];
-	
+
+		if (isset($aiUnit['avatar_id']) && $aiUnit['avatar_id'])
+			$html .= '<img class="Avatar" src="./images/avatars/ai/'.((int)$aiUnit['avatar_id']).'.png" alt="Avatar" />';		
 
 		$html .= '<h2>'.$name.'</h2>';
 		
 		$html .= '<p><a class="ChatWith" href="./leftbrainchat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat with <strong>\''.$name.'\'</strong></a></p>';
-			
+		
+	
 		$html .= '<div class="Rating"><div class="RatingLabel">'.$aiUnit['rate_up'].'</div>'.$ratingBarUp.$thumbUp.'</div>';
 		$html .= '<div style="clear:both"></div>';
 		$html .= '<div class="Rating"><div class="RatingLabel">'.$aiUnit['rate_down'].'</div>'.$ratingBarDown.$thumbDown.'</div>';
@@ -52,8 +55,13 @@ class AiProfileViewer
 		$ratingBarDown = RatingBarViewer::view($aiUnit['rate_down'], $worstDownRating, 170, false);
 	
 		$html .= '<li>';
+		
+		if (isset($aiUnit['avatar_id']) && $aiUnit['avatar_id'])
+			$html .= '<img class="Avatar" src="./images/avatars/ai/'.((int)$aiUnit['avatar_id']).'.png" alt="Avatar" />';
+		
 		$html .= '<p class="BotName"><strong><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></strong></p>';
 		$html .= '<p><a class="ChatWith" href="./leftbrainchat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat!</a></p>';
+		
 		
 		$html .= '<div class="Rating"><div class="RatingLabel">'.$aiUnit['rate_up'].'</div>'.$ratingBarUp.'</div>';
 		$html .= '<div style="clear:both"></div>';
