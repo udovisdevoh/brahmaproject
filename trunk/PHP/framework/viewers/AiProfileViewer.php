@@ -24,7 +24,7 @@ class AiProfileViewer
 		$html .= '<h2>'.$name.'</h2>';
 		
 		$html .= '<p><a class="ChatWith" href="./leftbrainchat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat with <strong>\''.$name.'\'</strong></a></p>';
-		
+			
 		$html .= '<div class="Rating"><div class="RatingLabel">'.$aiUnit['rate_up'].'</div>'.$ratingBarUp.$thumbUp.'</div>';
 		$html .= '<div style="clear:both"></div>';
 		$html .= '<div class="Rating"><div class="RatingLabel">'.$aiUnit['rate_down'].'</div>'.$ratingBarDown.$thumbDown.'</div>';

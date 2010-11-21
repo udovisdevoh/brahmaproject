@@ -29,10 +29,12 @@ else if (isset($_GET['user'])) //Single User
 		$bestUpRating = AiUnit::getBestUpRating();
 		$worstDownRating = AiUnit::getWorstDownRating();
 		
+		
 		$totalUpRating = UserProfile::getTotalUpRating($userKey);
 		$totalDownRating = UserProfile::getTotalDownRating($userKey);
+		$rank = UserProfile::getRank($userKey);
 		
-		$renderedView = UserProfileViewer::view($viewedUserProfile, $aiUnitList, $bestUpRating, $worstDownRating, $totalUpRating, $totalDownRating);
+		$renderedView = UserProfileViewer::view($viewedUserProfile, $aiUnitList, $bestUpRating, $worstDownRating, $totalUpRating, $totalDownRating, $rank);
 		Cache::set('user_profile_'.$userKey, $renderedView);
 	}
 }
