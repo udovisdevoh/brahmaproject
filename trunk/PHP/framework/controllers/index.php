@@ -20,6 +20,10 @@ else //List of AI
 {
 	$offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
 	$offset = ((int)($offset / AI_SHORT_PROFILE_COUNT_PER_PAGE)) * AI_SHORT_PROFILE_COUNT_PER_PAGE;
+	
+	if ($offset < 0)
+		die();
+	
 	$renderedView = Cache::get('ai_short_profile_top_rated_list_'.$offset, DEFAULT_CACHE_TIMEOUT);
 	if ($renderedView == null)
 	{
