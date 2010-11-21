@@ -34,7 +34,7 @@ class AiProfileViewer
 		
 		$html .= '<div style="clear:both"></div>';
 		
-		$html .= '<p>owner: <a href="?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></p>';		
+		$html .= '<p>owner: <a href="./user.php?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></p>';		
 		$html .= '</div>';
 
 		
@@ -62,7 +62,7 @@ class AiProfileViewer
 		
 		if (isset($aiUnit['user_profile_id']) && isset($aiUnit['user_name']))
 		{
-			$html .= '<div class="Owner">owner: <a href="?user='.$aiUnit['user_profile_id'].'">'.$aiUnit['user_name'].'</a></div>';
+			$html .= '<div class="Owner">owner: <a href="./user.php?user='.$aiUnit['user_profile_id'].'">'.$aiUnit['user_name'].'</a></div>';
 			$html .= '</li>';
 		}
 		

@@ -3,7 +3,7 @@ class UserProfileViewer
 {
 	public static function view($user, $aiUnitList, $offset, $countPerPage, $totalCount, $bestUpRating, $worstDownRating, $totalUpRating, $totalDownRating, $rank)
 	{
-		$breadCrump = BreadCrumpViewer::view('./?user='.$user['id'].'&offset=', $offset, $countPerPage, $totalCount);
+		$breadCrump = BreadCrumpViewer::view('./user.php?user='.$user['id'].'&offset=', $offset, $countPerPage, $totalCount);
 	
 		$html = '';
 		
