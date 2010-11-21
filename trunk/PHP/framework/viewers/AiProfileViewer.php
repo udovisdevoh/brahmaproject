@@ -57,7 +57,7 @@ class AiProfileViewer
 		$html .= '<li>';
 		
 		if (isset($aiUnit['avatar_id']) && $aiUnit['avatar_id'])
-			$html .= '<img class="Avatar" src="./images/avatars/ai/'.((int)$aiUnit['avatar_id']).'.png" alt="Avatar" />';
+			$html .= '<a href="./?ai='.$aiUnit['id'].'"><img class="Avatar" src="./images/avatars/ai/'.((int)$aiUnit['avatar_id']).'.png" alt="Avatar" /></a>';
 		
 		$html .= '<p class="BotName"><strong><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></strong></p>';
 		$html .= '<p><a class="ChatWith" href="./leftbrainchat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat!</a></p>';

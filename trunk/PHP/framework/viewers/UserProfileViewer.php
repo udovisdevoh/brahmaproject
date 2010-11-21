@@ -42,7 +42,7 @@ class UserProfileViewer
 		
 		$html .= $newBotLink;
 		
-		$html .= '<a class="Icon" href="./user.php?user='.$user['id'].'"><img src="./images/userpublicprofile.png" alt="View public profile" /><span>View public profile</span></a>';		
+		$html .= '<a class="Icon" href="./user.php?user='.$user['id'].'"><img src="./images/userpublicprofile.png" alt="View public profile" /><span>My public profile</span></a>';		
 		
 		$html .= '<div style="clear:both"></div>';
 		

@@ -144,5 +144,11 @@ class AiUnit extends Model
 	{
 		return parent::update('ai_unit','`avatar_id` = '.$avatarId,'`id` = '.$aiUnitId.' and `user_profile_id` = '.$userProfileId);
 	}
+	
+	public static function newAiUnit($name, $userProfileId)
+	{
+		$userProfileId = (int)$userProfileId;
+		return parent::newObject('ai_unit','`name` = \''.addslashes($name).'\', `user_profile_id` = '.$userProfileId);
+	}
 }
 ?>

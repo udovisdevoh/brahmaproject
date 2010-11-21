@@ -411,6 +411,9 @@ ul.BotList li div.Owner
 {
 	border:1px solid #686868;
 	padding:6px;
+	
+	color:#F00;
+	font-weight:bold;
 
 	
 	border-radius:4px 4px 4px 4px;
@@ -484,38 +487,38 @@ ul.BotList li div.Owner
 
 .RatingBarUp
 {
-	background-color:#0B0;
+	background-color:#8F8;
 	background:-webkit-gradient(
 		linear,
 		left top,
 		left bottom,
 		color-stop(0, #FFF),
-		color-stop(0.5, #0F0),
+		color-stop(0.5, #8F8),
 		color-stop(1, #000)
 	);
 	background:-moz-linear-gradient(
 		center top,
 		#FFF 0%,
-		#0F0 50%,
+		#8F8 50%,
 		#000 100%
 	);
 }
 
 .RatingBarDown
 {
-	background-color:#F50;
+	background-color:#F84;
 	background:-webkit-gradient(
 		linear,
 		left top,
 		left bottom,
 		color-stop(0, #FFF),
-		color-stop(0.5, #F50),
+		color-stop(0.5, #F84),
 		color-stop(1, #000)
 	);
 	background:-moz-linear-gradient(
 		center top,
 		#FFF 0%,
-		#F50 50%,
+		#F84 50%,
 		#000 100%
 	);
 }
