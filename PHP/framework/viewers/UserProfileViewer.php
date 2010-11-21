@@ -53,11 +53,15 @@ class UserProfileViewer
 			$html .= '<div class="AccountSettingsAiUnit">';
 			
 			if (isset($aiUnit['avatar_id']) && $aiUnit['avatar_id'])
-				$html .= '<img class="AvatarAccountSettings" src="./images/avatars/ai/'.$aiUnit['avatar_id'].'.png" alt="Avatar" />';
+				$html .= '<a href="./?ai='.$aiUnit['id'].'"><img class="AvatarAccountSettings" src="./images/avatars/ai/'.$aiUnit['avatar_id'].'.png" alt="Avatar" /></a>';
 			
-			$html .= '<div class="Name">'.$aiUnit['name'].'</div>';
+			$name = $aiUnit['name'];
+			if (strlen($name) > 30)
+				$name = substr($name,0,30).'...';
+			
+			$html .= '<div class="Name"><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></div>';
 			$html .= '<a href="./?ai='.$aiUnit['id'].'" class="ViewProfile"><span>view profile</span></a>';
-			$html .= '<a href="./leftbrainchat.php?ai='.$aiUnit['id'].'" class="Train"><span>train</span></a>';
+			$html .= '<a href="./leftbrainchat.php?ai='.$aiUnit['id'].'" class="Train"><span>train/chat</span></a>';
 			$html .= '<a href="./editbot.php?ai='.$aiUnit['id'].'" class="Settings"><span>settings</span></a>';
 			$html .= '<a href="./deletebot.php?ai='.$aiUnit['id'].'" class="Delete"><span>delete</span></a>';
 			$html .= '</div>';
