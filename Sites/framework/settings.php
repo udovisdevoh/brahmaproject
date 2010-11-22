@@ -10,6 +10,7 @@ require_once("./framework/viewers/BreadCrumpViewer.php");
 require_once("./framework/viewers/RatingBarViewer.php");
 require_once("./framework/viewers/RatingThumbViewer.php");
 require_once("./framework/viewers/UserProfileViewer.php");
+require_once("./framework/viewers/AiUnitChatControlsViewer.php");
 
 session_start();
 

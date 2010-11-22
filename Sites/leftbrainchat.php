@@ -17,6 +17,8 @@
 				<input style="width:78%" type="text" id="humanStatementField" autocomplete="off" />
 				<button style="width:15%" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
 				<div id="autoComplete"></div>
+				
+				<?php echo $renderedView ?>
 			</div>
 		</form>
 		

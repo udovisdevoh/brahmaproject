@@ -25,7 +25,12 @@ must need captcha to create Ai and to delete AI, create account, delete account
 left brain must ask name if human not logged
 
 
-leftbrain chat: add limit of 100 chars per concept name
+when create bot: if captcha fail: don't reset name
+
+
+leftbrain chat: add limit of 100 chars per concept name, concept names must be letters, number, () or _ only
+PHP: string format for name must allow ()
+
 
 
 
