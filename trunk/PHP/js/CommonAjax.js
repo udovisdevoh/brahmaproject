@@ -34,7 +34,7 @@ function signInAjax(user, password, outputMessageDomId)
   		xmlhttp=new XMLHttpRequest();
 	else
   		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-			
+		
 	xmlhttp.onreadystatechange = function()
 	{
 	    if (xmlhttp.readyState == 4)
