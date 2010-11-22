@@ -11,25 +11,17 @@ CREATE TABLE IF NOT EXISTS `ai_unit` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `user_profile_id` (`user_profile_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
-
-
-CREATE TABLE IF NOT EXISTS `concept_name` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
 
 
 CREATE TABLE IF NOT EXISTS `connection` (
   `ai_unit_id` int(10) unsigned NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  `verb_id` int(11) NOT NULL,
-  `complement_id` int(11) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `verb` varchar(100) NOT NULL,
+  `complement` varchar(100) NOT NULL,
   `is_true` tinyint(1) NOT NULL DEFAULT '1',
   `is_tautologic` tinyint(1) NOT NULL DEFAULT '0',
-  UNIQUE KEY `ai_unit_id` (`ai_unit_id`,`subject_id`,`verb_id`,`complement_id`)
+  UNIQUE KEY `ai_unit_id` (`ai_unit_id`,`subject`,`verb`,`complement`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
@@ -56,4 +48,4 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   UNIQUE KEY `user_name` (`name`),
   UNIQUE KEY `email` (`email`),
   KEY `user_name_and_password` (`name`,`password`,`is_active`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
