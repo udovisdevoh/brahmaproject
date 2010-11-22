@@ -38,7 +38,7 @@ class AiUnitChatControlsViewer
 			}
 			
 			
-			$html .= '<a id="saveButton" class="Button" onClick="if (confirm(\'Overwrite changes?\')) {saveAjax('.$aiUnit['id'].'); }">Save</a>';
+			$html .= '<a id="saveButton" class="Button" onClick="if (confirm(\'Overwrite changes?\')) {saveAjax('.$aiUnit['id'].', talkingRouter); }">Save</a>';
 		
 		$html .= '</div>';
 		

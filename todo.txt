@@ -20,7 +20,7 @@ if ie: add warning to use chrome or firefox
 
 
 on prod: make sur left brain JS file and framework folder are not publically visible
-add some javascript compression
+add some javascript compression and obfuscation
 
 
 
@@ -30,7 +30,6 @@ must need captcha to create Ai and to delete AI, create account, delete account
 
 
 
-left brain must ask name if human not logged
 
 
 when create bot: if captcha fails: don't reset name
