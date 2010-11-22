@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `ai_unit` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `user_profile_id` (`user_profile_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 CREATE TABLE IF NOT EXISTS `connection` (
@@ -22,12 +22,12 @@ CREATE TABLE IF NOT EXISTS `connection` (
   `is_true` tinyint(1) NOT NULL DEFAULT '1',
   `is_tautologic` tinyint(1) NOT NULL DEFAULT '0',
   UNIQUE KEY `ai_unit_id` (`ai_unit_id`,`subject`,`verb`,`complement`),
-  UNIQUE KEY `ai_unit_id_2` (`ai_unit_id`),
-  UNIQUE KEY `subject` (`subject`),
-  UNIQUE KEY `verb` (`verb`),
-  UNIQUE KEY `complement` (`complement`),
-  UNIQUE KEY `subject_2` (`subject`,`verb`),
-  UNIQUE KEY `complement_2` (`complement`,`verb`)
+  KEY `complement_2` (`complement`,`verb`),
+  KEY `subject_2` (`subject`,`verb`),
+  KEY `complement` (`complement`),
+  KEY `verb` (`verb`),
+  KEY `subject` (`subject`),
+  KEY `ai_unit_id_2` (`ai_unit_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -37,8 +37,10 @@ CREATE TABLE IF NOT EXISTS `user_daily_rating` (
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_up` tinyint(1) NOT NULL,
   `ip` varchar(255) NOT NULL,
-  UNIQUE KEY `rater_rated_ip` (`user_profile_rater_id`,`ai_unit_rated_id`,`ip`),
-  KEY `rater_rated_timestamp` (`user_profile_rater_id`,`ai_unit_rated_id`,`modified`)
+  UNIQUE KEY `user_profile_rater_id` (`user_profile_rater_id`,`ai_unit_rated_id`),
+  KEY `user_profile_rater_id_2` (`user_profile_rater_id`,`ai_unit_rated_id`,`modified`),
+  KEY `ip` (`ip`,`ai_unit_rated_id`,`modified`),
+  KEY `ai_unit_rated_id` (`ai_unit_rated_id`,`modified`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -54,4 +56,4 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   UNIQUE KEY `user_name` (`name`),
   UNIQUE KEY `email` (`email`),
   KEY `user_name_and_password` (`name`,`password`,`is_active`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
