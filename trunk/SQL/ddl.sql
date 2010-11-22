@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `ai_unit` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `user_profile_id` (`user_profile_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 CREATE TABLE IF NOT EXISTS `connection` (
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `connection` (
   `is_true` tinyint(1) NOT NULL DEFAULT '1',
   `is_tautologic` tinyint(1) NOT NULL DEFAULT '0',
   UNIQUE KEY `ai_unit_id` (`ai_unit_id`,`subject`,`verb`,`complement`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `user_daily_rating` (
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `user_daily_rating` (
   `ip` varchar(255) NOT NULL,
   UNIQUE KEY `rater_rated_ip` (`user_profile_rater_id`,`ai_unit_rated_id`,`ip`),
   KEY `rater_rated_timestamp` (`user_profile_rater_id`,`ai_unit_rated_id`,`modified`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `user_profile` (
@@ -48,4 +48,4 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   UNIQUE KEY `user_name` (`name`),
   UNIQUE KEY `email` (`email`),
   KEY `user_name_and_password` (`name`,`password`,`is_active`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
