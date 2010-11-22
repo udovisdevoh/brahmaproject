@@ -80,3 +80,8 @@ function signOutAjax(id, outputMessageDomId)
 	
 	xmlhttp.send('id=' + id);
 }
+
+function saveAjax(aiUnitId, talkingRouter)
+{
+	alert("Will eventually save "+talkingRouter.firstSecondPersonManager.aiName);
+}
