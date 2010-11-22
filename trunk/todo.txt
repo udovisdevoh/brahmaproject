@@ -4,10 +4,16 @@ Bot profile
 2 most original statements
 stats for conformity, controverse and originality
 
-Avatar : for user?
 
 
-user and ai: name must be able to be concept name
+add forum
+{
+	create thread and reply
+	post on user's page
+	post on bot's page
+	post on forum
+}
+
 
 
 create page: list of users
@@ -15,7 +21,6 @@ create page: list of users
 must need captcha to create Ai and to delete AI, create account, delete account
 
 
-h1, h2 h3 etc... more like a tab style
 
 
 
@@ -24,13 +29,10 @@ when delete: must delete concept names if they are not used
 
 
 
-prod: IE: test with unicode user and pw with ' and weird chars
+prod: IE/FireFox/Chrome etc: test with unicode user and pw with ' and weird chars
 
 
-add a wiki?
-
-
-add warning for navigate away
+when chatting: add warning for navigate away
 
 
 when asking stuff like: "you madeof what",
