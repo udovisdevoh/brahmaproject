@@ -14,7 +14,10 @@ if ($renderedView == null)
 	if ($aiUnit == null)
 		die();			
 	
-	$renderedView = AiUnitChatControlsViewer::view($aiUnit);
+	$bestUpRating = AiUnit::getBestUpRating();
+	$worstDownRating = AiUnit::getWorstDownRating();
+	
+	$renderedView = AiUnitChatControlsViewer::view($aiUnit, $bestUpRating, $worstDownRating);
 	Cache::set('ai_unit_chat_controls_'.$aiUnitKey, $renderedView);
 }
 
