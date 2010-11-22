@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `ai_unit` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `user_profile_id` (`user_profile_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 
 CREATE TABLE IF NOT EXISTS `connection` (
@@ -21,7 +21,13 @@ CREATE TABLE IF NOT EXISTS `connection` (
   `complement` varchar(100) NOT NULL,
   `is_true` tinyint(1) NOT NULL DEFAULT '1',
   `is_tautologic` tinyint(1) NOT NULL DEFAULT '0',
-  UNIQUE KEY `ai_unit_id` (`ai_unit_id`,`subject`,`verb`,`complement`)
+  UNIQUE KEY `ai_unit_id` (`ai_unit_id`,`subject`,`verb`,`complement`),
+  UNIQUE KEY `ai_unit_id_2` (`ai_unit_id`),
+  UNIQUE KEY `subject` (`subject`),
+  UNIQUE KEY `verb` (`verb`),
+  UNIQUE KEY `complement` (`complement`),
+  UNIQUE KEY `subject_2` (`subject`,`verb`),
+  UNIQUE KEY `complement_2` (`complement`,`verb`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
