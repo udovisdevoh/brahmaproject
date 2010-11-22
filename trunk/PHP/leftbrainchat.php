@@ -50,8 +50,8 @@
 		<form method="post" onsubmit='sendMessage(talkingRouter);return false;'>
 			<div style="overflow:scroll;height:460px" id="conversation"></div>
 			<div>
-				<input style="width:88%" type="text" id="humanStatementField" autocomplete="off" />
-				<button style="width:8%" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
+				<input style="width:78%" type="text" id="humanStatementField" autocomplete="off" />
+				<button style="width:15%" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
 				<div id="autoComplete"></div>
 			</div>
 		</form>
@@ -66,8 +66,8 @@
 					conversationDom.style.height = Math.max(0, self.innerHeight - 235) + 'px';
 			}
 			
-			var humanName = "human_dude";
-			var aiName = "ai_dude";
+			var humanName = "<?php echo strtolower($userProfile['name'])?>";
+			var aiName = "<?php echo strtolower($aiUnit['name'])?>";
 			var talkingRouter = new TalkingRouter(humanName, aiName);
 			var inputField = document.getElementById('humanStatementField');
 			var autoCompleteDom = document.getElementById('autoComplete');

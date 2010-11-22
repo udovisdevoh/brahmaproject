@@ -61,7 +61,7 @@ class UserProfileViewer
 			
 			$html .= '<div class="Name"><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></div>';
 			$html .= '<a href="./?ai='.$aiUnit['id'].'" class="ViewProfile"><span>view profile</span></a>';
-			$html .= '<a href="./leftbrainchat.php?ai='.$aiUnit['id'].'" class="Train"><span>train/chat</span></a>';
+			$html .= '<a href="./leftbrainchat.php?id='.$aiUnit['id'].'" class="Train"><span>train/chat</span></a>';
 			$html .= '<a href="./editbot.php?ai='.$aiUnit['id'].'" class="Settings"><span>settings</span></a>';
 			$html .= '<a href="./deletebot.php?ai='.$aiUnit['id'].'" class="Delete"><span>delete</span></a>';
 			$html .= '</div>';
