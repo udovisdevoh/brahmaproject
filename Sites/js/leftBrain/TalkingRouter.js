@@ -84,7 +84,16 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 	
 	var wordList = statementString.split(' ');
 	
-	if (statementString == '')
+	if (this.firstSecondPersonManager.humanName == '')
+	{
+		this.firstSecondPersonManager.humanName = conceptNameFormat(statementString);
+	
+		if (this.firstSecondPersonManager.humanName != '')
+			return 'Pleased to meet you';
+		else
+			return 'Please tell me you name';
+	}
+	else if (statementString == '')
 	{
 		return '';
 	}

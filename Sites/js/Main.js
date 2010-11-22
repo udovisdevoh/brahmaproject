@@ -86,6 +86,39 @@ String.prototype.startsWith = function String_startsWith(str)
 	}
 }
 
+function conceptNameFormat(name)
+{
+	name = name.trim();
+	name = name.toLowerCase();
+	while (name.indexOf(' ') != -1)
+		name = name.replace(' ','_');
+		
+	name = removeAccents(name);
+		
+	name = name.replace(/[^a-z_0-9()]/g, '');
+	return name;
+}
+
+function removeAccents(strAccents)
+{
+    strAccents = strAccents.split('');
+    strAccentsOut = new Array();
+    strAccentsLen = strAccents.length;
+    var accents = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+    var accentsOut = ['A','A','A','A','A','A','a','a','a','a','a','a','O','O','O','O','O','O','O','o','o','o','o','o','o','E','E','E','E','e','e','e','e','e','C','c','D','I','I','I','I','i','i','i','i','U','U','U','U','u','u','u','u','N','n','S','s','Y','y','y','Z','z'];
+    for (var y = 0; y < strAccentsLen; y++)
+	{
+        if (accents.indexOf(strAccents[y]) != -1)
+		{
+            strAccentsOut[y] = accentsOut[accents.indexOf(strAccents[y])];
+        }
+        else
+            strAccentsOut[y] = strAccents[y];
+    }
+    strAccentsOut = strAccentsOut.join('');
+    return strAccentsOut;
+}
+
 function print_r(theObj)
 {
 	if(theObj.constructor == Array || theObj.constructor == Object)
