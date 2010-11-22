@@ -25,7 +25,7 @@ AutoComplete.prototype.getLastWordStub = function AutoComplete_getLastWordStub(s
 	
 	var lastWord = statementString.substr(lastSpacePosition).trim();
 	if (lastWord.length > 0)
-		return lastWord;
+		return lastWord.toLowerCase();
 	return null;
 }
 

@@ -93,7 +93,7 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 		if (wordList[0] == 'start')
 		{
 			this.conversationManager.isStarted = true;
-			return 'type stop to end conversation';
+			return 'type stop to end automatic conversation mode';
 		}
 		else if (wordList[0] == 'stop')
 		{
