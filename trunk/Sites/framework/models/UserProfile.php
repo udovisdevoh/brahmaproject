@@ -216,7 +216,7 @@ class UserProfile extends Model
 			WHERE
 				ai_unit.user_profile_id = user_profile.id
 			GROUP BY user_profile.id) AS sub_query
-		WHERE sub_query.score > '.$score);
+		WHERE sub_query.score > '.(int)$score);
 		
 		
 		$sqlRow = mysql_fetch_array($rankQuery);
