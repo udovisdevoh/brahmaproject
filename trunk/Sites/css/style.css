@@ -161,7 +161,7 @@ div.SiteLogo
 
 .Copyright
 {
-	font-size:10px;
+	font-size:9px;
 	min-width:318px;
 	margin-right:auto;
 	margin-left:auto;
@@ -756,4 +756,66 @@ ul.BotList li .Avatar
 #avatarForm div *
 {
 	float:left;
+}
+
+.AiUnitChatControls
+{
+	position:absolute;
+	bottom:10px;
+	right:30px;
+	height:170px;
+}
+
+.AiUnitChatControls img.Avatar
+{
+	float:left;
+	margin-right:5px;
+}
+
+.AiUnitChatControls .Names
+{
+	float:left;
+}
+
+.AiUnitChatControls div.AiName
+{
+	font-weight:bold;
+	position:relative;
+	top:5px;
+}
+
+.AiUnitChatControls .SiteName
+{
+	color:#800;
+	margin-bottom:5px;
+	font-weight:bold;
+	font-size:11px;
+	width:150px;
+}
+
+.AiUnitChatControls .Owner
+{
+	margin-top:8px;
+	width:200px;
+	margin-bottom:10px;
+}
+
+.AiUnitChatControls .Button
+{
+	padding:4px;
+	border:1px solid #888;
+	background-color:#F8F8F8;
+	border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
+
+.AiUnitChatControls .Button:hover
+{
+	background-color:#FFF;
+	-moz-box-shadow: 0px 0px 15px #FC0;
+	-webkit-box-shadow: 0px 0px 15px #FC0;
+	box-shadow: 0px 0px 15px #FC0;
+	color:#F00;
+	border-color:#F00;
 }

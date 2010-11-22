@@ -15,6 +15,10 @@ add forum
 }
 
 
+if ie: add warning to use chrome or firefox
+
+
+
 
 create page: list of users
 
