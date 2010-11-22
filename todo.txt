@@ -22,6 +22,11 @@ must need captcha to create Ai and to delete AI, create account, delete account
 
 
 
+left brain must ask name if human not logged
+
+
+leftbrain chat: add limit of 100 chars per concept name
+
 
 
 when delete: must delete concept names if they are not used
