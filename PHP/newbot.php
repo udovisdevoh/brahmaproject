@@ -5,6 +5,15 @@
 		<?php require_once("./framework/templates/headTags.php"); ?>
 
 		<title>Collective Artificial Intelligence: Brahma Project</title>
+		
+		<script type="text/javascript" src="./js/NameGenerator.js"></script>
+		<script type="text/javascript">
+			<!--
+			var randomNameGenerator = new RandomNameGenerator();
+			/*var nameField = document.getElementById('name');
+			nameField.value = randomNameGenerator.generateRandomName(Math.floor(Math.random() * 7) + 4);*/
+			-->
+		</script>
 	</head>
 	<body>
 		<?php require_once("./framework/templates/header.php"); ?>
@@ -17,10 +26,11 @@
 				<fieldset>
 					<label for="name">Name:</label>
 					<input type="text" name="name" id="name" maxlength="128" style="width:250px" />
+					<a onClick="document.getElementById('name').value = randomNameGenerator.generateRandomName(Math.floor(Math.random() * 7) + 4);">regenerate name</a>
 				</fieldset>
 				
 				<p>
-					<input type="submit" name="newBot" id="newBot" value="Create" />
+					<input type="submit" name="newBot" id="newBot" value="Create (save)" />
 				</p>
 			</form>
 			
@@ -30,6 +40,12 @@
 		</div>
 		
 		<?php require_once("./framework/templates/footer.php"); ?>
+		
+		<script type="text/javascript">
+			<!--
+			document.getElementById('name').value = randomNameGenerator.generateRandomName(Math.floor(Math.random() * 7) + 4);
+			-->
+		</script>
 		
 	</body>
 </html>

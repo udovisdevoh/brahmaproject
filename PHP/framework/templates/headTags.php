@@ -6,4 +6,5 @@
 <link rel="stylesheet" type="text/css" href="./css/reset.css" />
 <link rel="stylesheet" type="text/css" href="./css/style.css" />
 <link rel="shortcut icon" href="./images/favicon.ico" />
+<script type="text/javascript" src="./js/Main.js"></script>
 <script type="text/javascript" src="./js/CommonAjax.js"></script>

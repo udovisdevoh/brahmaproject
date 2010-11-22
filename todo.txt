@@ -7,6 +7,9 @@ stats for conformity, controverse and originality
 Avatar : for user?
 
 
+user and ai: name must be able to be concept name
+
+
 create page: list of users
 
 must need captcha to create Ai and to delete AI, create account, delete account
