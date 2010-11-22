@@ -15,7 +15,7 @@
 			<div style="overflow:scroll;height:460px" id="conversation"></div>
 			<div>
 				<input style="width:78%" type="text" id="humanStatementField" autocomplete="off" />
-				<button style="width:15%" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
+				<button style="50px" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
 				<div id="autoComplete"></div>
 				
 				<?php echo $renderedView ?>
@@ -27,9 +27,15 @@
 			function resizeTextFields()
 			{
 				if (is_ie)
+				{
 					conversationDom.style.height = Math.max(0, document.documentElement.clientHeight - 226) + 'px';
+					inputField.style.width = (document.documentElement.clientWidth - 75) + 'px';
+				}
 				else
+				{
 					conversationDom.style.height = Math.max(0, self.innerHeight - 235) + 'px';
+					inputField.style.width = (self.innerWidth - 75) + 'px';
+				}
 			}
 			
 			//Send message to Ai
