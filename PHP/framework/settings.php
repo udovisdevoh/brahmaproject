@@ -1,6 +1,7 @@
 <?php
 require_once("./framework/Model.php");
 require_once("./framework/Cache.php");
+require_once("./framework/StringManipulation.php");
 require_once("./framework/models/AiUnit.php");
 require_once("./framework/models/UserProfile.php");
 require_once("./framework/viewers/AiProfileViewer.php");

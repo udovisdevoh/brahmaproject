@@ -148,6 +148,7 @@ class AiUnit extends Model
 	public static function newAiUnit($name, $userProfileId)
 	{
 		$userProfileId = (int)$userProfileId;
+		$name = StringManipulation::conceptNameFormatUcFirst($name);
 		return parent::newObject('ai_unit','`name` = \''.addslashes($name).'\', `user_profile_id` = '.$userProfileId.', `avatar_id` = '.(rand(1, LAST_AI_AVATAR_ID)));
 	}
 }

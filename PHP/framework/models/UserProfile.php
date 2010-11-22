@@ -12,6 +12,10 @@ class UserProfile extends Model
 	
 	public static function signIn($user, $password)
 	{
+		$user = StringManipulation::conceptNameFormatUcFirst($user);
+		
+		
+	
 		$password = md5(PW_SALT.$password);
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 		mysql_select_db(MYSQL_DB);
@@ -79,6 +83,8 @@ class UserProfile extends Model
 	
 	public static function newUserProfile($name, $password, $email, $first_name, $last_name)
 	{
+		$name = StringManipulation::conceptNameFormatUcFirst($name);
+	
 		if (!self::isValidEmail($email))
 			throw new Exception("Please use a valid email address");
 			
