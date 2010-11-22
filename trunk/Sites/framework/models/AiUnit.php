@@ -58,6 +58,7 @@ class AiUnit extends Model
 		if ($aiUnit != null)
 		{
 			parent::delete('connection','`ai_unit_id` = '.$aiUnitId);
+			parent::delete('user_daily_rating','`ai_unit_rated_id` = '.$aiUnitId);
 			return parent::delete('ai_unit','`id` = '.$aiUnitId.' and `user_profile_id` = '.$userId, 1);
 		}
 		else
