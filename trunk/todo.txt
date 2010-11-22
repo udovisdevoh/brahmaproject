@@ -19,6 +19,10 @@ if ie: add warning to use chrome or firefox
 
 
 
+on prod: make sur left brain JS file and framework folder are not publically visible
+add some javascript compression
+
+
 
 create page: list of users
 
@@ -29,7 +33,7 @@ must need captcha to create Ai and to delete AI, create account, delete account
 left brain must ask name if human not logged
 
 
-when create bot: if captcha fail: don't reset name
+when create bot: if captcha fails: don't reset name
 
 
 leftbrain chat: add limit of 100 chars per concept name, concept names must be letters, number, () or _ only

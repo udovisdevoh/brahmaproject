@@ -46,15 +46,15 @@
 				
 				var inputAndOutput = talkingRouter.talkTo(humanStatement);
 				
-				conversationDom.innerHTML += '<div class="HumanBlock">' + humanName + ": " + inputAndOutput['input'] + '</div>';
-				conversationDom.innerHTML += '<div class="AiBlock">' + aiName + ": " + inputAndOutput['output'] + '</div>';
+				conversationDom.innerHTML += '<div class="HumanBlock">' + talkingRouter.firstSecondPersonManager.humanName + ": " + inputAndOutput['input'] + '</div>';
+				conversationDom.innerHTML += '<div class="AiBlock">' + talkingRouter.firstSecondPersonManager.aiName + ": " + inputAndOutput['output'] + '</div>';
 				
 				conversationDom.scrollTop = conversationDom.scrollHeight;
 				humanStatementField.value = "";
 				return false;
 			}
 			
-			var humanName = "<?php echo strtolower($userProfile['name'])?>";
+			var humanName = "<?php if (isset($userProfile['name'])) echo strtolower($userProfile['name']); ?>";
 			var aiName = "<?php echo strtolower($aiUnit['name'])?>";
 			var talkingRouter = new TalkingRouter(humanName, aiName);
 			var inputField = document.getElementById('humanStatementField');
@@ -64,6 +64,8 @@
 			inputField.onkeyup = keyUpHandling;
 			document.onkeydown = keyDownHandling;		
 			resizeTextFields();
+			if (talkingRouter.firstSecondPersonManager.humanName == '')
+				conversationDom.innerHTML += '<div class="AiBlock">' + talkingRouter.firstSecondPersonManager.aiName + ': Please tell me your name</div>';
 			-->
 		</script>
 		
