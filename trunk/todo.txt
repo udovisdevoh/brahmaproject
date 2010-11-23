@@ -1,8 +1,12 @@
 bug: unalias doesn't seem to work well
 bug: alias doesn't seem to work well
+bug: rename doesn't seem to work well
 Test with save button and fix bug
 
 
+
+
+must only allow to save if owner of ai: client and server side
 
 
 
