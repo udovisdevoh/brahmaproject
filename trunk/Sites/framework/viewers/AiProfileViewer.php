@@ -25,7 +25,7 @@ class AiProfileViewer
 
 		$html .= '<h2>'.$name.'</h2>';
 		
-		$html .= '<p><a class="ChatWith" href="./leftbrainchat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat with <strong>\''.$name.'\'</strong></a></p>';
+		$html .= '<p><a class="ChatWith" href="./leftbrainchat.bot?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat with <strong>\''.$name.'\'</strong></a></p>';
 		
 	
 		$html .= '<div class="Rating"><div class="RatingLabel">'.$aiUnit['rate_up'].'</div>'.$ratingBarUp.$thumbUp.'</div>';
@@ -37,7 +37,7 @@ class AiProfileViewer
 		
 		$html .= '<div style="clear:both"></div>';
 		
-		$html .= '<p>owner: <a href="./user.php?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></p>';		
+		$html .= '<p>owner: <a href="./user.bot?user='.$aiUnit['user_profile_id'].'">'.$userName.'</a></p>';		
 		$html .= '</div>';
 
 		
@@ -60,7 +60,7 @@ class AiProfileViewer
 			$html .= '<a href="./?ai='.$aiUnit['id'].'"><img class="Avatar" src="./images/avatars/ai/'.((int)$aiUnit['avatar_id']).'.png" alt="Avatar" /></a>';
 		
 		$html .= '<p class="BotName"><strong><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></strong></p>';
-		$html .= '<p><a class="ChatWith" href="./leftbrainchat.php?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat!</a></p>';
+		$html .= '<p><a class="ChatWith" href="./leftbrainchat.bot?id='.$aiUnit['id'].'"><img src="./images/chatwith.png" alt="Chat with '.$name.'" />Chat!</a></p>';
 		
 		
 		$html .= '<div class="Rating"><div class="RatingLabel">'.$aiUnit['rate_up'].'</div>'.$ratingBarUp.'</div>';
@@ -70,7 +70,7 @@ class AiProfileViewer
 		
 		if (isset($aiUnit['user_profile_id']) && isset($aiUnit['user_name']))
 		{
-			$html .= '<div class="Owner">owner: <a href="./user.php?user='.$aiUnit['user_profile_id'].'">'.$aiUnit['user_name'].'</a></div>';
+			$html .= '<div class="Owner">owner: <a href="./user.bot?user='.$aiUnit['user_profile_id'].'">'.$aiUnit['user_name'].'</a></div>';
 			$html .= '</li>';
 		}
 		
@@ -83,7 +83,7 @@ class AiProfileViewer
 		
 		$html .= '<h2>\''.$aiUnit['name'].'\' settings</h2>';
 		
-		$html .= '<form id="avatarForm" method="post" action="./editbot.php?ai='.$aiUnit['id'].'">';
+		$html .= '<form id="avatarForm" method="post" action="./editbot.bot?ai='.$aiUnit['id'].'">';
 		
 		
 		for ($avatarId = 1; $avatarId <= LAST_AI_AVATAR_ID; $avatarId++)

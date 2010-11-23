@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+	RewriteRule ^(.*)\.bot$ $1.php [nc]
+</IfModule>
+
+AddDefaultCharset UTF-8

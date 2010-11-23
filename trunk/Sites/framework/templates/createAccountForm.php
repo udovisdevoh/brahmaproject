@@ -2,7 +2,7 @@
 	<p class="Success"><?php echo $successMessage ?></p>
 <?php else: ?>	
 	<h2>Create an account</h2>
-	<form class="CreateAccount" method="post" action="./createaccount.php">
+	<form class="CreateAccount" method="post" action="./createaccount.bot">
 		<fieldset>		
 			<?php if (isset($errorMessage)): ?>
 				<p class="Error"><?php echo $errorMessage ?></p>
