@@ -13,6 +13,29 @@ Test with save button and fix bug
 
 
 
+bug: some loss of information
+johndoe: alias circle round
+scheguxu: Alright, circle is now the same thing as round
+johndoe: round isa shape
+scheguxu: Alright, circle now isa shape
+johndoe: alias disc round
+scheguxu: Alright, disc is now the same thing as round
+johndoe: circle madeof diameter
+circle madeof circumference
+circumference isa perimeter
+scheguxu: Not that I know
+Not that I know
+Alright, circumference now isa perimeter
+johndoe: circle madeof diameter
+scheguxu: Not that I know
+johndoe: whatis circle
+scheguxu: circle madeof diameter and circumference
+johndoe: whatis round
+scheguxu: disc isa shape
+johndoe: whatis diameter
+scheguxu: diameter partof circle
+johndoe: whatis round
+scheguxu: disc isa shape
 
 
 
