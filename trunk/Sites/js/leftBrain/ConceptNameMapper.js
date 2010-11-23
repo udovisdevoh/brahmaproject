@@ -223,14 +223,31 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 //The flattenizer and objection finder are facultative, but highly recommended so we keep consistency
 ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptName1, conceptName2, flattenizer, objectionFinder)
 {
-	var concept1 = this.getConcept(conceptName1);
+	if (conceptName1 == conceptName2)
+	{
+		return;
+	}
 
-	this.alias(conceptName1, conceptName2, flattenizer, objectionFinder);
-	
+	var concept = this.getConcept(conceptName1);
 	conceptName2 = conceptName2.toLowerCase();
-	var concept2 = this.getConcept(conceptName2);
-	
+
 	this.mapNameToConcept.removeItem(conceptName1);
+	this.mapNameToConcept.setItem(conceptName2, concept);
+	
+	
+	var nameList = this.mapConceptToName.getItem(concept);	
+	for (var index = 0; index < nameList.length; index++)
+		if (nameList[index] == conceptName1)
+			nameList.splice(index,1);
+	if (nameList.indexOf(conceptName2) == -1)
+		nameList.push(conceptName2);
+		
+	
+	//We change the default concept name if it was concept name 1
+	if (concept.defaultConceptName == conceptName1)
+		concept.defaultConceptName = conceptName2;
+	
+	this.mapConceptToName.setItem(concept, nameList);
 	
 	var positionOfConceptNameOne = this.allNames.indexOf(conceptName1);
 	if (positionOfConceptNameOne != -1);
@@ -239,15 +256,8 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 		this.allNames.sort();
 	}
 	
-	var nameList = this.mapConceptToName.getItem(concept2);
 	
-	concept2.defaultConceptName = conceptName2;
+	if (this.allNames.indexOf(conceptName2) == -1)
+		this.allNames.push(conceptName2);
 	
-	for (var index = 0; index < nameList.length; index++)
-		if (nameList[index] == conceptName1)
-			nameList.splice(index,1); 
-			
-	for (var index = 0; index < this.conceptList.length; index++)
-		if (this.conceptList[index] == concept1)
-			this.conceptList.splice(index,1); 
 }

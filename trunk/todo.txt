@@ -1,8 +1,26 @@
 bug: unalias doesn't seem to work well
 bug: alias doesn't seem to work well
-bug: rename doesn't seem to work well
+bug: rename doesn't seem to work well, it takes the wrong concept
 Test with save button and fix bug
 
+
+
+
+
+
+bug:
+johndoe3: round aliasof circle
+otshm: Unrecognized statement, use quick documentation (this link will open a new tab or window)
+johndoe3: alias circle round
+otshm: Alright, circle is now the same thing as round
+johndoe3: alias round disc
+otshm: Alright, round is now the same thing as disc
+there's now 2 copy of disc and round in autocomplete
+
+
+
+
+leftbrain chat: add limit of 100 chars per concept name, concept names must be letters, number, () or _ only
 
 
 
@@ -48,8 +66,9 @@ must need captcha to create Ai and to delete AI, create account, delete account
 when create bot: if captcha fails: don't reset name
 
 
-leftbrain chat: add limit of 100 chars per concept name, concept names must be letters, number, () or _ only
-PHP: string format for name must allow ()
+
+
+
 
 
 
