@@ -14,11 +14,7 @@ Test with save button and fix bug
 
 
 
-bug:
-johndoe3: round aliasof circle
-johndoe3: alias circle round
-johndoe3: alias round disc
-there's now 2 copy of disc and round in autocomplete
+
 
 
 
