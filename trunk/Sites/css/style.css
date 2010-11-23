@@ -68,6 +68,7 @@ ul.Menu
 {
 	float:left;
 	list-style-type:none;
+	max-width:686px;
 }
 
 ul.Menu li
