@@ -84,4 +84,6 @@ function signOutAjax(id, outputMessageDomId)
 function saveAjax(aiUnitId, talkingRouter)
 {
 	alert("Will eventually save "+talkingRouter.firstSecondPersonManager.aiName);
+	var memory = talkingRouter.memoryIo.getExportedMemory();
+	alert(memory);
 }

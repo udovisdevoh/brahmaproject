@@ -13,6 +13,7 @@ function TalkingRouter(humanName, aiName)
 	this.complementaryOperatorManager = new ComplementaryOperatorManager(this.conceptNameMapper)
 	this.instinct = new Instinct(this.complementaryOperatorManager);
 	this.flattenizer = new Flattenizer(this.instinct);
+	this.memoryIo = new MemoryIo(this.conceptNameMapper, this.flattenizer, this.instinct);
 	this.objectionFinder = new ObjectionFinder(this.flattenizer);
 	this.proofCache = this.flattenizer.proofCache;
 	this.firstSecondPersonManager = new FirstSecondPersonManager(humanName, aiName);
