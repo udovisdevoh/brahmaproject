@@ -59,6 +59,9 @@ if ie: add warning to use chrome or firefox
 
 on prod: make sur left brain JS file and framework folder are not publically visible
 add some javascript compression and obfuscation
+use rewrite rule for that
+add bool constant to settings.php for JS compression
+
 
 
 

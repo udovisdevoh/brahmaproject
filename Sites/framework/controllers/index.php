@@ -1,7 +1,7 @@
 <?php
 require_once("./framework/settings.php");
 
-if (isset($_GET['ai'])) //Single AI
+if (isset($_GET['ai']) && $_GET['ai']) //Single AI
 {
 	$aiUnitKey = (int)$_GET['ai'];
 	$renderedView = Cache::get('ai_profile_'.$aiUnitKey, DEFAULT_CACHE_TIMEOUT);
@@ -28,7 +28,7 @@ else //List of AI
 	if ($renderedView == null)
 	{
 		$aiUnitList = AiUnit::getTopRatedList($offset, AI_SHORT_PROFILE_COUNT_PER_PAGE);
-		if ($aiUnitList == null)
+		if ($aiUnitList == null && $offset != 0)
 			die();	
 		$aiUnitCount = AiUnit::count();
 		$bestUpRating = AiUnit::getBestUpRating();

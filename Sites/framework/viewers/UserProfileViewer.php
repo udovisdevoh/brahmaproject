@@ -3,7 +3,7 @@ class UserProfileViewer
 {
 	public static function view($user, $aiUnitList, $offset, $countPerPage, $totalCount, $bestUpRating, $worstDownRating, $totalUpRating, $totalDownRating, $rank)
 	{
-		$breadCrump = BreadCrumpViewer::view('./user.php?user='.$user['id'].'&offset=', $offset, $countPerPage, $totalCount);
+		$breadCrump = BreadCrumpViewer::view('./user.bot?user='.$user['id'].'&offset=', $offset, $countPerPage, $totalCount);
 	
 		$html = '';
 		
@@ -36,13 +36,13 @@ class UserProfileViewer
 	{
 		$html = '';
 		
-		$newBotLink = '<a class="Icon" href="./newbot.php" /><img src="./images/new.png" alt="Create new Left Brain Bot" /><span>Create new Left Brain Bot</span></a>';
+		$newBotLink = '<a class="Icon" href="./newbot.bot" /><img src="./images/new.png" alt="Create new Left Brain Bot" /><span>Create new Left Brain Bot</span></a>';
 		
 		$html .= '<h2>My Account ('.$user['name'].')</h2>';
 		
 		$html .= $newBotLink;
 		
-		$html .= '<a class="Icon" href="./user.php?user='.$user['id'].'"><img src="./images/userpublicprofile.png" alt="View public profile" /><span>My public profile</span></a>';		
+		$html .= '<a class="Icon" href="./user.bot?user='.$user['id'].'"><img src="./images/userpublicprofile.png" alt="View public profile" /><span>My public profile</span></a>';		
 		
 		$html .= '<div style="clear:both"></div>';
 		
@@ -61,9 +61,9 @@ class UserProfileViewer
 			
 			$html .= '<div class="Name"><a href="./?ai='.$aiUnit['id'].'">'.$name.'</a></div>';
 			$html .= '<a href="./?ai='.$aiUnit['id'].'" class="ViewProfile"><span>view profile</span></a>';
-			$html .= '<a href="./leftbrainchat.php?id='.$aiUnit['id'].'" class="Train"><span>train/chat</span></a>';
-			$html .= '<a href="./editbot.php?ai='.$aiUnit['id'].'" class="Settings"><span>settings</span></a>';
-			$html .= '<a href="./deletebot.php?ai='.$aiUnit['id'].'" class="Delete"><span>delete</span></a>';
+			$html .= '<a href="./leftbrainchat.bot?id='.$aiUnit['id'].'" class="Train"><span>train/chat</span></a>';
+			$html .= '<a href="./editbot.bot?ai='.$aiUnit['id'].'" class="Settings"><span>settings</span></a>';
+			$html .= '<a href="./deletebot.bot?ai='.$aiUnit['id'].'" class="Delete"><span>delete</span></a>';
 			$html .= '</div>';
 		}
 			

@@ -1,6 +1,6 @@
 <?php if ($userProfile): ?>
 	<p>Welcome <b><?php echo $userProfile['name']; ?></b></p>
-	<p><a href="account.php"><img src="./images/myaccount.png" alt="My account" />My account</a></p>
+	<p><a href="account.bot"><img src="./images/myaccount.png" alt="My account" />My account</a></p>
 	<p><span class="Link" onClick="signOutAjax(<?php echo $userProfile['id'] ?>, 'signinForm')"><img src="./images/signout.png" alt="Sign out" />Sign out</span></p>
 <?php elseif (!isset($isCreateUserProfile)): ?>
 	<fieldset>
@@ -15,7 +15,7 @@
 	</fieldset>
 	<p>
 		<input type="submit" name="signIn" value="Sign in" onclick="signInAjax(document.getElementById('user').value + '', document.getElementById('password').value + '', 'signinForm');return false;" />
-		<a class="CreateAccount" href="createaccount.php">Create account</a>
+		<a class="CreateAccount" href="createaccount.bot">Create account</a>
 	</p>
 	
 	<?php if (isset($_POST['user']) || isset($_POST['password'])): ?>
