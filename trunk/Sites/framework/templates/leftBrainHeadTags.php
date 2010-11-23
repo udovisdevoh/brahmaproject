@@ -31,4 +31,5 @@
 <script type="text/javascript" src="./js/leftBrain/AutoComplete.js"></script>
 <script type="text/javascript" src="./js/leftBrain/ConversationManager.js"></script>
 <script type="text/javascript" src="./js/leftBrain/TalkingRouter.js"></script>
+<script type="text/javascript" src="./js/leftBrain/MemoryIo.js"></script>
 <script type="text/javascript" src="./js/leftBrain/Main.js"></script>
