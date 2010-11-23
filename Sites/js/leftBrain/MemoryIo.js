@@ -60,6 +60,28 @@ MemoryIo.prototype.getExportedMemoryForSubject = function MemoryIo_getExportedMe
 		}
 	}
 	
+	
+	
+	//We export aliases
+	var nameList = this.conceptNameMapper.mapConceptToName.getItem(subject);
+	var aliasString = '';
+	for (var nameIndex = 0; nameIndex < nameList.length; nameIndex++)
+	{
+		var otherName = nameList[nameIndex];
+		if (otherName != subject.toString())
+		{
+			aliasString += otherName + ',';
+		}
+	}
+	if (aliasString.length > 0)
+	{
+		aliasString = aliasString.substr(0, aliasString.length - 1);
+		aliasString = '[aliasof:' + aliasString + ']';
+		exportedMemory += aliasString;
+	}
+	
+	
+	
 	if (exportedMemory.length > 0)
 		exportedMemory = '{' + subject.toString() + ':' + exportedMemory + '}';
 		

@@ -1,3 +1,12 @@
+bug: unalias doesn't seem to work well
+bug: alias doesn't seem to work well
+Test with save button and fix bug
+
+
+
+
+
+
 Bot profile
 2 most conformistic statements
 2 most controversial statements
