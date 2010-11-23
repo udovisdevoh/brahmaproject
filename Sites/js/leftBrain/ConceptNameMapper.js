@@ -145,7 +145,7 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 		this.allNames.sort();
 	}
 	
-	var nameList = new Array();
+	var nameList = this.mapConceptToName.getItem(concept1);
 	nameList.push(conceptName2);
 	this.mapConceptToName.setItem(concept1, nameList);
 	this.mapConceptToName.removeItem(concept2);
