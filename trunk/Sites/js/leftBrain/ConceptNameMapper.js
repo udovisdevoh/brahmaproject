@@ -139,11 +139,6 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	}
 	
 	this.mapNameToConcept.setItem(conceptName2, concept1);
-	if (this.allNames.indexOf(conceptName2) == -1);
-	{
-		this.allNames.push(conceptName2);
-		this.allNames.sort();
-	}
 	
 	var nameList = this.mapConceptToName.getItem(concept1);
 	nameList.push(conceptName2);
@@ -207,11 +202,7 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	}
 	
 	this.mapNameToConcept.setItem(conceptName2, concept2);
-	if (this.allNames.indexOf(conceptName2) == -1);
-	{
-		this.allNames.push(conceptName2);
-		this.allNames.sort();
-	}
+
 	
 	var nameList = Array();
 	nameList.push(conceptName2);
