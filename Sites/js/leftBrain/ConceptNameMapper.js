@@ -20,7 +20,7 @@ function ConceptNameMapper()
 //Get concept from name
 ConceptNameMapper.prototype.getConcept = function ConceptNameMapper_getConcept(conceptName)
 {
-	conceptName = conceptName.toLowerCase();
+	conceptName = conceptNameFormat(conceptName);
 
 	var concept;
 	if (!this.mapNameToConcept.hasItem(conceptName))
