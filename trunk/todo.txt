@@ -12,7 +12,7 @@ Test with save button and fix bug
 
 
 
-
+use old user input syntax for alias and unalias, make same keywork in memory export
 
 
 
