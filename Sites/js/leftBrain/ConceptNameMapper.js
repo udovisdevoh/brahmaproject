@@ -188,7 +188,7 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	
 	
 	//We create a new concept for concept name 2
-	var concept2 = new Concept(conceptName2);	
+	concept2 = new Concept(conceptName2);	
 	
 	//We copy connections from concept1 to new concept2
 	for (var index2 = 0; index2 < concept1.tautologyConnections.keys.length; index2++)
@@ -237,10 +237,14 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	
 	//We remove concept2's name from concept1's name list
 	nameList = this.mapConceptToName.getItem(concept1);
-	
 	var indexOfConcept2Name = nameList.indexOf(conceptName2);
 	if (indexOfConcept2Name != -1)
 		nameList.splice(indexOfConcept2Name, 1);
+		
+		
+	//We set default concept names for concept1
+	concept1.defaultConceptName = conceptName1;
+	this.mapConceptToName.setItem(concept1, nameList);
 }
 
 //Rename a concept to another one
