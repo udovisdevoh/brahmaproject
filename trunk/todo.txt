@@ -67,7 +67,7 @@ when create bot: if captcha fails: don't reset name
 
 
 
-left brain chat: define: must show <li> indentation
+
 
 
 
