@@ -4,9 +4,8 @@ rename must not override other concept with connections: show error instead
 rename must not work if concept doesn't exist yet: show error instead
 
 
-bug: unalias doesn't seem to work well
-bug: alias doesn't seem to work well
-bug: rename doesn't seem to work well, it takes the wrong concept
+bug: unalias doesn't seem to work well?
+bug: rename doesn't seem to work well, it takes the wrong concept?
 Test with save button and fix bug
 
 
