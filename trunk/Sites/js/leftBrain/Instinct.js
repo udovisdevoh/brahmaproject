@@ -90,6 +90,8 @@ function Instinct(complementaryOperatorManager)
 	this.verbNameList = Array();
 	for (var index = 0; index < this.verbList.length; index++)
 		this.verbNameList.push(this.verbList[index].toString());
+	this.verbNameList.push("aliasof");
+	this.verbNameList.push("unalias");
 	
 	//Construction of the instinct
 	//this.complementaryOperatorManager.add("synergize","synergize");
