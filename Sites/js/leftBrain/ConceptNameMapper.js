@@ -57,7 +57,7 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(assimilator
 	
 	if (assimilatorConcept == assimilatedConcept)
 	{
-		return;
+		throw '<span class="AiConcept">' + assimilatorName + '</span> is already the same thing as <span class="AiConcept">' + assimilatedName + '</span>';
 	}
 	
 	
@@ -178,7 +178,7 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	
 	if (concept1 != concept2)
 	{
-		return;
+		throw 'Can\'t unalias because <span class="AiConcept">' + conceptName1 + '</span> is not the same thing as <span class="AiConcept">' + conceptName2 + '</span>';
 	}
 	
 	var concept2 = new Concept(conceptName2);	
