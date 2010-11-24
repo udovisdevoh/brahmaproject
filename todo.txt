@@ -1,15 +1,9 @@
 bug:
 johndoe: circle isa shape1
-eriqujei: Alright, circle now isa shape1
 johndoe: round isa shape2
-eriqujei: Alright, round now isa shape2
 johndoe: disc isa shape3
-eriqujei: Alright, disc now isa shape3
 johndoe: disc aliasof round
-eriqujei: Alright, disc is now the same thing as round
 johndoe: circle aliasof disc
-eriqujei: Alright, circle is now the same thing as disc
-when saving: problem: shape2 connection is lost
 crash when unaliasing
 
 
