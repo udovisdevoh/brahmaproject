@@ -175,13 +175,13 @@ TalkingRouter.prototype.talkToContextFree = function TalkingRouter_talkToContext
 		var subject, verb, complement, isPositive;
 		if (wordList.length == 3)
 		{
-			if (wordList[0] == 'alias')
+			if (wordList[1] == 'aliasof')
 			{
-				return this.talkToAlias(wordList[1], wordList[2]);
+				return this.talkToAlias(wordList[0], wordList[2]);
 			}
-			else if (wordList[0] == 'unalias')
+			else if (wordList[1] == 'unalias')
 			{
-				return this.talkToUnAlias(wordList[1], wordList[2]);
+				return this.talkToUnAlias(wordList[0], wordList[2]);
 			}
 			else if (wordList[0] == 'rename')
 			{

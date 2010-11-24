@@ -11,7 +11,7 @@ function ConceptNameMapper()
 	this.conceptList = Array();
 	
 	//(Array) List of all possible names (concepts and special keywords
-	this.allNames = Array('you','me','start','stop','think','ask','teach','talk','yes','no','whatis','define','thinkabout','askabout','teachabout','what','not','talkabout','which','alias','unalias','rename','why','how','and');
+	this.allNames = Array('you','me','start','stop','think','ask','teach','talk','yes','no','whatis','define','thinkabout','askabout','teachabout','what','not','talkabout','which','aliasof','unalias','rename','why','how','and');
 	
 	//(TautologyManager)
 	this.tautologyManager = new TautologyManager();
@@ -177,12 +177,15 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	var concept2 = this.getConcept(conceptName2);
 	
 	if (concept1 != concept2)
-	{
 		throw 'Can\'t unalias because <span class="AiConcept">' + conceptName1 + '</span> is not the same thing as <span class="AiConcept">' + conceptName2 + '</span>';
-	}
+	else if (conceptName1 == conceptName2)
+		throw 'Can\'t unalias a name from itself';
 	
+	
+	//We create a new concept for concept name 2
 	var concept2 = new Concept(conceptName2);	
 	
+	//We copy connections from concept1 to new concept2
 	for (var index2 = 0; index2 < concept1.tautologyConnections.keys.length; index2++)
 	{
 		var verb = concept1.tautologyConnections.keys[index2];
@@ -219,11 +222,20 @@ ConceptNameMapper.prototype.unAlias = function ConceptNameMapper_unAlias(concept
 	
 	this.mapNameToConcept.setItem(conceptName2, concept2);
 
-	
+	//We set concept2's name list to concept2 name only
 	var nameList = Array();
 	nameList.push(conceptName2);
 	this.mapConceptToName.setItem(concept2, nameList);
+	
+	//We add new concept2 to concept list
 	this.conceptList.push(concept2);
+	
+	//We remove concept2's name from concept1's name list
+	nameList = this.mapConceptToName.getItem(concept1);
+	
+	var indexOfConcept2Name = nameList.indexOf(conceptName2);
+	if (indexOfConcept2Name != -1)
+		nameList.splice(indexOfConcept2Name, 1);
 }
 
 //Rename a concept to another one
