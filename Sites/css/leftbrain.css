@@ -96,3 +96,11 @@
 	/*background:-webkit-gradient(linear, left bottom, left top, color-stop(0.4, #FFF), color-stop(0.5, #f7fafb), color-stop(1, #FFF));
 	background:-moz-linear-gradient(center bottom, #FFF 40%, #f7fafb 50%, #FFF 100%);*/
 }
+
+#conversation li
+{
+	margin-left:40px;
+	margin-top:7px;
+	margin-bottom:7px;
+	list-style:none;
+}
