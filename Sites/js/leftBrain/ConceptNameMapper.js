@@ -116,9 +116,14 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(assimilator
 						flattenizer.flattenBranch(implicitBranch, assimilatedConcept, verb);
 			}
 			
+			//We copy the list of complement to remove
+			var complementListBeforeRemove = Array();
 			for (var index = 0; index < tautologicBranch.complementList.length; index++)
+				complementListBeforeRemove.push(tautologicBranch.complementList[index]);
+			
+			for (var index = 0; index < complementListBeforeRemove.length; index++)
 			{
-				var complement = tautologicBranch.complementList[index];
+				var complement = complementListBeforeRemove[index];
 				if (complement instanceof Concept)
 				{
 					this.tautologyManager.addConnection(assimilatorConcept, verb, complement);
