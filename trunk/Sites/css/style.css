@@ -824,3 +824,10 @@ ul.BotList li .Avatar
 	color:#F00;
 	border-color:#F00;
 }
+
+#videotutorial li
+{
+	margin-left:15px;
+	margin-top:9px;
+	margin-bottom:9px;
+}
