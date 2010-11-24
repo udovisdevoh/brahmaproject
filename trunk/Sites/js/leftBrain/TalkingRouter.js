@@ -466,9 +466,16 @@ TalkingRouter.prototype.talkToAlias = function TalkingRouter_talkToAlias(concept
 //(String (HTML))
 TalkingRouter.prototype.talkToUnAlias = function TalkingRouter_talkToAlias(conceptName1, conceptName2)
 {
-	this.conceptNameMapper.unAlias(conceptName1, conceptName2, this.flattenizer, this.objectionFinder);
-	this.invalidator.invalidateAll();
-	return 'Alright, <span class="AiConcept">' + conceptName1 + '</span> is not the same thing as <span class="AiConcept">' + conceptName2 + '</span> anymore';
+	try
+	{
+		this.conceptNameMapper.unAlias(conceptName1, conceptName2, this.flattenizer, this.objectionFinder);
+		this.invalidator.invalidateAll();
+		return 'Alright, <span class="AiConcept">' + conceptName1 + '</span> is not the same thing as <span class="AiConcept">' + conceptName2 + '</span> anymore';
+	}
+	catch (exception) //If unaliasing cannot be done
+	{
+		return exception;
+	}
 }
 
 //(String (HTML))
