@@ -47,15 +47,15 @@ ConceptNameMapper.prototype.getConcept = function ConceptNameMapper_getConcept(c
 
 //Merge two concept names so they point to the same concept
 //The flattenizer and objection finder are facultative, but highly recommended so we keep consistency
-ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName1, conceptName2, flattenizer, objectionFinder)
+ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(assimilatorName, assimilatedName, flattenizer, objectionFinder)
 {
-	conceptName1 = conceptName1.toLowerCase();
-	conceptName2 = conceptName2.toLowerCase();
+	assimilatorName = assimilatorName.toLowerCase();
+	assimilatedName = assimilatedName.toLowerCase();
 
-	var concept1 = this.getConcept(conceptName1);
-	var concept2 = this.getConcept(conceptName2);
+	var assimilatorConcept = this.getConcept(assimilatorName);
+	var assimilatedConcept = this.getConcept(assimilatedName);
 	
-	if (concept1 == concept2)
+	if (assimilatorConcept == assimilatedConcept)
 	{
 		return;
 	}
@@ -66,19 +66,19 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	//First we try to find an objection to the merge of the two concepts
 	if (objectionFinder != null)
 	{
-		for (var index2 = 0; index2 < concept2.tautologyConnections.keys.length; index2++)
+		for (var index2 = 0; index2 < assimilatedConcept.tautologyConnections.keys.length; index2++)
 		{
-			var verb = concept2.tautologyConnections.keys[index2];
+			var verb = assimilatedConcept.tautologyConnections.keys[index2];
 			if (verb instanceof Concept)
 			{
-				var tautologicBranch = concept2.getTautologicBranch(verb);
+				var tautologicBranch = assimilatedConcept.getTautologicBranch(verb);
 				
 				if (flattenizer != null)
 				{
-					var implicitBranch = concept2.getImplicitBranch(verb);
+					var implicitBranch = assimilatedConcept.getImplicitBranch(verb);
 					if (!implicitBranch.isFlat)
 						if (!implicitBranch.isLocked)
-							flattenizer.flattenBranch(implicitBranch, concept2, verb);
+							flattenizer.flattenBranch(implicitBranch, assimilatedConcept, verb);
 				}
 				
 				for (var index = 0; index < tautologicBranch.complementList.length; index++)
@@ -86,7 +86,7 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 					var complement = tautologicBranch.complementList[index];
 					if (complement instanceof Concept)
 					{
-						var objection = objectionFinder.findObjection(concept1, verb, complement);
+						var objection = objectionFinder.findObjection(assimilatorConcept, verb, complement);
 						if (objection != null)
 						{
 							throw 'Cannot do that because <span class="AiConcept">' + objection.subject + '</span> <span class="AiOperator">' + objection.verb + '</span> <span class="AiConcept">' + objection.complement + '</span>';
@@ -100,20 +100,20 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 	
 	
 	
-	//Then we copy the connections
-	for (var index2 = 0; index2 < concept2.tautologyConnections.keys.length; index2++)
+	//Then we copy the connections from assimilated concept to assimilator concept
+	for (var index2 = 0; index2 < assimilatedConcept.tautologyConnections.keys.length; index2++)
 	{
-		var verb = concept2.tautologyConnections.keys[index2];
+		var verb = assimilatedConcept.tautologyConnections.keys[index2];
 		if (verb instanceof Concept)
 		{
-			var tautologicBranch = concept2.getTautologicBranch(verb);
+			var tautologicBranch = assimilatedConcept.getTautologicBranch(verb);
 			
 			if (flattenizer != null)
 			{
-				var implicitBranch = concept2.getImplicitBranch(verb);
+				var implicitBranch = assimilatedConcept.getImplicitBranch(verb);
 				if (!implicitBranch.isFlat)
 					if (!implicitBranch.isLocked)
-						flattenizer.flattenBranch(implicitBranch, concept2, verb);
+						flattenizer.flattenBranch(implicitBranch, assimilatedConcept, verb);
 			}
 			
 			for (var index = 0; index < tautologicBranch.complementList.length; index++)
@@ -121,16 +121,16 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 				var complement = tautologicBranch.complementList[index];
 				if (complement instanceof Concept)
 				{
-					this.tautologyManager.addConnection(concept1, verb, complement);
-					this.tautologyManager.removeConnection(concept2, verb, complement);
+					this.tautologyManager.addConnection(assimilatorConcept, verb, complement);
+					this.tautologyManager.removeConnection(assimilatedConcept, verb, complement);
 										
 					for (var complementaryVerbIndex = 0; complementaryVerbIndex < verb.complementaryOperators.length; complementaryVerbIndex++)
 					{
 						var complementaryVerb = verb.complementaryOperators[complementaryVerbIndex];
 						if (complementaryVerb instanceof Concept)
 						{
-							this.tautologyManager.addConnection(complement, complementaryVerb, concept1);
-							this.tautologyManager.removeConnection(complement, complementaryVerb, concept2);
+							this.tautologyManager.addConnection(complement, complementaryVerb, assimilatorConcept);
+							this.tautologyManager.removeConnection(complement, complementaryVerb, assimilatedConcept);
 						}
 					}
 				}
@@ -138,16 +138,32 @@ ConceptNameMapper.prototype.alias = function ConceptNameMapper_alias(conceptName
 		}
 	}
 	
-	this.mapNameToConcept.setItem(conceptName2, concept1);
 	
-	var nameList = this.mapConceptToName.getItem(concept1);
-	nameList.push(conceptName2);
-	this.mapConceptToName.setItem(concept1, nameList);
-	this.mapConceptToName.removeItem(concept2);
 	
-	var indexOfConcept2 = this.conceptList.indexOf(concept2);
-	if (indexOfConcept2 != -1)
-		this.conceptList.splice(indexOfConcept2, 1);
+	
+	
+	this.mapNameToConcept.setItem(assimilatedName, assimilatorConcept);
+	
+	
+	var assimilatorNameList = this.mapConceptToName.getItem(assimilatorConcept);
+	var assimilatedNameList = this.mapConceptToName.getItem(assimilatedConcept);
+	
+	assimilatorNameList.push(assimilatedName);
+	
+	for (var assimilatedNameIndex = 0; assimilatedNameIndex < assimilatedNameList.length; assimilatedNameIndex++)
+	{
+		var currentAssimilatedName = assimilatedNameList[assimilatedNameIndex];
+		if (assimilatorNameList.indexOf(currentAssimilatedName) == -1)
+			assimilatorNameList.push(currentAssimilatedName);
+		
+		this.mapNameToConcept.setItem(currentAssimilatedName, assimilatorConcept);
+	}
+	
+	this.mapConceptToName.removeItem(assimilatedConcept);
+	
+	var indexOfAssimilatedConcept = this.conceptList.indexOf(assimilatedConcept);
+	if (indexOfAssimilatedConcept != -1)
+		this.conceptList.splice(indexOfAssimilatedConcept, 1);
 }
 
 //Split two concept names so they don't point to the same concept anymore
