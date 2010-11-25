@@ -98,7 +98,7 @@ function keyDownHandling(e)
 			if (unicode == 32)//space
 				inputField.value += ' ';
 
-			if (unicode == 13 && talkingRouter.autoComplete.isCompleteStatement(inputField.value))//enter
+			if (unicode == 13 && (talkingRouter.autoComplete.isCompleteStatement(inputField.value) || talkingRouter.autoComplete.isLastWordPerfectlyMatched()))//enter
 				return true;//don't cancel enter button, send message to ai
 				
 			return false; //cancel enter button
