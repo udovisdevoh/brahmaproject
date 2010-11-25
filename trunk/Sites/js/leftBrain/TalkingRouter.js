@@ -60,7 +60,7 @@ TalkingRouter.prototype.talkTo = function TalkingRouter_talkTo(statementString)
 		}
 	}
 	
-	if ((this.conversationManager.isStarted && !this.conversationManager.isConversationRequest(statementString)) || statementString == 'start' )
+	if ((this.conversationManager.isStarted && !this.conversationManager.isConversationRequest(statementString)) || statementString == 'start' || statementString == '')
 	{
 		var hiddenHumanConversationInsentiveStatement = this.conversationManager.getHiddenHumanConversationInsentiveStatement();
 		var contextFreeHumanStatement = this.firstSecondPersonManager.formatHumanInput(hiddenHumanConversationInsentiveStatement);
