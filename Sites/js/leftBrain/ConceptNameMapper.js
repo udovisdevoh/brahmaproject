@@ -253,9 +253,14 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 {
 	if (conceptName1 == conceptName2)
 	{
-		return;
+		throw 'Can\'t rename <span class="AiConcept">' + conceptName1 + '</span> to itself: <span class="AiConcept">' + conceptName2 + '</span>';
 	}
 
+	if (flattenizer && this.isContainConnection(this.getConcept(conceptName2),flattenizer))
+	{
+		throw 'Can\'t rename <span class="AiConcept">' + conceptName1 + '</span> to <span class="AiConcept">' + conceptName2 + '</span> because <span class="AiConcept">' + conceptName2 + '</span> already has some connections. Remove connections first';
+	}
+	
 	var concept = this.getConcept(conceptName1);
 	conceptName2 = conceptName2.toLowerCase();
 
@@ -267,6 +272,7 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 	for (var index = 0; index < nameList.length; index++)
 		if (nameList[index] == conceptName1)
 			nameList.splice(index,1);
+			
 	if (nameList.indexOf(conceptName2) == -1)
 		nameList.push(conceptName2);
 		
@@ -288,4 +294,29 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 	if (this.allNames.indexOf(conceptName2) == -1)
 		this.allNames.push(conceptName2);
 	
+}
+
+//(Bool) whether concept has connection
+ConceptNameMapper.prototype.isContainConnection = function ConceptNameMapper_isContainConnection(subject, flattenizer)
+{
+	for (var index2 = 0; index2 < subject.tautologyConnections.keys.length; index2++)
+	{
+		var verb = subject.tautologyConnections.keys[index2];
+		if (verb instanceof Concept)
+		{
+			var tautologicBranch = subject.getTautologicBranch(verb);
+			
+			var implicitBranch = subject.getImplicitBranch(verb);
+			if (!implicitBranch.isFlat)
+				if (!implicitBranch.isLocked)
+					flattenizer.flattenBranch(implicitBranch, subject, verb);
+			
+			if (tautologicBranch.complementList.length > 0)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
