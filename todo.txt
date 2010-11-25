@@ -1,7 +1,4 @@
-rename must not work if concept doesn't exist yet: show error instead
-
-
-
+if user types a blank statement, ai should behave as if a conversation was started
 
 
 
@@ -15,7 +12,7 @@ site: add blank memory chat
 
 
 
-leftbrain chat: add limit of 100 chars per concept name, concept names must be letters, number, () or _ only
+
 
 
 
@@ -66,12 +63,6 @@ when create bot: if captcha fails: don't reset name
 
 
 
-
-
-
-
-
-when delete: must delete concept names if they are not used
 
 
 
