@@ -1,13 +1,11 @@
-rename must not override other concept with connections: show error instead
 rename must not work if concept doesn't exist yet: show error instead
-bug: rename doesn't seem to work well, it takes the wrong concept?
-Test with save button and fix bug
 
 
 
 
 
-autocomplete: hide if last word is perfectly matched to a word in autocomplete
+
+?autocomplete: hide if last word is perfectly matched to a word in autocomplete?
 
 
 

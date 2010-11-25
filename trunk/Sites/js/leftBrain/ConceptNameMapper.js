@@ -293,7 +293,6 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 	
 	if (this.allNames.indexOf(conceptName2) == -1)
 		this.allNames.push(conceptName2);
-	
 }
 
 //(Bool) whether concept has connection
