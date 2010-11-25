@@ -286,7 +286,7 @@ ConceptNameMapper.prototype.rename = function ConceptNameMapper_rename(conceptNa
 	var positionOfConceptNameOne = this.allNames.indexOf(conceptName1);
 	if (positionOfConceptNameOne != -1);
 	{
-		this.allNames.slice(positionOfConceptNameOne, 1);
+		this.allNames = this.allNames.slice(positionOfConceptNameOne, 1);
 		this.allNames.sort();
 	}
 	
