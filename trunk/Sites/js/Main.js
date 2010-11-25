@@ -96,6 +96,9 @@ function conceptNameFormat(name)
 	name = removeAccents(name);
 		
 	name = name.replace(/[^a-z_0-9()]/g, '');
+	
+	name = name.substr(0,100);
+	
 	return name;
 }
 
