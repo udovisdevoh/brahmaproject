@@ -1,14 +1,9 @@
-if user types a blank statement, ai should behave as if a conversation was started
-
-
-
-?autocomplete: hide if last word is perfectly matched to a word in autocomplete?
+?autocomplete: transparent  if last word is perfectly matched to a word in autocomplete, press enter, send statement automatically?
 
 
 
 
 site: add blank memory chat
-
 
 
 
