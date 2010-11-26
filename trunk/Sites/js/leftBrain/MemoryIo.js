@@ -15,7 +15,12 @@ MemoryIo.prototype.getExportedMemory = function MemoryIo_getExportedMemory()
 	for (var subjectIndex = 0; subjectIndex < this.conceptNameMapper.conceptList.length; subjectIndex++)
 	{
 		var subject = this.conceptNameMapper.conceptList[subjectIndex];
-		exportedMemory += this.getExportedMemoryForSubject(subject);
+		exportedMemory += this.getExportedMemoryForSubject(subject, true);
+	}
+	
+	if (exportedMemory.length > 0)
+	{
+		exportedMemory = '<tautologic:' + exportedMemory + '>';
 	}
 	
 	return exportedMemory;
@@ -23,7 +28,7 @@ MemoryIo.prototype.getExportedMemory = function MemoryIo_getExportedMemory()
 
 //(String)
 //export memory to something serialized
-MemoryIo.prototype.getExportedMemoryForSubject = function MemoryIo_getExportedMemoryForSubject(subject)
+MemoryIo.prototype.getExportedMemoryForSubject = function MemoryIo_getExportedMemoryForSubject(subject, isUseTautologicBranch)
 {
 	var exportedMemory = '';
 
@@ -39,7 +44,7 @@ MemoryIo.prototype.getExportedMemoryForSubject = function MemoryIo_getExportedMe
 					this.flattenizer.flattenBranch(implicitBranch, subject, verb);					
 			var tautologicBranch = subject.getTautologicBranch(verb);
 			
-			var branchToUse = tautologicBranch;
+			var branchToUse = isUseTautologicBranch ? tautologicBranch : implicitBranch;
 			
 			var counter = 0;
 			if (branchToUse.complementList.length > 0)
