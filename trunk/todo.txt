@@ -1,8 +1,3 @@
-?autocomplete: transparent  if last word is perfectly matched to a word in autocomplete, press enter, send statement automatically?
-
-
-
-
 site: add blank memory chat
 
 
