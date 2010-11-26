@@ -90,6 +90,8 @@ function keyDownHandling(e)
 	{
 		if (talkingRouter.autoComplete.isVisible)
 		{
+			var isLastWordPerfectlyMatched = talkingRouter.autoComplete.isLastWordPerfectlyMatched(inputField.value)
+		
 			inputField.focus();
 			talkingRouter.autoComplete.isVisible = false;
 			autoCompleteDom.style.visibility = 'hidden';
@@ -98,7 +100,7 @@ function keyDownHandling(e)
 			if (unicode == 32)//space
 				inputField.value += ' ';
 
-			if (unicode == 13 && (talkingRouter.autoComplete.isCompleteStatement(inputField.value) || talkingRouter.autoComplete.isLastWordPerfectlyMatched()))//enter
+			if (unicode == 13 && (talkingRouter.autoComplete.isCompleteStatement(inputField.value) || isLastWordPerfectlyMatched))//enter
 				return true;//don't cancel enter button, send message to ai
 				
 			return false; //cancel enter button

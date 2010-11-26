@@ -234,6 +234,17 @@ AutoComplete.prototype.isCompleteStatement = function AutoComplete_isCompleteSta
 	return false;
 }
 
+//(Bool)
+//whether last word is perfectly matched with autocomplete
+AutoComplete.prototype.isLastWordPerfectlyMatched = function AutoComplete_isLastWordPerfectlyMatched(statementString)
+{
+	var lastWord = this.getLastWordStub(statementString);
+	if (lastWord != null)
+		if (this.conceptNameMapper.allNames.indexOf(lastWord) != -1)
+			return true;
+	return false;
+}
+
 //(Concept)
 //Find the concept for which most implicit connections are derived
 AutoComplete.prototype.getMostReleventConcept = function AutoComplete_getMostReleventConcept(subject)
