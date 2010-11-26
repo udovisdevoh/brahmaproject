@@ -595,6 +595,31 @@ ul.BotList li div.Owner
 	overflow-x:hidden;
 }
 
+#savingMessageOutput
+{
+	display:none;
+	
+	padding:4px;
+	border:solid 1px #08A;
+	border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	
+	float:left;
+	margin-top:0px;
+	margin-left:5px;
+	background-color:#FFF;
+	max-width:300px !important;
+	max-height:66px !important;
+}
+
+#saveButton
+{
+	float:left;
+}
+
 a.Icon
 {
 	margin-top:10px;

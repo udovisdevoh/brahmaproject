@@ -152,5 +152,150 @@ class AiUnit extends Model
 		$name = StringManipulation::conceptNameFormatUcFirst($name);
 		return parent::newObject('ai_unit','`name` = \''.addslashes($name).'\', `user_profile_id` = '.$userProfileId.', `avatar_id` = '.(rand(1, LAST_AI_AVATAR_ID)));
 	}
+	
+	public static function saveFromAjax($aiUnitId, $memoryString)
+	{
+		$anchorChunkList = explode('<' , $memoryString);
+		$isTautologic = false;
+		$subject = null;
+		$verb = null;
+		$complement = null;
+		$sqlTransaction = null; //String[]
+		
+		foreach ($anchorChunkList as $anchorChunk)
+		{
+			$anchorChunk = trim($anchorChunk);
+			if (strlen($anchorChunk) > 0)
+			{
+				if (substr($anchorChunk, strlen($anchorChunk) - 1, 1) == '>')
+				{
+					$anchorChunk = substr($anchorChunk, 0, strlen($anchorChunk) - 1);
+					
+					if (substr($anchorChunk, 0, 10) == 'tautologic')
+					{
+						$isTautologic = true;
+						
+						$anchorChunk = substr($anchorChunk, 11);
+					}
+					else if (substr($anchorChunk, 0, 8) == 'implicit')
+					{
+						$anchorChunk = substr($anchorChunk, 9);
+					}
+					else
+					{
+						echo "Invalid memory format";
+						die();
+					}
+					
+					$curlyBracketChunkList = explode('{', $anchorChunk);
+					
+					foreach ($curlyBracketChunkList as $curlyBracketChunk)
+					{
+						if (strlen($curlyBracketChunk) > 0)
+						{
+							if (substr($curlyBracketChunk, strlen($curlyBracketChunk) - 1, 1) == '}')
+							{
+								$curlyBracketChunk = substr($curlyBracketChunk, 0, strlen($curlyBracketChunk) - 1);
+								
+								
+								$firstColonPosition = strpos($curlyBracketChunk, ':');
+								
+								if ($firstColonPosition)
+								{
+									$subject = StringManipulation::conceptNameFormat(substr($curlyBracketChunk, 0, $firstColonPosition));
+									
+									$curlyBracketChunk = substr($curlyBracketChunk, $firstColonPosition + 1);
+									
+									$squareBracketChunkList = explode('[' , $curlyBracketChunk);
+									
+									foreach ($squareBracketChunkList as $squareBracketChunk)
+									{
+										if (strlen($squareBracketChunk) > 0)
+										{
+											if (substr($squareBracketChunk, strlen($squareBracketChunk) - 1, 1) == ']')
+											{
+												$squareBracketChunk = substr($squareBracketChunk, 0, strlen($squareBracketChunk) - 1);
+												
+												$firstColonPosition = strpos($squareBracketChunk, ':');
+												
+												if ($firstColonPosition)
+												{
+													$verb = StringManipulation::conceptNameFormat(substr($squareBracketChunk, 0, $firstColonPosition));													
+													$squareBracketChunk = substr($squareBracketChunk, $firstColonPosition + 1);
+													
+													$complementList = explode(',', $squareBracketChunk);
+													
+													foreach ($complementList as $complement)
+													{
+														$complement = trim($complement);
+														$complement = StringManipulation::conceptNameFormat($complement);
+														if (strlen($complement) > 0)
+														{
+															$sqlTransaction[] = 'INSERT INTO `connection` SET `ai_unit_id` = \''.$aiUnitId.'\', `subject` = \''.$subject.'\', `verb` = \''.$verb.'\', `complement` = \''.$complement.'\', `is_tautologic` = '.((int)$isTautologic).', `is_true` = 1';
+														}
+													}
+												}
+												else
+												{
+													echo "Invalid memory format";
+													die();
+												}
+											}
+											else
+											{
+												echo "Invalid memory format";
+												die();
+											}
+										}
+									}
+								}
+								else
+								{
+									echo "Invalid memory format";
+									die();
+								}
+							}
+							else
+							{
+								echo "Invalid memory format";
+								die();
+							}
+						}
+					}
+				}
+				else
+				{
+					echo "Invalid memory format";
+					die();
+				}
+			}
+		}
+		
+		if ($sqlTransaction == null)
+		{
+			echo 'Nothing to save';
+			die();
+		}
+		
+		
+		
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		mysql_query("START TRANSACTION", $link);
+		
+		mysql_query('DELETE FROM `connection` WHERE `ai_unit_id` = \''.$aiUnitId.'\'');		
+		
+		foreach ($sqlTransaction as $sqlQuery)
+			mysql_query($sqlQuery);
+		
+		mysql_query("COMMIT", $link);
+		
+		mysql_close($link);
+		
+		
+		echo 'Success';
+		die();
+	}
 }
 ?>

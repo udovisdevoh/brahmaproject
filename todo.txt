@@ -4,6 +4,13 @@ site: add blank memory chat
 
 
 
+add saving quota per user or per ip or per ai bot
+
+
+
+implement Load left brain
+
+
 
 
 must only allow to save if owner of ai: client and server side

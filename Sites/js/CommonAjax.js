@@ -81,9 +81,30 @@ function signOutAjax(id, outputMessageDomId)
 	xmlhttp.send('id=' + id);
 }
 
-function saveAjax(aiUnitId, talkingRouter)
+function saveAjax(aiUnitId, talkingRouter, outputMessageDomId)
 {
-	alert("Will eventually save "+talkingRouter.firstSecondPersonManager.aiName);
 	var memory = talkingRouter.memoryIo.getExportedMemory();
 	alert(memory);
+	
+	
+	var xmlhttp;
+	
+	if (window.XMLHttpRequest)
+  		xmlhttp=new XMLHttpRequest();
+	else
+  		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		
+	xmlhttp.onreadystatechange = function()
+	{
+	    if (xmlhttp.readyState == 4)
+		{
+			var outputElement = document.getElementById(outputMessageDomId);
+			outputElement.innerHTML = xmlhttp.responseText;
+			outputElement.style.display = 'block';
+  	    }
+	}
+	
+	xmlhttp.open("POST", './save.php', true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send('ai=' + aiUnitId + '&memory=' + escape(memory));
 }
