@@ -1533,9 +1533,6 @@ UnitTest.prototype.testTalkingRouter = function UnitTest_testTalkingRouter()
 {
 	var talkingRouter = new TalkingRouter("human_dude", "ai_dude");
 	
-	if (talkingRouter.talkTo("")['output'] != '')
-		throw 'Should answer something empty';
-	
 	if (talkingRouter.talkTo("sdgsdfj")['output'] != talkingRouter.helpLinkString)
 		throw 'Should suggest to read help';
 		
