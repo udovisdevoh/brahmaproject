@@ -161,6 +161,54 @@ class UserProfile extends Model
 		return !$isFound;
 	}
 	
+	public static function getSaveAiQuotaTimeLeft($userId)
+	{
+		$userId = (int)$userId;
+		$now = time();
+		
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		$query = mysql_query('SELECT UNIX_TIMESTAMP(`modified`) FROM `user_save_ai_quota` WHERE `user_profile_id` = '.$userId.' LIMIT 1');
+		$sqlRow = mysql_fetch_array($query);
+			
+		mysql_close($link);
+		
+		if (!$sqlRow)
+			return 0;
+		
+		return ($sqlRow[0] + USER_SAVE_AI_QUOTA_TIMEOUT) - $now;
+	}
+	
+	public static function setSaveAiQuotaTimeLeft($userId)
+	{
+		$userId = (int)$userId;
+		$now = time();
+		
+		
+		
+		$sqlExpression = 'SELECT `modified` FROM `user_save_ai_quota` WHERE `user_profile_id` = \''.$userId.'\' LIMIT 1';
+		
+		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
+		mysql_select_db(MYSQL_DB);
+		
+		
+		$query = mysql_query($sqlExpression);
+		$isFound = ($sqlRow = mysql_fetch_array($query));
+		
+		
+		if ($isFound)
+		{
+			mysql_query('UPDATE `user_save_ai_quota` SET `modified` = FROM_UNIXTIME('.$now.') WHERE `user_profile_id` = \''.$userId.'\'');
+		}
+		else
+		{
+			mysql_query('INSERT INTO `user_save_ai_quota` SET `modified` = FROM_UNIXTIME('.$now.'), `user_profile_id` = \''.$userId.'\'');
+		}
+		
+		mysql_close($link);
+	}
+	
 	public static function getTotalUpRating($userId)
 	{
 		$userId = (int)$userId;

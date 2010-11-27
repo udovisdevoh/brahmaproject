@@ -36,5 +36,20 @@ class Cache
 		fwrite($filePointer, $value);
 		fclose($filePointer);
 	}
+	
+	//(Void)
+	//Reset something in cache
+	public static function reset($key)
+	{
+		if (DISABLE_CACHE)
+			return;
+			
+		$fileName = CACHE_DIRECTORY.$key;
+		if (file_exists($fileName))
+		{
+			unlink($fileName);
+		}
+		return;
+	}
 }
 ?>
