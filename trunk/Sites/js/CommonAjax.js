@@ -84,8 +84,6 @@ function signOutAjax(id, outputMessageDomId)
 function saveAjax(aiUnitId, talkingRouter, outputMessageDomId)
 {
 	var memory = talkingRouter.memoryIo.getExportedMemory();
-	alert(memory);
-	
 	
 	var xmlhttp;
 	

@@ -620,6 +620,12 @@ ul.BotList li div.Owner
 	float:left;
 }
 
+#savingMessageOutput p.Error, #savingMessageOutput p.Success
+{
+	font-weight:normal;
+	margin:0px;
+}
+
 a.Icon
 {
 	margin-top:10px;

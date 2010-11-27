@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `ai_unit` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `user_profile_id` (`user_profile_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 
 CREATE TABLE IF NOT EXISTS `connection` (
@@ -56,4 +56,11 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   UNIQUE KEY `user_name` (`name`),
   UNIQUE KEY `email` (`email`),
   KEY `user_name_and_password` (`name`,`password`,`is_active`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+
+
+CREATE TABLE IF NOT EXISTS `user_save_ai_quota` (
+  `user_profile_id` int(10) unsigned NOT NULL,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `user_profile_id` (`user_profile_id`,`modified`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

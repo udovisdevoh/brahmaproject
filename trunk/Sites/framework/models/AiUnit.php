@@ -294,8 +294,7 @@ class AiUnit extends Model
 		mysql_close($link);
 		
 		
-		echo 'Success';
-		die();
+		echo '<p class="Success">Success</p>';
 	}
 }
 ?>
