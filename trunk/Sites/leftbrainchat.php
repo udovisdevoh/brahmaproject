@@ -62,7 +62,8 @@
 			var conversationDom = document.getElementById('conversation');
 			inputField.focus();
 			inputField.onkeyup = keyUpHandling;
-			document.onkeydown = keyDownHandling;		
+			document.onkeydown = keyDownHandling;
+			initMemoryFromDb();			
 			resizeTextFields();
 			if (talkingRouter.firstSecondPersonManager.humanName == '')
 				conversationDom.innerHTML += '<div class="AiBlock">' + talkingRouter.firstSecondPersonManager.aiName + ': Please tell me your name</div>';
