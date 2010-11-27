@@ -4,6 +4,7 @@ require_once("./framework/Cache.php");
 require_once("./framework/StringManipulation.php");
 require_once("./framework/models/AiUnit.php");
 require_once("./framework/models/UserProfile.php");
+require_once("./framework/models/Connection.php");
 require_once("./framework/viewers/AiProfileViewer.php");
 require_once("./framework/viewers/AiShortProfileTopRatedListViewer.php");
 require_once("./framework/viewers/BreadCrumpViewer.php");
@@ -11,6 +12,8 @@ require_once("./framework/viewers/RatingBarViewer.php");
 require_once("./framework/viewers/RatingThumbViewer.php");
 require_once("./framework/viewers/UserProfileViewer.php");
 require_once("./framework/viewers/AiUnitChatControlsViewer.php");
+require_once("./framework/viewers/AiUnitMemoryViewer.php");
+
 
 session_start();
 

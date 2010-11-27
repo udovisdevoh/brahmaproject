@@ -12,12 +12,16 @@ if ($renderedView == null)
 {
 	$aiUnit = AiUnit::getAiUnit($aiUnitKey);
 	if ($aiUnit == null)
-		die();			
+		die();
+		
+	$connectionList = Connection::getConnectionListForAi($aiUnitKey);
 	
 	$bestUpRating = AiUnit::getBestUpRating();
 	$worstDownRating = AiUnit::getWorstDownRating();
 	
-	$renderedView = AiUnitChatControlsViewer::view($aiUnit, $bestUpRating, $worstDownRating);
+	$renderedView .= AiUnitChatControlsViewer::view($aiUnit, $bestUpRating, $worstDownRating);
+	$renderedView .= AiUnitMemoryViewer::view($connectionList);
+	
 	Cache::set('left_brain_chat_'.$aiUnitKey, $renderedView);
 }
 
