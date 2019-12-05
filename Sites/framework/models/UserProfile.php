@@ -12,6 +12,8 @@ class UserProfile extends Model
 	
 	public static function signIn($user, $password)
 	{
+		global $link;
+		
 		$user = StringManipulation::conceptNameFormatUcFirst($user);
 		
 		
@@ -41,6 +43,8 @@ class UserProfile extends Model
 	
 	public static function getCurrentUser()
 	{
+		global $link;
+		
 		if (isset($_SESSION['userProfile']) && $_SESSION['userProfile'])
 			return $_SESSION['userProfile'];
 			
@@ -83,6 +87,8 @@ class UserProfile extends Model
 	
 	public static function newUserProfile($name, $password, $email, $first_name, $last_name)
 	{
+		global $link;
+		
 		$name = StringManipulation::conceptNameFormatUcFirst($name);
 	
 		if (!self::isValidEmail($email))
@@ -145,6 +151,8 @@ class UserProfile extends Model
 	
 	public static function isCanRate($userId, $aiBotId, $ip, $todayTimeStamp)
 	{
+		global $link;
+		
 		$userId = (int)$userId;
 		$aiBotId = (int)$aiBotId;
 		$todayTimeStamp = (int)$todayTimeStamp;
@@ -163,6 +171,8 @@ class UserProfile extends Model
 	
 	public static function getSaveAiQuotaTimeLeft($userId)
 	{
+		global $link;
+		
 		$userId = (int)$userId;
 		$now = time();
 		
@@ -182,6 +192,8 @@ class UserProfile extends Model
 	
 	public static function setSaveAiQuotaTimeLeft($userId)
 	{
+		global $link;
+		
 		$userId = (int)$userId;
 		$now = time();
 		
@@ -211,6 +223,8 @@ class UserProfile extends Model
 	
 	public static function getTotalUpRating($userId)
 	{
+		global $link;
+		
 		$userId = (int)$userId;
 		
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
@@ -226,6 +240,8 @@ class UserProfile extends Model
 	
 	public static function getTotalDownRating($userId)
 	{
+		global $link;
+		
 		$userId = (int)$userId;
 	
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
@@ -241,6 +257,8 @@ class UserProfile extends Model
 	
 	public static function getRank($userId)
 	{
+		global $link;
+		
 		$userId = (int)$userId;
 
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);

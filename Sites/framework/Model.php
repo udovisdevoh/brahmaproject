@@ -1,4 +1,34 @@
 <?php
+global $link;
+
+function mysql_connect($hostName, $user, $password)
+{
+	return mysqli_connect($hostName, $user, $password);
+}
+
+function mysql_select_db($database)
+{
+	global $link;
+	return mysqli_select_db($link, $database);
+}
+
+function mysql_query($sql)
+{
+	global $link;
+	return mysqli_query($link, $sql);
+}
+
+function mysql_fetch_array($query)
+{
+	$row = mysqli_fetch_array($query);	
+	return $row;
+}
+
+function mysql_close($link2)
+{
+	mysqli_close($link2);
+}
+
 require_once("./framework/settings.php");
 
 //Represent an abstract model
@@ -6,6 +36,8 @@ abstract class Model
 {
 	public static function getObjectList($tableName = null, $selectWhat = '*', $where = null, $orderBy = null, $offset = 0, $limit = -1)
 	{
+		global $link;
+		
 		if ($tableName == null)
 			throw new Exception('Table name cannot be null');
 		
@@ -41,6 +73,8 @@ abstract class Model
 	
 	public static function getObject($tableName = null, $selectWhat = '*', $where = null, $orderBy = null)
 	{
+		global $link;
+		
 		if ($tableName == null)
 			throw new Exception('Table name cannot be null');
 		
@@ -67,6 +101,8 @@ abstract class Model
 	
 	public static function count($tableName = null, $columnName = 'id', $where = null)
 	{
+		global $link;
+		
 		if ($tableName == null)
 			throw new Exception('Table name cannot be null');
 		
@@ -88,6 +124,8 @@ abstract class Model
 	
 	public static function delete($tableName, $where, $limit = -1)
 	{
+		global $link;
+		
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 		mysql_select_db(MYSQL_DB);
 				
@@ -106,6 +144,8 @@ abstract class Model
 	
 	public static function update($tableName, $fieldsString, $where)
 	{
+		global $link;
+		
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 		mysql_select_db(MYSQL_DB);
 				
@@ -121,6 +161,8 @@ abstract class Model
 	
 	public static function newObject($tableName, $fieldsString)
 	{
+		global $link;
+		
 		$link = mysql_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PW);
 		mysql_select_db(MYSQL_DB);
 				

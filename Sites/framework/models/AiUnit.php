@@ -69,6 +69,8 @@ class AiUnit extends Model
 	
 	public static function getBestUpRating()
 	{
+		global $link;
+		
 		$bestRating = 0;
 		$sqlExpression = 'SELECT rate_up FROM ai_unit ORDER BY rate_up DESC LIMIT 1';
 		
@@ -87,6 +89,8 @@ class AiUnit extends Model
 	
 	public static function getWorstDownRating()
 	{
+		global $link;
+		
 		$bestRating = 0;
 		$sqlExpression = 'SELECT rate_down FROM ai_unit ORDER BY rate_down DESC LIMIT 1';
 		
@@ -104,6 +108,8 @@ class AiUnit extends Model
 	
 	public static function rate($userProfileId, $aiBotId, $ip, $todayTimeStamp, $isUp)
 	{
+		global $link;
+		
 		$isUp = (int)$isUp;
 		$sqlExpression = 'SELECT user_profile_rater_id FROM user_daily_rating WHERE `user_profile_rater_id` = '.$userProfileId.' and `ai_unit_rated_id` = '.$aiBotId;
 		
@@ -155,6 +161,8 @@ class AiUnit extends Model
 	
 	public static function saveFromAjax($aiUnitId, $memoryString)
 	{
+		global $link;
+		
 		$anchorChunkList = explode('<' , $memoryString);
 		$isTautologic = false;
 		$subject = null;
