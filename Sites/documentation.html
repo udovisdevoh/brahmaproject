@@ -1,0 +1,319 @@
+<?php require_once("./framework/controllers/documentation.php"); ?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="Collective Artificial Intelligence" />
+		<meta name="language" content="en" />
+		<meta name="country" content="ca" />
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		
+		<link rel="stylesheet" type="text/css" href="./css/style.css" />
+		<link rel="shortcut icon" href="./images/favicon.ico" />
+		<script type="text/javascript" src="./js/Main.js"></script>
+		<script type="text/javascript" src="./js/CommonAjax.js"></script>
+		<link href="./css/leftbrain.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="./js/leftBrain/Concept.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/VerbBranch.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ConceptNameMapper.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/TautologyManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Instinct.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Statement.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ComplementaryOperatorManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/MutuallyExclusiveOperatorManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/EvaluationCache.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ProofCache.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Flattenizer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Optimizer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Invalidator.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ProofManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ThinkerGeneralizationToParent.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ThinkerGeneralizationToBrother.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ThinkerFindParentOfEnemyBrother.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ThinkerFindEnemyBrother.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Thinker.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Theory.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/WhatisViewer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/DefineViewer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/TeachViewer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ObjectionFinder.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/FirstSecondPersonManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/HumanStatementSplitter.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/HumanStatementColorizer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/AskViewer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/History.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/AutoComplete.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ConversationManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/TalkingRouter.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/MemoryIo.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Main.js"></script>
+
+		<title>Brahma Project: Quick Documentation</title>
+	</head>
+	<body>
+		<div style="clear:both"></div>
+		
+			<div id="documentation" class="Container">
+			<h2>Quick documentation</h2>
+			
+			<h3>Operators</h3>
+			
+			<ul>
+				<li>
+					<span class="Operator">isa / someare</span>
+					<p class="Example">
+						pine isa tree<br />
+						or<br />
+						tree someare pine<br />
+						<span class="ExampleExplanation">would mean: all pines are trees</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">madeof / partof</span>
+					<p class="Example">
+						tree madeof wood<br />
+						or<br />
+						wood partof tree<br />
+						<span class="ExampleExplanation">would mean: all trees contain wood</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">contradict</span>
+					<p class="Example">
+						solid contradict liquid<br />
+						or<br />
+						liquid contradict solid<br />
+						<span class="ExampleExplanation">would mean: if "ice isa solid", then it's impossible that "ice isa liquid"</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">help / helpedby</span>
+					<p class="Example">
+						water help organic_life_form<br />
+						or<br />
+						organic_life_form helpedby water<br />
+						<span class="ExampleExplanation">would mean: water is good for every organic life form</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">make / madeby</span>
+					<p class="Example">
+						musician make music<br />
+						or<br />
+						music madeby musician<br />
+						<span class="ExampleExplanation">would mean: all musicians make some music</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">destroy / destroyedby</span>
+					<p class="Example">
+						trans_fat destroy animal<br />
+						or<br />
+						animal destroyedby trans_fat<br />
+						<span class="ExampleExplanation">would mean: trans_fat is harmful for every animal</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">largerthan / smallerthan</span>
+					<p class="Example">
+						start largerthan planet<br />
+						or<br />
+						planet smallerthan start<br />
+						<span class="ExampleExplanation">would mean: all stars are larger than all planets</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">from / originof</span>
+					<p class="Example">
+						judo from japan<br />
+						or<br />
+						japan originof judo<br />
+						<span class="ExampleExplanation">would mean: judo was invented in japan</span>
+					</p>
+					<p class="Example">
+						human from ape<br />
+						or<br />
+						ape originof human<br />
+						<span class="ExampleExplanation">would mean: ape is an ancestor of human</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">like / likedby</span>
+					<p class="Example">
+						philatelist like stamp<br />
+						or<br />
+						stamp likedby philatelist<br />
+						<span class="ExampleExplanation">would mean: all philatelists like stamps (but not necessarly all stamps)</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">promote / promotedby</span>
+					<p class="Example">
+						socrates promote skepticism<br />
+						or<br />
+						skepticism promotedby socrates<br />
+						<span class="ExampleExplanation">would mean: socrates promotes the ideology of skepticism</span>
+					</p>
+				</li>
+			</ul>
+					
+			<h3>Keywords</h3>
+			
+			<ul>
+				<li>
+					<span class="Operator">not</span>
+					<p class="Example">
+						pine not isa animal<br />
+						<span class="ExampleExplanation">remove connection "pine isa animal"</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">whatis</span>
+					<p class="Example">
+						whatis pine<br />
+						<span class="ExampleExplanation">ask for a definition of pine (will only output direct connections)</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">define</span>
+					<p class="Example">
+						define pine<br />
+						<span class="ExampleExplanation">ask for a longer definition of pine (will output both direct and implicit connections)</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">why / how</span>
+					<p class="Example">
+						why pine madeof water<br />
+						or<br />
+						how pine madeof water<br />
+						<span class="ExampleExplanation">ask the AI more details on why/how pine is made of water</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">which</span>
+					<p class="Example">
+						pine isa tree which isa plant madeof wood which isa organic_lifeform which madeof water which isa liquid madeof oxygen and hydrogen<br />
+						<span class="ExampleExplanation">consider the last complement as current subject</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">you / me</span>
+					<p class="Example">
+						me isa human<br />
+						you isa program<br />
+						<span class="ExampleExplanation">keywords that replace you and the AI you are chatting with</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">and</span>
+					<p class="Example">
+						tree isa plant madeof trunk, leaf and branch<br />
+						<span class="ExampleExplanation">join multiple statements with the "and" keyword</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">rename</span>
+					<p class="Example">
+						rename circle round<br />
+						<span class="ExampleExplanation">changes the name of circle to round</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">aliasof / unalias</span>
+					<p class="Example">
+						circle aliasof round<br />
+						or<br />
+						circle unalias round<br />
+						<span class="ExampleExplanation">make round be the same thing as circle, or not</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">what</span>
+					<p class="Example">
+						pine madeof what<br />
+						<span class="ExampleExplanation">ask the AI for a partial definition of pine</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">start / stop</span>
+					<p class="Example">
+						<span class="ExampleExplanation">start or stop conversational mode with AI</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">thinkabout</span>
+					<p class="Example">
+						thinkabout pine<br />
+						<span class="ExampleExplanation">the AI will try to make a theory about pine</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">think</span>
+					<p class="Example">
+						<span class="ExampleExplanation">the AI will try to make a theory about something</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">yes/no</span>
+					<p class="Example">
+						yes<br />
+						or<br />
+						no<br />
+						<span class="ExampleExplanation">confirm or unconfirm the AI's latest theory</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">askabout</span>
+					<p class="Example">
+						askabout pine<br />
+						<span class="ExampleExplanation">the AI will ask a question about pine</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">ask</span>
+					<p class="Example">
+						<span class="ExampleExplanation">the AI will ask a question</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">teachabout</span>
+					<p class="Example">
+						teachabout pine<br />
+						<span class="ExampleExplanation">the AI will teach something about pine</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">teach</span>
+					<p class="Example">
+						<span class="ExampleExplanation">the AI will teach something</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">talkabout</span>
+					<p class="Example">
+						talkabout pine<br />
+						<span class="ExampleExplanation">the AI will teach, ask, or make a theory about pine</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">talk</span>
+					<p class="Example">
+						<span class="ExampleExplanation">the AI will teach, ask, or make a theory</span>
+					</p>
+				</li>
+				<li>
+					<span class="Operator">testmemory</span>
+					<p class="Example">
+						<span class="ExampleExplanation">test memory for inconsistencies and incoherences</span>
+					</p>
+				</li>
+			</ul>
+		</div>
+
+
+		
+		<div style="clear:both"></div>
+		
+	</body>
+</html>

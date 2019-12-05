@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="Collective Artificial Intelligence" />
+		<meta name="language" content="en" />
+		<meta name="country" content="ca" />
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="./css/style.css" />
+		<link rel="shortcut icon" href="./images/favicon.ico" />
+		<script type="text/javascript" src="./js/Main.js"></script>
+		<script type="text/javascript" src="./js/CommonAjax.js"></script>
+		<link href="./css/leftbrain.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="./js/leftBrain/Concept.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/VerbBranch.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ConceptNameMapper.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/TautologyManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Instinct.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Statement.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ComplementaryOperatorManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/MutuallyExclusiveOperatorManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/EvaluationCache.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ProofCache.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Flattenizer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Optimizer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Invalidator.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ProofManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ThinkerGeneralizationToParent.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ThinkerGeneralizationToBrother.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ThinkerFindParentOfEnemyBrother.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ThinkerFindEnemyBrother.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Thinker.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Theory.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/WhatisViewer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/DefineViewer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/TeachViewer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ObjectionFinder.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/FirstSecondPersonManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/HumanStatementSplitter.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/HumanStatementColorizer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/AskViewer.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/History.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/AutoComplete.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/ConversationManager.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/TalkingRouter.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/MemoryIo.js"></script>
+		<script type="text/javascript" src="./js/leftBrain/Main.js"></script>
+		<title>Collective Artificial Intelligence: Brahma Project</title>
+	</head>
+	<body onresize="resizeTextFields()">
+		<div style="clear:both"></div>
+		
+		<form method="post" onsubmit='sendMessage(talkingRouter);return false;'>
+			<div style="overflow:scroll;height:460px" id="conversation"></div>
+			<div>
+				<input style="width:78%" type="text" id="humanStatementField" autocomplete="off" />
+				<button style="50px" onclick='sendMessage(talkingRouter);return false;'>Talk</button>
+				<div id="autoComplete"></div>
+				
+			</div>
+		</form>
+		
+		<script type="text/javascript">
+			<!--
+			function resizeTextFields()
+			{
+				if (is_ie)
+				{
+					conversationDom.style.height = Math.max(0, document.documentElement.clientHeight - 226) + 'px';
+					inputField.style.width = (document.documentElement.clientWidth - 75) + 'px';
+				}
+				else
+				{
+					conversationDom.style.height = Math.max(0, self.innerHeight - 235) + 'px';
+					inputField.style.width = (self.innerWidth - 75) + 'px';
+				}
+			}
+			
+			//Send message to Ai
+			function sendMessage(talkingRouter)
+			{
+				var humanStatementField = document.getElementById('humanStatementField');
+				var humanStatement = humanStatementField.value;
+				
+				var inputAndOutput = talkingRouter.talkTo(humanStatement);
+				
+				conversationDom.innerHTML += '<div class="HumanBlock">' + talkingRouter.firstSecondPersonManager.humanName + ": " + inputAndOutput['input'] + '</div>';
+				conversationDom.innerHTML += '<div class="AiBlock">' + talkingRouter.firstSecondPersonManager.aiName + ": " + inputAndOutput['output'] + '</div>';
+				
+				conversationDom.scrollTop = conversationDom.scrollHeight;
+				humanStatementField.value = "";
+				return false;
+			}
+			
+			var aiName = prompt("What's my name?");
+			var humanName = prompt("What's your name?");
+			var talkingRouter = new TalkingRouter(humanName, aiName);
+			var inputField = document.getElementById('humanStatementField');
+			var autoCompleteDom = document.getElementById('autoComplete');
+			var conversationDom = document.getElementById('conversation');
+			inputField.focus();
+			inputField.onkeyup = keyUpHandling;
+			document.onkeydown = keyDownHandling;
+			//initMemoryFromDb();			
+			resizeTextFields();
+			if (talkingRouter.firstSecondPersonManager.humanName == '')
+				conversationDom.innerHTML += '<div class="AiBlock">' + talkingRouter.firstSecondPersonManager.aiName + ': Please tell me your name</div>';
+			-->
+		</script>
+		
+		<div style="clear:both"></div>
+
+		
+	</body>
+</html>
